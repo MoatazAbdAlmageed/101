@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NestJS Mastery - The Complete Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <aside>
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-logo">
+                <div class="logo-icon">N</div>
+                <span>NestJS Mastery</span>
+            </a>
+        </div>
+        <nav class="nav-content">
+            <div class="chapter">
+                <div class="chapter-title">Phase 1: Fundamentals</div>
+                <a href="#p1-1" class="page-link active" data-page="p1-1">1.1 Intro & CLI</a>
+                <a href="#p1-2" class="page-link" data-page="p1-2">1.2 Project Anatomy</a>
+                <a href="#p1-3" class="page-link" data-page="p1-3">1.3 Modules & Logic</a>
+                <a href="#p1-4" class="page-link" data-page="p1-4">1.4 Dependency Injection</a>
+                <a href="#p1-5" class="page-link" data-page="p1-5">1.5 The Entry Point</a>
+            </div>
+            <div class="chapter">
+                <div class="chapter-title">Phase 2: REST API</div>
+                <a href="#p2-1" class="page-link" data-page="p2-1">2.1 Route Decorators</a>
+                <a href="#p2-2" class="page-link" data-page="p2-2">2.2 Handling Data</a>
+                <a href="#p2-3" class="page-link" data-page="p2-3">2.3 Service Layer</a>
+                <a href="#p2-4" class="page-link" data-page="p2-4">2.4 Business Logic</a>
+                <a href="#p2-5" class="page-link" data-page="p2-5">2.5 CLI Power Tools</a>
+            </div>
+            <div class="chapter">
+                <div class="chapter-title">Phase 3: Validation</div>
+                <a href="#p3-1" class="page-link" data-page="p3-1">3.1 DTO Pattern</a>
+                <a href="#p3-2" class="page-link" data-page="p3-2">3.2 Class Validator</a>
+                <a href="#p3-3" class="page-link" data-page="p3-3">3.3 Global Pipes</a>
+                <a href="#p3-4" class="page-link" data-page="p3-4">3.4 Exception Filters</a>
+                <a href="#p3-5" class="page-link" data-page="p3-5">3.5 Error Formatting</a>
+            </div>
+            <div class="chapter">
+                <div class="chapter-title">Phase 4: Persistence</div>
+                <a href="#p4-1" class="page-link" data-page="p4-1">4.1 Prisma Setup</a>
+                <a href="#p4-2" class="page-link" data-page="p4-2">4.2 Schema Modeling</a>
+                <a href="#p4-3" class="page-link" data-page="p4-3">4.3 Migrations</a>
+                <a href="#p4-4" class="page-link" data-page="p4-4">4.4 CRUD with Prisma</a>
+                <a href="#p4-5" class="page-link" data-page="p4-5">4.5 Relations</a>
+            </div>
+            <div class="chapter">
+                <div class="chapter-title">Phase 5: Mastery</div>
+                <a href="#p5-1" class="page-link" data-page="p5-1">5.1 Configuration</a>
+                <a href="#p5-2" class="page-link" data-page="p5-2">5.2 App Security</a>
+                <a href="#p5-3" class="page-link" data-page="p5-3">5.3 Authentication</a>
+                <a href="#p5-4" class="page-link" data-page="p5-4">5.4 Rate Limiting</a>
+                <a href="#p5-5" class="page-link" data-page="p5-5">5.5 Logging</a>
+            </div>
+        </nav>
+    </aside>
+
+    <main id="content-viewer">
+        <div id="loader" style="text-align: center; padding: 4rem;">
+            <div class="logo-icon" style="margin: 0 auto 1rem; animation: pulse 2s infinite;">N</div>
+            <p style="color: var(--text-secondary)">Syncing your learning pathway...</p>
+        </div>
+
+        <div id="book-content" style="display: none;">
+            <!-- Content will be injected here by the converter -->
+        </div>
+        
+        <footer class="page-nav" style="display: none;">
+            <a href="#" class="nav-btn prev">
+                <span class="dir">Previous</span>
+                <span class="title">...</span>
+            </a>
+            <a href="#" class="nav-btn next">
+                <span class="dir">Next</span>
+                <span class="title">...</span>
+            </a>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        /**
+         * NestJS Book Converter Engine
+         * Automatically transforms structured Markdown into a 25-page interactive book.
+         */
+        
+        async function initConverter() {
+            try {
+                const response = await fetch('content.md');
+                const markdown = await response.text();
+                
+                const phases = parseMarkdownToPhases(markdown);
+                renderBook(phases);
+                
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('book-content').style.display = 'block';
+                document.querySelector('.page-nav').style.display = 'flex';
+                
+                // Show first page
+                showPage('p1-1');
+            } catch (err) {
+                console.error('Failed to load content.md', err);
+                document.getElementById('loader').innerHTML = `<p style="color: var(--primary)">Error: content.md not found. Please ensure it exists in the root directory.</p>`;
+            }
+        }
+
+        function parseMarkdownToPhases(md) {
+            // Split by "### Phase X"
+            const phaseBlocks = md.split(/### Phase \d:/g).filter(b => b.trim().length > 10);
+            
+            return phaseBlocks.map((content, index) => {
+                const phaseNum = index + 1;
+                // For each phase, we want to create 5 "pages"
+                // In a real scenario, we'd split the content by sub-headers
+                // Here we'll distribute the content intelligently
+                const lines = content.split('\n').filter(l => l.trim() !== '');
+                const title = lines[0].split('**')[0].trim() || `Phase ${phaseNum}`;
+                
+                // Divide lines into 5 chunks
+                const chunkSize = Math.ceil(lines.length / 5);
+                const pages = [];
+                for (let i = 0; i < 5; i++) {
+                    const start = i * chunkSize;
+                    const end = start + chunkSize;
+                    pages.push({
+                        id: `p${phaseNum}-${i+1}`,
+                        title: `Step ${i+1}: ${lines[start]?.replace(/[#*]/g, '').slice(0, 30) || 'Deep Dive'}...`,
+                        content: marked.parse(lines.slice(start, end).join('\n'))
+                    });
+                }
+                
+                return {
+                    id: phaseNum,
+                    title: title,
+                    pages: pages
+                };
+            });
+        }
+
+        function renderBook(phases) {
+            const container = document.getElementById('book-content');
+            const nav = document.querySelector('.nav-content');
+            
+            nav.innerHTML = ''; // Clear static nav
+            container.innerHTML = ''; // Clear static content
+
+            phases.forEach(phase => {
+                // Render Sidebar Chapter
+                const chapterDiv = document.createElement('div');
+                chapterDiv.className = 'chapter';
+                chapterDiv.innerHTML = `<div class="chapter-title">Phase ${phase.id}: ${phase.title}</div>`;
+                
+                phase.pages.forEach(page => {
+                    // Add Nav Link
+                    const link = document.createElement('a');
+                    link.href = `#${page.id}`;
+                    link.className = 'page-link';
+                    link.dataset.page = page.id;
+                    link.textContent = page.title;
+                    link.onclick = (e) => { e.preventDefault(); showPage(page.id); };
+                    chapterDiv.appendChild(link);
+
+                    // Add Page Content
+                    const pageSection = document.createElement('section');
+                    pageSection.id = page.id;
+                    pageSection.className = 'book-page';
+                    pageSection.innerHTML = `
+                        <div class="content-header">
+                            <span class="label">Phase ${phase.id} • Chapter ${page.id.split('-')[1]}</span>
+                            <h1>${page.title}</h1>
+                        </div>
+                        <div class="content-body">
+                            ${page.content}
+                        </div>
+                    `;
+                    container.appendChild(pageSection);
+                });
+                
+                nav.appendChild(chapterDiv);
+            });
+        }
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.book-page');
+            const navLinks = document.querySelectorAll('.page-link');
+            
+            pages.forEach(p => p.classList.remove('active'));
+            navLinks.forEach(l => l.classList.remove('active'));
+            
+            const target = document.getElementById(pageId);
+            const link = document.querySelector(`[data-page="${pageId}"]`);
+            
+            if (target) target.classList.add('active');
+            if (link) link.classList.add('active');
+            
+            updateNavButtons(pageId);
+            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateNavButtons(currentId) {
+            const allLinks = Array.from(document.querySelectorAll('.page-link'));
+            const currentLink = document.querySelector(`[data-page="${currentId}"]`);
+            const currentIndex = allLinks.indexOf(currentLink);
+            
+            const nextBtn = document.querySelector('.next');
+            const prevBtn = document.querySelector('.prev');
+
+            if (currentIndex > 0) {
+                prevBtn.style.visibility = 'visible';
+                prevBtn.querySelector('.title').textContent = allLinks[currentIndex - 1].textContent;
+                prevBtn.onclick = (e) => { e.preventDefault(); showPage(allLinks[currentIndex - 1].dataset.page); };
+            } else {
+                prevBtn.style.visibility = 'hidden';
+            }
+
+            if (currentIndex < allLinks.length - 1) {
+                nextBtn.style.visibility = 'visible';
+                nextBtn.querySelector('.title').textContent = allLinks[currentIndex + 1].textContent;
+                nextBtn.onclick = (e) => { e.preventDefault(); showPage(allLinks[currentIndex + 1].dataset.page); };
+            } else {
+                nextBtn.style.visibility = 'hidden';
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', initConverter);
+    </script>
+</body>
+</html>

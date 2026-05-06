@@ -1,0 +1,23 @@
+curl --location --request POST 'https://api.sendzen.io/v1/messages' \
+--header 'Authorization: Bearer sz_sandbox_HoGNkkw3k1JXyilttqxo4DxNAKzqDPwnusDgeWhhQzl3Tw' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+   "from": "15557814168",
+  "to": "201150064746",
+    "type": "template",
+    "template": {
+        "name": "string",
+        "lang_code": "string",
+        "components": {
+            "type": "header",
+            "parameters": [
+                {
+                    "type": "voice",
+                    "voice": {
+                        "link": "https://assets.eu.apidog.com/app/apidoc-image/custom/20251204/3d8bd5c7-b819-41d0-93b1-37400ef6dcbb.svg"
+                    }
+                }
+            ]
+        }
+    }
+}'

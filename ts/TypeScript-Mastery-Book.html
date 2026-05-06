@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript-Mastery-Book</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --sidebar-bg: rgba(30, 41, 59, 0.7);
+            --accent: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        aside {
+            width: 300px;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid var(--glass-border);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 2rem;
+            overflow-y: auto;
+            display: none; /* Hidden on mobile */
+        }
+
+        @media (min-width: 1024px) {
+            aside { display: block; }
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toc h3 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            display: block;
+            padding: 0.25rem 0;
+        }
+
+        .toc a:hover {
+            color: var(--accent);
+            padding-left: 0.25rem;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 3rem 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-wrap {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-main);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; margin-top: 0; color: var(--accent); }
+        h2 { font-size: 1.875rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; }
+
+        p { margin-bottom: 1.25rem; color: var(--text-dim); font-size: 1.1rem; }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.4rem;
+            font-size: 0.9em;
+        }
+
+        pre {
+            margin: 1.5rem 0;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        pre code {
+            display: block;
+            padding: 1.5rem;
+            background: transparent !important;
+        }
+
+        ul, ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+            color: var(--text-dim);
+        }
+
+        li { margin-bottom: 0.5rem; }
+
+        blockquote {
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.5rem;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--glass-border);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+    <aside>
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>Mastery Book</span>
+        </div>
+        <nav class="toc" id="toc">
+            <h3>Table of Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+    </aside>
+
+    <main>
+        <div class="content-wrap">
+            <div id="content">
+                <h1>TypeScript Mastery: The Definitive Guide</h1>
+<p>Welcome, Apprentice. This is no mere tutorial; this is a comprehensive grimoire designed to take you from a JavaScript wanderer to a TypeScript Master. We will not just learn syntax; we will learn architecture, safety, and the philosophy of &quot;Type-First&quot; development.</p>
+<hr>
+<h2>🗺️ The Grand Roadmap</h2>
+<p>This book is divided into distinct phases, each containing multiple in-depth chapters. Each chapter is designed to provide 5 pages (sections) of deep knowledge.</p>
+<ul>
+<li><strong>Phase 1: Foundations &amp; Environment</strong></li>
+<li><strong>Phase 2: The Type System Core</strong></li>
+<li><strong>Phase 3: Architecting with Objects &amp; Interfaces</strong></li>
+<li><strong>Phase 4: Advanced Type Sorcery</strong></li>
+<li><strong>Phase 5: Universal Code &amp; Generics</strong></li>
+</ul>
+<hr>
+<h2>📗 Phase 1: Foundations &amp; Environment</h2>
+<h3>Chapter 1: The TypeScript Philosophy</h3>
+<h4>1.1 The Origin Story: Why TypeScript?</h4>
+<p>JavaScript was created in 10 days as a language for small &quot;glue&quot; scripts. As applications grew into millions of lines of code, JS&#39;s dynamic nature became its greatest weakness. TypeScript was born at Microsoft to bring &quot;Scalable JavaScript&quot; to the world. It provides a safety net that catches errors before they ever reach your users.</p>
+<h4>1.2 Static vs. Dynamic Typing</h4>
+<p>In JavaScript, a variable can be a string one moment and a number the next. This &quot;flexibility&quot; is where bugs hide. TypeScript introduces <strong>Static Typing</strong>, meaning the type of a variable is known and checked during development. If you try to call <code>.toUpperCase()</code> on a number, TypeScript will scream at you immediately, not when your app crashes in production.</p>
+<h4>1.3 The Compilation Lifecycle (Transpilation)</h4>
+<p>Browsers do not understand TypeScript. They only speak JavaScript. The <code>tsc</code> (TypeScript Compiler) performs &quot;Transpilation&quot;—the process of reading your modern TS code and translating it into compatible JS. This allows you to use the latest language features while maintaining support for older browsers.</p>
+<h4>1.4 Trade-offs and Drawbacks</h4>
+<p>Mastery requires honesty. TypeScript adds a &quot;compilation step&quot; which can slow down your build times. It also requires more initial code (boilerplate). However, the time spent writing types is repaid tenfold in time saved debugging. You shift the &quot;pain&quot; of development from the debugging phase to the writing phase.</p>
+<h4>1.5 The Future of Web Development</h4>
+<p>TypeScript has become the industry standard. Frameworks like Angular, NestJS, and even Next.js are built with it or prioritize it. Learning TypeScript isn&#39;t just about safety; it&#39;s about speaking the language of modern professional development.</p>
+<hr>
+<h3>Chapter 2: Setting Up Your Forge</h3>
+<h4>2.1 Node.js &amp; NPM Foundations</h4>
+<p>Before we can use TypeScript, we need an engine to run our tools. Node.js provides the runtime, and NPM (Node Package Manager) provides the delivery system for the compiler. Ensure your Node version is LTS (Long Term Support) for maximum stability.</p>
+<h4>2.2 Global vs. Local Installation</h4>
+<p>You can install TypeScript globally (<code>npm i -g typescript</code>) to use it anywhere, but professional projects often install it locally (<code>npm i -D typescript</code>). This ensures that every developer on your team uses the exact same version of the compiler, preventing the &quot;it works on my machine&quot; syndrome.</p>
+<h4>2.3 Creating Your First <code>.ts</code> Program</h4>
+<p>Create a file named <code>app.ts</code>. Write a simple function with type annotations. </p>
+<pre><code class="language-typescript">function greet(name: string) {
+    console.log(&quot;Hello, &quot; + name);
+}
+greet(&quot;Apprentice&quot;);
+</code></pre>
+<p>Notice how the editor provides instant feedback. This is your new &quot;Pair Programmer&quot;—the compiler.</p>
+<h4>2.4 The <code>tsc</code> Command Mastery</h4>
+<p>To turn your TS into JS, run <code>tsc app.ts</code>. This generates <code>app.js</code>. You can also use <code>tsc -w</code> (Watch Mode), which tells the compiler to watch your files and automatically re-compile every time you hit Save. It&#39;s like having a silent sentinel guarding your code.</p>
+<h4>2.5 Terminal Wizardry: Common Flags</h4>
+<ul>
+<li><code>--version</code>: Check your current compiler version.</li>
+<li><code>--help</code>: Explore the vast array of options.</li>
+<li><code>--noImplicitAny</code>: Force yourself to be explicit with types.</li>
+<li><code>--target</code>: Choose your JS version (e.g., ES5, ESNext).</li>
+</ul>
+<hr>
+<h3>Chapter 3: Mastering the Compiler (<code>tsconfig.json</code>)</h3>
+<h4>3.1 The Brain of the Project</h4>
+<p>The <code>tsconfig.json</code> file is where you define the &quot;Rules of Engagement.&quot; Without it, every file is treated in isolation. With it, you define a <strong>Project</strong>. Initialize it with <code>tsc --init</code>.</p>
+<h4>3.2 Target and Output Settings</h4>
+<ul>
+<li><code>target</code>: Which version of JS should we generate? ES2016 is a safe modern bet.</li>
+<li><code>outDir</code>: Where should the JS files go? Usually a <code>dist</code> or <code>build</code> folder.</li>
+<li><code>rootDir</code>: Where is the source code? Usually a <code>src</code> folder.</li>
+</ul>
+<h4>3.3 Strictness: The Path to Mastery</h4>
+<p>The more &quot;strict&quot; your compiler, the safer your code.</p>
+<ul>
+<li><code>strict</code>: Enables all strict type-checking options.</li>
+<li><code>noEmitOnError</code>: Crucial! This tells the compiler: &quot;If there is a type error, DO NOT generate the JS file.&quot; This prevents broken code from being deployed.</li>
+</ul>
+<h4>3.4 Cleaning the Output</h4>
+<ul>
+<li><code>removeComments</code>: Keeps your production JS small and clean.</li>
+<li><code>noUnusedLocals</code>: Ensures you don&#39;t leave &quot;ghost code&quot; or unused variables lying around.</li>
+<li><code>noUnusedParameters</code>: Keeps your function signatures honest.</li>
+</ul>
+<h4>3.5 Project Organization</h4>
+<p>Using <code>include</code> and <code>exclude</code> arrays in your config allows you to tell TypeScript exactly which files belong to your app and which (like <code>node_modules</code> or test files) should be ignored. This speeds up compilation and keeps the workspace focused.</p>
+<hr>
+<h3>Chapter 4: Debugging Like a Pro</h3>
+<h4>4.1 Beyond <code>console.log</code></h4>
+<p>Professional developers don&#39;t guess; they inspect. Debugging TypeScript requires a bridge between the compiled code and your source code. This is where <strong>Source Maps</strong> come in.</p>
+<h4>4.2 Source Maps: The Invisible Bridge</h4>
+<p>Enable <code>sourceMap: true</code> in your <code>tsconfig.json</code>. This generates <code>.js.map</code> files. These files tell your debugger: &quot;Line 5 of this JS file actually corresponds to Line 3 of that TS file.&quot; This allows you to set breakpoints directly in your TypeScript code.</p>
+<h4>4.3 VS Code Integration (<code>launch.json</code>)</h4>
+<p>Set up your workspace for F5 debugging. By creating a <code>.vscode/launch.json</code> file, you can start your app and the debugger simultaneously. You can hover over variables to see their values and step through your logic line-by-line.</p>
+<h4>4.4 The Debugging Lifecycle</h4>
+<ol>
+<li>Set a breakpoint (red dot).</li>
+<li>Start debugging (F5).</li>
+<li>The execution &quot;freezes&quot; at your breakpoint.</li>
+<li>Use the &quot;Step Over&quot;, &quot;Step Into&quot;, and &quot;Step Out&quot; buttons to navigate the execution flow.</li>
+</ol>
+<h4>4.5 Inspecting the Call Stack</h4>
+<p>When an error occurs, the <strong>Call Stack</strong> shows you the path the computer took to get there. It’s like a trail of breadcrumbs. In TypeScript, because of source maps, this stack trace points directly to your source files, not the compiled mess.</p>
+<hr>
+<h2>📘 Phase 2: The Type System Core</h2>
+<h3>Chapter 5: Fundamental Types</h3>
+<h4>5.1 Primitives and Type Inference</h4>
+<p>At its core, TypeScript understands the basic building blocks of JavaScript: <code>number</code>, <code>string</code>, and <code>boolean</code>. However, you don&#39;t always need to write them out. <strong>Type Inference</strong> is the compiler&#39;s ability to &quot;guess&quot; the type based on the value you assign. <code>let x = 10;</code> is automatically inferred as a <code>number</code>. Use explicit annotations only when you declare a variable without initializing it.</p>
+<h4>5.2 The <code>any</code> Trap: A Danger to Your Code</h4>
+<p>The <code>any</code> type is the &quot;escape hatch&quot; of TypeScript. It tells the compiler to stop checking that variable. While useful for migrating legacy JS code, overusing <code>any</code> defeats the purpose of using TypeScript. It’s a &quot;poison&quot; that spreads through your codebase. Use the <code>noImplicitAny</code> setting to force yourself to find better, safer types.</p>
+<h4>5.3 Arrays: Type Safety for Collections</h4>
+<p>In JavaScript, an array can hold anything. In TypeScript, we define what <em>kind</em> of things an array can hold. <code>let numbers: number[] = [1, 2, 3];</code>. If you try to push a string into this array, the compiler will stop you. This ensures that when you loop over an array, you know exactly what properties each item has.</p>
+<h4>5.4 Tuples: Fixed-Length Mastery</h4>
+<p>A <strong>Tuple</strong> is a special type of array where the length is fixed and each element has a specific type. This is incredibly useful for key-value pairs or coordinates. <code>let user: [number, string] = [1, &quot;Moataz&quot;];</code>. The compiler will ensure that the first element is always a number and the second is always a string.</p>
+<h4>5.5 Enums: Categorical Constants</h4>
+<p><strong>Enums</strong> (Enumerations) allow you to define a set of named constants. Instead of using magic numbers like <code>1</code>, <code>2</code>, <code>3</code> for sizes, you use <code>Size.Small</code>, <code>Size.Medium</code>, <code>Size.Large</code>. This makes your code much more readable. Pro tip: Use <code>const enum</code> to produce more optimized and smaller JavaScript code.</p>
+<hr>
+<h3>Chapter 6: Mastering Functions</h3>
+<h4>6.1 Annotating Inputs and Outputs</h4>
+<p>Functions are the heart of your application logic. TypeScript allows you to define exactly what a function expects and what it promises to return. </p>
+<pre><code class="language-typescript">function calculateTax(income: number, year: number): number {
+    return income * 0.2;
+}
+</code></pre>
+<p>This contract ensures that you never pass the wrong data to a function and never misunderstand its result.</p>
+<h4>6.2 The <code>void</code> and <code>never</code> Types</h4>
+<ul>
+<li><code>void</code>: Used for functions that perform an action but return nothing (like logging or updating a database).</li>
+<li><code>never</code>: A more advanced type for functions that <em>never</em> return, such as those that always throw an error or contain an infinite loop. Understanding these is key to advanced logic flow.</li>
+</ul>
+<h4>6.3 Optional and Default Parameters</h4>
+<p>Not every piece of data is always required. Use <code>?</code> to make a parameter optional. Alternatively, provide a <strong>Default Value</strong> to make your functions more resilient. <code>function greet(name: string, title: string = &quot;Apprentice&quot;)</code>. If no title is provided, it defaults to &quot;Apprentice&quot;.</p>
+<h4>6.4 Rest Parameters and Overloads</h4>
+<p>TypeScript handles variable numbers of arguments using <strong>Rest Parameters</strong> (<code>...numbers: number[]</code>). For complex scenarios where a function can accept different combinations of arguments, you can use <strong>Function Overloads</strong> to define multiple signatures for a single implementation.</p>
+<h4>6.5 Functional Strictness</h4>
+<p>Enable compiler checks like <code>noUnusedParameters</code> and <code>noImplicitReturns</code>. These options act as a &quot;Code Reviewer&quot; that watches your back, ensuring every parameter you define is used and every possible path through your function returns a valid value.</p>
+<hr>
+<h3>Chapter 7: Object Types</h3>
+<h4>7.1 Defining Object Shapes</h4>
+<p>In JavaScript, objects are free-form. In TypeScript, we define a <strong>Shape</strong> or a blueprint for our objects. </p>
+<pre><code class="language-typescript">let employee: { id: number, name: string } = { id: 1, name: &quot;Moataz&quot; };
+</code></pre>
+<p>The compiler ensures that the object has exactly these properties and no others, preventing &quot;undefined&quot; errors when accessing data.</p>
+<h4>7.2 Optional and <code>readonly</code> Properties</h4>
+<ul>
+<li><strong>Optional (<code>?</code>)</strong>: Some properties might not be available yet (e.g., a user&#39;s middle name).</li>
+<li><strong><code>readonly</code></strong>: This is a powerful modifier that prevents a property from being changed after the object is created. It&#39;s essential for data integrity and functional programming patterns.</li>
+</ul>
+<h4>7.3 Method Signatures in Objects</h4>
+<p>Objects aren&#39;t just for data; they are for behavior. You can define method signatures directly in your object types. <code>let calculator: { add: (a: number, b: number) =&gt; number }</code>. This ensures that any object claiming to be a &quot;calculator&quot; must implement the <code>add</code> method correctly.</p>
+<h4>7.4 Nested Objects and Complexity</h4>
+<p>As your data grows, your objects will contain other objects. TypeScript handles this nesting with ease, allowing you to define deep, complex structures while maintaining full autocompletion and type safety at every level of the hierarchy.</p>
+<h4>7.5 Extensibility vs. Restriction</h4>
+<p>Sometimes you want to allow an object to have extra properties you didn&#39;t define. You can use <strong>Index Signatures</strong> (<code>[key: string]: any</code>) to allow this. However, use this sparingly; the more restricted your object shapes, the safer your codebase becomes.</p>
+<hr>
+<h2>📘 Phase 3: Architecting with Objects &amp; Interfaces</h2>
+<h3>Chapter 8: Advanced Types</h3>
+<h4>8.1 Type Aliases: The DRY Principle</h4>
+<p>Don&#39;t repeat yourself. If you use the same object shape in five places, create a <strong>Type Alias</strong>. <code>type Employee = { ... }</code>. This makes your code cleaner, easier to update, and provides a central place to manage your data structures.</p>
+<h4>8.2 Union Types and Narrowing</h4>
+<p>A variable might be one of several things. A <code>status</code> could be <code>&quot;success&quot;</code> or <code>&quot;error&quot;</code>. Using the <strong>Union Operator (<code>|</code>)</strong>, you can define these possibilities. Then, use <strong>Narrowing</strong> (techniques like <code>typeof</code> or <code>if</code> statements) to tell the compiler exactly which type you are dealing with at any given moment.</p>
+<h4>8.3 Intersection Types: Combining Powers</h4>
+<p>Sometimes an object is two things at once. An <code>Admin</code> might be a <code>User</code> AND a <code>Manager</code>. The <strong>Intersection Operator (<code>&amp;</code>)</strong> allows you to combine multiple types into one. This is perfect for building complex types from small, reusable building blocks.</p>
+<h4>8.4 Literal Types: Exact Values</h4>
+<p>Why settle for <code>string</code> when you know the exact value? <strong>Literal Types</strong> allow you to restrict a variable to specific values like <code>50</code> or <code>&quot;metric&quot;</code>. This is incredibly powerful for configuration objects and state management.</p>
+<h4>8.5 Nullable Types and Optional Chaining</h4>
+<p>Null and Undefined are the leading causes of crashes. TypeScript&#39;s <code>strictNullChecks</code> forces you to handle these cases explicitly. Use <strong>Optional Chaining (<code>?.</code>)</strong> to safely navigate through deep objects without worrying about whether an intermediate property is null.</p>
+<hr>
+<h3>Chapter 9: Interfaces and Generics</h3>
+<h4>9.1 Interfaces: Explicit Contracts</h4>
+<p>While Type Aliases are flexible, <strong>Interfaces</strong> are the primary way to define object structures in TypeScript. They are designed for extensibility and are a cornerstone of Object-Oriented Programming in TS.</p>
+<h4>9.2 Interface vs. Type Alias</h4>
+<p>When should you use which? Generally, use <strong>Interfaces</strong> for public APIs and classes (due to their &quot;declaration merging&quot; feature), and use <strong>Type Aliases</strong> for unions, intersections, and simpler data shapes.</p>
+<h4>9.3 Structural Typing (Duck Typing)</h4>
+<p>TypeScript is a <strong>Structural Type System</strong>. If it walks like a duck and quacks like a duck, it&#39;s a duck. If an object has the required properties of an interface, it <em>is</em> that interface, even if you didn&#39;t explicitly say so. This provides immense flexibility while maintaining safety.</p>
+<h4>9.4 Introduction to Generics: Universal Code</h4>
+<p><strong>Generics</strong> are like variables for your types. They allow you to write a function or class that works with <em>any</em> type while still maintaining full type safety. Think of <code>Array&lt;string&gt;</code>—it’s an array that works for strings, numbers, or anything else you give it.</p>
+<h4>9.5 Building Reusable Components</h4>
+<p>Mastering Generics is the hallmark of a Senior TypeScript Developer. It allows you to build reusable libraries, UI components, and data structures that are both flexible and bulletproof. It’s the final step in your journey to mastery.</p>
+<hr>
+<h2>🏁 Conclusion: Your Journey Begins</h2>
+<p>You now have the map and the compass. The road to TypeScript mastery is long, but with these principles, you are ready to build the next generation of safe, scalable, and beautiful web applications. Go forth and type!</p>
+
+
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize highlighting
+            hljs.highlightAll();
+
+            // Generate TOC
+            const content = document.getElementById('content');
+            const tocList = document.getElementById('toc-list');
+            const headers = content.querySelectorAll('h1, h2, h3');
+
+            headers.forEach((header, index) => {
+                const id = 'heading-' + index;
+                header.id = id;
+
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = header.textContent;
+                
+                // Indentation based on header level
+                const level = parseInt(header.tagName.substring(1));
+                a.style.paddingLeft = (level - 1) * 1 + 'rem';
+                
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>

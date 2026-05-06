@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>topics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --sidebar-bg: rgba(30, 41, 59, 0.7);
+            --accent: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        aside {
+            width: 300px;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid var(--glass-border);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 2rem;
+            overflow-y: auto;
+            display: none; /* Hidden on mobile */
+        }
+
+        @media (min-width: 1024px) {
+            aside { display: block; }
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toc h3 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            display: block;
+            padding: 0.25rem 0;
+        }
+
+        .toc a:hover {
+            color: var(--accent);
+            padding-left: 0.25rem;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 3rem 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-wrap {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-main);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; margin-top: 0; color: var(--accent); }
+        h2 { font-size: 1.875rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; }
+
+        p { margin-bottom: 1.25rem; color: var(--text-dim); font-size: 1.1rem; }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.4rem;
+            font-size: 0.9em;
+        }
+
+        pre {
+            margin: 1.5rem 0;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        pre code {
+            display: block;
+            padding: 1.5rem;
+            background: transparent !important;
+        }
+
+        ul, ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+            color: var(--text-dim);
+        }
+
+        li { margin-bottom: 0.5rem; }
+
+        blockquote {
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.5rem;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--glass-border);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+    <aside>
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>Mastery Book</span>
+        </div>
+        <nav class="toc" id="toc">
+            <h3>Table of Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+    </aside>
+
+    <main>
+        <div class="content-wrap">
+            <div id="content">
+                <p>To go from a beginner to an expert (&quot;zero to hero&quot;) in Data Structures and Algorithms (DSA), you should follow a structured step-by-step roadmap. Here is a comprehensive progression of topics based on industry-standard learning paths:</p>
+<p><strong>1. Programming Fundamentals</strong>
+Before diving into algorithms, you must master the basics of a programming language (such as Java, C++, Python, or JavaScript).</p>
+<ul>
+<li>Language Syntax and Pseudo Code</li>
+<li>Control Structures (if/else, for/while loops) and Functions</li>
+<li>Object-Oriented Programming (OOP) Basics</li>
+<li>Basic Mathematics, Pattern generation, and introduction to Recursion</li>
+</ul>
+<p><strong>2. Algorithmic Complexity (Asymptotic Analysis)</strong>
+Understanding how to evaluate the efficiency of your code is critical.</p>
+<ul>
+<li><strong>Time vs. Space Complexity</strong></li>
+<li><strong>Asymptotic Notations:</strong> Big-O ($O$), Big-Theta ($\Theta$), and Big-Omega ($\Omega$)</li>
+<li><strong>Common Runtimes:</strong> Constant, Logarithmic, Linear, Polynomial, Exponential, and Factorial</li>
+</ul>
+<p><strong>3. Basic Data Structures</strong>
+Learn how to store and organize data sequentially.</p>
+<ul>
+<li><strong>Arrays and Strings:</strong> 1D arrays, 2D Arrays/Matrices, and string manipulation</li>
+<li><strong>Linked Lists:</strong> Singly, Doubly, and Circular Linked Lists</li>
+<li><strong>Stacks:</strong> Push/Pop operations, Monotonic Stacks, and expression evaluation (Prefix/Postfix)</li>
+<li><strong>Queues:</strong> Standard queues, Circular Queues, and Deques (Double-Ended Queues)</li>
+<li><strong>Hash Tables:</strong> Hashing techniques, collision resolution, Hash Sets, and Hash Maps</li>
+</ul>
+<p><strong>4. Core Algorithms (Searching &amp; Sorting)</strong></p>
+<ul>
+<li><strong>Searching:</strong> Linear Search and Binary Search</li>
+<li><strong>Sorting Algorithms:</strong> Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort, Heap Sort, and Radix Sort</li>
+</ul>
+<p><strong>5. Algorithmic Problem-Solving Techniques</strong>
+Mastering specific patterns to solve coding problems efficiently.</p>
+<ul>
+<li><strong>Two-Pointer Technique</strong></li>
+<li><strong>Sliding Window Technique</strong> (Fixed and Variable length)</li>
+<li><strong>Prefix Sum and Difference Arrays</strong></li>
+<li><strong>Bit Manipulation</strong></li>
+</ul>
+<p><strong>6. Intermediate Data Structures (Trees &amp; Heaps)</strong></p>
+<ul>
+<li><strong>Trees:</strong> Binary Trees and Tree Traversals (In-Order, Pre-Order, Post-Order, Breadth-First, Depth-First)</li>
+<li><strong>Binary Search Trees (BST):</strong> Search, Insertion, and Deletion operations</li>
+<li><strong>Balanced Trees:</strong> AVL Trees</li>
+<li><strong>Heaps:</strong> Min-Heap, Max-Heap, and Priority Queues</li>
+</ul>
+<p><strong>7. Graph Data Structures &amp; Algorithms</strong></p>
+<ul>
+<li><strong>Graph Basics:</strong> Directed and Undirected Graphs, Adjacency Matrix, and Adjacency List representations</li>
+<li><strong>Graph Traversals:</strong> Breadth-First Search (BFS) and Depth-First Search (DFS)</li>
+<li><strong>Shortest Path Algorithms:</strong> Dijkstra&#39;s and Bellman-Ford algorithms</li>
+<li><strong>Minimum Spanning Trees:</strong> Prim&#39;s and Kruskal&#39;s algorithms</li>
+<li>Topological Sorting and Cycle Detection</li>
+</ul>
+<p><strong>8. Advanced Algorithmic Paradigms</strong></p>
+<ul>
+<li><strong>Divide and Conquer</strong></li>
+<li><strong>Greedy Algorithms</strong></li>
+<li><strong>Backtracking:</strong> Solving permutations, mazes, and puzzles like N-Queens or Sudoku</li>
+<li><strong>Dynamic Programming (DP):</strong> 1D/2D DP, Knapsack problems, Longest Increasing Subsequence (LIS), and Memoization vs. Tabulation</li>
+</ul>
+<p><strong>9. Advanced &amp; Complex Data Structures</strong>
+For top-tier interviews and specialized applications.</p>
+<ul>
+<li><strong>Tries (Prefix Trees):</strong> Used for autocomplete and advanced string matching</li>
+<li><strong>Disjoint Set (Union-Find):</strong> For connected components</li>
+<li><strong>Segment Trees and Fenwick Trees:</strong> For range queries</li>
+<li><strong>Complex Trees:</strong> B-Trees, B+ Trees, Skip Lists, Suffix Trees, and Suffix Arrays</li>
+</ul>
+
+
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize highlighting
+            hljs.highlightAll();
+
+            // Generate TOC
+            const content = document.getElementById('content');
+            const tocList = document.getElementById('toc-list');
+            const headers = content.querySelectorAll('h1, h2, h3');
+
+            headers.forEach((header, index) => {
+                const id = 'heading-' + index;
+                header.id = id;
+
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = header.textContent;
+                
+                // Indentation based on header level
+                const level = parseInt(header.tagName.substring(1));
+                a.style.paddingLeft = (level - 1) * 1 + 'rem';
+                
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>

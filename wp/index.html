@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress Mastery Book</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --sidebar-bg: rgba(30, 41, 59, 0.7);
+            --accent: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        aside {
+            width: 300px;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid var(--glass-border);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 2rem;
+            overflow-y: auto;
+            display: none; /* Hidden on mobile */
+        }
+
+        @media (min-width: 1024px) {
+            aside { display: block; }
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toc h3 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            display: block;
+            padding: 0.25rem 0;
+        }
+
+        .toc a:hover {
+            color: var(--accent);
+            padding-left: 0.25rem;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 3rem 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-wrap {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-main);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; margin-top: 0; color: var(--accent); }
+        h2 { font-size: 1.875rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; }
+
+        p { margin-bottom: 1.25rem; color: var(--text-dim); font-size: 1.1rem; }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.4rem;
+            font-size: 0.9em;
+        }
+
+        pre {
+            margin: 1.5rem 0;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        pre code {
+            display: block;
+            padding: 1.5rem;
+            background: transparent !important;
+        }
+
+        ul, ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+            color: var(--text-dim);
+        }
+
+        li { margin-bottom: 0.5rem; }
+
+        blockquote {
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.5rem;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--glass-border);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+    <aside>
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>Mastery Book</span>
+        </div>
+        <nav class="toc" id="toc">
+            <h3>Table of Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+    </aside>
+
+    <main>
+        <div class="content-wrap">
+            <div id="content">
+                <h1>The WordPress Developer&#39;s Mastery Book</h1>
+<p><strong>A Comprehensive Guide from Foundational Core to Modern Engineering</strong></p>
+<hr>
+<h2>🏛️ Phase 1: The Foundation</h2>
+<h3>Core Technologies</h3>
+<ul>
+<li><strong>PHP:</strong> The engine that powers WordPress. Master variables, arrays, and loops.</li>
+<li><strong>HTML5 &amp; CSS3:</strong> The structure and style. Use semantic tags like <code>&lt;article&gt;</code> and modern layouts like Flexbox.</li>
+<li><strong>Environment:</strong> Use LocalWP or XAMPP for safe development.</li>
+</ul>
+<h3>Mastery Tip</h3>
+<p>Keep your logic separated from your presentation. Use PHP to handle data and HTML/CSS to handle display.</p>
+<hr>
+<h2>🏗️ Phase 2: WordPress Core &amp; Theme Essentials</h2>
+<h3>The Hook System</h3>
+<ul>
+<li><strong>Actions:</strong> Use <code>add_action()</code> to perform tasks at specific points (e.g., <code>wp_enqueue_scripts</code>).</li>
+<li><strong>Filters:</strong> Use <code>add_filter()</code> to modify data before display.</li>
+</ul>
+<h3>The WordPress Loop</h3>
+<p>The engine that displays your posts:</p>
+<pre><code class="language-php">if ( have_posts() ) : 
+    while ( have_posts() ) : the_post(); 
+        the_title();
+    endwhile; 
+endif;
+</code></pre>
+<hr>
+<h2>🔌 Phase 3: Extending Functionality (Plugin Development)</h2>
+<h3>Custom Post Types (CPT)</h3>
+<p>Extend WordPress beyond posts and pages. Register new content types like &quot;Portfolio&quot; to organize data modularly.</p>
+<h3>Security First</h3>
+<ul>
+<li><strong>Sanitization:</strong> Use <code>sanitize_text_field()</code> on input.</li>
+<li><strong>Escaping:</strong> Use <code>esc_html()</code> or <code>esc_url()</code> on output.</li>
+<li><strong>Nonces:</strong> Protect against unauthorized form submissions.</li>
+</ul>
+<hr>
+<h2>🎨 Phase 4: Modern WordPress (Block Themes &amp; FSE)</h2>
+<h3>The <code>theme.json</code> Era</h3>
+<p>Modern themes are configured, not just coded. Use <code>theme.json</code> to define your design system globally.</p>
+<h3>Block Markup</h3>
+<p>Build your templates using HTML-based block comments. This allows users to edit your designs directly in the Site Editor.</p>
+<hr>
+<h2>🚀 Phase 5: Advanced Mastery &amp; Professional Workflow</h2>
+<h3>The REST API</h3>
+<p>Transform WordPress into a headless CMS. Register custom routes to serve your data to external applications.</p>
+<h3>Caching &amp; Performance</h3>
+<p>Use the <strong>Transients API</strong> to store expensive calculations. A professional developer always optimizes for speed.</p>
+<pre><code class="language-php">set_transient( &#39;my_data&#39;, $value, HOUR_IN_SECONDS );
+</code></pre>
+<hr>
+<h2>🏆 Final Words</h2>
+<p>You have traveled from a beginner to a professional WordPress developer. You understand not just <em>how</em> to build, but <em>why</em> we build things the &quot;WordPress Way.&quot;</p>
+<p><strong>Your Toolkit:</strong></p>
+<ol>
+<li><strong>Starter Theme:</strong> Classic PHP architecture.</li>
+<li><strong>Modern Theme:</strong> JSON-based Block architecture.</li>
+<li><strong>Portfolio Plugin:</strong> Custom Post Types and Shortcodes.</li>
+<li><strong>Headless Helper:</strong> REST API and Performance Caching.</li>
+</ol>
+<p><em>Continue building, stay curious, and always keep your WordPress core updated!</em></p>
+
+
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize highlighting
+            hljs.highlightAll();
+
+            // Generate TOC
+            const content = document.getElementById('content');
+            const tocList = document.getElementById('toc-list');
+            const headers = content.querySelectorAll('h1, h2, h3');
+
+            headers.forEach((header, index) => {
+                const id = 'heading-' + index;
+                header.id = id;
+
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = header.textContent;
+                
+                // Indentation based on header level
+                const level = parseInt(header.tagName.substring(1));
+                a.style.paddingLeft = (level - 1) * 1 + 'rem';
+                
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>

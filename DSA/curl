@@ -1,0 +1,12 @@
+# SendZen WhatsApp API Integration - cURL
+curl -X POST 'https://api.sendzen.io/v1/messages' \
+  -H 'Authorization: Bearer sz_sandbox_HoGNkkw3k1JXyilttqxo4DxNAKzqDPwnusDgeWhhQzl3Tw' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "from": "15557814168",
+  "to": "201150064746",
+  "type": "text",
+  "text": {
+    "body": "Thank you for choosing SendZen."
+  }
+}'

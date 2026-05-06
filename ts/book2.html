@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastering NestJS: Zero to Hero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800 leading-relaxed tracking-wide">
+    <!-- Header Section -->
+    <header
+      class="bg-gradient-to-r from-red-600 to-red-800 text-white py-16 shadow-lg"
+    >
+      <div class="max-w-5xl mx-auto px-6 lg:px-8">
+        <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
+          Mastering NestJS: Zero to Hero
+        </h1>
+        <p class="text-lg lg:text-xl font-light text-red-100 max-w-3xl">
+          A structured, 5-phase learning pathway to master the progressive
+          Node.js framework. Build efficient, reliable, and scalable
+          enterprise-grade applications.
+        </p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-6 lg:px-8 py-12">
+      <!-- Introduction -->
+      <section
+        class="mb-12 bg-white rounded-xl p-8 shadow-sm border border-gray-100"
+      >
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          Welcome to Your Learning Journey
+        </h2>
+        <p class="text-gray-600 mb-4">
+          NestJS is a powerful, progressive Node.js framework built with
+          TypeScript that combines elements of Object-Oriented Programming
+          (OOP), Functional Programming (FP), and Functional Reactive
+          Programming (FRP). Under the hood, it utilizes robust HTTP server
+          frameworks like Express by default, but can also be configured to use
+          Fastify.
+        </p>
+        <p class="text-gray-600">
+          To ensure you master this framework without feeling overwhelmed, your
+          learning pathway is structured into
+          <strong>five manageable phases</strong>. Each phase builds upon the
+          previous one. Create a new Git branch for each phase to keep your
+          progress organized!
+        </p>
+      </section>
+
+      <!-- Phase 1 -->
+      <section class="mb-10 relative">
+        <div
+          class="absolute top-0 left-0 w-2 h-full bg-red-500 rounded-l-xl"
+        ></div>
+        <div
+          class="bg-white rounded-xl shadow-sm border border-gray-100 pl-10 pr-8 py-8"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">
+              Phase 1: Foundational Architecture & Setup
+            </h3>
+            <span
+              class="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider"
+              >Branch: phase-1-fundamentals</span
+            >
+          </div>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">Objectives</h4>
+          <p class="text-gray-600 mb-6">
+            Understand the core philosophy of NestJS, its similarities to
+            Angular's architecture, and set up your first application using the
+            Command Line Interface (CLI). You will grasp the foundational
+            building blocks: Modules, Controllers, and Providers (Services).
+          </p>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">
+            What needs to be covered:
+          </h4>
+          <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+            <li>
+              <strong>Installation & CLI:</strong> Using
+              <code>npm i -g @nestjs/cli</code> and
+              <code>nest new project-name</code> to scaffold a project.
+            </li>
+            <li>
+              <strong>Project Structure:</strong> Understanding
+              <code>main.ts</code> as the entry point, and the roles of
+              <code>app.module.ts</code>, <code>app.controller.ts</code>, and
+              <code>app.service.ts</code>.
+            </li>
+            <li>
+              <strong>Modules:</strong> How the <code>@Module()</code> decorator
+              groups your code into logical domains.
+            </li>
+            <li>
+              <strong>Dependency Injection (DI):</strong> How NestJS uses
+              Inversion of Control (IoC) to inject providers (like services)
+              into controllers.
+            </li>
+          </ul>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">Resources:</h4>
+          <ul class="list-none text-gray-600 space-y-1">
+            <li>📖 NestJS Official Docs: First Steps and CLI Overview.</li>
+            <li>📖 The NestJS Handbook: Core Building Blocks.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Phase 2 -->
+      <section class="mb-10 relative">
+        <div
+          class="absolute top-0 left-0 w-2 h-full bg-blue-500 rounded-l-xl"
+        ></div>
+        <div
+          class="bg-white rounded-xl shadow-sm border border-gray-100 pl-10 pr-8 py-8"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">
+              Phase 2: Building a RESTful API (Routing & CRUD)
+            </h3>
+            <span
+              class="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider"
+              >Branch: phase-2-rest-api</span
+            >
+          </div>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">Objectives</h4>
+          <p class="text-gray-600 mb-6">
+            Apply your foundational knowledge to build practical REST API
+            endpoints. You will learn to handle HTTP requests via routing
+            mechanisms and delegate business logic to your services.
+          </p>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">
+            What needs to be covered:
+          </h4>
+          <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+            <li>
+              <strong>Controllers & HTTP Methods:</strong> Using decorators like
+              <code>@Get()</code>, <code>@Post()</code>, <code>@Put()</code>,
+              <code>@Patch()</code>, and <code>@Delete()</code> to route
+              requests.
+            </li>
+            <li>
+              <strong>Request Data Extraction:</strong> Using
+              <code>@Param()</code> for URL parameters,
+              <code>@Query()</code> for query strings, and
+              <code>@Body()</code> for request payloads.
+            </li>
+            <li>
+              <strong>Services:</strong> Creating a resource service to
+              encapsulate your business logic and separate it from your
+              controllers.
+            </li>
+            <li>
+              <strong>Generators:</strong> Using the CLI command
+              <code>nest g resource [name]</code> to instantly generate a full
+              CRUD boilerplate.
+            </li>
+          </ul>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">
+            Prerequisites:
+          </h4>
+          <p class="text-gray-600 mb-4">
+            Completion of <code>phase-1-fundamentals</code>.
+          </p>
+        </div>
+      </section>
+
+      <!-- Phase 3 -->
+      <section class="mb-10 relative">
+        <div
+          class="absolute top-0 left-0 w-2 h-full bg-green-500 rounded-l-xl"
+        ></div>
+        <div
+          class="bg-white rounded-xl shadow-sm border border-gray-100 pl-10 pr-8 py-8"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">
+              Phase 3: Data Validation & Error Handling
+            </h3>
+            <span
+              class="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider"
+              >Branch: phase-3-validation-errors</span
+            >
+          </div>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">Objectives</h4>
+          <p class="text-gray-600 mb-6">
+            Ensure your application only processes valid data and gracefully
+            handles errors. This phase introduces intermediate concepts that
+            make your application robust and secure.
+          </p>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">
+            What needs to be covered:
+          </h4>
+          <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+            <li>
+              <strong>Data Transfer Objects (DTOs):</strong> Defining schemas
+              using TypeScript classes. Classes are preferred over interfaces
+              because they remain as real entities in the compiled JavaScript,
+              allowing features like Pipes to access the metatype at runtime.
+            </li>
+            <li>
+              <strong>Pipes & Validation:</strong> Using Nest's built-in
+              <code>ValidationPipe</code> alongside the
+              <code>class-validator</code> and
+              <code>class-transformer</code> libraries to enforce rules.
+            </li>
+            <li>
+              <strong>Partial Types:</strong> Using
+              <code>PartialType()</code> to easily create update DTOs from
+              create DTOs without duplicating code.
+            </li>
+            <li>
+              <strong>Exception Filters:</strong> Standardizing your error
+              handling across the application by catching exceptions and
+              formatting responses.
+            </li>
+          </ul>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">
+            Prerequisites:
+          </h4>
+          <p class="text-gray-600 mb-4">
+            Completion of <code>phase-2-rest-api</code>.
+          </p>
+        </div>
+      </section>
+
+      <!-- Phase 4 -->
+      <section class="mb-10 relative">
+        <div
+          class="absolute top-0 left-0 w-2 h-full bg-purple-500 rounded-l-xl"
+        ></div>
+        <div
+          class="bg-white rounded-xl shadow-sm border border-gray-100 pl-10 pr-8 py-8"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">
+              Phase 4: Database Integration
+            </h3>
+            <span
+              class="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider"
+              >Branch: phase-4-database</span
+            >
+          </div>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">Objectives</h4>
+          <p class="text-gray-600 mb-6">
+            Move from in-memory data arrays to persistent storage by integrating
+            a modern database and an Object-Relational Mapper (ORM).
+          </p>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">
+            What needs to be covered:
+          </h4>
+          <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+            <li>
+              <strong>Choosing an ORM:</strong> Integrating Prisma, TypeORM, or
+              Mongoose. Prisma provides a highly type-safe schema and client
+              generation experience. TypeORM offers robust Active Record and
+              Data Mapper patterns.
+            </li>
+            <li>
+              <strong>Data Modeling:</strong> Defining your database schema
+              (e.g., creating models with unique IDs, emails, and roles).
+            </li>
+            <li>
+              <strong>Migrations:</strong> Running commands to sync your schema
+              safely with your database over time.
+            </li>
+            <li>
+              <strong>Database Services:</strong> Injecting your database client
+              into your NestJS services to perform live CRUD operations.
+            </li>
+          </ul>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">
+            Prerequisites:
+          </h4>
+          <p class="text-gray-600 mb-4">
+            Completion of <code>phase-3-validation-errors</code> and a basic
+            understanding of SQL/NoSQL.
+          </p>
+        </div>
+      </section>
+
+      <!-- Phase 5 -->
+      <section class="mb-10 relative">
+        <div
+          class="absolute top-0 left-0 w-2 h-full bg-orange-500 rounded-l-xl"
+        ></div>
+        <div
+          class="bg-white rounded-xl shadow-sm border border-gray-100 pl-10 pr-8 py-8"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">
+              Phase 5: Advanced Configurations, Security & Middleware
+            </h3>
+            <span
+              class="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider"
+              >Branch: phase-5-advanced-mastery</span
+            >
+          </div>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">Objectives</h4>
+          <p class="text-gray-600 mb-6">
+            Prepare your API for production by securing routes, optimizing
+            requests, and standardizing application configurations. This acts as
+            your capstone exploration.
+          </p>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">
+            What needs to be covered:
+          </h4>
+          <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+            <li>
+              <strong>Configuration Management:</strong> Using the
+              <code>@nestjs/config</code> module to manage environment variables
+              safely, keeping secrets out of your source code.
+            </li>
+            <li>
+              <strong>Security Basics:</strong> Enabling Cross-Origin Resource
+              Sharing (CORS) to allow frontend applications to connect to your
+              API. Implementing rate-limiting using
+              <code>@nestjs/throttler</code> to prevent abuse.
+            </li>
+            <li>
+              <strong>Guards & Authorization:</strong> Creating Guards to
+              protect routes, ensuring users are authenticated, and implementing
+              Role-Based Access Control (RBAC).
+            </li>
+            <li>
+              <strong>Interceptors & Logging:</strong> Extending the built-in
+              Logger to create custom log files, tracking IP addresses, and
+              monitoring execution times.
+            </li>
+          </ul>
+
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">
+            Prerequisites:
+          </h4>
+          <p class="text-gray-600 mb-4">
+            Completion of <code>phase-4-database</code>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center">
+      <div class="max-w-5xl mx-auto px-6">
+        <p>
+          &copy; 2026 NestJS Mastery Pathway. Compiled dynamically from learning
+          sessions.
+        </p>
+        <p class="text-sm mt-2">
+          Proceed branch by branch to master the framework effectively.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+# Common
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+.env
+.env.*
+!.env.example
+
+# Node.js
+node_modules/
+dist/
+build/
+out/
+.npm/
+.eslintcache
+.stylelintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# PHP / Laravel
+vendor/
+bootstrap/cache/
+storage/*.key
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/testing/*
+storage/framework/views/*
+public/storage
+public/hot
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+
+# WordPress
+wp-config.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/backup-db/
+*.sql
+*.zip
+*.tar.gz
+
+# Prisma
+.env
+/prisma/migrations/
+
+# NestJS
+/dist
+/node_modules
+
+# Vue / Vite
+.vite/
+.output/
+.nuxt/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
