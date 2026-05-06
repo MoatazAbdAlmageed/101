@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mastery_Book.html - TypeScript: From Zero to Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -13,6 +16,11 @@
               tsblue: "#3178C6",
               tsdark: "#235A97",
             },
+            fontFamily: {
+              sans: ["Inter", "Cairo", "sans-serif"],
+              arabic: ["Cairo", "sans-serif"],
+              mono: ["Fira Code", "monospace"],
+            },
           },
         },
       };
@@ -21,10 +29,9 @@
       html {
         scroll-behavior: smooth;
       }
-      body {
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-          Arial, sans-serif;
+      .font-arabic {
+        font-family: 'Cairo', sans-serif;
+        line-height: 1.8;
       }
       .page-card {
         transition: transform 0.2s;
@@ -36,17 +43,30 @@
   </head>
   <body class="bg-gray-50 text-gray-800 leading-relaxed">
     <!-- Header -->
-    <header class="bg-tsblue text-white py-12 shadow-md">
-      <div class="max-w-6xl mx-auto px-6">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">
-          TypeScript: From Zero to Hero
-        </h1>
-        <p class="text-xl opacity-90 max-w-2xl">
-          A comprehensive, structured guide to mastering TypeScript, designed
-          for modern web developers looking to build scalable, robust
-          applications.
-        </p>
+    <header class="bg-tsblue text-white py-12 shadow-md relative overflow-hidden">
+      <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div class="flex-1">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+              TypeScript: From Zero to Hero
+            </h1>
+            <p class="text-xl opacity-90 max-w-2xl">
+              A comprehensive, structured guide to mastering TypeScript, designed
+              for modern web developers looking to build scalable, robust
+              applications.
+            </p>
+          </div>
+          <div class="flex-1 text-right" dir="rtl">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 font-arabic">
+              TypeScript: من الصفر إلى الاحتراف
+            </h1>
+            <p class="text-xl opacity-90 max-w-2xl font-arabic">
+              دليل شامل ومنظم لإتقان TypeScript، مصمم لمطوري الويب العصريين الذين يتطلعون لبناء تطبيقات قوية وقابلة للتوسع.
+            </p>
+          </div>
+        </div>
       </div>
+      <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
     </header>
 
     <!-- Main Container -->
@@ -62,22 +82,27 @@
         >
           Table of Contents
         </h2>
-        <nav class="space-y-3 text-sm text-gray-600 font-medium">
-          <a href="#topic1" class="block hover:text-tsblue transition-colors"
-            >1. Setup & Foundations</a
-          >
-          <a href="#topic2" class="block hover:text-tsblue transition-colors"
-            >2. Core Types & Variables</a
-          >
-          <a href="#topic3" class="block hover:text-tsblue transition-colors"
-            >3. Functions & Objects</a
-          >
-          <a href="#topic4" class="block hover:text-tsblue transition-colors"
-            >4. Advanced Type Manipulation</a
-          >
-          <a href="#topic5" class="block hover:text-tsblue transition-colors"
-            >5. Ecosystem & Architecture</a
-          >
+        <nav class="space-y-4 text-sm font-medium">
+          <a href="#topic1" class="group flex items-center justify-between hover:text-tsblue transition-colors">
+            <span>1. Setup & Foundations</span>
+            <span class="text-xs font-arabic opacity-60 group-hover:opacity-100" dir="rtl">1. الإعداد والأساسيات</span>
+          </a>
+          <a href="#topic2" class="group flex items-center justify-between hover:text-tsblue transition-colors">
+            <span>2. Core Types & Variables</span>
+            <span class="text-xs font-arabic opacity-60 group-hover:opacity-100" dir="rtl">2. الأنواع الأساسية والمتغيرات</span>
+          </a>
+          <a href="#topic3" class="group flex items-center justify-between hover:text-tsblue transition-colors">
+            <span>3. Functions & Objects</span>
+            <span class="text-xs font-arabic opacity-60 group-hover:opacity-100" dir="rtl">3. الدوال والكائنات</span>
+          </a>
+          <a href="#topic4" class="group flex items-center justify-between hover:text-tsblue transition-colors">
+            <span>4. Advanced Type Manipulation</span>
+            <span class="text-xs font-arabic opacity-60 group-hover:opacity-100" dir="rtl">4. التلاعب المتقدم بالأنواع</span>
+          </a>
+          <a href="#topic5" class="group flex items-center justify-between hover:text-tsblue transition-colors">
+            <span>5. Ecosystem & Architecture</span>
+            <span class="text-xs font-arabic opacity-60 group-hover:opacity-100" dir="rtl">5. النظام البيئي والمعمارية</span>
+          </a>
         </nav>
       </aside>
 
@@ -85,14 +110,23 @@
       <div class="lg:col-span-3 space-y-16">
         <!-- TOPIC 1 -->
         <section id="topic1" class="scroll-mt-10">
-          <div class="mb-8 border-b border-gray-200 pb-4">
-            <h2 class="text-3xl font-bold text-gray-900">
-              Topic 1: Setup & Foundations
-            </h2>
-            <p class="text-gray-600 mt-2">
-              Understanding the philosophy behind TypeScript and preparing your
-              development environment.
-            </p>
+          <div class="mb-8 border-b border-gray-200 pb-4 flex justify-between items-end">
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900">
+                Topic 1: Setup & Foundations
+              </h2>
+              <p class="text-gray-600 mt-2">
+                Understanding the philosophy behind TypeScript and preparing your environment.
+              </p>
+            </div>
+            <div class="text-right" dir="rtl">
+              <h2 class="text-3xl font-bold text-gray-900 font-arabic">
+                الموضوع 1: الإعداد والأساسيات
+              </h2>
+              <p class="text-gray-600 mt-2 font-arabic text-sm">
+                فهم الفلسفة وراء TypeScript وتجهيز بيئة التطوير الخاصة بك.
+              </p>
+            </div>
           </div>
 
           <div class="space-y-8">
@@ -104,18 +138,34 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 1</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">What is TypeScript?</h3>
-              <p class="mb-3">
-                TypeScript is a programming language developed by Microsoft that
-                builds on top of JavaScript by adding static typing. It acts as
-                a "superset" of JavaScript, meaning that every valid JavaScript
-                file is essentially a valid TypeScript file. However, unlike
-                vanilla JavaScript, which dynamically determines variable types
-                at runtime, TypeScript allows you to define types explicitly
-                while coding. This static typing system identifies potential
-                mismatches and errors immediately during development,
-                significantly improving code reliability.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">What is TypeScript?</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">ما هي TypeScript؟</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  TypeScript is a programming language developed by Microsoft that
+                  builds on top of JavaScript by adding static typing. It acts as
+                  a "superset" of JavaScript, meaning that every valid JavaScript
+                  file is essentially a valid TypeScript file. However, unlike
+                  vanilla JavaScript, which dynamically determines variable types
+                  at runtime, TypeScript allows you to define types explicitly
+                  while coding.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  TypeScript هي لغة برمجة طورتها مايكروسوفت تبني فوق JavaScript عن طريق إضافة أنواع ثابتة (Static Typing). تعمل كـ "مجموعة فائقة" (Superset) من JavaScript، مما يعني أن كل ملف JavaScript صالح هو في الأساس ملف TypeScript صالح. ومع ذلك، على عكس JavaScript الخام التي تحدد أنواع المتغيرات ديناميكيًا وقت التشغيل، تسمح لك TypeScript بتعريف الأنواع صراحةً أثناء البرمجة.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">intro.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>// JavaScript
+let message = "Hello";
+message = 123; // Valid in JS, but potential bug
+
+// TypeScript
+let secureMessage: string = "Hello";
+// secureMessage = 123; // Error: Type 'number' is not assignable to type 'string'</code></pre>
+              </div>
             </article>
 
             <!-- Page 2 -->
@@ -126,19 +176,31 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 2</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                The Compilation Step (Transpilation)
-              </h3>
-              <p class="mb-3">
-                Because browsers and standard runtime environments do not
-                execute TypeScript natively, the code requires a compilation
-                step to translate it into standard JavaScript. This process is
-                officially known as "transpilation". Using the TypeScript
-                Compiler, you convert your <code>.ts</code> files into standard
-                <code>.js</code> files. While this adds an extra step to the
-                development workflow, it forces a disciplined approach that
-                ultimately saves time on debugging large-scale projects.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">The Compilation Step</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">خطوة التجميع (Transpilation)</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Because browsers and standard runtime environments do not
+                  execute TypeScript natively, the code requires a compilation
+                  step to translate it into standard JavaScript. This process is
+                  officially known as "transpilation". Using the TypeScript
+                  Compiler, you convert your <code>.ts</code> files into standard
+                  <code>.js</code> files.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  نظرًا لأن المتصفحات وبيئات التشغيل القياسية لا تنفذ TypeScript بشكل أصلي، فإن الكود يتطلب خطوة تجميع لترجمته إلى JavaScript قياسي. تُعرف هذه العملية رسميًا باسم "transpilation". باستخدام مترجم TypeScript، تقوم بتحويل ملفات <code>.ts</code> الخاصة بك إلى ملفات <code>.js</code> قياسية.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">terminal</div>
+                <pre class="p-4 text-sm text-green-400 overflow-x-auto"><code># Compiling a specific file
+tsc index.ts
+
+# Compiling the entire project
+tsc</code></pre>
+              </div>
             </article>
 
             <!-- Page 3 -->
@@ -149,18 +211,29 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 3</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Setting Up Your Environment
-              </h3>
-              <p class="mb-3">
-                To begin working with TypeScript, you must first have Node.js
-                installed on your machine. Once installed, you utilize the Node
-                Package Manager (NPM) to install the compiler globally by
-                running the command <code>npm i -g typescript</code> in your
-                terminal. To verify a successful installation, you can execute
-                <code>tsc -v</code> to display the installed version of the
-                TypeScript compiler.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Setting Up Your Environment</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">إعداد بيئة العمل</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  To begin working with TypeScript, you must first have Node.js
+                  installed on your machine. Once installed, you utilize the Node
+                  Package Manager (NPM) to install the compiler globally by
+                  running the command <code>npm i -g typescript</code>.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  لبدء العمل مع TypeScript، يجب أولاً تثبيت Node.js على جهازك. بمجرد التثبيت، يمكنك استخدام مدير حزم Node (NPM) لتثبيت المترجم عالميًا عن طريق تشغيل الأمر <code>npm i -g typescript</code> في الطرفية الخاصة بك.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">terminal</div>
+                <pre class="p-4 text-sm text-green-400 overflow-x-auto"><code># Install TypeScript
+npm install -g typescript
+
+# Check version
+tsc -v</code></pre>
+              </div>
             </article>
 
             <!-- Page 4 -->
@@ -171,22 +244,33 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 4</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                The Configuration File (tsconfig.json)
-              </h3>
-              <p class="mb-3">
-                By running <code>tsc --init</code>, you generate a
-                <code>tsconfig.json</code> file to manage specific compiler
-                settings for your project. Crucial options include the
-                <code>target</code>, which designates the output JavaScript
-                version (such as ES2016). You can designate where the compiler
-                looks for raw code by setting <code>rootDir</code>, and direct
-                compiled output to a specific folder using <code>outDir</code>.
-                A highly recommended best practice is enabling
-                <code>noEmitOnError</code>, which stops the compiler from
-                producing JavaScript files if any TypeScript errors are
-                detected.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">The Configuration File</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">ملف التكوين (tsconfig.json)</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  By running <code>tsc --init</code>, you generate a
+                  <code>tsconfig.json</code> file to manage compiler
+                  settings. Crucial options include the <code>target</code> (output JS version), <code>rootDir</code> (source folder), and <code>outDir</code> (compiled output).
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  من خلال تشغيل <code>tsc --init</code>، يمكنك إنشاء ملف <code>tsconfig.json</code> لإدارة إعدادات المترجم. تتضمن الخيارات المهمة <code>target</code> (إصدار JS الناتج)، و <code>rootDir</code> (مجلد المصدر)، و <code>outDir</code> (المجلد الناتج المجمع).
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">tsconfig.json</div>
+                <pre class="p-4 text-sm text-yellow-300 overflow-x-auto"><code>{
+  "compilerOptions": {
+    "target": "ES2016",
+    "module": "CommonJS",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "noEmitOnError": true,
+    "strict": true
+  }
+}</code></pre>
+              </div>
             </article>
 
             <!-- Page 5 -->
@@ -197,32 +281,57 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 5</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">Debugging TypeScript</h3>
-              <p class="mb-3">
-                To easily resolve errors in your application, you can debug your
-                TypeScript code directly inside Visual Studio Code. To enable
-                this, you must turn on the <code>sourceMap</code> feature inside
-                your configuration file. A source map bridges the gap between
-                your written TypeScript code and the compiled JavaScript,
-                telling the debugger exactly how they relate. By configuring a
-                <code>launch.json</code> file in VS Code and utilizing
-                breakpoints, you can pause execution and analyze your variables
-                line by line without getting lost in the output JavaScript.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Debugging TypeScript</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">تصحيح أخطاء TypeScript</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  To resolve errors, you can debug TypeScript directly in VS Code. Enable <code>sourceMap</code> in your config to bridge your TS code and the compiled JS, allowing you to use breakpoints effectively.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  لحل الأخطاء بسهولة، يمكنك تصحيح كود TypeScript مباشرة داخل VS Code. قم بتفعيل ميزة <code>sourceMap</code> في ملف التكوين لربط كود TS الخاص بك بـ JavaScript المجمع، مما يسمح لك باستخدام نقاط التوقف (breakpoints) بفعالية.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">launch.json</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug TS",
+      "program": "${workspaceFolder}/src/index.ts",
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+    }
+  ]
+}</code></pre>
+              </div>
             </article>
           </div>
         </section>
 
         <!-- TOPIC 2 -->
         <section id="topic2" class="scroll-mt-10">
-          <div class="mb-8 border-b border-gray-200 pb-4">
-            <h2 class="text-3xl font-bold text-gray-900">
-              Topic 2: Core Types & Variables
-            </h2>
-            <p class="text-gray-600 mt-2">
-              Mastering primitives, arrays, tuples, and safely handling
-              ambiguous data types.
-            </p>
+          <div class="mb-8 border-b border-gray-200 pb-4 flex justify-between items-end">
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900">
+                Topic 2: Core Types & Variables
+              </h2>
+              <p class="text-gray-600 mt-2">
+                Mastering primitives, arrays, tuples, and safely handling ambiguous data types.
+              </p>
+            </div>
+            <div class="text-right" dir="rtl">
+              <h2 class="text-3xl font-bold text-gray-900 font-arabic">
+                الموضوع 2: الأنواع الأساسية والمتغيرات
+              </h2>
+              <p class="text-gray-600 mt-2 font-arabic text-sm">
+                إتقان الأنواع الأولية، المصفوفات، الـ tuples، والتعامل الآمن مع أنواع البيانات الغامضة.
+              </p>
+            </div>
           </div>
 
           <div class="space-y-8">
@@ -234,19 +343,26 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 1</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Type Inference & Primitives
-              </h3>
-              <p class="mb-3">
-                TypeScript enhances traditional primitive types like numbers,
-                strings, and booleans. However, you do not always need to
-                manually annotate variables. Because of a feature called "Type
-                Inference", if you initialize a variable to a specific
-                value—such as <code>let sales = 123;</code>—the compiler is
-                smart enough to automatically guess and assign it the
-                <code>number</code> type. This keeps your code clean and reduces
-                unnecessary boilerplate text while maintaining absolute safety.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Type Inference & Primitives</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">استنتاج الأنواع والأنواع الأولية</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  TypeScript enhances traditional primitives like numbers, strings, and booleans. With "Type Inference", if you initialize a variable—like <code>let sales = 123;</code>—the compiler automatically assigns the <code>number</code> type.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  تعزز TypeScript الأنواع الأولية التقليدية مثل الأرقام والنصوص والقيم المنطقية. بفضل ميزة "استنتاج النوع" (Type Inference)، إذا قمت بتهيئة متغير - مثل <code>let sales = 123;</code> - فإن المترجم ذكي بما يكفي لتخمين وتعيين نوع <code>number</code> له تلقائيًا.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">inference.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>let count = 5; // Inferred as number
+// count = "five"; // Error
+
+let price: number = 19.99; // Explicit
+let productName = "Coffee"; // Inferred</code></pre>
+              </div>
             </article>
 
             <!-- Page 2 -->
@@ -257,20 +373,28 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 2</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                The Danger of the "any" Type
-              </h3>
-              <p class="mb-3">
-                When you declare a variable without initializing it, TypeScript
-                assumes it holds the <code>any</code> type, meaning it can
-                accept absolutely any data type. Using the <code>any</code> type
-                completely neutralizes TypeScript's core benefit—type safety—so
-                relying on it is considered a poor practice. If you have
-                implicit any types popping up, you can enable the
-                <code>noImplicitAny</code> setting in your
-                <code>tsconfig.json</code>, forcing the compiler to throw an
-                error whenever an ambiguous type is encountered.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">The Danger of the "any" Type</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">خطر النوع "any"</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Declaring a variable without initializing it results in the <code>any</code> type, which neutralizes type safety. Using <code>noImplicitAny</code> in your config forces the compiler to flag these as errors.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  يؤدي التصريح عن متغير دون تهيئته إلى تعيين النوع <code>any</code> له، مما يعني أنه يمكنه قبول أي نوع بيانات. استخدام النوع <code>any</code> يبطل الفائدة الأساسية لـ TypeScript، لذا يفضل تفعيل إعداد <code>noImplicitAny</code> لمنع هذه الحالات.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">any.ts</div>
+                <pre class="p-4 text-sm text-red-400 overflow-x-auto"><code>let level; // Type is 'any'
+level = 1;
+level = "Easy"; // No error, but dangerous!
+
+function render(document: any) {
+  console.log(document);
+}</code></pre>
+              </div>
             </article>
 
             <!-- Page 3 -->
@@ -281,16 +405,25 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 3</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">Typed Arrays</h3>
-              <p class="mb-3">
-                Vanilla JavaScript arrays allow you to mix completely unrelated
-                types (like strings and numbers) inside the same list. In
-                TypeScript, you explicitly restrict an array to a specific type
-                by using an annotation like <code>number[]</code>. By locking
-                down the array type, the code editor gains context, allowing it
-                to provide powerful autocompletion suggestions (IntelliSense)
-                when manipulating elements from that array.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Typed Arrays</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">المصفوفات المحددة النوع</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  In TypeScript, you can restrict arrays to specific types like <code>number[]</code>. This provides powerful autocompletion (IntelliSense) when manipulating array elements.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  في TypeScript، يمكنك تقييد المصفوفات بنوع معين مثل <code>number[]</code>. من خلال تحديد نوع المصفوفة، يكتسب محرر الكود سياقًا، مما يسمح له بتقديم اقتراحات إكمال تلقائي قوية (IntelliSense) عند التعامل مع عناصر تلك المصفوفة.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">arrays.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>let numbers: number[] = [1, 2, 3];
+// numbers.push('4'); // Error
+
+numbers.forEach(n => n.toFixed(2)); // Autocomplete works!</code></pre>
+              </div>
             </article>
 
             <!-- Page 4 -->
@@ -301,20 +434,25 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 4</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Tuples: Fixed-Length Arrays
-              </h3>
-              <p class="mb-3">
-                A Tuple is a new structure introduced by TypeScript: an array
-                with a permanently fixed length, where each specific position
-                has an explicit type. They are perfect for modeling key-value
-                pairs, such as a user ID and a username paired as
-                <code>[number, string]</code>. While incredibly useful, it is
-                highly recommended to limit tuples to just two values; creating
-                larger tuples dramatically degrades code readability. Under the
-                hood, the compiler transforms tuples into standard JavaScript
-                arrays.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Tuples: Fixed-Length Arrays</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">الـ Tuples: مصفوفات ثابتة الطول</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  A Tuple is an array with a fixed length and explicit types for each position, perfect for key-value pairs like <code>[number, string]</code>.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  الـ Tuple هو هيكل جديد في TypeScript: مصفوفة ذات طول ثابت دائمًا، حيث يكون لكل موضع محدد نوع صريح. إنها مثالية لتمثيل أزواج القيم مثل معرف المستخدم واسم المستخدم <code>[number, string]</code>.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">tuples.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>let user: [number, string] = [1, 'Moataz'];
+// user = ['Moataz', 1]; // Error: order matters
+
+user[1].toUpperCase(); // Safe access</code></pre>
+              </div>
             </article>
 
             <!-- Page 5 -->
@@ -325,31 +463,48 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 5</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">Enums</h3>
-              <p class="mb-3">
-                Enums represent a logical grouping of related constants, such as
-                T-shirt sizes (Small, Medium, Large). Rather than relying on
-                floating, disconnected variables, you group them inside an
-                <code>enum</code> declaration. By default, the TypeScript
-                compiler assigns the number 0 to the first member, counting
-                upwards. Interestingly, if you prefix the enum with the
-                <code>const</code> keyword (creating a <code>const enum</code>),
-                the compiler significantly optimizes the generated JavaScript
-                file, resulting in far more concise output code.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Enums</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">التعدادات (Enums)</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Enums represent a logical grouping of related constants. Using <code>const enum</code> significantly optimizes the generated JavaScript.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  تمثل الـ Enums مجموعة منطقية من الثوابت المرتبطة، مثل أحجام القمصان. باستخدام الكلمة المفتاحية <code>const enum</code>، يقوم المترجم بتحسين ملف JavaScript الناتج بشكل كبير، مما يؤدي إلى كود أكثر إيجازًا.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">enums.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>const enum Size { Small = 1, Medium, Large };
+let mySize: Size = Size.Medium; // Value is 2
+
+console.log(mySize);</code></pre>
+              </div>
             </article>
           </div>
         </section>
 
         <!-- TOPIC 3 -->
         <section id="topic3" class="scroll-mt-10">
-          <div class="mb-8 border-b border-gray-200 pb-4">
-            <h2 class="text-3xl font-bold text-gray-900">
-              Topic 3: Functions & Objects
-            </h2>
-            <p class="text-gray-600 mt-2">
-              Writing safe functions and establishing robust object shapes.
-            </p>
+          <div class="mb-8 border-b border-gray-200 pb-4 flex justify-between items-end">
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900">
+                Topic 3: Functions & Objects
+              </h2>
+              <p class="text-gray-600 mt-2">
+                Writing safe functions and establishing robust object shapes.
+              </p>
+            </div>
+            <div class="text-right" dir="rtl">
+              <h2 class="text-3xl font-bold text-gray-900 font-arabic">
+                الموضوع 3: الدوال والكائنات
+              </h2>
+              <p class="text-gray-600 mt-2 font-arabic text-sm">
+                كتابة دوال آمنة وتحديد أشكال كائنات قوية.
+              </p>
+            </div>
           </div>
 
           <div class="space-y-8">
@@ -361,19 +516,29 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 1</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Typing Functions Properly
-              </h3>
-              <p class="mb-3">
-                Every function should be tightly annotated. You must define both
-                the type of data entering the parameters, and the data type
-                explicitly returning from the function. If your function
-                executes logic but intentionally returns absolutely nothing, you
-                annotate its return type with the <code>void</code> keyword.
-                Annotating the return type creates an automatic safety check—if
-                you attempt to return a string when the function mandates a
-                number, the compiler immediately halts you.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Typing Functions Properly</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">تحديد أنواع الدوال بشكل صحيح</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Functions should be tightly annotated, defining both parameter types and the return type. Use <code>void</code> for functions that return nothing.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  يجب تحديد أنواع الدوال بدقة، مع تعريف أنواع المعاملات (parameters) ونوع القيمة الراجعة. استخدم الكلمة المفتاحية <code>void</code> للدوال التي لا ترجع أي قيمة.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">functions.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>function calculateTax(income: number): number {
+  if (income < 50_000) return income * 1.2;
+  return income * 1.4;
+}
+
+function log(message: string): void {
+  console.log(message);
+}</code></pre>
+              </div>
             </article>
 
             <!-- Page 2 -->
@@ -384,19 +549,30 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 2</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Optional & Default Parameters
-              </h3>
-              <p class="mb-3">
-                JavaScript ignores how many arguments you supply to a function,
-                but TypeScript is exceptionally strict; it strictly enforces
-                that the exact number of arguments must match the parameters. If
-                you need flexibility, you can designate a parameter as optional
-                by attaching a question mark (<code>?</code>) after its name.
-                Alternatively, you can bypass the question mark by applying a
-                default value directly within the function signature, ensuring a
-                clean fallback if the user provides no argument.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Optional & Default Parameters</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">المعاملات الاختيارية والافتراضية</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Designate optional parameters with <code>?</code> or use default values in the function signature for flexibility.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  يمكنك تحديد المعاملات الاختيارية باستخدام علامة الاستفهام (<code>?</code>) أو توفير قيم افتراضية داخل تعريف الدالة لضمان المرونة.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">params.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>// Optional parameter 'tax'
+function getIncome(income: number, tax?: number) {
+  return income - (tax || 0);
+}
+
+// Default parameter
+function greet(name: string, title = 'Mr.') {
+  return `${title} ${name}`;
+}</code></pre>
+              </div>
             </article>
 
             <!-- Page 3 -->
@@ -407,20 +583,26 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 3</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Strict Compiler Checks
-              </h3>
-              <p class="mb-3">
-                To ensure a resilient codebase, you should turn on additional
-                stringent compiler flags in your settings.
-                <code>noUnusedLocals</code> and
-                <code>noUnusedParameters</code> act as automated cleanup tools,
-                flashing warnings if you declare variables or parameters that
-                you never actually read. Furthermore, enabling
-                <code>noImplicitReturns</code> will force you to guarantee that
-                a function actively returns a valid value across every possible
-                logical pathway.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Strict Compiler Checks</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">فحوصات المترجم الصارمة</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Flags like <code>noUnusedLocals</code> and <code>noUnusedParameters</code> act as cleanup tools, while <code>noImplicitReturns</code> ensures safety across all logical paths.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  تعمل خيارات مثل <code>noUnusedLocals</code> و <code>noUnusedParameters</code> كأدوات تنظيف تلقائية، بينما يضمن <code>noImplicitReturns</code> إرجاع قيمة صالحة في كل مسار منطقي.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">strict.ts</div>
+                <pre class="p-4 text-sm text-orange-400 overflow-x-auto"><code>// With noImplicitReturns: true
+function check(value: number): string {
+  if (value > 0) return "Positive";
+  // Error: Function lacking return at end
+}</code></pre>
+              </div>
             </article>
 
             <!-- Page 4 -->
@@ -431,20 +613,28 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 4</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Object Shapes & Properties
-              </h3>
-              <p class="mb-3">
-                Because standard JavaScript objects are dynamic, you can blindly
-                inject new properties at runtime, often causing architectural
-                chaos. TypeScript locks down the exact "shape" of an object. If
-                you attempt to access a property that doesn't explicitly exist
-                on the defined shape, the compiler flags a warning. For
-                properties that might not exist on every instance, you utilize
-                the optional modifier (<code>?</code>). To lock down critical
-                properties from being overwritten later, you prepend the
-                property with the <code>readonly</code> keyword.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Object Shapes & Properties</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">أشكال الكائنات وخصائصها</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  TypeScript locks down the "shape" of objects. Use <code>?</code> for optional properties and <code>readonly</code> to prevent overwriting critical data.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  تقوم TypeScript بتثبيت "شكل" الكائن بدقة. استخدم العلامة الاختيارية (<code>?</code>) للخصائص غير الإلزامية، والكلمة المفتاحية <code>readonly</code> لمنع تعديل البيانات الحساسة لاحقًا.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">objects.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>let employee: {
+  readonly id: number,
+  name: string,
+  fax?: string
+} = { id: 1, name: 'Moataz' };
+
+// employee.id = 2; // Error: readonly</code></pre>
+              </div>
             </article>
 
             <!-- Page 5 -->
@@ -455,33 +645,51 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 5</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Defining Object Methods
-              </h3>
-              <p class="mb-3">
-                Objects aren't limited to data; they contain functional methods.
-                When annotating a method inside an object, you define the
-                signature, including the specific parameter types it accepts and
-                the exact return type. For instance, a retirement method might
-                be typed using arrow function syntax as
-                <code>retire: (date: Date) => void</code>. Defining these
-                structures ensures complete synchronization between the object's
-                data constraints and its operational behavior.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Defining Object Methods</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">تعريف طرق الكائنات (Methods)</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Annotate methods inside objects by defining their signature, parameter types, and return values to ensure consistent operational behavior.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  لا تقتصر الكائنات على البيانات فحسب؛ بل تحتوي على وظائف (methods). عند تحديد نوع وظيفة داخل كائن، فإنك تحدد أنواع المعاملات ونوع القيمة الراجعة لضمان التوافق التام.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">methods.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>let user = {
+  id: 1,
+  name: 'Moataz',
+  retire: (date: Date) => {
+    console.log(date);
+  }
+};</code></pre>
+              </div>
             </article>
           </div>
         </section>
 
         <!-- TOPIC 4 -->
         <section id="topic4" class="scroll-mt-10">
-          <div class="mb-8 border-b border-gray-200 pb-4">
-            <h2 class="text-3xl font-bold text-gray-900">
-              Topic 4: Advanced Type Manipulation
-            </h2>
-            <p class="text-gray-600 mt-2">
-              Constructing complex logic using unions, intersections, and
-              dynamic type resolution.
-            </p>
+          <div class="mb-8 border-b border-gray-200 pb-4 flex justify-between items-end">
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900">
+                Topic 4: Advanced Type Manipulation
+              </h2>
+              <p class="text-gray-600 mt-2">
+                Constructing complex logic using unions, intersections, and dynamic type resolution.
+              </p>
+            </div>
+            <div class="text-right" dir="rtl">
+              <h2 class="text-3xl font-bold text-gray-900 font-arabic">
+                الموضوع 4: التلاعب المتقدم بالأنواع
+              </h2>
+              <p class="text-gray-600 mt-2 font-arabic text-sm">
+                بناء منطق معقد باستخدام الاتحادات، التقاطعات، وحل الأنواع الديناميكي.
+              </p>
+            </div>
           </div>
 
           <div class="space-y-8">
@@ -493,16 +701,28 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 1</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">Type Aliases</h3>
-              <p class="mb-3">
-                Applying dense type annotations repeatedly leads to duplicate,
-                unreadable code. Following the DRY (Don't Repeat Yourself)
-                principle, you can generate a custom identifier utilizing a
-                "Type Alias". By leveraging the <code>type</code> keyword, you
-                define the exact shape of an object or data structure once, and
-                subsequently reuse that custom alias everywhere in your
-                application, immensely improving code clarity.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Type Aliases</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">الأسماء المستعارة للأنواع (Type Aliases)</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Use the <code>type</code> keyword to define custom identifiers for complex structures, improving code reuse and clarity.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  استخدم الكلمة المفتاحية <code>type</code> لتعريف معرفات مخصصة للهياكل المعقدة، مما يحسن إعادة استخدام الكود ووضوحه.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">aliases.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>type Employee = {
+  readonly id: number,
+  name: string,
+  retire: (date: Date) => void
+};
+
+let worker: Employee = { id: 1, name: 'John', retire: (d) => {} };</code></pre>
+              </div>
             </article>
 
             <!-- Page 2 -->
@@ -513,20 +733,31 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 2</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Union and Intersection Types
-              </h3>
-              <p class="mb-3">
-                Using a vertical bar (<code>|</code>), a Union type permits a
-                variable to be one of multiple distinct types (like
-                <code>number | string</code>). When you implement a union, you
-                must use "narrowing" techniques (like checking the
-                <code>typeof</code>) to isolate the specific type before
-                operating on it securely. Conversely, an Intersection type
-                utilizes the ampersand (<code>&amp;</code>) to deeply combine
-                multiple separate types into a single, unified entity that
-                requires the implementation of all overlapping members.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Union and Intersection Types</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">أنواع الاتحاد والتقاطع</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Unions (<code>|</code>) allow multiple types, while Intersections (<code>&</code>) combine multiple types into one.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  تسمح الاتحادات (<code>|</code>) بمتغير يقبل أنواعًا متعددة، بينما تدمج التقاطعات (<code>&</code>) عدة أنواع في كيان واحد.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">unions.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>// Union
+function kgToLbs(weight: number | string): number {
+  if (typeof weight === 'number') return weight * 2.2;
+  return parseInt(weight) * 2.2;
+}
+
+// Intersection
+type Draggable = { drag: () => void };
+type Resizable = { resize: () => void };
+type UIWidget = Draggable & Resizable;</code></pre>
+              </div>
             </article>
 
             <!-- Page 3 -->
@@ -537,17 +768,26 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 3</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">Literal Types</h3>
-              <p class="mb-3">
-                Sometimes, restricting a variable to a broad type like
-                <code>string</code> isn't secure enough; you want to constrain
-                it to exact specific values. Literal types allow you to declare
-                that a variable can strictly only be assigned predefined literal
-                values, such as the numbers <code>50</code> or <code>100</code>,
-                or the strings <code>"centimeter"</code> or <code>"inch"</code>.
-                When combined with Union types, Literals act as incredibly
-                strict, highly readable configuration parameters.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Literal Types</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">الأنواع الحرفية (Literal Types)</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Constraint variables to exact specific values (e.g., <code>'cm' | 'inch'</code>) for maximum security and clarity.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  تقييد المتغيرات بقيم محددة تمامًا (مثل <code>'cm' | 'inch'</code>) لضمان أقصى قدر من الأمان والوضوح في الكود.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">literals.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>type Quantity = 50 | 100;
+let stock: Quantity = 50; // Valid
+// stock = 75; // Error
+
+type Metric = 'cm' | 'inch';</code></pre>
+              </div>
             </article>
 
             <!-- Page 4 -->
@@ -558,21 +798,27 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 4</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Nullables & Optional Chaining
-              </h3>
-              <p class="mb-3">
-                Null and undefined variables represent massive sources of
-                application crashes. The strict compiler setting
-                <code>strictNullChecks</code> absolutely prohibits you from
-                passing null data unless you explicitly annotate a parameter as
-                nullable using a Union type (e.g., <code>string | null</code>).
-                To cleanly navigate deeply nested objects that might be null,
-                TypeScript provides the Optional Property Access operator
-                (<code>?.</code>). This syntax instantly halts execution and
-                returns undefined if the target object doesn't exist, rescuing
-                the app from critical crashes.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Nullables & Optional Chaining</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">القيم القابلة للعدم والربط الاختياري</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Handle null/undefined safely using <code>strictNullChecks</code> and Optional Chaining (<code>?.</code>) to prevent crashes.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic font-arabic leading-relaxed" dir="rtl">
+                  تعامل مع القيم الفارغة بأمان باستخدام <code>strictNullChecks</code> والربط الاختياري (<code>?.</code>) لمنع توقف التطبيق المفاجئ.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">nullable.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>function greet(name: string | null) {
+  console.log(name?.toUpperCase()); // Optional Chaining
+}
+
+let customer = { birthday: new Date() };
+console.log(customer?.birthday?.getFullYear());</code></pre>
+              </div>
             </article>
 
             <!-- Page 5 -->
@@ -583,34 +829,53 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 5</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Interfaces & Structural Typing
-              </h3>
-              <p class="mb-3">
-                As an alternative to Type Aliases, you can implement an
-                <code>interface</code> declaration to explicitly dictate an
-                object's structural shape. One of the most significant
-                theoretical foundations of TypeScript is Structural Typing
-                (informally referred to as Duck Typing). This means that the
-                compiler doesn't care about explicit names or class inheritance
-                ties; if two independent objects intrinsically share the same
-                required structural shape and fields, the TypeScript compiler
-                fully acknowledges them as compatible.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Interfaces & Structural Typing</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">الواجهات والأنواع الهيكلية</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Use <code>interface</code> to define object shapes. TypeScript uses "Structural Typing" to check compatibility based on fields.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic font-arabic leading-relaxed" dir="rtl">
+                  استخدم <code>interface</code> لتحديد أشكال الكائنات. تعتمد TypeScript على "الأنواع الهيكلية" للتحقق من التوافق بناءً على الحقول الموجودة.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">interfaces.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>interface Calendar {
+  name: string;
+  addEvent(event: string): void;
+}
+
+class GoogleCalendar implements Calendar {
+  constructor(public name: string) {}
+  addEvent(event: string) { console.log(event); }
+}</code></pre>
+              </div>
             </article>
           </div>
         </section>
 
         <!-- TOPIC 5 -->
         <section id="topic5" class="scroll-mt-10">
-          <div class="mb-8 border-b border-gray-200 pb-4">
-            <h2 class="text-3xl font-bold text-gray-900">
-              Topic 5: Ecosystem & Architecture
-            </h2>
-            <p class="text-gray-600 mt-2">
-              Integrating TypeScript into the broader programming ecosystem and
-              making architectural choices.
-            </p>
+          <div class="mb-8 border-b border-gray-200 pb-4 flex justify-between items-end">
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900">
+                Topic 5: Ecosystem & Architecture
+              </h2>
+              <p class="text-gray-600 mt-2">
+                Integrating TypeScript into the broader programming ecosystem and making architectural choices.
+              </p>
+            </div>
+            <div class="text-right" dir="rtl">
+              <h2 class="text-3xl font-bold text-gray-900 font-arabic">
+                الموضوع 5: النظام البيئي والمعمارية
+              </h2>
+              <p class="text-gray-600 mt-2 font-arabic text-sm" dir="rtl">
+                دمج TypeScript في النظام البيئي البرمجي الأوسع واتخاذ الخيارات المعمارية.
+              </p>
+            </div>
           </div>
 
           <div class="space-y-8">
@@ -622,21 +887,25 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 1</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Gradual Adoption Strategy
-              </h3>
-              <p class="mb-3">
-                Transitioning an entire legacy JavaScript application to
-                TypeScript doesn't require a terrifying, massive overhaul.
-                Developers can adopt it progressively by enabling the
-                <code>allowJs: true</code> configuration flag, seamlessly
-                letting standard JavaScript files and TypeScript files coexist.
-                By renaming files sequentially from <code>.js</code> to
-                <code>.ts</code>, manually introducing interface files, and
-                utilizing the <code>// @ts-check</code> comment on old code,
-                teams implement safety gradually without destroying their
-                current workflow.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Gradual Adoption Strategy</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">استراتيجية الاعتماد التدريجي</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Adopt TypeScript progressively by enabling <code>allowJs: true</code>. Rename files from <code>.js</code> to <code>.ts</code> sequentially.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  يمكن اعتماد TypeScript تدريجيًا من خلال تفعيل خيار <code>allowJs: true</code>. قم بتغيير أسماء الملفات من <code>.js</code> إلى <code>.ts</code> بالتتابع لدمج الأمان تدريجيًا.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">check.js</div>
+                <pre class="p-4 text-sm text-yellow-400 overflow-x-auto"><code>// @ts-check
+/** @type {number} */
+let age = 30;
+// age = 'thirty'; // TS will warn here even in JS</code></pre>
+              </div>
             </article>
 
             <!-- Page 2 -->
@@ -647,21 +916,26 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 2</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                TypeScript vs. Python Architecture
-              </h3>
-              <p class="mb-3">
-                When mapping out large-scale tech stacks, TypeScript dominates
-                the frontend UI and Node.js backend layers, providing
-                exceptional interface sharing and speed for heavily
-                I/O-intensive workloads. Conversely, Python excels uniquely in
-                distinct domains, particularly CPU-heavy tasks, rapid backend
-                prototyping through Django, and handling distributed background
-                jobs. Typically, high-functioning development teams synthesize
-                both languages: deploying TypeScript for robust user-facing API
-                gateways, and leaning heavily on Python to execute underlying
-                data processing tasks.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">TypeScript vs. Python Architecture</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">معمارية TypeScript مقابل Python</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  TypeScript dominates frontend and I/O tasks, while Python excels in CPU-heavy tasks and data processing. High-performing teams often use both.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  تهيمن TypeScript على واجهات المستخدم والمهام كثيفة المدخلات/المخرجات، بينما تتفوق Python في المهام الثقيلة ومعالجة البيانات. غالبًا ما تستخدم الفرق عالية الأداء كليهما.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">bridge.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>// TS Interface shared with Python API
+interface UserProfile {
+  id: string;
+  preferences: string[];
+}</code></pre>
+              </div>
             </article>
 
             <!-- Page 3 -->
@@ -672,19 +946,25 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 3</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">AI and Data Workflows</h3>
-              <p class="mb-3">
-                Despite its massive popularity in web development, TypeScript
-                possesses severe limitations in the rapidly expanding fields of
-                Artificial Intelligence and deep machine learning. Python
-                remains the undisputed standard, offering deeply entrenched,
-                highly optimized ecosystem frameworks like TensorFlow, PyTorch,
-                and NumPy. Because TypeScript inherently lacks the mature
-                scientific computing libraries and rapid prototyping fluidity
-                provided by Python's dynamic nature, data research projects
-                overwhelmingly avoid TypeScript in favor of Python's superior AI
-                ecosystem.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">AI and Data Workflows</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">الذكاء الاصطناعي وسير عمل البيانات</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Python remains the standard for AI due to mature libraries like TensorFlow and PyTorch, which TypeScript currently lacks.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  تظل Python هي المعيار للذكاء الاصطناعي بسبب المكتبات الناضجة مثل TensorFlow و PyTorch، وهو ما تفتقر إليه TypeScript حاليًا في هذا المجال.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">ai-bridge.py</div>
+                <pre class="p-4 text-sm text-green-300 overflow-x-auto"><code># Python handles the heavy lifting
+import torch
+model = torch.load('model.pth')
+# TS frontend just consumes the JSON result</code></pre>
+              </div>
             </article>
 
             <!-- Page 4 -->
@@ -695,20 +975,29 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 4</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                Real-World CMS Integration (Strapi)
-              </h3>
-              <p class="mb-3">
-                Applying TypeScript to enterprise-level frameworks significantly
-                stabilizes development, particularly when integrating Headless
-                CMS platforms like Strapi. By utilizing predefined schemas,
-                TypeScript eradicates the dangerous ambiguity that arises when
-                developers arbitrarily guess backend data structures returned
-                from APIs. When the database model evolves, developers simply
-                execute a <code>ts:generate-types</code> command, seamlessly
-                syncing backend alterations safely to the frontend interface and
-                blocking fatal runtime crashes.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">Real-World CMS Integration (Strapi)</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">التكامل مع أنظمة إدارة المحتوى (Strapi)</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  TypeScript stabilizes enterprise development by syncing backend schemas to frontend interfaces, preventing runtime crashes.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  تعزز TypeScript استقرار تطوير المؤسسات من خلال مزامنة مخططات الخلفية مع واجهات الأمامية، مما يمنع حدوث أخطاء وقت التشغيل.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">strapi.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>// Auto-generated from Strapi Schema
+export interface Article {
+  id: number;
+  attributes: {
+    title: string;
+    content: string;
+  }
+}</code></pre>
+              </div>
             </article>
 
             <!-- Page 5 -->
@@ -719,24 +1008,24 @@
                 class="text-xs font-bold bg-blue-100 text-tsblue px-2 py-1 rounded uppercase tracking-wide"
                 >Page 5</span
               >
-              <h3 class="text-xl font-bold mt-4 mb-2">
-                The Speculative "C" Equivalent
-              </h3>
-              <p class="mb-3">
-                <i
-                  >Note: The following contains speculative community
-                  analogies.</i
-                >
-                When attempting to draw historical comparisons between
-                TypeScript augmenting JavaScript and similar augmentations
-                applied to the C programming language, development communities
-                offer fascinating theories. Some speculate that the "D" language
-                operates identically to TypeScript, serving to re-engineer C++
-                with modern garbage collection and strict constraints. Others
-                argue that Objective-C provides the closest historical mirror,
-                acting as a direct, strict superset constructed over pure C to
-                introduce dynamic object-oriented programming.
-              </p>
+              <div class="flex justify-between items-start gap-4 mt-4 mb-2">
+                <h3 class="text-xl font-bold">The Speculative "C" Equivalent</h3>
+                <h3 class="text-xl font-bold font-arabic" dir="rtl">المقابل النظري في لغة "C"</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Some compare TypeScript augmenting JS to Objective-C or D augmenting C, adding strict constraints and modern features.
+                </p>
+                <p class="text-sm text-gray-700 font-arabic leading-relaxed" dir="rtl">
+                  يقارن البعض تعزيز TypeScript لـ JS بلغة Objective-C أو D لـ C، حيث تضيف قيودًا صارمة وميزات حديثة.
+                </p>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">speculative.cpp</div>
+                <pre class="p-4 text-sm text-gray-400 overflow-x-auto"><code>// C++ with Type Safety analogues
+auto name = std::string("TS");
+// Similar to: let name = "TS";</code></pre>
+              </div>
             </article>
           </div>
         </section>

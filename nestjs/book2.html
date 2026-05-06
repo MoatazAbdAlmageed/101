@@ -121,7 +121,7 @@
             NestJS is a progressive Node.js framework for building efficient,
             reliable, and scalable server-side applications. It uses modern
             JavaScript, is built with TypeScript, and combines elements of
-            Object-Oriented Programming (OOP), Functional Programming (FP), and
+            Object-Oriented ProgrWamming (OOP), Functional Programming (FP), and
             Functional Reactive Programming (FRP).
           </p>
           <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
@@ -193,9 +193,19 @@
 nest new my-nest-app</code></pre>
               </div>
               <p class="text-slate-600 mt-4 text-sm">
-                This generates `main.ts`, the entry point that uses
                 `NestFactory.create()` to bootstrap the application.
               </p>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">app.service.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class AppService {
+  getHello(): string {
+    return 'Hello World!';
+  }
+}</code></pre>
+              </div>
             </div>
 
             <!-- Exercise -->
@@ -294,6 +304,20 @@ export class CatsController {
   }
 }</code></pre>
               </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">users.service.ts</div>
+                <pre class="p-4 text-sm text-blue-300 overflow-x-auto"><code>@Injectable()
+export class UsersService {
+  private users = [];
+
+  findAll() { return this.users; }
+  
+  create(user: any) {
+    this.users.push(user);
+    return user;
+  }
+}</code></pre>
+              </div>
             </div>
 
             <!-- Exercise -->
@@ -389,11 +413,22 @@ export class CreateUserDto {
 }</code></pre>
               </div>
               <p class="text-slate-600 text-sm">
-                To create an update DTO without repeating code, use
-                <code>PartialType(CreateUserDto)</code> from
-                <code>@nestjs/mapped-types</code>. This makes all properties
                 optional while retaining validation rules.
               </p>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">main.ts</div>
+                <pre class="p-4 text-sm text-green-400 overflow-x-auto"><code>import { ValidationPipe } from '@nestjs/common';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+  }));
+  await app.listen(3000);
+}</code></pre>
+              </div>
             </div>
 
             <!-- Exercise -->
@@ -485,11 +520,20 @@ export class CreateUserDto {
 }</code></pre>
               </div>
               <p class="text-slate-600 text-sm">
-                Next, you create a `DatabaseService` that implements
-                `OnModuleInit` to connect to the database via
-                <code>await this.$connect()</code>. Inject this service into
                 your application controllers to execute queries safely.
               </p>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">database.service.ts</div>
+                <pre class="p-4 text-sm text-purple-300 overflow-x-auto"><code>import { Injectable, OnModuleInit } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
+
+@Injectable()
+export class DatabaseService extends PrismaClient implements OnModuleInit {
+  async onModuleInit() {
+    await this.$connect();
+  }
+}</code></pre>
+              </div>
             </div>
 
             <!-- Exercise -->
@@ -589,6 +633,12 @@ import { APP_GUARD } from '@nestjs/core';
   ]
 })
 export class AppModule {}</code></pre>
+              </div>
+              <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
+                <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono">security.ts</div>
+                <pre class="p-4 text-sm text-pink-300 overflow-x-auto"><code>// Inside main.ts
+app.enableCors();
+app.setGlobalPrefix('api');</code></pre>
               </div>
             </div>
 

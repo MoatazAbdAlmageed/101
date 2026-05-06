@@ -1,0 +1,1643 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastery_Book.html</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Inter:wght@400;600;800&display=swap");
+      .font-en {
+        font-family: "Inter", sans-serif;
+      }
+      .font-ar {
+        font-family: "Cairo", sans-serif;
+      }
+
+      /* Custom scrollbar for code blocks */
+      pre::-webkit-scrollbar {
+        height: 8px;
+      }
+      pre::-webkit-scrollbar-track {
+        background: #1f2937;
+        border-radius: 4px;
+      }
+      pre::-webkit-scrollbar-thumb {
+        background: #4b5563;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-gray-800 antialiased selection:bg-blue-200 selection:text-blue-900"
+  >
+    <!-- Hero Section -->
+    <header
+      class="bg-gradient-to-r from-blue-900 to-indigo-800 text-white py-20 px-6 shadow-xl relative overflow-hidden"
+    >
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-10"
+      >
+        <div dir="ltr" class="font-en text-left">
+          <span
+            class="inline-block py-1 px-3 rounded-full bg-blue-700 text-blue-100 text-sm font-bold tracking-wider mb-4 uppercase"
+            >Complete Guide</span
+          >
+          <h1 class="text-5xl font-extrabold mb-6 leading-tight">
+            Mastering PHP:<br /><span class="text-blue-300"
+              >From Beginner to Expert</span
+            >
+          </h1>
+          <p class="text-lg text-blue-100 font-light leading-relaxed">
+            A structured, bilingual guide to mastering the world's most popular
+            server-side scripting language. Learn practical concepts, modern
+            syntax, and secure backend architecture.
+          </p>
+        </div>
+        <div dir="rtl" class="font-ar text-right">
+          <span
+            class="inline-block py-1 px-3 rounded-full bg-blue-700 text-blue-100 text-sm font-bold tracking-wider mb-4 uppercase"
+            >الدليل الشامل</span
+          >
+          <h1 class="text-5xl font-extrabold mb-6 leading-tight">
+            إتقان لغة PHP:<br /><span class="text-blue-300"
+              >من البداية للاحتراف</span
+            >
+          </h1>
+          <p class="text-lg text-blue-100 font-light leading-relaxed">
+            دليل منظم وثنائي اللغة لإتقان لغة البرمجة الأكثر شيوعاً في تطوير
+            خوادم الويب. تعلم المفاهيم العملية، الصياغة الحديثة، والمعمارية
+            الآمنة لتطبيقات الويب.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav class="max-w-7xl mx-auto my-12 px-6">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div dir="ltr" class="font-en">
+            <h2
+              class="text-2xl font-bold text-gray-900 mb-6 flex items-center border-b pb-3"
+            >
+              <svg
+                class="w-6 h-6 mr-2 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h7"
+                ></path>
+              </svg>
+              Table of Contents
+            </h2>
+            <ul class="space-y-4">
+              <li>
+                <a
+                  href="#topic-1"
+                  class="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                  ><span
+                    class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm"
+                    >1</span
+                  >
+                  PHP Fundamentals & Environment</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#topic-2"
+                  class="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                  ><span
+                    class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm"
+                    >2</span
+                  >
+                  Control Flow & Logic</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#topic-3"
+                  class="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                  ><span
+                    class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm"
+                    >3</span
+                  >
+                  Functions & Arrays</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#topic-4"
+                  class="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                  ><span
+                    class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm"
+                    >4</span
+                  >
+                  Object-Oriented Programming (OOP)</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#topic-5"
+                  class="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                  ><span
+                    class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm"
+                    >5</span
+                  >
+                  Databases & Security</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div dir="rtl" class="font-ar">
+            <h2
+              class="text-2xl font-bold text-gray-900 mb-6 flex items-center border-b pb-3"
+            >
+              <svg
+                class="w-6 h-6 ml-2 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                ></path>
+              </svg>
+              جدول المحتويات
+            </h2>
+            <ul class="space-y-4">
+              <li>
+                <a
+                  href="#topic-1"
+                  class="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                  ><span
+                    class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center ml-3 text-sm"
+                    >١</span
+                  >
+                  أساسيات PHP وبيئة التطوير</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#topic-2"
+                  class="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                  ><span
+                    class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center ml-3 text-sm"
+                    >٢</span
+                  >
+                  التحكم في سير البرنامج والمنطق</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#topic-3"
+                  class="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                  ><span
+                    class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center ml-3 text-sm"
+                    >٣</span
+                  >
+                  الدوال والمصفوفات</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#topic-4"
+                  class="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                  ><span
+                    class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center ml-3 text-sm"
+                    >٤</span
+                  >
+                  البرمجة كائنية التوجه (OOP)</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#topic-5"
+                  class="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium"
+                  ><span
+                    class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center ml-3 text-sm"
+                    >٥</span
+                  >
+                  قواعد البيانات وأمن التطبيقات</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 space-y-24 mb-24">
+      <!-- ==========================================
+             TOPIC 1: Fundamentals
+             ========================================== -->
+      <section id="topic-1" class="scroll-mt-10">
+        <div
+          class="bg-blue-900 text-white rounded-t-xl p-6 shadow-md grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          <h2 class="text-3xl font-bold font-en">
+            Topic 1: PHP Fundamentals & Environment
+          </h2>
+          <h2 class="text-3xl font-bold font-ar text-right" dir="rtl">
+            الموضوع ١: أساسيات PHP وبيئة التطوير
+          </h2>
+        </div>
+
+        <div
+          class="bg-white border-x border-b border-gray-200 rounded-b-xl shadow-sm p-8 space-y-12"
+        >
+          <!-- Introduction & Explanation -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div dir="ltr" class="font-en space-y-4">
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 inline-block pb-1"
+              >
+                Introduction & Core Concepts
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                PHP (Hypertext Preprocessor) is an open-source, server-side
+                scripting language created by Rasmus Lerdorf in 1994. It
+                currently powers nearly 80% of the web, including WordPress,
+                Facebook, and Wikipedia.
+              </p>
+              <p class="text-gray-600 leading-relaxed">
+                Unlike HTML or JavaScript which run in the user's browser, PHP
+                runs on the <b>server</b>. It processes data, interacts with
+                databases, and sends plain HTML back to the client. Variables in
+                PHP are loosely typed and always start with a dollar sign
+                (<code>$</code>).
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar space-y-4">
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 inline-block pb-1"
+              >
+                مقدمة ومفاهيم أساسية
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                لغة PHP هي لغة برمجة نصية مفتوحة المصدر تعمل على جانب الخادم،
+                أنشأها راسموس ليردورف عام 1994. تشغل حالياً حوالي 80% من مواقع
+                الويب، بما في ذلك ووردبريس وفيسبوك وويكيبيديا.
+              </p>
+              <p class="text-gray-600 leading-relaxed">
+                على عكس HTML أو JavaScript التي تعمل في متصفح المستخدم، تعمل PHP
+                على <b>الخادم (Server)</b>. تقوم بمعالجة البيانات، التفاعل مع
+                قواعد البيانات، وإرسال كود HTML عادي للمستخدم. المتغيرات في PHP
+                مرنة النوع وتبدأ دائماً بعلامة الدولار (<code>$</code>).
+              </p>
+            </div>
+          </div>
+
+          <!-- Examples -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-gray-50 p-6 rounded-xl border border-gray-100"
+          >
+            <div dir="ltr" class="font-en space-y-6">
+              <h3 class="text-lg font-bold text-gray-800">
+                Practical Examples
+              </h3>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 1: Hello World</span
+                >
+                <pre
+                  class="bg-gray-900 text-green-400 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+// Echo outputs text to the browser
+echo "Hello, World!"; 
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 2: Variables & Types</span
+                >
+                <pre
+                  class="bg-gray-900 text-blue-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+$name = "Alice";      // String
+$age = 28;            // Integer
+$isOnline = true;     // Boolean
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 3: String Interpolation</span
+                >
+                <pre
+                  class="bg-gray-900 text-yellow-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+$role = "Admin";
+// Variables inside double quotes are evaluated
+echo "Welcome back, $role!"; 
+?&gt;</code></pre>
+              </div>
+            </div>
+
+            <div dir="rtl" class="font-ar space-y-6">
+              <h3 class="text-lg font-bold text-gray-800">أمثلة عملية</h3>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ١: مرحباً بالعالم</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-green-400 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+// دالة echo تقوم بطباعة النص في المتصفح
+echo "Hello, World!"; 
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ٢: المتغيرات وأنواعها</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-blue-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+$name = "Alice";      // نص (String)
+$age = 28;            // عدد صحيح (Integer)
+$isOnline = true;     // قيمة منطقية (Boolean)
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ٣: دمج المتغيرات في النصوص</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-yellow-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+$role = "Admin";
+// يتم تقييم المتغيرات داخل علامات الاقتباس المزدوجة
+echo "Welcome back, $role!"; 
+?&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-world Use Case -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div dir="ltr" class="font-en">
+              <h3 class="text-md font-bold text-purple-700 flex items-center">
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                Real-World Use Case
+              </h3>
+              <p class="text-gray-600 mt-2">
+                <b>Dynamic Greeting:</b> When a user logs into a web
+                application, PHP retrieves their name from a database and uses
+                string interpolation to display a personalized welcome banner on
+                the HTML dashboard.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar">
+              <h3 class="text-md font-bold text-purple-700 flex items-center">
+                <svg
+                  class="w-5 h-5 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                حالة استخدام واقعية
+              </h3>
+              <p class="text-gray-600 mt-2">
+                <b>الترحيب الديناميكي:</b> عندما يسجل مستخدم الدخول إلى تطبيق
+                ويب، تقوم PHP بجلب اسمه من قاعدة البيانات وتستخدم دمج النصوص
+                لعرض لافتة ترحيب مخصصة له على لوحة تحكم HTML.
+              </p>
+            </div>
+          </div>
+
+          <!-- Exercise & Summary -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t pt-8">
+            <div dir="ltr" class="font-en">
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                <h4 class="font-bold text-yellow-800">Mini Exercise</h4>
+                <p class="text-sm text-yellow-900 mt-1">
+                  Declare a variable <code>$city</code> containing your favorite
+                  city, and use <code>echo</code> to print "I love [city]".
+                </p>
+                <details class="mt-3">
+                  <summary
+                    class="cursor-pointer text-sm font-semibold text-yellow-700 outline-none"
+                  >
+                    Show Answer
+                  </summary>
+                  <pre
+                    class="bg-gray-800 text-white p-3 rounded mt-2 text-xs"
+                  ><code>&lt;?php
+$city = "London";
+echo "I love $city";
+?&gt;</code></pre>
+                </details>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">
+                <b>Summary:</b> You've learned how PHP processes server-side
+                code to generate dynamic outputs using variables and the echo
+                statement.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar">
+              <div class="bg-yellow-50 border-r-4 border-yellow-400 p-4 mb-4">
+                <h4 class="font-bold text-yellow-800">تدريب مصغر</h4>
+                <p class="text-sm text-yellow-900 mt-1">
+                  قم بتعريف متغير <code>$city</code> يحتوي على مدينتك المفضلة،
+                  واستخدم <code>echo</code> لطباعة "أنا أحب [المدينة]".
+                </p>
+                <details class="mt-3">
+                  <summary
+                    class="cursor-pointer text-sm font-semibold text-yellow-700 outline-none"
+                  >
+                    إظهار الإجابة
+                  </summary>
+                  <pre
+                    dir="ltr"
+                    class="bg-gray-800 text-white p-3 rounded mt-2 text-xs text-left"
+                  ><code>&lt;?php
+$city = "Riyadh";
+echo "I love $city";
+?&gt;</code></pre>
+                </details>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">
+                <b>الخلاصة:</b> لقد تعلمت كيف تقوم PHP بمعالجة الكود على الخادم
+                لإنشاء مخرجات ديناميكية باستخدام المتغيرات وعبارة الطباعة.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 2: Control Flow & Logic
+             ========================================== -->
+      <section id="topic-2" class="scroll-mt-10">
+        <div
+          class="bg-indigo-900 text-white rounded-t-xl p-6 shadow-md grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          <h2 class="text-3xl font-bold font-en">
+            Topic 2: Control Flow & Logic
+          </h2>
+          <h2 class="text-3xl font-bold font-ar text-right" dir="rtl">
+            الموضوع ٢: التحكم في سير البرنامج والمنطق
+          </h2>
+        </div>
+
+        <div
+          class="bg-white border-x border-b border-gray-200 rounded-b-xl shadow-sm p-8 space-y-12"
+        >
+          <!-- Introduction & Explanation -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div dir="ltr" class="font-en space-y-4">
+              <h3
+                class="text-xl font-bold text-indigo-800 border-b-2 border-indigo-200 inline-block pb-1"
+              >
+                Making Decisions in Code
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                Dynamic applications execute different code blocks based on
+                conditions using Control Flow structures. PHP utilizes standard
+                <code>if/elseif/else</code> statements, powerful modern
+                <code>match</code> expressions (introduced in PHP 8), and
+                various loops like <code>for</code> and <code>while</code> for
+                repetitive tasks.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar space-y-4">
+              <h3
+                class="text-xl font-bold text-indigo-800 border-b-2 border-indigo-200 inline-block pb-1"
+              >
+                اتخاذ القرارات في الكود
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                التطبيقات الديناميكية تنفذ أجزاء مختلفة من الكود بناءً على شروط
+                معينة باستخدام هياكل التحكم. تستخدم PHP جمل
+                <code>if/elseif/else</code> القياسية، وتعبير
+                <code>match</code> الحديث والقوي (مُقدم في PHP 8)، بالإضافة إلى
+                الحلقات التكرارية مثل <code>for</code> و
+                <code>while</code> للمهام المتكررة.
+              </p>
+            </div>
+          </div>
+
+          <!-- Examples -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-gray-50 p-6 rounded-xl border border-gray-100"
+          >
+            <div dir="ltr" class="font-en space-y-6">
+              <h3 class="text-lg font-bold text-gray-800">
+                Practical Examples
+              </h3>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 1: If/Else Condition</span
+                >
+                <pre
+                  class="bg-gray-900 text-teal-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+$stock = 5;
+if ($stock > 0) {
+    echo "Item is in stock!";
+} else {
+    echo "Out of stock.";
+}
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 2: Match Expression (PHP 8)</span
+                >
+                <pre
+                  class="bg-gray-900 text-purple-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+$status = 404;
+$message = match($status) {
+    200 => 'Success',
+    404 => 'Not Found',
+    default => 'Unknown Error'
+};
+echo $message;
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 3: For Loop</span
+                >
+                <pre
+                  class="bg-gray-900 text-pink-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+// Prints numbers 1 through 3
+for ($i = 1; $i <= 3; $i++) {
+    echo "Number: $i &lt;br&gt;";
+}
+?&gt;</code></pre>
+              </div>
+            </div>
+
+            <div dir="rtl" class="font-ar space-y-6">
+              <h3 class="text-lg font-bold text-gray-800">أمثلة عملية</h3>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ١: الجملة الشرطية If/Else</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-teal-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+$stock = 5;
+if ($stock > 0) {
+    echo "Item is in stock!";
+} else {
+    echo "Out of stock.";
+}
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ٢: تعبير Match (في PHP 8)</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-purple-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+$status = 404;
+$message = match($status) {
+    200 => 'Success',
+    404 => 'Not Found',
+    default => 'Unknown Error'
+};
+echo $message;
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ٣: حلقة التكرار For</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-pink-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+// طباعة الأرقام من 1 إلى 3
+for ($i = 1; $i <= 3; $i++) {
+    echo "Number: $i &lt;br&gt;";
+}
+?&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-world Use Case -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div dir="ltr" class="font-en">
+              <h3 class="text-md font-bold text-purple-700 flex items-center">
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                Real-World Use Case
+              </h3>
+              <p class="text-gray-600 mt-2">
+                <b>Access Control:</b> Checking a user's role using an
+                <code>if</code> statement to decide whether to render the Admin
+                Dashboard or redirect them to the customer homepage.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar">
+              <h3 class="text-md font-bold text-purple-700 flex items-center">
+                <svg
+                  class="w-5 h-5 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                حالة استخدام واقعية
+              </h3>
+              <p class="text-gray-600 mt-2">
+                <b>التحكم في الوصول:</b> التحقق من صلاحيات المستخدم (Role)
+                باستخدام جملة <code>if</code> لتقرير ما إذا كان سيتم عرض لوحة
+                تحكم الإدارة أم إعادة توجيهه إلى صفحة العميل.
+              </p>
+            </div>
+          </div>
+
+          <!-- Exercise & Summary -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t pt-8">
+            <div dir="ltr" class="font-en">
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                <h4 class="font-bold text-yellow-800">Mini Exercise</h4>
+                <p class="text-sm text-yellow-900 mt-1">
+                  Write a <code>for</code> loop that iterates from 1 to 5 and
+                  outputs the string "PHP " in each iteration.
+                </p>
+                <details class="mt-3">
+                  <summary
+                    class="cursor-pointer text-sm font-semibold text-yellow-700 outline-none"
+                  >
+                    Show Answer
+                  </summary>
+                  <pre
+                    class="bg-gray-800 text-white p-3 rounded mt-2 text-xs"
+                  ><code>&lt;?php
+for($i=1; $i<=5; $i++) {
+    echo "PHP ";
+}
+?&gt;</code></pre>
+                </details>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">
+                <b>Summary:</b> Control flow structures are the "brain" of your
+                application, deciding which paths of code are executed based on
+                dynamic data.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar">
+              <div class="bg-yellow-50 border-r-4 border-yellow-400 p-4 mb-4">
+                <h4 class="font-bold text-yellow-800">تدريب مصغر</h4>
+                <p class="text-sm text-yellow-900 mt-1">
+                  اكتب حلقة <code>for</code> تدور من 1 إلى 5 وتطبع النص "PHP "
+                  في كل دورة.
+                </p>
+                <details class="mt-3">
+                  <summary
+                    class="cursor-pointer text-sm font-semibold text-yellow-700 outline-none"
+                  >
+                    إظهار الإجابة
+                  </summary>
+                  <pre
+                    dir="ltr"
+                    class="bg-gray-800 text-white p-3 rounded mt-2 text-xs text-left"
+                  ><code>&lt;?php
+for($i=1; $i<=5; $i++) {
+    echo "PHP ";
+}
+?&gt;</code></pre>
+                </details>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">
+                <b>الخلاصة:</b> هياكل التحكم هي بمثابة "الدماغ" لتطبيقك، حيث
+                تقرر أي المسارات البرمجية يجب تنفيذها بناءً على البيانات
+                الديناميكية.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 3: Functions & Arrays
+             ========================================== -->
+      <section id="topic-3" class="scroll-mt-10">
+        <div
+          class="bg-teal-800 text-white rounded-t-xl p-6 shadow-md grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          <h2 class="text-3xl font-bold font-en">
+            Topic 3: Functions & Arrays
+          </h2>
+          <h2 class="text-3xl font-bold font-ar text-right" dir="rtl">
+            الموضوع ٣: الدوال والمصفوفات
+          </h2>
+        </div>
+
+        <div
+          class="bg-white border-x border-b border-gray-200 rounded-b-xl shadow-sm p-8 space-y-12"
+        >
+          <!-- Introduction & Explanation -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div dir="ltr" class="font-en space-y-4">
+              <h3
+                class="text-xl font-bold text-teal-800 border-b-2 border-teal-200 inline-block pb-1"
+              >
+                Organizing Code and Data
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                Functions group logic into reusable blocks, reducing
+                duplication. Modern PHP allows enforcing strict data types for
+                parameters and return values. Arrays store collections of data;
+                PHP supports both <i>Indexed</i> (numbered) and
+                <i>Associative</i> (key-value paired) arrays.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar space-y-4">
+              <h3
+                class="text-xl font-bold text-teal-800 border-b-2 border-teal-200 inline-block pb-1"
+              >
+                تنظيم الكود والبيانات
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                تقوم الدوال بتجميع الأوامر البرمجية في كتل قابلة لإعادة
+                الاستخدام لتقليل التكرار. تدعم PHP الحديثة فرض أنواع بيانات
+                صارمة للمعاملات والقيم المُرجعة. وتقوم المصفوفات بتخزين مجموعات
+                من البيانات؛ حيث تدعم PHP المصفوفات المرقمة (Indexed) والمصفوفات
+                الترابطية (Associative).
+              </p>
+            </div>
+          </div>
+
+          <!-- Examples -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-gray-50 p-6 rounded-xl border border-gray-100"
+          >
+            <div dir="ltr" class="font-en space-y-6">
+              <h3 class="text-lg font-bold text-gray-800">
+                Practical Examples
+              </h3>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 1: Typed Function</span
+                >
+                <pre
+                  class="bg-gray-900 text-green-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+function add(int $a, int $b): int {
+    return $a + $b;
+}
+echo add(5, 10); // Outputs: 15
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 2: Associative Array</span
+                >
+                <pre
+                  class="bg-gray-900 text-blue-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+$user = [
+    "name" => "John",
+    "email" => "john@example.com"
+];
+echo $user["name"]; // Outputs: John
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 3: Foreach Array Iteration</span
+                >
+                <pre
+                  class="bg-gray-900 text-yellow-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+$colors = ["Red", "Blue", "Green"];
+foreach ($colors as $color) {
+    echo $color . " "; 
+}
+?&gt;</code></pre>
+              </div>
+            </div>
+
+            <div dir="rtl" class="font-ar space-y-6">
+              <h3 class="text-lg font-bold text-gray-800">أمثلة عملية</h3>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ١: دالة محددة الأنواع</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-green-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+function add(int $a, int $b): int {
+    return $a + $b;
+}
+echo add(5, 10); // النتيجة: 15
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ٢: المصفوفة الترابطية</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-blue-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+$user = [
+    "name" => "John",
+    "email" => "john@example.com"
+];
+echo $user["name"]; // النتيجة: John
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ٣: المرور على المصفوفة باستخدام Foreach</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-yellow-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+$colors = ["Red", "Blue", "Green"];
+foreach ($colors as $color) {
+    echo $color . " "; 
+}
+?&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-world Use Case -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div dir="ltr" class="font-en">
+              <h3 class="text-md font-bold text-purple-700 flex items-center">
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                Real-World Use Case
+              </h3>
+              <p class="text-gray-600 mt-2">
+                <b>Shopping Cart Processing:</b> Products added to a cart are
+                stored as an associative array. A custom function iterates
+                through the array to calculate the total price before tax.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar">
+              <h3 class="text-md font-bold text-purple-700 flex items-center">
+                <svg
+                  class="w-5 h-5 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                حالة استخدام واقعية
+              </h3>
+              <p class="text-gray-600 mt-2">
+                <b>معالجة سلة التسوق:</b> يتم تخزين المنتجات المضافة إلى السلة
+                كمصفوفة ترابطية. تقوم دالة مخصصة بالمرور عبر المصفوفة لحساب
+                السعر الإجمالي قبل الضريبة.
+              </p>
+            </div>
+          </div>
+
+          <!-- Exercise & Summary -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t pt-8">
+            <div dir="ltr" class="font-en">
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                <h4 class="font-bold text-yellow-800">Mini Exercise</h4>
+                <p class="text-sm text-yellow-900 mt-1">
+                  Create a function named <code>greet</code> that takes a
+                  <code>string $name</code> and returns the string "Hello,
+                  $name". Call it and echo the result.
+                </p>
+                <details class="mt-3">
+                  <summary
+                    class="cursor-pointer text-sm font-semibold text-yellow-700 outline-none"
+                  >
+                    Show Answer
+                  </summary>
+                  <pre
+                    class="bg-gray-800 text-white p-3 rounded mt-2 text-xs"
+                  ><code>&lt;?php
+function greet(string $name): string {
+    return "Hello, $name";
+}
+echo greet("Sarah");
+?&gt;</code></pre>
+                </details>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">
+                <b>Summary:</b> Functions and arrays are foundational to
+                organizing logic and managing datasets dynamically.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar">
+              <div class="bg-yellow-50 border-r-4 border-yellow-400 p-4 mb-4">
+                <h4 class="font-bold text-yellow-800">تدريب مصغر</h4>
+                <p class="text-sm text-yellow-900 mt-1">
+                  أنشئ دالة باسم <code>greet</code> تستقبل نصاً
+                  <code>string $name</code> وتعيد النص "Hello, $name". قم
+                  باستدعائها وطباعة النتيجة.
+                </p>
+                <details class="mt-3">
+                  <summary
+                    class="cursor-pointer text-sm font-semibold text-yellow-700 outline-none"
+                  >
+                    إظهار الإجابة
+                  </summary>
+                  <pre
+                    dir="ltr"
+                    class="bg-gray-800 text-white p-3 rounded mt-2 text-xs text-left"
+                  ><code>&lt;?php
+function greet(string $name): string {
+    return "Hello, $name";
+}
+echo greet("Sarah");
+?&gt;</code></pre>
+                </details>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">
+                <b>الخلاصة:</b> تعتبر الدوال والمصفوفات أساسية لتنظيم الكود
+                وإدارة مجموعات البيانات ديناميكياً.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 4: OOP
+             ========================================== -->
+      <section id="topic-4" class="scroll-mt-10">
+        <div
+          class="bg-orange-800 text-white rounded-t-xl p-6 shadow-md grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          <h2 class="text-3xl font-bold font-en">
+            Topic 4: Object-Oriented Programming
+          </h2>
+          <h2 class="text-3xl font-bold font-ar text-right" dir="rtl">
+            الموضوع ٤: البرمجة كائنية التوجه (OOP)
+          </h2>
+        </div>
+
+        <div
+          class="bg-white border-x border-b border-gray-200 rounded-b-xl shadow-sm p-8 space-y-12"
+        >
+          <!-- Introduction & Explanation -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div dir="ltr" class="font-en space-y-4">
+              <h3
+                class="text-xl font-bold text-orange-800 border-b-2 border-orange-200 inline-block pb-1"
+              >
+                Modeling Real-World Entities
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                Object-Oriented Programming (OOP) allows you to group data and
+                behavior into <i>Classes</i> (blueprints) and
+                <i>Objects</i> (instances). Key pillars include encapsulation
+                (using <code>private/protected</code> visibility modifiers) and
+                inheritance (using <code>extends</code> to share behaviors).
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar space-y-4">
+              <h3
+                class="text-xl font-bold text-orange-800 border-b-2 border-orange-200 inline-block pb-1"
+              >
+                نمذجة الكيانات الواقعية
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                البرمجة كائنية التوجه (OOP) تتيح لك تجميع البيانات والسلوكيات في
+                <i>فئات (Classes)</i> تعمل كقوالب، و<i>كائنات (Objects)</i> تعمل
+                كنسخ منها. من أهم ركائزها التغليف (عبر محددات الرؤية مثل
+                <code>private/protected</code>) والوراثة (مشاركة السلوكيات عبر
+                <code>extends</code>).
+              </p>
+            </div>
+          </div>
+
+          <!-- Examples -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-gray-50 p-6 rounded-xl border border-gray-100"
+          >
+            <div dir="ltr" class="font-en space-y-6">
+              <h3 class="text-lg font-bold text-gray-800">
+                Practical Examples
+              </h3>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 1: Class & Constructor</span
+                >
+                <pre
+                  class="bg-gray-900 text-teal-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+class User {
+    public string $name;
+    public function __construct(string $n) {
+        $this-&gt;name = $n;
+    }
+}
+$user1 = new User("Tom");
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 2: Encapsulation (Private)</span
+                >
+                <pre
+                  class="bg-gray-900 text-purple-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+class BankAccount {
+    private float $balance = 0;
+    public function deposit(float $amount) {
+        $this-&gt;balance += $amount;
+    }
+}
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 3: Inheritance</span
+                >
+                <pre
+                  class="bg-gray-900 text-orange-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+class Admin extends User {
+    public function banUser() {
+        echo "User banned by " . $this-&gt;name;
+    }
+}
+?&gt;</code></pre>
+              </div>
+            </div>
+
+            <div dir="rtl" class="font-ar space-y-6">
+              <h3 class="text-lg font-bold text-gray-800">أمثلة عملية</h3>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ١: الفئة ودالة البناء</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-teal-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+class User {
+    public string $name;
+    public function __construct(string $n) {
+        $this-&gt;name = $n;
+    }
+}
+$user1 = new User("Tom");
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ٢: التغليف (حماية البيانات)</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-purple-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+class BankAccount {
+    private float $balance = 0;
+    public function deposit(float $amount) {
+        $this-&gt;balance += $amount;
+    }
+}
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ٣: الوراثة</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-orange-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+class Admin extends User {
+    public function banUser() {
+        echo "User banned by " . $this-&gt;name;
+    }
+}
+?&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-world Use Case -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div dir="ltr" class="font-en">
+              <h3 class="text-md font-bold text-purple-700 flex items-center">
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                Real-World Use Case
+              </h3>
+              <p class="text-gray-600 mt-2">
+                <b>E-commerce Models:</b> Developers use classes to represent
+                concepts like <code>Product</code>, <code>Cart</code>, and
+                <code>Order</code>. Complex frameworks like Laravel rely
+                entirely on OOP principles to map objects to database tables.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar">
+              <h3 class="text-md font-bold text-purple-700 flex items-center">
+                <svg
+                  class="w-5 h-5 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                حالة استخدام واقعية
+              </h3>
+              <p class="text-gray-600 mt-2">
+                <b>نماذج التجارة الإلكترونية:</b> يستخدم المطورون الفئات لتمثيل
+                مفاهيم مثل <code>المنتج</code> و <code>السلة</code> و
+                <code>الطلب</code>. تعتمد إطارات العمل الحديثة مثل Laravel كلياً
+                على مبادئ OOP لربط الكائنات بجداول قاعدة البيانات.
+              </p>
+            </div>
+          </div>
+
+          <!-- Exercise & Summary -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t pt-8">
+            <div dir="ltr" class="font-en">
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                <h4 class="font-bold text-yellow-800">Mini Exercise</h4>
+                <p class="text-sm text-yellow-900 mt-1">
+                  Create a class <code>Car</code> with a public property
+                  <code>$brand</code>. Instantiate an object and assign "Toyota"
+                  to it.
+                </p>
+                <details class="mt-3">
+                  <summary
+                    class="cursor-pointer text-sm font-semibold text-yellow-700 outline-none"
+                  >
+                    Show Answer
+                  </summary>
+                  <pre
+                    class="bg-gray-800 text-white p-3 rounded mt-2 text-xs"
+                  ><code>&lt;?php
+class Car {
+    public string $brand;
+}
+$myCar = new Car();
+$myCar-&gt;brand = "Toyota";
+?&gt;</code></pre>
+                </details>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">
+                <b>Summary:</b> OOP ensures your codebase is maintainable,
+                scalable, and reusable, marking the transition from beginner to
+                advanced PHP development.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar">
+              <div class="bg-yellow-50 border-r-4 border-yellow-400 p-4 mb-4">
+                <h4 class="font-bold text-yellow-800">تدريب مصغر</h4>
+                <p class="text-sm text-yellow-900 mt-1">
+                  أنشئ فئة <code>Car</code> تحتوي على خاصية عامة
+                  <code>$brand</code>. قم بإنشاء كائن منها وأسند القيمة "Toyota"
+                  للخاصية.
+                </p>
+                <details class="mt-3">
+                  <summary
+                    class="cursor-pointer text-sm font-semibold text-yellow-700 outline-none"
+                  >
+                    إظهار الإجابة
+                  </summary>
+                  <pre
+                    dir="ltr"
+                    class="bg-gray-800 text-white p-3 rounded mt-2 text-xs text-left"
+                  ><code>&lt;?php
+class Car {
+    public string $brand;
+}
+$myCar = new Car();
+$myCar-&gt;brand = "Toyota";
+?&gt;</code></pre>
+                </details>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">
+                <b>الخلاصة:</b> تضمن OOP أن تكون أكوادك قابلة للصيانة، التوسع،
+                وإعادة الاستخدام، مما يمثل انتقالك من مطور مبتدئ إلى متقدم.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 5: Databases & Security
+             ========================================== -->
+      <section id="topic-5" class="scroll-mt-10">
+        <div
+          class="bg-rose-900 text-white rounded-t-xl p-6 shadow-md grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          <h2 class="text-3xl font-bold font-en">
+            Topic 5: Databases & Security
+          </h2>
+          <h2 class="text-3xl font-bold font-ar text-right" dir="rtl">
+            الموضوع ٥: قواعد البيانات والأمان
+          </h2>
+        </div>
+
+        <div
+          class="bg-white border-x border-b border-gray-200 rounded-b-xl shadow-sm p-8 space-y-12"
+        >
+          <!-- Introduction & Explanation -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div dir="ltr" class="font-en space-y-4">
+              <h3
+                class="text-xl font-bold text-rose-800 border-b-2 border-rose-200 inline-block pb-1"
+              >
+                Storing Data Safely
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                Dynamic sites require databases (like MySQL). In modern PHP, we
+                use PDO (PHP Data Objects) to connect and query safely using
+                <i>Prepared Statements</i>, which prevent SQL Injection attacks.
+                Additionally, sensitive data like passwords must always be
+                hashed natively.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar space-y-4">
+              <h3
+                class="text-xl font-bold text-rose-800 border-b-2 border-rose-200 inline-block pb-1"
+              >
+                تخزين البيانات بأمان
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                المواقع الديناميكية تتطلب قواعد بيانات (مثل MySQL). في PHP
+                الحديثة، نستخدم PDO للاتصال والاستعلام بأمان عبر
+                <i>الجمل المُجهزة (Prepared Statements)</i>، والتي تمنع هجمات
+                حقن SQL (SQL Injection). إضافة إلى ذلك، يجب تشفير البيانات
+                الحساسة ككلمات المرور برمجياً.
+              </p>
+            </div>
+          </div>
+
+          <!-- Examples -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-gray-50 p-6 rounded-xl border border-gray-100"
+          >
+            <div dir="ltr" class="font-en space-y-6">
+              <h3 class="text-lg font-bold text-gray-800">
+                Practical Examples
+              </h3>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 1: PDO Connection</span
+                >
+                <pre
+                  class="bg-gray-900 text-rose-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+$dsn = "mysql:host=localhost;dbname=testdb";
+$pdo = new PDO($dsn, "user", "pass");
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 2: Prepared Statement</span
+                >
+                <pre
+                  class="bg-gray-900 text-blue-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+$sql = "SELECT * FROM users WHERE id = :id";
+$stmt = $pdo-&gt;prepare($sql);
+$stmt-&gt;execute(['id' =&gt; 1]);
+$user = $stmt-&gt;fetch();
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >Example 3: Password Hashing</span
+                >
+                <pre
+                  class="bg-gray-900 text-green-300 p-4 rounded-lg mt-2 text-sm overflow-x-auto"
+                ><code>&lt;?php
+// Hashing a password securely
+$hash = password_hash("secret", PASSWORD_DEFAULT);
+// Verifying later
+$isValid = password_verify("secret", $hash);
+?&gt;</code></pre>
+              </div>
+            </div>
+
+            <div dir="rtl" class="font-ar space-y-6">
+              <h3 class="text-lg font-bold text-gray-800">أمثلة عملية</h3>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ١: الاتصال بقاعدة البيانات عبر PDO</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-rose-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+$dsn = "mysql:host=localhost;dbname=testdb";
+$pdo = new PDO($dsn, "user", "pass");
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ٢: الجملة المُجهزة لحماية الاستعلام</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-blue-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+$sql = "SELECT * FROM users WHERE id = :id";
+$stmt = $pdo-&gt;prepare($sql);
+$stmt-&gt;execute(['id' =&gt; 1]);
+$user = $stmt-&gt;fetch();
+?&gt;</code></pre>
+              </div>
+
+              <div>
+                <span
+                  class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                  >المثال ٣: تشفير كلمات المرور</span
+                >
+                <pre
+                  dir="ltr"
+                  class="bg-gray-900 text-green-300 p-4 rounded-lg mt-2 text-sm text-left overflow-x-auto"
+                ><code>&lt;?php
+// التشفير الآمن لكلمة المرور
+$hash = password_hash("secret", PASSWORD_DEFAULT);
+// التحقق من صحتها لاحقاً
+$isValid = password_verify("secret", $hash);
+?&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-world Use Case -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div dir="ltr" class="font-en">
+              <h3 class="text-md font-bold text-purple-700 flex items-center">
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                Real-World Use Case
+              </h3>
+              <p class="text-gray-600 mt-2">
+                <b>User Authentication System:</b> Processing a login form where
+                user email is checked via a prepared statement (preventing
+                injection), and their submitted password is validated against
+                the stored secure hash.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar">
+              <h3 class="text-md font-bold text-purple-700 flex items-center">
+                <svg
+                  class="w-5 h-5 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                حالة استخدام واقعية
+              </h3>
+              <p class="text-gray-600 mt-2">
+                <b>نظام مصادقة المستخدمين:</b> معالجة نموذج تسجيل الدخول حيث يتم
+                فحص البريد الإلكتروني عبر استعلام مُجهز (لمنع اختراق قاعدة
+                البيانات)، والتحقق من كلمة المرور المدخلة بمقارنتها مع النسخة
+                المشفرة المخزنة.
+              </p>
+            </div>
+          </div>
+
+          <!-- Exercise & Summary -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t pt-8">
+            <div dir="ltr" class="font-en">
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                <h4 class="font-bold text-yellow-800">Mini Exercise</h4>
+                <p class="text-sm text-yellow-900 mt-1">
+                  Use the <code>password_hash()</code> function to encrypt the
+                  string "myPassword123".
+                </p>
+                <details class="mt-3">
+                  <summary
+                    class="cursor-pointer text-sm font-semibold text-yellow-700 outline-none"
+                  >
+                    Show Answer
+                  </summary>
+                  <pre
+                    class="bg-gray-800 text-white p-3 rounded mt-2 text-xs"
+                  ><code>&lt;?php
+$hashed = password_hash("myPassword123", PASSWORD_DEFAULT);
+echo $hashed;
+?&gt;</code></pre>
+                </details>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">
+                <b>Summary:</b> Securing inputs and using robust database
+                drivers like PDO are the hallmarks of professional PHP
+                development.
+              </p>
+            </div>
+            <div dir="rtl" class="font-ar">
+              <div class="bg-yellow-50 border-r-4 border-yellow-400 p-4 mb-4">
+                <h4 class="font-bold text-yellow-800">تدريب مصغر</h4>
+                <p class="text-sm text-yellow-900 mt-1">
+                  استخدم دالة <code>password_hash()</code> لتشفير النص
+                  "myPassword123".
+                </p>
+                <details class="mt-3">
+                  <summary
+                    class="cursor-pointer text-sm font-semibold text-yellow-700 outline-none"
+                  >
+                    إظهار الإجابة
+                  </summary>
+                  <pre
+                    dir="ltr"
+                    class="bg-gray-800 text-white p-3 rounded mt-2 text-xs text-left"
+                  ><code>&lt;?php
+$hashed = password_hash("myPassword123", PASSWORD_DEFAULT);
+echo $hashed;
+?&gt;</code></pre>
+                </details>
+              </div>
+              <p class="text-sm text-gray-500 font-medium">
+                <b>الخلاصة:</b> تأمين المدخلات واستخدام محركات قواعد بيانات قوية
+                مثل PDO هو ما يميز التطوير الاحترافي في لغة PHP.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-10">
+      <div
+        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm"
+      >
+        <div dir="ltr" class="font-en text-left">
+          <p>&copy; 2026 Mastery Book Series. Crafted with Tailwind CSS.</p>
+          <p class="mt-2">
+            Empowering developers to build robust web applications.
+          </p>
+        </div>
+        <div dir="rtl" class="font-ar text-right">
+          <p>&copy; 2026 سلسلة كتب الإتقان. صُمم باستخدام Tailwind CSS.</p>
+          <p class="mt-2">تمكين المطورين من بناء تطبيقات ويب قوية.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

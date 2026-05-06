@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastery Book: The PHP Language</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom styles to ensure 'page' separation for the reader */
+      .book-page {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem 2rem;
+        border-bottom: 2px dashed #e5e7eb;
+      }
+      .page-number {
+        text-align: right;
+        font-size: 0.875rem;
+        color: #9ca3af;
+        margin-top: auto;
+        padding-top: 2rem;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-gray-800 font-sans leading-relaxed antialiased">
+    <!-- Hero Section -->
+    <header class="bg-blue-900 text-white py-20 px-6 text-center shadow-lg">
+      <h1 class="text-5xl font-extrabold mb-4">
+        Mastery Book: PHP Programming
+      </h1>
+      <p class="text-xl max-w-2xl mx-auto font-light text-blue-200">
+        From a beginner's first script to expert-level application architecture,
+        this structured guide will help you master the PHP programming language.
+      </p>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav
+      class="max-w-4xl mx-auto my-12 bg-white p-8 rounded-xl shadow-sm border border-gray-100"
+    >
+      <h2 class="text-3xl font-bold mb-6 text-blue-900 border-b pb-2">
+        Table of Contents
+      </h2>
+      <ul class="space-y-3 text-lg">
+        <li>
+          <a
+            href="#topic-1"
+            class="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            >Topic 1: PHP Fundamentals & Environment</a
+          >
+        </li>
+        <li>
+          <a
+            href="#topic-2"
+            class="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            >Topic 2: Control Flow & Logic</a
+          >
+        </li>
+        <li>
+          <a
+            href="#topic-3"
+            class="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            >Topic 3: Functions & Arrays</a
+          >
+        </li>
+        <li>
+          <a
+            href="#topic-4"
+            class="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            >Topic 4: Object-Oriented Programming (OOP)</a
+          >
+        </li>
+        <li>
+          <a
+            href="#topic-5"
+            class="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            >Topic 5: Databases & Application Security</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main
+      class="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden mb-20"
+    >
+      <!-- ==========================================
+             TOPIC 1: PHP FUNDAMENTALS & ENVIRONMENT 
+             ========================================== -->
+      <section id="topic-1" class="bg-blue-50/30">
+        <!-- Page 1: Introduction -->
+        <div class="book-page">
+          <h2 class="text-4xl font-bold text-blue-900 mb-6">
+            Topic 1: PHP Fundamentals
+          </h2>
+          <h3 class="text-2xl font-semibold mb-4">1.1 What is PHP?</h3>
+          <p class="mb-4 text-lg">
+            Welcome to the world of backend web development! PHP is a highly
+            popular, open-source, server-side scripting language primarily used
+            for building dynamic websites. Originally created by Rasmus Lerdorf
+            in 1993, the acronym originally stood for "Personal Home Page," but
+            today it stands for the recursive acronym "PHP: Hypertext
+            Preprocessor",.
+          </p>
+          <p class="mb-4 text-lg">
+            Unlike client-side languages like JavaScript that run in the user's
+            browser, PHP code executes on the web server. The server processes
+            the script and sends plain HTML back to the client's browser,
+            meaning visitors never see your underlying logic. Because of its
+            immense flexibility and shallow learning curve, PHP powers
+            approximately 80% of the web, including giants like Facebook,
+            Wikipedia, and WordPress,.
+          </p>
+          <div class="page-number">Page 1</div>
+        </div>
+
+        <!-- Page 2: Environment Setup -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">
+            1.2 Setting Up Your Development Environment
+          </h3>
+          <p class="mb-4 text-lg">
+            To write and execute PHP, you cannot simply open a file in your
+            browser. You need a server environment that includes a PHP parser, a
+            web server (like Apache or Nginx), and a database.
+          </p>
+          <div class="bg-blue-100 border-l-4 border-blue-500 p-4 mb-6">
+            <p class="font-semibold text-blue-900">Practical Action:</p>
+            <p class="text-blue-800">
+              For beginners, the easiest way to get started is by installing an
+              all-in-one local server package such as XAMPP or MAMP,. XAMPP
+              securely bundles Apache, MySQL (MariaDB), and PHP together for
+              Windows, Mac, or Linux.
+            </p>
+          </div>
+          <p class="text-lg">
+            Once installed, you can use a code editor—like Visual Studio Code or
+            PhpStorm—to write your scripts. Save your files with a
+            <code>.php</code> extension in your server's designated "document
+            root" folder (e.g., <code>htdocs</code> for XAMPP) to view them
+            locally,.
+          </p>
+          <div class="page-number">Page 2</div>
+        </div>
+
+        <!-- Page 3: Syntax & Hello World -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">
+            1.3 Basic Syntax & "Hello World"
+          </h3>
+          <p class="mb-4 text-lg">
+            PHP can be seamlessly embedded directly into HTML documents,. To
+            tell the server to process a section of code as PHP, you enclose it
+            within standard delimiters: <code>&lt;?php</code> and
+            <code>?&gt;</code>.
+          </p>
+          <pre
+            class="bg-gray-900 text-green-400 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;My First PHP Page&lt;/h1&gt;
+    &lt;?php
+        // This is a single-line comment in PHP
+        echo "Hello, World!";
+    ?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <p class="text-lg mb-4">
+            In this example, the <code>echo</code> statement is a built-in
+            command used to output text to the browser. Every distinct
+            instruction in PHP must be terminated with a semicolon
+            (<code>;</code>).
+          </p>
+          <div class="page-number">Page 3</div>
+        </div>
+
+        <!-- Page 4: Variables and Types -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">
+            1.4 Variables and Data Types
+          </h3>
+          <p class="mb-4 text-lg">
+            Variables are used to store data in memory. In PHP, every variable
+            name must begin with a dollar sign (<code>$</code>) and is
+            case-sensitive,. PHP is considered a loosely typed language, meaning
+            you do not have to explicitly declare the data type when creating a
+            variable; PHP automatically interprets it based on the assigned
+            value,.
+          </p>
+          <pre
+            class="bg-gray-900 text-blue-300 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    $greeting = "Hello, Learner!"; // String
+    $userAge = 25;               // Integer
+    $price = 19.99;              // Float
+    $isLoggedIn = true;          // Boolean
+    
+    // Combining strings and variables (Interpolation)
+    echo "$greeting You are $userAge years old.";
+?&gt;</code></pre>
+          <p class="text-lg">
+            PHP supports primitive types (integers, floats, strings, booleans)
+            and complex types (arrays, objects).
+          </p>
+          <div class="page-number">Page 4</div>
+        </div>
+
+        <!-- Page 5: Summary & Challenge -->
+        <div class="book-page bg-blue-600 text-white rounded-b-lg">
+          <h3 class="text-3xl font-bold mb-4">1.5 Summary & Practice</h3>
+          <p class="mb-4 text-lg text-blue-100">
+            You've successfully set up your environment, learned how PHP
+            processes server-side code, written your first script, and declared
+            variables. You now possess the foundational building blocks of the
+            language.
+          </p>
+          <div class="bg-white text-blue-900 p-6 rounded-lg shadow-md">
+            <h4 class="font-bold text-xl mb-2">Practice Exercise:</h4>
+            <p class="mb-4">
+              Create a PHP file named <code>profile.php</code>. Define three
+              variables: <code>$firstName</code>,
+              <code>$favoriteLanguage</code>, and <code>$yearStarted</code>. Use
+              the <code>echo</code> command to output a complete HTML paragraph
+              introducing yourself using those variables.
+            </p>
+          </div>
+          <div class="page-number text-blue-200">Page 5</div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 2: CONTROL FLOW & LOGIC 
+             ========================================== -->
+      <section id="topic-2" class="border-t-4 border-gray-200">
+        <!-- Page 1: Intro to Control Flow -->
+        <div class="book-page">
+          <h2 class="text-4xl font-bold text-purple-900 mb-6">
+            Topic 2: Control Flow & Logic
+          </h2>
+          <h3 class="text-2xl font-semibold mb-4">
+            2.1 The Power of Decision Making
+          </h3>
+          <p class="mb-4 text-lg">
+            Static websites display the same content to every user. Dynamic
+            applications, however, can make decisions and execute different
+            blocks of code based on user inputs or conditions. This is achieved
+            using control flow structures.
+          </p>
+          <p class="text-lg">
+            PHP provides several operators for logic: Comparison operators (like
+            <code>==</code> for equality, <code>&gt;</code> for greater than)
+            and Logical operators (like <code>&&</code> for AND,
+            <code>||</code> for OR). Understanding these is critical before
+            building decision-making structures.
+          </p>
+          <div class="page-number">Page 6</div>
+        </div>
+
+        <!-- Page 2: If/Else Statements -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">2.2 If, Else, and Elseif</h3>
+          <p class="mb-4 text-lg">
+            The <code>if</code> statement is the most fundamental control
+            structure. It evaluates a condition, and if that condition is true,
+            executes the enclosed block of code.
+          </p>
+          <pre
+            class="bg-gray-900 text-purple-300 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    $temperature = 15;
+
+    if ($temperature > 30) {
+        echo "It's a hot day!";
+    } elseif ($temperature >= 15) {
+        echo "The weather is pleasant.";
+    } else {
+        echo "It's cold outside.";
+    }
+?&gt;</code></pre>
+          <p class="text-lg">
+            You can chain multiple conditions together using
+            <code>elseif</code>, providing a robust way to handle multiple
+            potential scenarios.
+          </p>
+          <div class="page-number">Page 7</div>
+        </div>
+
+        <!-- Page 3: Switch and Match -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">
+            2.3 Switch and Match Expressions
+          </h3>
+          <p class="mb-4 text-lg">
+            When you have a single variable that could evaluate to many
+            different specific values, chaining
+            <code>if/elseif</code> statements becomes messy. Historically,
+            developers used the <code>switch</code> statement. However, modern
+            PHP 8 introduced the <strong>Match Expression</strong>.
+          </p>
+          <pre
+            class="bg-gray-900 text-yellow-300 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    // PHP 8+ Match Expression
+    $statusCode = 404;
+
+    $message = match ($statusCode) {
+        200 =&gt; 'Success',
+        404 =&gt; 'Page Not Found',
+        500 =&gt; 'Server Error',
+        default =&gt; 'Unknown Status',
+    };
+    
+    echo $message; // Outputs: Page Not Found
+?&gt;</code></pre>
+          <p class="text-lg">
+            Match expressions are concise, return a value directly, and use
+            strict type comparisons, making them much safer and cleaner than
+            older <code>switch</code> statements,.
+          </p>
+          <div class="page-number">Page 8</div>
+        </div>
+
+        <!-- Page 4: Loops -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">
+            2.4 Loops: While, Do-While, and For
+          </h3>
+          <p class="mb-4 text-lg">
+            Loops allow you to repeat a block of code multiple times. PHP
+            supports several loops:
+          </p>
+          <ul class="list-disc list-inside space-y-3 text-lg mb-6 ml-4">
+            <li>
+              <strong>While loop:</strong> Executes code as long as a condition
+              is true,.
+            </li>
+            <li>
+              <strong>Do-While loop:</strong> Executes the code at least once
+              before checking the condition.
+            </li>
+            <li>
+              <strong>For loop:</strong> Best used when you know exactly how
+              many times the script should run.
+            </li>
+          </ul>
+          <pre
+            class="bg-gray-900 text-green-300 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    // A simple for loop
+    for ($i = 1; $i <= 5; $i++) {
+        echo "Iteration number: $i &lt;br&gt;";
+    }
+?&gt;</code></pre>
+          <div class="page-number">Page 9</div>
+        </div>
+
+        <!-- Page 5: Summary & Challenge -->
+        <div class="book-page bg-purple-700 text-white">
+          <h3 class="text-3xl font-bold mb-4">2.5 Summary & Practice</h3>
+          <p class="mb-4 text-lg text-purple-100">
+            By mastering control structures and loops, you've unlocked the
+            ability to create dynamic applications that respond to variables and
+            process repetitive data tasks efficiently.
+          </p>
+          <div class="bg-white text-purple-900 p-6 rounded-lg shadow-md">
+            <h4 class="font-bold text-xl mb-2">Practice Exercise:</h4>
+            <p class="mb-4">
+              Write a <code>for</code> loop that prints numbers from 1 to 20.
+              Inside the loop, use an <code>if</code> statement to check if the
+              number is even. If it is, output the number followed by " - Even",
+              otherwise output the number followed by " - Odd".
+            </p>
+          </div>
+          <div class="page-number text-purple-300">Page 10</div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 3: FUNCTIONS & ARRAYS 
+             ========================================== -->
+      <section id="topic-3" class="border-t-4 border-gray-200">
+        <!-- Page 1: Intro to Functions -->
+        <div class="book-page">
+          <h2 class="text-4xl font-bold text-teal-900 mb-6">
+            Topic 3: Functions & Arrays
+          </h2>
+          <h3 class="text-2xl font-semibold mb-4">
+            3.1 Organizing Code with Functions
+          </h3>
+          <p class="mb-4 text-lg">
+            As your code grows, writing everything in a single sequence becomes
+            unmanageable. Functions allow for modularity by grouping
+            instructions together under a reusable name,.
+          </p>
+          <p class="text-lg">
+            PHP comes with thousands of built-in functions for manipulating
+            strings, math, dates, and more. For example,
+            <code>strlen($string)</code> returns the length of a string, and
+            <code>str_replace()</code> replaces characters,. However, the real
+            power comes from defining your own functions.
+          </p>
+          <div class="page-number">Page 11</div>
+        </div>
+
+        <!-- Page 2: Defining Functions -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">
+            3.2 User-Defined Functions
+          </h3>
+          <p class="mb-4 text-lg">
+            To create a function, you use the <code>function</code> keyword,
+            followed by an identifier and parentheses containing any required
+            parameters. Modern PHP also allows you to specify expected data
+            types and return types, enforcing strict, error-free code.
+          </p>
+          <pre
+            class="bg-gray-900 text-teal-300 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    // Declaring a function with typed parameters and a return type
+    function calculateTotal(float $price, int $quantity): float {
+        return $price * $quantity;
+    }
+
+    $total = calculateTotal(15.50, 4);
+    echo "The total is $" . $total;
+?&gt;</code></pre>
+          <p class="text-lg">
+            PHP also supports Anonymous functions (closures) and Arrow functions
+            (<code>fn() =&gt; ...</code>) for quick, inline operations,.
+          </p>
+          <div class="page-number">Page 12</div>
+        </div>
+
+        <!-- Page 3: Arrays -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">3.3 Mastering Arrays</h3>
+          <p class="mb-4 text-lg">
+            Arrays are complex data structures that allow you to store multiple
+            values in a single variable,. PHP supports two main types of arrays:
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-lg mb-6 ml-4">
+            <li>
+              <strong>Indexed Arrays:</strong> Ordered lists where each item is
+              assigned a numeric index (starting at 0).
+            </li>
+            <li>
+              <strong>Associative Arrays:</strong> Key-value pairs where you
+              assign custom string keys to values, acting much like a dictionary
+              or JSON object.
+            </li>
+          </ul>
+          <pre
+            class="bg-gray-900 text-pink-300 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    // Associative Array
+    $user = [
+        "name" =&gt; "Alice",
+        "role" =&gt; "Admin",
+        "active" =&gt; true
+    ];
+    
+    echo $user["name"]; // Outputs: Alice
+?&gt;</code></pre>
+          <div class="page-number">Page 13</div>
+        </div>
+
+        <!-- Page 4: Array Iteration -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">3.4 Iterating Over Arrays</h3>
+          <p class="mb-4 text-lg">
+            The most effective way to loop through an array in PHP is using the
+            <code>foreach</code> loop. It automatically handles the internal
+            pointer, visiting every element from start to finish.
+          </p>
+          <pre
+            class="bg-gray-900 text-yellow-200 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    $scores = ["Math" =&gt; 95, "Science" =&gt; 88, "History" =&gt; 92];
+
+    foreach ($scores as $subject =&gt; $score) {
+        echo "Subject: $subject | Score: $score &lt;br&gt;";
+    }
+?&gt;</code></pre>
+          <p class="text-lg">
+            PHP also provides powerful functional programming tools like
+            <code>array_map()</code> and <code>array_filter()</code> for
+            modifying array elements without writing manual loops.
+          </p>
+          <div class="page-number">Page 14</div>
+        </div>
+
+        <!-- Page 5: Summary & Challenge -->
+        <div class="book-page bg-teal-700 text-white">
+          <h3 class="text-3xl font-bold mb-4">3.5 Summary & Practice</h3>
+          <p class="mb-4 text-lg text-teal-100">
+            You are now equipped to modularize your code with custom functions
+            and manage vast amounts of data using PHP arrays.
+          </p>
+          <div class="bg-white text-teal-900 p-6 rounded-lg shadow-md">
+            <h4 class="font-bold text-xl mb-2">Practice Exercise:</h4>
+            <p class="mb-4">
+              Create an associative array representing a shopping cart (item
+              names as keys, prices as values). Write a function called
+              <code>getCartTotal($cartArray)</code> that iterates through the
+              array and returns the combined sum of all items.
+            </p>
+          </div>
+          <div class="page-number text-teal-300">Page 15</div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 4: OBJECT-ORIENTED PROGRAMMING
+             ========================================== -->
+      <section id="topic-4" class="border-t-4 border-gray-200 bg-gray-50/50">
+        <!-- Page 1: Intro to OOP -->
+        <div class="book-page">
+          <h2 class="text-4xl font-bold text-orange-900 mb-6">
+            Topic 4: Object-Oriented Programming
+          </h2>
+          <h3 class="text-2xl font-semibold mb-4">
+            4.1 Moving Beyond Procedural Code
+          </h3>
+          <p class="mb-4 text-lg">
+            In its early days, PHP was purely procedural. With PHP 5, robust
+            Object-Oriented Programming (OOP) was introduced, elevating PHP to
+            match languages like Java and Python,. OOP revolves around grouping
+            related data and actions together into distinct entities called
+            objects.
+          </p>
+          <p class="text-lg">
+            OOP relies on four main pillars:
+            <strong>Encapsulation</strong> (hiding data),
+            <strong>Inheritance</strong> (sharing behaviors),
+            <strong>Abstraction</strong> (defining blueprints), and
+            <strong>Polymorphism</strong> (overriding behaviors),. Following
+            these principles makes large codebases vastly easier to read, test,
+            and maintain,.
+          </p>
+          <div class="page-number">Page 16</div>
+        </div>
+
+        <!-- Page 2: Classes & Objects -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">4.2 Classes and Objects</h3>
+          <p class="mb-4 text-lg">
+            A <strong>Class</strong> is a blueprint or template. An
+            <strong>Object</strong> is a specific, instantiated instance of that
+            class. Classes define Properties (variables inside the class) and
+            Methods (functions inside the class),.
+          </p>
+          <pre
+            class="bg-gray-900 text-orange-300 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    class User {
+        // Properties
+        public $name;
+        
+        // Methods
+        public function sayHello() {
+            echo "Hello, my name is " . $this-&gt;name;
+        }
+    }
+
+    // Instantiating an object
+    $person = new User();
+    $person-&gt;name = "David";
+    $person-&gt;sayHello();
+?&gt;</code></pre>
+          <p class="text-lg">
+            Notice the pseudo-variable <code>$this</code>. It is used inside a
+            class to refer to the current object instance itself.
+          </p>
+          <div class="page-number">Page 17</div>
+        </div>
+
+        <!-- Page 3: Constructors & Visibility -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">
+            4.3 Constructors & Access Modifiers
+          </h3>
+          <p class="mb-4 text-lg">
+            A Constructor (<code>__construct</code>) is a "magic method"
+            automatically called the moment an object is instantiated. It is
+            used to initialize the object's properties.
+          </p>
+          <p class="mb-4 text-lg">
+            To practice encapsulation, you should protect an object's internal
+            state using access modifiers: <code>public</code> (accessible
+            everywhere), <code>private</code> (accessible only within the class
+            itself), and <code>protected</code> (accessible in the class and its
+            children),.
+          </p>
+          <pre
+            class="bg-gray-900 text-gray-300 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    class BankAccount {
+        private float $balance; // Cannot be accessed directly from outside
+
+        public function __construct(float $initialBalance) {
+            $this-&gt;balance = $initialBalance;
+        }
+
+        public function getBalance(): float {
+            return $this-&gt;balance;
+        }
+    }
+?&gt;</code></pre>
+          <div class="page-number">Page 18</div>
+        </div>
+
+        <!-- Page 4: Inheritance -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">4.4 Inheritance</h3>
+          <p class="mb-4 text-lg">
+            Inheritance allows a new class (the child) to take on the properties
+            and methods of an existing class (the parent) using the
+            <code>extends</code> keyword. This drastically reduces code
+            duplication.
+          </p>
+          <pre
+            class="bg-gray-900 text-green-300 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    class Animal {
+        public function eat() {
+            echo "Munch munch...";
+        }
+    }
+
+    class Dog extends Animal {
+        public function bark() {
+            echo "Woof!";
+        }
+    }
+
+    $myDog = new Dog();
+    $myDog-&gt;eat();  // Inherited from Animal
+    $myDog-&gt;bark(); // Defined in Dog
+?&gt;</code></pre>
+          <p class="text-lg">
+            Child classes can also <strong>override</strong> parent methods by
+            declaring a method with the identical name.
+          </p>
+          <div class="page-number">Page 19</div>
+        </div>
+
+        <!-- Page 5: Summary & Challenge -->
+        <div
+          class="book-page bg-orange-700 text-white rounded-t-none rounded-b-lg"
+        >
+          <h3 class="text-3xl font-bold mb-4">4.5 Summary & Practice</h3>
+          <p class="mb-4 text-lg text-orange-100">
+            Object-Oriented Programming shifts your thinking from "how to write
+            a sequence of actions" to "how data entities relate and interact."
+            It's essential for writing robust, modern PHP applications
+            (especially when working with frameworks like Laravel).
+          </p>
+          <div class="bg-white text-orange-900 p-6 rounded-lg shadow-md">
+            <h4 class="font-bold text-xl mb-2">Practice Exercise:</h4>
+            <p class="mb-4">
+              Create a <code>Vehicle</code> class with a private
+              <code>$speed</code> property and a constructor. Then, create a
+              <code>Car</code> class that extends <code>Vehicle</code> and adds
+              a <code>honkHorn()</code> method. Instantiate a
+              <code>Car</code> and execute its methods.
+            </p>
+          </div>
+          <div class="page-number text-orange-300">Page 20</div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 5: DATABASES & SECURITY 
+             ========================================== -->
+      <section id="topic-5" class="border-t-4 border-gray-200">
+        <!-- Page 1: Connecting to Databases -->
+        <div class="book-page">
+          <h2 class="text-4xl font-bold text-red-900 mb-6">
+            Topic 5: Databases & Application Security
+          </h2>
+          <h3 class="text-2xl font-semibold mb-4">5.1 Database Integration</h3>
+          <p class="mb-4 text-lg">
+            To build truly dynamic applications, you must be able to store,
+            retrieve, update, and delete information dynamically (CRUD
+            operations). PHP is universally praised for its straightforward
+            integration with relational databases, particularly MySQL,.
+          </p>
+          <p class="text-lg">
+            Rather than utilizing outdated native driver methods, modern PHP
+            developers leverage <strong>PDO (PHP Data Objects)</strong>. PDO
+            offers a consistent, object-oriented abstraction layer regardless of
+            the database you are using (MySQL, PostgreSQL, etc.),.
+          </p>
+          <div class="page-number">Page 21</div>
+        </div>
+
+        <!-- Page 2: PDO and Prepared Statements -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">
+            5.2 Querying Safely with PDO
+          </h3>
+          <p class="mb-4 text-lg">
+            One of the greatest security risks in web development is SQL
+            Injection—where a hacker inputs malicious SQL commands into a form
+            to corrupt or steal your database contents.
+          </p>
+          <p class="mb-4 text-lg">
+            To prevent this, you must <strong>never trust user input</strong>.
+            You should always use <strong>Prepared Statements</strong> when
+            querying your database. Prepared statements securely separate the
+            query structure from the user-provided data,.
+          </p>
+          <pre
+            class="bg-gray-900 text-red-300 p-6 rounded-lg text-sm shadow-inner mb-6 overflow-x-auto"
+          ><code>&lt;?php
+    // $pdo is an active PDO connection instance
+    $username = $_POST['username']; // Raw user input
+    
+    // The question mark acts as a safe parameter placeholder
+    $stmt = $pdo-&gt;prepare('SELECT * FROM users WHERE username = ?');
+    $stmt-&gt;execute([$username]);
+    $user = $stmt-&gt;fetch();
+?&gt;</code></pre>
+          <div class="page-number">Page 22</div>
+        </div>
+
+        <!-- Page 3: General Security Practices -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">
+            5.3 Data Sanitization and XSS Prevention
+          </h3>
+          <p class="mb-4 text-lg">
+            Just as inputs into a database can be dangerous, outputting user
+            data directly to an HTML page is equally risky. This can lead to
+            Cross-Site Scripting (XSS), where malicious JavaScript is executed
+            in your users' browsers,.
+          </p>
+          <p class="mb-4 text-lg">
+            To prevent XSS, you must <strong>sanitize and escape</strong> any
+            user-generated data before echoing it into HTML. Use built-in
+            functions like <code>htmlspecialchars()</code> or
+            <code>strip_tags()</code> to convert dangerous characters (like
+            <code>&lt;</code> and <code>&gt;</code>) into safe HTML entities,.
+          </p>
+          <div class="page-number">Page 23</div>
+        </div>
+
+        <!-- Page 4: Passwords and Environment -->
+        <div class="book-page">
+          <h3 class="text-2xl font-semibold mb-4">
+            5.4 Password Hashing & Configuration
+          </h3>
+          <p class="mb-4 text-lg">
+            If your application has user accounts,
+            <strong>never store passwords in plain text</strong>. Always pass
+            user passwords through PHP's native
+            <code>password_hash()</code> function, which uses strong,
+            irreversible algorithms (like bcrypt) to securely store credentials.
+            You can then verify logins using <code>password_verify()</code>.
+          </p>
+          <p class="text-lg">
+            Furthermore, ensure your environment is secure. While developing,
+            displaying errors on the screen is useful. However, in a production
+            environment, you must configure your <code>php.ini</code> file to
+            hide errors (setting <code>display_errors = Off</code>), so you do
+            not leak sensitive application structure details to attackers,.
+          </p>
+          <div class="page-number">Page 24</div>
+        </div>
+
+        <!-- Page 5: Summary & Challenge -->
+        <div class="book-page bg-red-800 text-white rounded-b-lg">
+          <h3 class="text-3xl font-bold mb-4">5.5 Summary & Practice</h3>
+          <p class="mb-4 text-lg text-red-100">
+            Security is not an afterthought; it is a fundamental requirement. By
+            using PDO prepared statements, escaping HTML output, and hashing
+            passwords, you safeguard your applications against the vast majority
+            of web vulnerabilities.
+          </p>
+          <div class="bg-white text-red-900 p-6 rounded-lg shadow-md">
+            <h4 class="font-bold text-xl mb-2">Final Mastery Challenge:</h4>
+            <p class="mb-4">
+              Create a simple HTML form that accepts a username and a password.
+              Write a PHP script that securely captures this data (using the
+              <code>$_POST</code> superglobal), hashes the password with
+              <code>password_hash()</code>, and prepares an SQL
+              <code>INSERT</code> query string utilizing placeholders.
+            </p>
+          </div>
+          <div class="page-number text-red-300">Page 25</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+      <p>
+        &copy; 2026 Mastery Book Series. Built with HTML, Tailwind CSS, and a
+        passion for education.
+      </p>
+    </footer>
+  </body>
+</html>
