@@ -1,7 +1,7 @@
-let level; // Type is 'any'
-level = 1;
-level = "Easy"; // No error, but dangerous!
+type Employee = {
+  readonly id: number,
+  name: string,
+  retire: (date: Date) => void
+};
 
-function render(document: any) {
-  console.log(document);
-}
+let worker: Employee = { id: 1, name: 'John', retire: (d) => {} };

@@ -3,21 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mastery_Book.html</title>
+    <title>NestJS Mastery Book</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@300;400;600;700&display=swap");
       @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap");
+
+      :root {
+        --primary: #dc2626;
+        --primary-dark: #991b1b;
+      }
 
       body {
         font-family: "Inter", sans-serif;
+        transition: all 0.3s ease;
       }
+      
+      [lang="ar"] body {
+        font-family: "Cairo", sans-serif;
+      }
+
       pre,
       code {
         font-family: "Fira Code", monospace;
       }
 
-      /* Custom scrollbar for a polished look */
+      /* Custom scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -31,30 +42,59 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
       }
+
+      .lang-transition {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      
+      .hidden-lang {
+        display: none;
+      }
+
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
     </style>
   </head>
   <body class="bg-slate-50 text-slate-800 antialiased">
     <!-- Header -->
     <header
-      class="bg-gradient-to-r from-red-600 to-red-800 text-white shadow-lg sticky top-0 z-50"
+      class="bg-gradient-to-r from-red-600 to-red-800 text-white shadow-lg sticky top-0 z-50 transition-all duration-500"
     >
       <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between"
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4"
       >
-        <div>
-          <h1 class="text-3xl font-bold tracking-tight">
+        <div class="text-center md:text-left rtl:md:text-right">
+          <h1 id="main-title" class="text-3xl font-bold tracking-tight">
             Mastering NestJS: Zero to Hero
           </h1>
-          <p class="text-red-100 mt-2 text-sm md:text-base">
-            A structured, 5-phase pathway to enterprise-grade Node.js
-            development.
+          <p id="main-subtitle" class="text-red-100 mt-2 text-sm md:text-base">
+            A structured, 5-phase pathway to enterprise-grade Node.js development.
           </p>
         </div>
-        <div class="mt-4 md:mt-0 flex items-center space-x-2">
-          <span
-            class="bg-red-900/50 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide"
-            >Beginner to Expert</span
-          >
+        
+        <div class="flex items-center gap-4">
+          <div class="bg-red-900/30 p-1 rounded-lg flex">
+            <button 
+              onclick="setLanguage('en')" 
+              id="btn-en"
+              class="px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-300 bg-white text-red-600 shadow-sm"
+            >
+              English
+            </button>
+            <button 
+              onclick="setLanguage('ar')" 
+              id="btn-ar"
+              class="px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-300 text-red-100 hover:text-white"
+            >
+              العربية
+            </button>
+          </div>
+          <span id="badge-expert" class="bg-red-900/50 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide hidden md:inline-block">
+            Beginner to Expert
+          </span>
         </div>
       </div>
     </header>
@@ -68,6 +108,7 @@
           class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 sticky top-32"
         >
           <h2
+            data-ar="جدول المحتويات"
             class="text-lg font-bold text-slate-900 mb-4 uppercase tracking-wider text-sm"
           >
             Table of Contents
@@ -75,31 +116,37 @@
           <nav class="space-y-3 text-sm font-medium text-slate-600">
             <a
               href="#introduction"
+              data-ar="مقدمة"
               class="block hover:text-red-600 transition-colors"
               >Introduction</a
             >
             <a
               href="#phase-1"
+              data-ar="المرحلة 1: الهندسة المعمارية الأساسية"
               class="block hover:text-red-600 transition-colors"
               >Phase 1: Foundational Architecture</a
             >
             <a
               href="#phase-2"
+              data-ar="المرحلة 2: بناء واجهة برمجة تطبيقات RESTful"
               class="block hover:text-red-600 transition-colors"
               >Phase 2: Building a RESTful API</a
             >
             <a
               href="#phase-3"
+              data-ar="المرحلة 3: التحقق من البيانات والأخطاء"
               class="block hover:text-red-600 transition-colors"
               >Phase 3: Validation & Errors</a
             >
             <a
               href="#phase-4"
+              data-ar="المرحلة 4: تكامل قاعدة البيانات"
               class="block hover:text-red-600 transition-colors"
               >Phase 4: Database Integration</a
             >
             <a
               href="#phase-5"
+              data-ar="المرحلة 5: الإعدادات المتقدمة والأمن"
               class="block hover:text-red-600 transition-colors"
               >Phase 5: Advanced & Security</a
             >
@@ -114,10 +161,10 @@
           id="introduction"
           class="bg-white rounded-xl shadow-sm border border-slate-200 p-8"
         >
-          <h2 class="text-3xl font-bold text-slate-900 mb-4">
+          <h2 data-ar="مرحباً بك في رحلة تعلم NestJS" class="text-3xl font-bold text-slate-900 mb-4">
             Welcome to Your NestJS Journey
           </h2>
-          <p class="text-lg text-slate-600 leading-relaxed mb-6">
+          <p data-ar="NestJS هو إطار عمل Node.js متطور لبناء تطبيقات جانب الخادم فعالة وموثوقة وقابلة للتوسع. يستخدم JavaScript الحديثة، وهو مبني باستخدام TypeScript، ويجمع بين عناصر البرمجة كائنية التوجه (OOP)، والبرمجة الوظيفية (FP)، والبرمجة الوظيفية التفاعلية (FRP)." class="text-lg text-slate-600 leading-relaxed mb-6">
             NestJS is a progressive Node.js framework for building efficient,
             reliable, and scalable server-side applications. It uses modern
             JavaScript, is built with TypeScript, and combines elements of
@@ -125,8 +172,8 @@
             Functional Reactive Programming (FRP).
           </p>
           <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
-            <h4 class="font-bold text-blue-800">Why NestJS?</h4>
-            <p class="text-blue-700 text-sm mt-1">
+            <h4 data-ar="لماذا NestJS؟" class="font-bold text-blue-800">Why NestJS?</h4>
+            <p data-ar="بينما تمتلك Node.js أدوات رائعة مثل Express، إلا أنها لا تحل مشكلة الهندسة المعمارية بشكل أصيل. يوفر NestJS بنية تطبيق جاهزة مستوحاة بشكل كبير من Angular، مما يسمح للمطورين بإنشاء تطبيقات قابلة للاختبار والتوسع وضعيفة الارتباط بشكل كبير." class="text-blue-700 text-sm mt-1">
               While Node.js has great tools like Express, they don't inherently
               solve the problem of <strong>architecture</strong>. NestJS
               provides an out-of-the-box application architecture heavily
@@ -144,7 +191,7 @@
             >
               1
             </div>
-            <h2 class="text-3xl font-bold text-slate-900">
+            <h2 data-ar="الهندسة المعمارية الأساسية والإعداد" class="text-3xl font-bold text-slate-900">
               Foundational Architecture & Setup
             </h2>
           </div>
@@ -154,10 +201,10 @@
           >
             <!-- Concept -->
             <div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
+              <h3 data-ar="شرح المفهوم" class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
                 Concept Explanation
               </h3>
-              <p class="text-slate-600 leading-relaxed">
+              <p data-ar="يتمحور NestJS حول ثلاث ركائز أساسية: الوحدات (Modules)، والمتحكمات (Controllers)، والمزودات (Providers). <br /><br /> الوحدة (Module) هي حدود منطقية تجمع المكونات ذات الصلة. كل تطبيق يحتوي على وحدة جذور (AppModule). المزودات (Providers) هي فئات JavaScript عادية (مثل الخدمات) مميزة بـ @Injectable(). يستخدم NestJS حقن التبعية (DI) لإنشاء هذه المزودات وتمريرها تلقائياً إلى الفئات (مثل المتحكمات) التي تحتاج إليها." class="text-slate-600 leading-relaxed">
                 NestJS revolves around three main pillars:
                 <strong>Modules</strong>, <strong>Controllers</strong>, and
                 <strong>Providers</strong>. <br /><br />
@@ -173,10 +220,10 @@
 
             <!-- Example -->
             <div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
+              <h3 data-ar="مثال واقعي" class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
                 Real-World Example
               </h3>
-              <p class="text-slate-600 mb-4">
+              <p data-ar="للبدء، نستخدم واجهة سطر أوامر Nest القوية لإنشاء مشروع. تحت الغطاء، يقوم NestJS بتجريد Express (افتراضياً) للتعامل مع طلبات HTTP." class="text-slate-600 mb-4">
                 To start, we use the powerful Nest CLI to scaffold a project.
                 Under the hood, NestJS abstracts Express (by default) to handle
                 HTTP requests.
@@ -185,14 +232,14 @@
                 <div
                   class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-mono flex justify-between"
                 >
-                  <span>terminal</span>
+                  <span data-ar="شاشة الأوامر">terminal</span>
                 </div>
                 <pre
                   class="p-4 text-sm text-green-400 overflow-x-auto"
                 ><code>npm i -g @nestjs/cli
 nest new my-nest-app</code></pre>
               </div>
-              <p class="text-slate-600 mt-4 text-sm">
+              <p data-ar="يستخدم NestFactory.create() لتشغيل التطبيق." class="text-slate-600 mt-4 text-sm">
                 `NestFactory.create()` to bootstrap the application.
               </p>
               <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
@@ -211,6 +258,7 @@ export class AppService {
             <!-- Exercise -->
             <div class="bg-amber-50 rounded-xl p-6 border border-amber-200">
               <h3
+                data-ar="تمرين عملي"
                 class="text-lg font-bold text-amber-800 mb-2 flex items-center"
               >
                 <svg
@@ -228,7 +276,7 @@ export class AppService {
                 </svg>
                 Practical Exercise
               </h3>
-              <p class="text-amber-700 text-sm">
+              <p data-ar="1. أنشئ مشروعاً جديداً.<br /> 2. استخدم مولد CLI لإنشاء وحدة 'Users' جديدة: nest g module users.<br /> 3. لاحظ كيف يقوم CLI تلقائياً باستيراد UsersModule في AppModule الخاص بك." class="text-amber-700 text-sm">
                 1. Scaffold a new project.<br />
                 2. Use the CLI generator to create a new "Users" module:
                 <code>nest g module users</code>.<br />
@@ -247,7 +295,7 @@ export class AppService {
             >
               2
             </div>
-            <h2 class="text-3xl font-bold text-slate-900">
+            <h2 data-ar="بناء واجهة برمجة تطبيقات RESTful" class="text-3xl font-bold text-slate-900">
               Building a RESTful API
             </h2>
           </div>
@@ -257,10 +305,10 @@ export class AppService {
           >
             <!-- Concept -->
             <div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
+              <h3 data-ar="شرح المفهوم" class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
                 Concept Explanation
               </h3>
-              <p class="text-slate-600 leading-relaxed">
+              <p data-ar="تتعامل المتحكمات مع طلبات HTTP القادمة وتعيد الاستجابات إلى العميل. يمكنك تحديد المسارات باستخدام مزخرفات (decorators) مثل @Get()، @Post()، @Put()، و @Delete(). لاستخراج البيانات من الطلب، يوفر NestJS مزخرفات مثل @Param() لمعلمات URL، و @Query() لسلاسل الاستعلام، و @Body() لبيانات JSON." class="text-slate-600 leading-relaxed">
                 Controllers handle incoming HTTP requests and return responses
                 to the client. You define routes using decorators like
                 <code>@Get()</code>, <code>@Post()</code>, <code>@Put()</code>,
@@ -273,10 +321,10 @@ export class AppService {
 
             <!-- Example -->
             <div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
+              <h3 data-ar="مثال واقعي" class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
                 Real-World Example
               </h3>
-              <p class="text-slate-600 mb-4">
+              <p data-ar="إليك متحكم CatsController أساسي يتعامل مع طلبات GET و POST." class="text-slate-600 mb-4">
                 Here is a basic `CatsController` that handles GET and POST
                 requests.
               </p>
@@ -323,6 +371,7 @@ export class UsersService {
             <!-- Exercise -->
             <div class="bg-amber-50 rounded-xl p-6 border border-amber-200">
               <h3
+                data-ar="تمرين عملي"
                 class="text-lg font-bold text-amber-800 mb-2 flex items-center"
               >
                 <svg
@@ -340,7 +389,7 @@ export class UsersService {
                 </svg>
                 Practical Exercise
               </h3>
-              <p class="text-amber-700 text-sm">
+              <p data-ar="قم بإنشاء متحكم وخدمة لوحدة المستخدمين الخاصة بك باستخدام nest g resource users. قم بتنفيذ نقاط النهاية للحصول على الكل، والحصول على واحد بالهوية، والإنشاء، والتحديث، والحذف في الذاكرة باستخدام مصفوفة. لاحظ أن ترتيب المسارات مهم: يجب وضع المسارات الثابتة قبل المسارات الديناميكية المتغيرة لمنع اعتراض المسار." class="text-amber-700 text-sm">
                 Generate a controller and a service for your Users module using
                 <code>nest g resource users</code>. Implement endpoints to Get
                 All, Get One by ID, Create, Update, and Delete in memory using
@@ -360,7 +409,7 @@ export class UsersService {
             >
               3
             </div>
-            <h2 class="text-3xl font-bold text-slate-900">
+            <h2 data-ar="التحقق من البيانات والأخطاء" class="text-3xl font-bold text-slate-900">
               Data Validation & Error Handling
             </h2>
           </div>
@@ -370,10 +419,10 @@ export class UsersService {
           >
             <!-- Concept -->
             <div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
+              <h3 data-ar="شرح المفهوم" class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
                 Concept Explanation
               </h3>
-              <p class="text-slate-600 leading-relaxed">
+              <p data-ar="تحدد كائنات نقل البيانات (DTOs) كيفية إرسال البيانات عبر الشبكة. يجمع NestJS بين فئات DTO ومكتبات class-validator و class-transformer للتحقق تلقائياً من صحة البيانات الواردة. <br /><br /> للتعامل مع الأخطاء، يوفر NestJS طبقة استثناءات مدمجة. إذا لم يتم العثور على مورد، يمكنك ببساطة رمي NotFoundException، وسيقوم NestJS تلقائياً بتنسيق استجابة JSON HTTP 404 مناسبة للعميل." class="text-slate-600 leading-relaxed">
                 Data Transfer Objects (DTOs) define how data is sent over the
                 network. NestJS combines DTO classes with
                 <code>class-validator</code> and
@@ -388,7 +437,7 @@ export class UsersService {
 
             <!-- Example -->
             <div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
+              <h3 data-ar="مثال واقعي" class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
                 Real-World Example
               </h3>
               <div class="bg-slate-900 rounded-lg overflow-hidden mb-4">
@@ -412,7 +461,7 @@ export class CreateUserDto {
   role: string;
 }</code></pre>
               </div>
-              <p class="text-slate-600 text-sm">
+              <p data-ar="اختياري مع الحفاظ على قواعد التحقق." class="text-slate-600 text-sm">
                 optional while retaining validation rules.
               </p>
               <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
@@ -434,6 +483,7 @@ async function bootstrap() {
             <!-- Exercise -->
             <div class="bg-amber-50 rounded-xl p-6 border border-amber-200">
               <h3
+                data-ar="تمرين عملي"
                 class="text-lg font-bold text-amber-800 mb-2 flex items-center"
               >
                 <svg
@@ -451,7 +501,7 @@ async function bootstrap() {
                 </svg>
                 Practical Exercise
               </h3>
-              <p class="text-amber-700 text-sm">
+              <p data-ar="1. قم بتثبيت الحزم: npm i class-validator class-transformer.<br /> 2. قم بتفعيل التحقق العالمي في main.ts باستخدام app.useGlobalPipes(new ValidationPipe()).<br /> 3. قم بتحديث UsersController الخاص بك لقبول CreateUserDto وشاهد كيف يرفض NestJS البيانات غير الصالحة تلقائياً!" class="text-amber-700 text-sm">
                 1. Install packages:
                 <code>npm i class-validator class-transformer</code>.<br />
                 2. Enable global validation in `main.ts` using
@@ -471,7 +521,7 @@ async function bootstrap() {
             >
               4
             </div>
-            <h2 class="text-3xl font-bold text-slate-900">
+            <h2 data-ar="تكامل قاعدة البيانات" class="text-3xl font-bold text-slate-900">
               Database Integration
             </h2>
           </div>
@@ -481,10 +531,10 @@ async function bootstrap() {
           >
             <!-- Concept -->
             <div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
+              <h3 data-ar="شرح المفهوم" class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
                 Concept Explanation
               </h3>
-              <p class="text-slate-600 leading-relaxed">
+              <p data-ar="NestJS لا يعتمد على قاعدة بيانات محددة. بينما يدعم بشكل أصيل TypeORM و Mongoose، برز Prisma كـ ORM مفضل للجيل القادم بسبب أمان الأنواع الاستثنائي والعميل المنشأ تلقائياً. <br /><br /> يتضمن دمج Prisma إنشاء عميل Prisma من ملف مخطط (schema)، وإنشاء DatabaseService متاح عالمياً في NestJS يمتد من PrismaClient." class="text-slate-600 leading-relaxed">
                 NestJS is database-agnostic. While it natively supports TypeORM
                 and Mongoose, <strong>Prisma</strong> has emerged as a highly
                 recommended Next-Gen ORM because of its exceptional type safety
@@ -497,10 +547,10 @@ async function bootstrap() {
 
             <!-- Example -->
             <div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
+              <h3 data-ar="مثال واقعي" class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
                 Real-World Example
               </h3>
-              <p class="text-slate-600 mb-4">
+              <p data-ar="ملف schema.prisma ينمذج بياناتك. إليك مثال لنموذج الموظف (Employee):" class="text-slate-600 mb-4">
                 A `schema.prisma` file models your data. Here is an example of
                 an `Employee` model:
               </p>
@@ -519,7 +569,7 @@ async function bootstrap() {
   role  Role    // Enum: INTERN, ENGINEER, ADMIN
 }</code></pre>
               </div>
-              <p class="text-slate-600 text-sm">
+              <p data-ar="متحكمات تطبيقك لتنفيذ الاستعلامات بأمان." class="text-slate-600 text-sm">
                 your application controllers to execute queries safely.
               </p>
               <div class="bg-slate-900 rounded-lg overflow-hidden mt-4">
@@ -539,6 +589,7 @@ export class DatabaseService extends PrismaClient implements OnModuleInit {
             <!-- Exercise -->
             <div class="bg-amber-50 rounded-xl p-6 border border-amber-200">
               <h3
+                data-ar="تمرين عملي"
                 class="text-lg font-bold text-amber-800 mb-2 flex items-center"
               >
                 <svg
@@ -556,7 +607,7 @@ export class DatabaseService extends PrismaClient implements OnModuleInit {
                 </svg>
                 Practical Exercise
               </h3>
-              <p class="text-amber-700 text-sm">
+              <p data-ar="قم بالتسجيل في قاعدة بيانات Postgres مجانية (مثل Neon). قم بتهيئة Prisma (npx prisma init) وتحديد النموذج الخاص بك. قم بإنشاء العميل وإنشاء DatabaseService الخاص بك. قم بحقنه في المتحكم الخاص بك لاستبدال المصفوفات الثابتة في الذاكرة." class="text-amber-700 text-sm">
                 Sign up for a free serverless Postgres database (like Neon).
                 Initialize Prisma (<code>npx prisma init</code>) and define your
                 model. Generate the client and create your `DatabaseService`.
@@ -575,7 +626,7 @@ export class DatabaseService extends PrismaClient implements OnModuleInit {
             >
               5
             </div>
-            <h2 class="text-3xl font-bold text-slate-900">
+            <h2 data-ar="الإعدادات المتقدمة والأمن" class="text-3xl font-bold text-slate-900">
               Advanced Configurations & Security
             </h2>
           </div>
@@ -585,10 +636,10 @@ export class DatabaseService extends PrismaClient implements OnModuleInit {
           >
             <!-- Concept -->
             <div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
+              <h3 data-ar="شرح المفهوم" class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
                 Concept Explanation
               </h3>
-              <p class="text-slate-600 leading-relaxed">
+              <p data-ar="الانتقال إلى الإنتاج يعني تأمين واجهة برمجة التطبيقات الخاصة بك. يسهل NestJS تفعيل CORS (مشاركة الموارد عبر الأصول) عالمياً لقبول طلبات الواجهة الأمامية. <br /><br /> تحتاج أيضاً إلى تحديد معدل الطلبات (Rate Limiting) لمنع سوء الاستخدام. يوفر NestJS حزمة @nestjs/throttler. علاوة على ذلك، يمنحك تعديل دورة حياة الطلب/الاستجابة عبر الاعتراضات (Interceptors) ومرشحات الاستثناءات (Exception Filters) تحكماً مطلقاً في تسجيل التطبيق وتنسيق الأخطاء." class="text-slate-600 leading-relaxed">
                 Moving into production means securing your API. NestJS makes it
                 easy to enable <strong>CORS</strong> (Cross-Origin Resource
                 Sharing) globally to accept frontend requests. <br /><br />
@@ -603,10 +654,10 @@ export class DatabaseService extends PrismaClient implements OnModuleInit {
 
             <!-- Example -->
             <div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
+              <h3 data-ar="مثال واقعي" class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">
                 Real-World Example
               </h3>
-              <p class="text-slate-600 mb-4">
+              <p data-ar="إضافة محدد لمعدل الطلبات بسيط مثل تسجيل الوحدة وتكوين حدود وقت البقاء (ttl):" class="text-slate-600 mb-4">
                 Adding a rate limiter is as simple as registering the module and
                 configuring time-to-live (ttl) limits:
               </p>
@@ -645,6 +696,7 @@ app.setGlobalPrefix('api');</code></pre>
             <!-- Exercise -->
             <div class="bg-amber-50 rounded-xl p-6 border border-amber-200">
               <h3
+                data-ar="تمرين عملي وتحدي نهائي"
                 class="text-lg font-bold text-amber-800 mb-2 flex items-center"
               >
                 <svg
@@ -662,7 +714,7 @@ app.setGlobalPrefix('api');</code></pre>
                 </svg>
                 Practical Exercise & Capstone
               </h3>
-              <p class="text-amber-700 text-sm">
+              <p data-ar="قم بتأمين واجهة برمجة التطبيقات الخاصة بك. قم بتشغيل app.enableCors() في main.ts. ثم قم بتنفيذ ThrottlerModule لمنع هجمات القوة الغاشمة (brute-force). كتحدي نهائي، قم ببناء ExceptionFilter مخصص لالتقاط أخطاء قاعدة البيانات (مثل خطأ مفتاح مكرر في Prisma) وتنسيق استجابة JSON بشكل لبق لواجهتك الأمامية." class="text-amber-700 text-sm">
                 Secure your API. Run <code>app.enableCors()</code> in your
                 `main.ts`. Then, implement the <code>ThrottlerModule</code> to
                 prevent brute-force attacks. As a final capstone challenge,
@@ -677,13 +729,109 @@ app.setGlobalPrefix('api');</code></pre>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-12">
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center mt-12">
       <div class="max-w-5xl mx-auto px-6">
-        <p>
-          &copy; 2026 NestJS Mastery Pathway. Compiled dynamically from verified
-          documentation and community insights.
+        <p id="footer-text">
+          &copy; 2026 NestJS Mastery Pathway. Compiled dynamically from verified documentation and community insights.
         </p>
       </div>
     </footer>
+
+    <script>
+      const translations = {
+        en: {
+          title: "Mastering NestJS: Zero to Hero",
+          subtitle: "A structured, 5-phase pathway to enterprise-grade Node.js development.",
+          badge: "Beginner to Expert",
+          toc: "Table of Contents",
+          intro: "Introduction",
+          p1: "Phase 1: Foundational Architecture",
+          p2: "Phase 2: Building a RESTful API",
+          p3: "Phase 3: Validation & Errors",
+          p4: "Phase 4: Database Integration",
+          p5: "Phase 5: Advanced & Security",
+          welcome: "Welcome to Your NestJS Journey",
+          intro_p: "NestJS is a progressive Node.js framework for building efficient, reliable, and scalable server-side applications. It uses modern JavaScript, is built with TypeScript, and combines elements of OOP, FP, and FRP.",
+          why_nest: "Why NestJS?",
+          why_nest_p: "While Node.js has great tools like Express, they don't inherently solve the problem of architecture. NestJS provides an out-of-the-box application architecture heavily inspired by Angular.",
+          p1_title: "Foundational Architecture & Setup",
+          concept: "Concept Explanation",
+          p1_concept_p: "NestJS revolves around three main pillars: Modules, Controllers, and Providers. A Module is a logical boundary that groups related components.",
+          example: "Real-World Example",
+          exercise: "Practical Exercise",
+          footer: "&copy; 2026 NestJS Mastery Pathway. Compiled dynamically from verified documentation."
+        },
+        ar: {
+          title: "إتقان NestJS: من الصفر إلى الاحتراف",
+          subtitle: "مسار مهيكل من 5 مراحل لتطوير تطبيقات Node.js بمعايير المؤسسات.",
+          badge: "من المبتدئ إلى الخبير",
+          toc: "جدول المحتويات",
+          intro: "مقدمة",
+          p1: "المرحلة 1: الهندسة المعمارية الأساسية",
+          p2: "المرحلة 2: بناء واجهة برمجة تطبيقات RESTful",
+          p3: "المرحلة 3: التحقق من البيانات والأخطاء",
+          p4: "المرحلة 4: تكامل قاعدة البيانات",
+          p5: "المرحلة 5: الإعدادات المتقدمة والأمن",
+          welcome: "مرحباً بك في رحلة تعلم NestJS",
+          intro_p: "NestJS هو إطار عمل Node.js متطور لبناء تطبيقات جانب الخادم فعالة وموثوقة وقابلة للتوسع. يستخدم JavaScript الحديثة، وهو مبني باستخدام TypeScript، ويجمع بين عناصر البرمجة كائنية التوجه (OOP)، والبرمجة الوظيفية (FP)، والبرمجة الوظيفية التفاعلية (FRP).",
+          why_nest: "لماذا NestJS؟",
+          why_nest_p: "بينما تمتلك Node.js أدوات رائعة مثل Express، إلا أنها لا تحل مشكلة الهندسة المعمارية بشكل أصيل. يوفر NestJS بنية تطبيق جاهزة مستوحاة بشكل كبير من Angular.",
+          p1_title: "الهندسة المعمارية الأساسية والإعداد",
+          concept: "شرح المفهوم",
+          p1_concept_p: "يتمحور NestJS حول ثلاث ركائز أساسية: الوحدات (Modules)، والمتحكمات (Controllers)، والمزودات (Providers). الوحدة (Module) هي حدود منطقية تجمع المكونات ذات الصلة.",
+          example: "مثال واقعي",
+          exercise: "تمرين عملي",
+          footer: "&copy; 2026 مسار إتقان NestJS. تم تجميعه ديناميكياً من الوثائق المعتمدة."
+        }
+      };
+
+      function setLanguage(lang) {
+        const html = document.documentElement;
+        html.lang = lang;
+        html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+        // Update Text
+        document.getElementById('main-title').textContent = translations[lang].title;
+        document.getElementById('main-subtitle').textContent = translations[lang].subtitle;
+        document.getElementById('badge-expert').textContent = translations[lang].badge;
+        document.getElementById('footer-text').innerHTML = translations[lang].footer;
+
+        // Toggle visibility of lang-specific elements
+        document.querySelectorAll('[data-ar]').forEach(el => {
+          if (lang === 'ar') {
+            if (!el.hasAttribute('data-en-orig')) {
+                el.setAttribute('data-en-orig', el.innerHTML);
+            }
+            el.innerHTML = el.getAttribute('data-ar');
+          } else {
+            el.innerHTML = el.getAttribute('data-en-orig') || el.innerHTML;
+          }
+        });
+
+        // Update Buttons UI
+        const btnEn = document.getElementById('btn-en');
+        const btnAr = document.getElementById('btn-ar');
+        
+        if (lang === 'en') {
+          btnEn.classList.add('bg-white', 'text-red-600', 'shadow-sm');
+          btnEn.classList.remove('text-red-100', 'hover:text-white');
+          btnAr.classList.remove('bg-white', 'text-red-600', 'shadow-sm');
+          btnAr.classList.add('text-red-100', 'hover:text-white');
+        } else {
+          btnAr.classList.add('bg-white', 'text-red-600', 'shadow-sm');
+          btnAr.classList.remove('text-red-100', 'hover:text-white');
+          btnEn.classList.remove('bg-white', 'text-red-600', 'shadow-sm');
+          btnEn.classList.add('text-red-100', 'hover:text-white');
+        }
+        
+        localStorage.setItem('preferred-lang', lang);
+      }
+
+      // Initialize language from local storage
+      window.onload = () => {
+        const savedLang = localStorage.getItem('preferred-lang') || 'en';
+        setLanguage(savedLang);
+      };
+    </script>
   </body>
 </html>
