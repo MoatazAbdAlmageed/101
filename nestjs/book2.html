@@ -26,6 +26,8 @@
       pre,
       code {
         font-family: "Fira Code", monospace;
+        direction: ltr !important;
+        text-align: left !important;
       }
 
       /* Custom scrollbar */
@@ -55,6 +57,12 @@
         background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
+      }
+
+      /* Force LTR for code containers */
+      .bg-slate-900 {
+        direction: ltr !important;
+        text-align: left !important;
       }
     </style>
   </head>

@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docker Mastery Book</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Tajawal:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-arabic {
+        font-family: "Tajawal", sans-serif;
+      }
+      .smooth-scroll {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800 smooth-scroll">
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-12 shadow-md">
+      <div
+        class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+      >
+        <div>
+          <h1 class="text-4xl font-bold mb-4">Docker Mastery Book 🐳</h1>
+          <p class="text-lg text-blue-200">
+            A Comprehensive Bilingual Guide from Basics to Advanced.
+          </p>
+        </div>
+        <div dir="rtl" class="font-arabic">
+          <h1 class="text-4xl font-bold mb-4">كتاب إتقان دوكر 🐳</h1>
+          <p class="text-lg text-blue-200">
+            دليل ثنائي اللغة شامل من الأساسيات إلى الاحتراف.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+      <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+        <h2 class="text-2xl font-bold mb-4 text-center">
+          Table of Contents | جدول المحتويات
+        </h2>
+        <ul
+          class="flex flex-col md:flex-row justify-around text-blue-600 font-semibold text-center space-y-4 md:space-y-0"
+        >
+          <li>
+            <a href="#topic-1" class="hover:underline"
+              >1. Intro to Containers | مقدمة للحاويات</a
+            >
+          </li>
+          <li>
+            <a href="#topic-2" class="hover:underline"
+              >2. Docker Architecture | معمارية دوكر</a
+            >
+          </li>
+          <li>
+            <a href="#topic-3" class="hover:underline"
+              >3. Essential Commands | الأوامر الأساسية</a
+            >
+          </li>
+          <li>
+            <a href="#topic-4" class="hover:underline"
+              >4. Compose & Volumes | كومبوز والتخزين</a
+            >
+          </li>
+          <li>
+            <a href="#topic-5" class="hover:underline"
+              >5. Real-World Use Cases | حالات الاستخدام</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 pb-16 space-y-16">
+      <!-- Topic 1: Intro to Docker & Containers -->
+      <section
+        id="topic-1"
+        class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
+      >
+        <div class="bg-blue-800 text-white p-4 text-center">
+          <h2 class="text-3xl font-bold">
+            1. Introduction to Docker & Containers
+          </h2>
+          <h2 class="text-2xl font-bold font-arabic mt-2" dir="rtl">
+            1. مقدمة في دوكر والحاويات
+          </h2>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200"
+        >
+          <!-- English Side -->
+          <div class="p-8 space-y-6">
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Intro
+              </h3>
+              <p class="mt-2 text-gray-700">
+                Docker is an open platform for developing, shipping, and running
+                applications. It solves the infamous "it works on my machine"
+                problem by standardizing the runtime environment.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Explanation
+              </h3>
+              <p class="mt-2 text-gray-700">
+                A container is a standard unit of software that packages code
+                and all its dependencies. While Virtual Machines (VMs)
+                virtualize hardware and carry a heavy OS payload, containers
+                virtualize the operating system, sharing the host OS kernel and
+                taking up much less space.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Examples
+              </h3>
+              <ul class="list-disc list-inside mt-2 text-gray-700 space-y-2">
+                <li>
+                  <strong>Ex 1:</strong> Running a web server reliably across a
+                  developer's laptop, a test server, and a cloud cluster.
+                </li>
+                <li>
+                  <strong>Ex 2:</strong> Hosting multiple isolated applications
+                  on a single host without library conflicts.
+                </li>
+                <li>
+                  <strong>Ex 3:</strong> Testing new software safely without
+                  cluttering the host OS; you just delete the container when
+                  done.
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900">Mini Exercise</h3>
+              <p class="mt-1 font-semibold text-gray-700">
+                Q: What is the main difference between a container and a Virtual
+                Machine (VM)?
+              </p>
+              <details class="mt-2">
+                <summary class="cursor-pointer text-blue-600 font-semibold">
+                  View Answer
+                </summary>
+                <p class="mt-2 text-green-700">
+                  A: VMs virtualize physical hardware and require a full guest
+                  OS, whereas containers virtualize the OS and share the host's
+                  kernel, making them much lighter and faster.
+                </p>
+              </details>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Summary
+              </h3>
+              <p class="mt-2 text-gray-700">
+                Docker containers are lightweight, standalone, and executable
+                packages that guarantee consistent application performance
+                across environments.
+              </p>
+            </div>
+          </div>
+
+          <!-- Arabic Side -->
+          <div class="p-8 space-y-6 font-arabic" dir="rtl">
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                المقدمة
+              </h3>
+              <p class="mt-2 text-gray-700">
+                دوكر هي منصة مفتوحة لتطوير وشحن وتشغيل التطبيقات. إنها تحل مشكلة
+                "التطبيق يعمل على جهازي فقط" من خلال توحيد بيئة التشغيل.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                الشرح
+              </h3>
+              <p class="mt-2 text-gray-700">
+                الحاوية هي وحدة قياسية من البرامج التي تغلف الكود البرمجي وجميع
+                تبعياته. بينما تحاكي الأجهزة الافتراضية (VMs) الأجهزة (العتاد)
+                وتحمل نظام تشغيل كامل، تقوم الحاويات بمحاكاة نظام التشغيل
+                وتتشارك نواة نظام التشغيل المضيف مما يجعلها أصغر حجماً بكثير.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                أمثلة
+              </h3>
+              <ul class="list-disc list-inside mt-2 text-gray-700 space-y-2">
+                <li>
+                  <strong>مثال 1:</strong> تشغيل خادم ويب بشكل موثوق على حاسوب
+                  المطور، وخادم الاختبار، والسحابة بنفس الأداء.
+                </li>
+                <li>
+                  <strong>مثال 2:</strong> استضافة تطبيقات معزولة متعددة على
+                  خادم واحد دون تضارب في المكتبات.
+                </li>
+                <li>
+                  <strong>مثال 3:</strong> اختبار برامج جديدة بأمان دون العبث
+                  بنظام التشغيل الأساسي، ثم حذف الحاوية ببساطة عند الانتهاء.
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900">تمرين سريع</h3>
+              <p class="mt-1 font-semibold text-gray-700">
+                س: ما هو الفرق الرئيسي بين الحاوية (Container) والآلة الافتراضية
+                (VM)؟
+              </p>
+              <details class="mt-2">
+                <summary class="cursor-pointer text-blue-600 font-semibold">
+                  عرض الإجابة
+                </summary>
+                <p class="mt-2 text-green-700">
+                  ج: الآلات الافتراضية تحاكي الأجهزة وتتطلب نظام تشغيل ضيف كامل،
+                  بينما الحاويات تحاكي نظام التشغيل وتشارك نواة المضيف، مما
+                  يجعلها أخف وأسرع بكثير.
+                </p>
+              </details>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                خلاصة
+              </h3>
+              <p class="mt-2 text-gray-700">
+                حاويات دوكر هي حزم خفيفة ومستقلة وقابلة للتنفيذ، تضمن أداءً
+                متسقاً للتطبيقات عبر مختلف بيئات التشغيل.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Topic 2: Docker Architecture -->
+      <section
+        id="topic-2"
+        class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
+      >
+        <div class="bg-blue-800 text-white p-4 text-center">
+          <h2 class="text-3xl font-bold">
+            2. Docker Architecture & Components
+          </h2>
+          <h2 class="text-2xl font-bold font-arabic mt-2" dir="rtl">
+            2. معمارية دوكر ومكوناته
+          </h2>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200"
+        >
+          <!-- English Side -->
+          <div class="p-8 space-y-6">
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Intro
+              </h3>
+              <p class="mt-2 text-gray-700">
+                To master Docker, you must understand its internal components.
+                Docker operates on a client-server architecture.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Explanation
+              </h3>
+              <p class="mt-2 text-gray-700">
+                The <strong>Docker Client</strong> communicates with the
+                <strong>Docker Daemon</strong> (dockerd), which does the heavy
+                lifting of building and running containers. A
+                <strong>Docker Image</strong> is a read-only template used to
+                create containers, defined by a text file called a
+                <strong>Dockerfile</strong>. Images are stored in a
+                <strong>Registry</strong> like Docker Hub.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Examples
+              </h3>
+              <ul class="list-disc list-inside mt-2 text-gray-700 space-y-2">
+                <li>
+                  <strong>Ex 1: Dockerfile:</strong> Writing a file that
+                  instructs Docker to use an Ubuntu base image and install
+                  Apache.
+                </li>
+                <li>
+                  <strong>Ex 2: Docker Hub:</strong> Downloading a
+                  pre-configured official Python or PostgreSQL image instead of
+                  setting it up from scratch.
+                </li>
+                <li>
+                  <strong>Ex 3: Docker Daemon:</strong> The background service
+                  actively allocating memory and managing the isolation of a
+                  running application.
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900">Mini Exercise</h3>
+              <p class="mt-1 font-semibold text-gray-700">
+                Q: What is the relationship between a Docker Image and a Docker
+                Container?
+              </p>
+              <details class="mt-2">
+                <summary class="cursor-pointer text-blue-600 font-semibold">
+                  View Answer
+                </summary>
+                <p class="mt-2 text-green-700">
+                  A: An image is the static, read-only blueprint, whereas the
+                  container is the live, runnable instance of that image.
+                </p>
+              </details>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Summary
+              </h3>
+              <p class="mt-2 text-gray-700">
+                The Docker ecosystem consists of the Client sending commands to
+                the Daemon, which pulls Images from a Registry to spin up
+                Containers based on Dockerfile instructions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Arabic Side -->
+          <div class="p-8 space-y-6 font-arabic" dir="rtl">
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                المقدمة
+              </h3>
+              <p class="mt-2 text-gray-700">
+                لإتقان دوكر، يجب أن تفهم مكوناته الداخلية. يعمل دوكر بناءً على
+                معمارية العميل والخادم (Client-Server).
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                الشرح
+              </h3>
+              <p class="mt-2 text-gray-700">
+                يتواصل <strong>عميل دوكر (Docker Client)</strong> مع
+                <strong>خادم دوكر (Docker Daemon)</strong> الذي يتولى المهام
+                الثقيلة كبناء وتشغيل الحاويات.
+                <strong>صورة دوكر (Docker Image)</strong> هي قالب للقراءة فقط
+                يُستخدم لإنشاء الحاويات، ويُعرّف بواسطة ملف نصي يُدعى
+                <strong>Dockerfile</strong>. يتم تخزين الصور في
+                <strong>سجل (Registry)</strong> مثل منصة Docker Hub.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                أمثلة
+              </h3>
+              <ul class="list-disc list-inside mt-2 text-gray-700 space-y-2">
+                <li>
+                  <strong>مثال 1: Dockerfile:</strong> كتابة ملف يوجه دوكر
+                  لاستخدام صورة Ubuntu أساسية وتثبيت خادم Apache عليها.
+                </li>
+                <li>
+                  <strong>مثال 2: Docker Hub:</strong> تنزيل صورة بايثون أو
+                  PostgreSQL رسمية وجاهزة بدلاً من إعدادها من الصفر.
+                </li>
+                <li>
+                  <strong>مثال 3: Docker Daemon:</strong> الخدمة الخلفية التي
+                  تخصص الذاكرة وتدير عزل التطبيق قيد التشغيل بنشاط.
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900">تمرين سريع</h3>
+              <p class="mt-1 font-semibold text-gray-700">
+                س: ما هي العلاقة بين صورة دوكر (Docker Image) وحاوية دوكر
+                (Docker Container)؟
+              </p>
+              <details class="mt-2">
+                <summary class="cursor-pointer text-blue-600 font-semibold">
+                  عرض الإجابة
+                </summary>
+                <p class="mt-2 text-green-700">
+                  ج: الصورة هي المخطط الثابت للقراءة فقط (Blueprint)، في حين أن
+                  الحاوية هي النسخة الحية والقابلة للتشغيل من تلك الصورة.
+                </p>
+              </details>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                خلاصة
+              </h3>
+              <p class="mt-2 text-gray-700">
+                يتكون نظام دوكر من عميل يرسل الأوامر إلى الخادم الداعم، والذي
+                يقوم بسحب الصور من السجل لإنشاء حاويات بناءً على تعليمات ملف
+                Dockerfile.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Topic 3: Essential Commands -->
+      <section
+        id="topic-3"
+        class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
+      >
+        <div class="bg-blue-800 text-white p-4 text-center">
+          <h2 class="text-3xl font-bold">3. Essential Docker Commands</h2>
+          <h2 class="text-2xl font-bold font-arabic mt-2" dir="rtl">
+            3. أوامر دوكر الأساسية
+          </h2>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200"
+        >
+          <!-- English Side -->
+          <div class="p-8 space-y-6">
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Intro
+              </h3>
+              <p class="mt-2 text-gray-700">
+                To work effectively with Docker, you must master its Command
+                Line Interface (CLI). These commands are the bridges between you
+                and the Docker Daemon.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Explanation
+              </h3>
+              <p class="mt-2 text-gray-700">
+                Commands allow you to build images, run containers, and manage
+                resources. Using flags (like <code>-p</code> for port mapping or
+                <code>-d</code> for detached mode), you have precise control
+                over how containers execute.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Examples
+              </h3>
+              <ul class="space-y-3 mt-2">
+                <li
+                  class="bg-gray-800 text-green-400 p-3 rounded font-mono text-sm"
+                >
+                  1. docker build -t my-app .
+                  <p class="text-gray-400 mt-1 font-sans">
+                    Builds an image from the Dockerfile in the current
+                    directory, tagging it as "my-app".
+                  </p>
+                </li>
+                <li
+                  class="bg-gray-800 text-green-400 p-3 rounded font-mono text-sm"
+                >
+                  2. docker run -d -p 8080:80 my-app
+                  <p class="text-gray-400 mt-1 font-sans">
+                    Runs the container in the background (-d) and maps host port
+                    8080 to container port 80.
+                  </p>
+                </li>
+                <li
+                  class="bg-gray-800 text-green-400 p-3 rounded font-mono text-sm"
+                >
+                  3. docker ps
+                  <p class="text-gray-400 mt-1 font-sans">
+                    Lists all currently running containers along with their IDs
+                    and statuses.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900">Mini Exercise</h3>
+              <p class="mt-1 font-semibold text-gray-700">
+                Q: How do you gracefully shut down a running container?
+              </p>
+              <details class="mt-2">
+                <summary class="cursor-pointer text-blue-600 font-semibold">
+                  View Answer
+                </summary>
+                <p class="mt-2 text-green-700">
+                  A: You use the
+                  <code>docker stop &lt;container_id&gt;</code> command.
+                </p>
+              </details>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Summary
+              </h3>
+              <p class="mt-2 text-gray-700">
+                The Docker CLI commands give developers complete power over the
+                container lifecycle—from fetching images (<code
+                  >docker pull</code
+                >) to execution and termination.
+              </p>
+            </div>
+          </div>
+
+          <!-- Arabic Side -->
+          <div class="p-8 space-y-6 font-arabic" dir="rtl">
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                المقدمة
+              </h3>
+              <p class="mt-2 text-gray-700">
+                للعمل بفعالية مع دوكر، يجب أن تتقن واجهة سطر الأوامر (CLI). هذه
+                الأوامر هي الجسر الذي يربطك بخادم دوكر.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                الشرح
+              </h3>
+              <p class="mt-2 text-gray-700">
+                تتيح لك الأوامر بناء الصور وتشغيل الحاويات وإدارة الموارد.
+                باستخدام الرموز الإضافية (مثل <code>-p</code> لربط المنافذ أو
+                <code>-d</code> للتشغيل في الخلفية)، يمكنك التحكم الدقيق في
+                كيفية تنفيذ الحاويات.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                أمثلة
+              </h3>
+              <ul class="space-y-3 mt-2" dir="ltr">
+                <li
+                  class="bg-gray-800 text-green-400 p-3 rounded font-mono text-sm text-left"
+                >
+                  1. docker build -t my-app .
+                  <p
+                    class="text-gray-400 mt-1 font-sans font-arabic text-right"
+                    dir="rtl"
+                  >
+                    يبني صورة من ملف Dockerfile في الدليل الحالي، ويسميها
+                    "my-app".
+                  </p>
+                </li>
+                <li
+                  class="bg-gray-800 text-green-400 p-3 rounded font-mono text-sm text-left"
+                >
+                  2. docker run -d -p 8080:80 my-app
+                  <p
+                    class="text-gray-400 mt-1 font-sans font-arabic text-right"
+                    dir="rtl"
+                  >
+                    يشغل الحاوية في الخلفية (-d) ويربط المنفذ 8080 في المضيف
+                    بالمنفذ 80 داخل الحاوية.
+                  </p>
+                </li>
+                <li
+                  class="bg-gray-800 text-green-400 p-3 rounded font-mono text-sm text-left"
+                >
+                  3. docker ps
+                  <p
+                    class="text-gray-400 mt-1 font-sans font-arabic text-right"
+                    dir="rtl"
+                  >
+                    يعرض جميع الحاويات قيد التشغيل حالياً مع أرقام تعريفها (IDs)
+                    وحالتها.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900">تمرين سريع</h3>
+              <p class="mt-1 font-semibold text-gray-700">
+                س: كيف يمكنك إيقاف تشغيل حاوية قيد العمل بأمان؟
+              </p>
+              <details class="mt-2">
+                <summary class="cursor-pointer text-blue-600 font-semibold">
+                  عرض الإجابة
+                </summary>
+                <p class="mt-2 text-green-700">
+                  ج: يمكنك استخدام الأمر
+                  <code>docker stop &lt;container_id&gt;</code>.
+                </p>
+              </details>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                خلاصة
+              </h3>
+              <p class="mt-2 text-gray-700">
+                تمنح أوامر دوكر المطورين القوة الكاملة للتحكم في دورة حياة
+                الحاوية — من جلب الصور (<code>docker pull</code>) إلى التشغيل
+                والإنهاء.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Topic 4: Docker Compose & Volumes -->
+      <section
+        id="topic-4"
+        class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
+      >
+        <div class="bg-blue-800 text-white p-4 text-center">
+          <h2 class="text-3xl font-bold">4. Docker Compose & Volumes</h2>
+          <h2 class="text-2xl font-bold font-arabic mt-2" dir="rtl">
+            4. دوكر كومبوز ووحدات التخزين
+          </h2>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200"
+        >
+          <!-- English Side -->
+          <div class="p-8 space-y-6">
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Intro
+              </h3>
+              <p class="mt-2 text-gray-700">
+                Modern applications rarely exist as a single service. They often
+                need a web server, a database, and storage. Compose and Volumes
+                handle multi-container apps and data persistence.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Explanation
+              </h3>
+              <p class="mt-2 text-gray-700">
+                <strong>Docker Compose</strong> uses YAML files to define and
+                run multi-container applications with a single command.
+                <strong>Docker Volumes</strong> facilitate independent
+                persistence of data, so data survives even if the container is
+                deleted.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Examples
+              </h3>
+              <ul class="list-disc list-inside mt-2 text-gray-700 space-y-2">
+                <li>
+                  <strong>Ex 1: Compose File:</strong> Creating a
+                  <code>docker-compose.yml</code> file to spin up a Node.js API
+                  and a MongoDB instance simultaneously.
+                </li>
+                <li>
+                  <strong>Ex 2: Quick Start:</strong> Running
+                  <code>docker compose up</code> to orchestrate the start-up of
+                  all interconnected containers.
+                </li>
+                <li>
+                  <strong>Ex 3: Volumes:</strong> Mapping a host directory to a
+                  database container so that database records aren't lost when
+                  the container stops.
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900">Mini Exercise</h3>
+              <p class="mt-1 font-semibold text-gray-700">
+                Q: Why shouldn't you store database data directly inside the
+                container's writable layer?
+              </p>
+              <details class="mt-2">
+                <summary class="cursor-pointer text-blue-600 font-semibold">
+                  View Answer
+                </summary>
+                <p class="mt-2 text-green-700">
+                  A: Because containers are ephemeral. If the container is
+                  deleted or crashes, the internal data is lost. You must use
+                  Docker Volumes for independent data persistence.
+                </p>
+              </details>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Summary
+              </h3>
+              <p class="mt-2 text-gray-700">
+                Docker Compose simplifies complex applications into a single
+                YAML configuration, while Volumes ensure crucial data is
+                permanently stored and protected.
+              </p>
+            </div>
+          </div>
+
+          <!-- Arabic Side -->
+          <div class="p-8 space-y-6 font-arabic" dir="rtl">
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                المقدمة
+              </h3>
+              <p class="mt-2 text-gray-700">
+                نادرًا ما تكون التطبيقات الحديثة عبارة عن خدمة واحدة. غالبًا ما
+                تحتاج إلى خادم ويب، وقاعدة بيانات، وتخزين. يتولى "كومبوز"
+                و"وحدات التخزين" إدارة التطبيقات متعددة الحاويات والاحتفاظ
+                بالبيانات.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                الشرح
+              </h3>
+              <p class="mt-2 text-gray-700">
+                يستخدم <strong>دوكر كومبوز (Docker Compose)</strong> ملفات بصيغة
+                YAML لتعريف وتشغيل تطبيقات متعددة الحاويات بأمر واحد. أما
+                <strong>وحدات تخزين دوكر (Docker Volumes)</strong> فتسهل بقاء
+                البيانات بشكل مستقل، بحيث تظل البيانات موجودة حتى لو تم حذف
+                الحاوية.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                أمثلة
+              </h3>
+              <ul class="list-disc list-inside mt-2 text-gray-700 space-y-2">
+                <li>
+                  <strong>مثال 1: ملف كومبوز:</strong> إنشاء ملف
+                  <code>docker-compose.yml</code> لتشغيل واجهة برمجة تطبيقات
+                  Node.js مع قاعدة بيانات MongoDB في نفس الوقت.
+                </li>
+                <li>
+                  <strong>مثال 2: البدء السريع:</strong> تنفيذ أمر
+                  <code>docker compose up</code> لتنسيق وتشغيل جميع الحاويات
+                  المترابطة.
+                </li>
+                <li>
+                  <strong>مثال 3: التخزين:</strong> ربط مجلد المضيف بحاوية قاعدة
+                  البيانات لضمان عدم ضياع السجلات عند توقف الحاوية.
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900">تمرين سريع</h3>
+              <p class="mt-1 font-semibold text-gray-700">
+                س: لماذا لا ينبغي تخزين بيانات قاعدة البيانات مباشرة داخل الطبقة
+                القابلة للكتابة في الحاوية؟
+              </p>
+              <details class="mt-2">
+                <summary class="cursor-pointer text-blue-600 font-semibold">
+                  عرض الإجابة
+                </summary>
+                <p class="mt-2 text-green-700">
+                  ج: لأن الحاويات مؤقتة بطبيعتها. إذا تم حذف الحاوية أو تعطلت،
+                  ستُفقد البيانات الداخلية. يجب استخدام وحدات تخزين دوكر
+                  (Volumes) لضمان بقاء البيانات.
+                </p>
+              </details>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                خلاصة
+              </h3>
+              <p class="mt-2 text-gray-700">
+                يبسط "دوكر كومبوز" التطبيقات المعقدة في ملف إعدادات واحد، بينما
+                تضمن "وحدات التخزين" حفظ البيانات الهامة وحمايتها بشكل دائم.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Topic 5: Real-World Use Cases -->
+      <section
+        id="topic-5"
+        class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
+      >
+        <div class="bg-blue-800 text-white p-4 text-center">
+          <h2 class="text-3xl font-bold">5. Real-World Use Cases</h2>
+          <h2 class="text-2xl font-bold font-arabic mt-2" dir="rtl">
+            5. حالات الاستخدام في العالم الحقيقي
+          </h2>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200"
+        >
+          <!-- English Side -->
+          <div class="p-8 space-y-6">
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Intro
+              </h3>
+              <p class="mt-2 text-gray-700">
+                Docker is more than a development tool; it's the backbone of
+                modern software deployment and enterprise infrastructure.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Explanation
+              </h3>
+              <p class="mt-2 text-gray-700">
+                In the real world, Docker powers
+                <strong>Microservices Architectures</strong>, facilitates
+                <strong>CI/CD pipelines</strong>, and enables
+                <strong>Hybrid Cloud Deployments</strong>. Orchestration tools
+                like Kubernetes can manage thousands of these containers in
+                production.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Examples
+              </h3>
+              <ul class="list-disc list-inside mt-2 text-gray-700 space-y-2">
+                <li>
+                  <strong>Ex 1: Microservices:</strong> Decomposing a massive
+                  monolithic app into dozens of small, independently deployable
+                  Docker containers.
+                </li>
+                <li>
+                  <strong>Ex 2: CI/CD Pipelines:</strong> Automated testing
+                  environments spin up a container to test new code, then
+                  destroy it when the test completes.
+                </li>
+                <li>
+                  <strong>Ex 3: Cloud Migration:</strong> A company easily
+                  moving a legacy app from an on-premises data center to AWS
+                  because it was containerized with Docker.
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900">Mini Exercise</h3>
+              <p class="mt-1 font-semibold text-gray-700">
+                Q: Why are orchestration tools like Kubernetes necessary when
+                using Docker in large enterprises?
+              </p>
+              <details class="mt-2">
+                <summary class="cursor-pointer text-blue-600 font-semibold">
+                  View Answer
+                </summary>
+                <p class="mt-2 text-green-700">
+                  A: Because managing and scaling thousands of distributed
+                  containers manually is nearly impossible. Kubernetes automates
+                  deployment, scaling, load balancing, and health monitoring.
+                </p>
+              </details>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                Summary
+              </h3>
+              <p class="mt-2 text-gray-700">
+                Docker provides the portable foundation that makes modern
+                methodologies like Agile, DevOps, Microservices, and Cloud
+                Computing scalable and efficient.
+              </p>
+            </div>
+          </div>
+
+          <!-- Arabic Side -->
+          <div class="p-8 space-y-6 font-arabic" dir="rtl">
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                المقدمة
+              </h3>
+              <p class="mt-2 text-gray-700">
+                دوكر ليس مجرد أداة تطوير؛ إنه العمود الفقري لنشر البرمجيات
+                الحديثة والبنية التحتية للمؤسسات.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                الشرح
+              </h3>
+              <p class="mt-2 text-gray-700">
+                في العالم الحقيقي، يشغل دوكر
+                <strong>معماريات الخدمات المصغرة (Microservices)</strong>،
+                ويُسهّل
+                <strong>مسارات التكامل والتسليم المستمر (CI/CD)</strong>،
+                ويُمكّن <strong>نشر السحابة الهجينة</strong>. يمكن لأدوات
+                التنسيق مثل (Kubernetes) إدارة الآلاف من هذه الحاويات في بيئة
+                الإنتاج الفعلي.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                أمثلة
+              </h3>
+              <ul class="list-disc list-inside mt-2 text-gray-700 space-y-2">
+                <li>
+                  <strong>مثال 1: الخدمات المصغرة:</strong> تفكيك تطبيق ضخم
+                  ومعقد إلى عشرات من حاويات دوكر الصغيرة التي يمكن نشرها بشكل
+                  مستقل.
+                </li>
+                <li>
+                  <strong>مثال 2: مسارات CI/CD:</strong> تقوم بيئات الاختبار
+                  الآلي بتشغيل حاوية لاختبار الكود البرمجي الجديد، ثم تقوم
+                  بتدميرها عند انتهاء الاختبار.
+                </li>
+                <li>
+                  <strong>مثال 3: الترحيل السحابي:</strong> نقل شركة لتطبيق قديم
+                  بسهولة من خوادمها المحلية إلى سحابة AWS لأنه تم تحزيمه في
+                  حاويات دوكر.
+                </li>
+              </ul>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h3 class="text-lg font-bold text-gray-900">تمرين سريع</h3>
+              <p class="mt-1 font-semibold text-gray-700">
+                س: لماذا تعتبر أدوات التنسيق مثل كوبرنيتيس (Kubernetes) ضرورية
+                عند استخدام دوكر في الشركات الكبيرة؟
+              </p>
+              <details class="mt-2">
+                <summary class="cursor-pointer text-blue-600 font-semibold">
+                  عرض الإجابة
+                </summary>
+                <p class="mt-2 text-green-700">
+                  ج: لأن إدارة وتوسيع نطاق الآلاف من الحاويات الموزعة يدويًا
+                  يكاد يكون مستحيلًا. تقوم Kubernetes بأتمتة عمليات النشر وتوسيع
+                  النطاق وموازنة التحميل ومراقبة الحالة الصحية.
+                </p>
+              </details>
+            </div>
+            <div>
+              <h3
+                class="text-xl font-bold text-blue-800 border-b-2 border-blue-200 pb-2"
+              >
+                خلاصة
+              </h3>
+              <p class="mt-2 text-gray-700">
+                يوفر دوكر الأساس القابل للنقل الذي يجعل المنهجيات الحديثة مثل
+                أجايل و DevOps والخدمات المصغرة والحوسبة السحابية قابلة للتوسع
+                وذات كفاءة عالية.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-blue-900 text-white py-8 text-center mt-12">
+      <p class="font-medium">
+        Mastery Book - Docker 🐳 | Created by AI Expert Developer
+      </p>
+      <p class="font-arabic mt-2" dir="rtl">
+        كتاب الإتقان - دوكر 🐳 | تم الإنشاء بواسطة مطور خبير بالذكاء الاصطناعي
+      </p>
+    </footer>
+  </body>
+</html>
+  

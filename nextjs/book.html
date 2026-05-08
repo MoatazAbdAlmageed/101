@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastery Book: Next.js</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .font-en {
+        font-family: "Inter", sans-serif;
+      }
+      .font-ar {
+        font-family: "Cairo", sans-serif;
+      }
+      .code-block {
+        background-color: #1e293b;
+        color: #f8fafc;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        direction: ltr !important;
+        text-align: left !important;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        font-family: monospace;
+        font-size: 0.875rem;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      code, pre {
+        direction: ltr !important;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white shadow-md sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center"
+      >
+        <div class="font-en text-2xl font-bold text-left mb-2 md:mb-0">
+          📘 Mastery Book: Next.js
+        </div>
+        <div class="font-ar text-2xl font-bold text-right" dir="rtl">
+          📘 كتاب الإتقان: إطار عمل Next.js
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+      <!-- Table of Contents -->
+      <section
+        class="bg-white rounded-xl shadow-sm p-6 mb-12 border border-gray-100"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- EN TOC -->
+          <div class="font-en" dir="ltr">
+            <h2 class="text-xl font-bold mb-4 text-blue-600">
+              📌 Table of Contents
+            </h2>
+            <ul class="space-y-2 list-disc list-inside ml-4 text-gray-700">
+              <li>
+                <a href="#routing" class="hover:text-blue-500 font-medium"
+                  >1. Routing & Layouts (App Router)</a
+                >
+              </li>
+              <li>
+                <a href="#rendering" class="hover:text-blue-500 font-medium"
+                  >2. Rendering Strategies (SSR, SSG, CSR)</a
+                >
+              </li>
+              <li>
+                <a href="#data-actions" class="hover:text-blue-500 font-medium"
+                  >3. Data Fetching & Server Actions</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- AR TOC -->
+          <div class="font-ar text-right" dir="rtl">
+            <h2 class="text-xl font-bold mb-4 text-blue-600">
+              📌 جدول المحتويات
+            </h2>
+            <ul class="space-y-2 list-disc list-inside mr-4 text-gray-700">
+              <li>
+                <a href="#routing" class="hover:text-blue-500 font-medium"
+                  >1. التوجيه وتخطيط الصفحات (App Router)</a
+                >
+              </li>
+              <li>
+                <a href="#rendering" class="hover:text-blue-500 font-medium"
+                  >2. استراتيجيات التصيير (SSR, SSG, CSR)</a
+                >
+              </li>
+              <li>
+                <a href="#data-actions" class="hover:text-blue-500 font-medium"
+                  >3. جلب البيانات وإجراءات الخادم</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Topic 1: Routing & Layouts -->
+      <section id="routing" class="mb-16 scroll-mt-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- EN Column -->
+          <div class="font-en" dir="ltr">
+            <div
+              class="bg-white rounded-xl shadow-sm p-6 border-t-4 border-blue-500"
+            >
+              <h2 class="text-2xl font-bold mb-2">
+                1. Routing & Layouts (App Router)
+              </h2>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">👋 Intro</h3>
+              <p class="mt-2 text-gray-600">
+                Next.js 13+ introduced the <strong>App Router</strong>, which
+                uses a file-system based routing mechanism. Folders define
+                routes, and special files define UI.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                📖 Explanation
+              </h3>
+              <p class="mt-2 text-gray-600">
+                In the <code>app</code> directory, a folder name becomes the URL
+                path. Inside that folder, a <code>page.tsx</code> makes the
+                route publicly accessible. <code>layout.tsx</code> wraps pages
+                to share UI (like navbars) without re-rendering.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                💻 Examples
+              </h3>
+
+              <p class="mt-4 font-medium text-sm text-blue-600">
+                Example 1: Basic Page (app/about/page.tsx)
+              </p>
+              <div class="code-block">
+                export default function AboutPage() { return &lt;h1&gt;About
+                Us&lt;/h1&gt;; }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-blue-600">
+                Example 2: Dynamic Route (app/users/[id]/page.tsx)
+              </p>
+              <div class="code-block">
+                export default function UserPage({ params }: { params: { id:
+                string } }) { return &lt;h1&gt;Profile for User:
+                {params.id}&lt;/h1&gt;; }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-blue-600">
+                Example 3: Shared Layout (app/layout.tsx)
+              </p>
+              <div class="code-block">
+                export default function RootLayout({ children }: { children:
+                React.ReactNode }) { return ( &lt;html&gt; &lt;body&gt;
+                &lt;nav&gt;My Global Navbar&lt;/nav&gt; {children} &lt;/body&gt;
+                &lt;/html&gt; ); }
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🌍 Real-world Use Case
+              </h3>
+              <p class="mt-2 text-gray-600">
+                Creating a dashboard where a sidebar is defined in
+                <code>app/dashboard/layout.tsx</code> and remains static, while
+                clicking links loads different views (<code>page.tsx</code>)
+                seamlessly.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🧠 Mini Exercise
+              </h3>
+              <div
+                class="bg-blue-50 p-4 rounded-lg mt-2 border border-blue-100"
+              >
+                <p class="font-medium">
+                  Task: How do you create a route for a blog post URL like
+                  <code>/blog/hello-world</code>?
+                </p>
+                <details class="mt-2 cursor-pointer">
+                  <summary class="text-sm font-bold text-blue-700">
+                    Show Answer
+                  </summary>
+                  <p class="mt-2 text-sm text-gray-700">
+                    Create a folder structure: <code>app/blog/[slug]/</code> and
+                    place a <code>page.tsx</code> file inside it. The
+                    <code>params.slug</code> will equal "hello-world".
+                  </p>
+                </details>
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                📝 Summary
+              </h3>
+              <p class="mt-2 text-gray-600">
+                Folders map to URLs. <code>page.tsx</code> is the unique UI for
+                a route, and <code>layout.tsx</code> is shared UI for multiple
+                routes.
+              </p>
+            </div>
+          </div>
+
+          <!-- AR Column -->
+          <div class="font-ar text-right" dir="rtl">
+            <div
+              class="bg-white rounded-xl shadow-sm p-6 border-t-4 border-blue-500 h-full"
+            >
+              <h2 class="text-2xl font-bold mb-2">
+                1. التوجيه وتخطيط الصفحات (App Router)
+              </h2>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">👋 مقدمة</h3>
+              <p class="mt-2 text-gray-600">
+                قدم الإصدار 13 وما بعده من Next.js
+                <strong>مُوجّه التطبيقات (App Router)</strong>، والذي يستخدم
+                آلية توجيه تعتمد على نظام الملفات. المجلدات تحدد المسارات،
+                والملفات الخاصة تحدد واجهة المستخدم.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">📖 شرح</h3>
+              <p class="mt-2 text-gray-600">
+                في مجلد <code>app</code>، يصبح اسم المجلد هو مسار الرابط (URL).
+                داخل هذا المجلد، ملف <code>page.tsx</code> يجعل المسار متاحاً.
+                ملف <code>layout.tsx</code> يغلف الصفحات لمشاركة واجهة مستخدم
+                (مثل شريط التنقل) بدون إعادة تصييرها.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">💻 أمثلة</h3>
+
+              <p class="mt-4 font-medium text-sm text-blue-600">
+                مثال 1: صفحة أساسية (app/about/page.tsx)
+              </p>
+              <div class="code-block">
+                export default function AboutPage() { return &lt;h1&gt;من
+                نحن&lt;/h1&gt;; }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-blue-600">
+                مثال 2: مسار ديناميكي (app/users/[id]/page.tsx)
+              </p>
+              <div class="code-block">
+                export default function UserPage({ params }: { params: { id:
+                string } }) { return &lt;h1&gt;الملف الشخصي للمستخدم:
+                {params.id}&lt;/h1&gt;; }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-blue-600">
+                مثال 3: تخطيط مشترك (app/layout.tsx)
+              </p>
+              <div class="code-block">
+                export default function RootLayout({ children }: { children:
+                React.ReactNode }) { return ( &lt;html dir="rtl"&gt;
+                &lt;body&gt; &lt;nav&gt;شريط التنقل العام&lt;/nav&gt; {children}
+                &lt;/body&gt; &lt;/html&gt; ); }
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🌍 حالة استخدام واقعية
+              </h3>
+              <p class="mt-2 text-gray-600">
+                إنشاء لوحة تحكم حيث يتم تعريف القائمة الجانبية في
+                <code>app/dashboard/layout.tsx</code> وتبقى ثابتة، بينما النقر
+                على الروابط يحمّل وجهات مختلفة (<code>page.tsx</code>) بسلاسة.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🧠 تمرين سريع
+              </h3>
+              <div
+                class="bg-blue-50 p-4 rounded-lg mt-2 border border-blue-100"
+              >
+                <p class="font-medium">
+                  المهمة: كيف تنشئ مساراً لمقال في مدونة برابط مثل
+                  <code>/blog/hello-world</code>؟
+                </p>
+                <details class="mt-2 cursor-pointer">
+                  <summary class="text-sm font-bold text-blue-700">
+                    إظهار الإجابة
+                  </summary>
+                  <p class="mt-2 text-sm text-gray-700">
+                    قم بإنشاء هيكل المجلد: <code>app/blog/[slug]/</code> وضع ملف
+                    <code>page.tsx</code> بداخله. المتغير
+                    <code>params.slug</code> سيساوي "hello-world".
+                  </p>
+                </details>
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">📝 خلاصة</h3>
+              <p class="mt-2 text-gray-600">
+                المجلدات تترجم إلى روابط. <code>page.tsx</code> يمثل الواجهة
+                الفريدة للمسار، و <code>layout.tsx</code> يمثل الواجهة المشتركة
+                لعدة مسارات.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Topic 2: Rendering Strategies -->
+      <section id="rendering" class="mb-16 scroll-mt-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- EN Column -->
+          <div class="font-en" dir="ltr">
+            <div
+              class="bg-white rounded-xl shadow-sm p-6 border-t-4 border-indigo-500"
+            >
+              <h2 class="text-2xl font-bold mb-2">
+                2. Rendering Strategies (SSR, SSG, CSR)
+              </h2>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">👋 Intro</h3>
+              <p class="mt-2 text-gray-600">
+                Next.js allows you to choose exactly <em>where</em> and
+                <em>when</em> your HTML is generated: on the server per request,
+                on the server at build time, or in the browser.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                📖 Explanation
+              </h3>
+              <p class="mt-2 text-gray-600">
+                <strong>SSG (Static Site Generation):</strong> HTML is built
+                once at build time. Best for speed and SEO.<br />
+                <strong>SSR (Server-Side Rendering):</strong> HTML is generated
+                dynamically on every request.<br />
+                <strong>CSR (Client-Side Rendering):</strong> Using
+                <code>'use client'</code> to let the browser render interactive
+                components.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                💻 Examples
+              </h3>
+
+              <p class="mt-4 font-medium text-sm text-indigo-600">
+                Example 1: SSG (Cached Fetch)
+              </p>
+              <div class="code-block">
+                export default async function StaticPage() { // 'force-cache' is
+                default. Data is fetched at build time. const res = await
+                fetch('https://api.example.com/data', { cache: 'force-cache' });
+                const data = await res.json(); return
+                &lt;div&gt;{data.title}&lt;/div&gt;; }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-indigo-600">
+                Example 2: SSR (Dynamic Fetch)
+              </p>
+              <div class="code-block">
+                export default async function DynamicPage() { // 'no-store'
+                fetches fresh data on every incoming request. const res = await
+                fetch('https://api.example.com/live', { cache: 'no-store' });
+                const data = await res.json(); return &lt;div&gt;Live price:
+                {data.price}&lt;/div&gt;; }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-indigo-600">
+                Example 3: CSR (Client Component)
+              </p>
+              <div class="code-block">
+                'use client'; import { useState } from 'react'; export default
+                function Counter() { const [count, setCount] = useState(0);
+                return &lt;button onClick={() =&gt; setCount(count +
+                1)}&gt;{count}&lt;/button&gt;; }
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🌍 Real-world Use Case
+              </h3>
+              <p class="mt-2 text-gray-600">
+                An e-commerce site uses <strong>SSG</strong> for product pages
+                so they load instantly from a CDN, but uses
+                <strong>CSR</strong> for the "Add to Cart" button to handle user
+                interactions.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🧠 Mini Exercise
+              </h3>
+              <div
+                class="bg-indigo-50 p-4 rounded-lg mt-2 border border-indigo-100"
+              >
+                <p class="font-medium">
+                  Task: What strategy should you use for a user-specific private
+                  dashboard?
+                </p>
+                <details class="mt-2 cursor-pointer">
+                  <summary class="text-sm font-bold text-indigo-700">
+                    Show Answer
+                  </summary>
+                  <p class="mt-2 text-sm text-gray-700">
+                    <strong>SSR</strong> (Server-Side Rendering) or
+                    <strong>CSR</strong> (Client-Side Rendering) since the data
+                    is highly dynamic, private, and shouldn't be cached
+                    globally.
+                  </p>
+                </details>
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                📝 Summary
+              </h3>
+              <p class="mt-2 text-gray-600">
+                Mix and match rendering strategies per route or component to get
+                the perfect balance of SEO, speed, and interactivity.
+              </p>
+            </div>
+          </div>
+
+          <!-- AR Column -->
+          <div class="font-ar text-right" dir="rtl">
+            <div
+              class="bg-white rounded-xl shadow-sm p-6 border-t-4 border-indigo-500 h-full"
+            >
+              <h2 class="text-2xl font-bold mb-2">
+                2. استراتيجيات التصيير (SSR, SSG, CSR)
+              </h2>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">👋 مقدمة</h3>
+              <p class="mt-2 text-gray-600">
+                يسمح لك Next.js باختيار <em>أين</em> و <em>متى</em> يتم إنشاء
+                HTML الخاص بك بدقة: على الخادم لكل طلب، أو على الخادم وقت
+                البناء، أو في متصفح العميل.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">📖 شرح</h3>
+              <p class="mt-2 text-gray-600">
+                <strong>توليد المواقع الثابتة (SSG):</strong> يتم بناء HTML مرة
+                واحدة وقت البناء. الأفضل للسرعة والـ SEO.<br />
+                <strong>التصيير من جهة الخادم (SSR):</strong> يتم إنشاء HTML
+                ديناميكياً مع كل طلب جديد.<br />
+                <strong>التصيير من جهة العميل (CSR):</strong> استخدام
+                <code>'use client'</code> للسماح للمتصفح بتصيير المكونات
+                التفاعلية.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">💻 أمثلة</h3>
+
+              <p class="mt-4 font-medium text-sm text-indigo-600">
+                مثال 1: موقع ثابت SSG (جلب مٌخزن مؤقتاً)
+              </p>
+              <div class="code-block">
+                export default async function StaticPage() { // الافتراضي هو
+                'force-cache'. يتم جلب البيانات وقت البناء. const res = await
+                fetch('https://api.example.com/data', { cache: 'force-cache' });
+                const data = await res.json(); return
+                &lt;div&gt;{data.title}&lt;/div&gt;; }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-indigo-600">
+                مثال 2: خادم ديناميكي SSR (جلب متجدد)
+              </p>
+              <div class="code-block">
+                export default async function DynamicPage() { // 'no-store' يجلب
+                بيانات جديدة مع كل طلب قادم. const res = await
+                fetch('https://api.example.com/live', { cache: 'no-store' });
+                const data = await res.json(); return &lt;div&gt;السعر المباشر:
+                {data.price}&lt;/div&gt;; }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-indigo-600">
+                مثال 3: جهة العميل CSR (مكون تفاعلي)
+              </p>
+              <div class="code-block">
+                'use client'; import { useState } from 'react'; export default
+                function Counter() { const [count, setCount] = useState(0);
+                return &lt;button onClick={() =&gt; setCount(count +
+                1)}&gt;{count}&lt;/button&gt;; }
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🌍 حالة استخدام واقعية
+              </h3>
+              <p class="mt-2 text-gray-600">
+                موقع تجارة إلكترونية يستخدم <strong>SSG</strong> لصفحات المنتجات
+                ليتم تحميلها فوراً من شبكة توصيل المحتوى (CDN)، ولكنه يستخدم
+                <strong>CSR</strong> لزر "إضافة إلى السلة" للتعامل مع تفاعلات
+                المستخدم.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🧠 تمرين سريع
+              </h3>
+              <div
+                class="bg-indigo-50 p-4 rounded-lg mt-2 border border-indigo-100"
+              >
+                <p class="font-medium">
+                  المهمة: ما هي الاستراتيجية التي يجب استخدامها للوحة تحكم خاصة
+                  بمستخدم معين؟
+                </p>
+                <details class="mt-2 cursor-pointer">
+                  <summary class="text-sm font-bold text-indigo-700">
+                    إظهار الإجابة
+                  </summary>
+                  <p class="mt-2 text-sm text-gray-700">
+                    <strong>SSR</strong> (تصيير من الخادم) أو
+                    <strong>CSR</strong> (تصيير من العميل) لأن البيانات
+                    ديناميكية جداً، خاصة، ولا ينبغي تخزينها مؤقتاً للجميع.
+                  </p>
+                </details>
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">📝 خلاصة</h3>
+              <p class="mt-2 text-gray-600">
+                يمكنك الدمج بين استراتيجيات التصيير لكل مسار أو مكون للحصول على
+                التوازن المثالي بين الـ SEO، السرعة، والتفاعلية.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Topic 3: Data Fetching & Server Actions -->
+      <section id="data-actions" class="mb-16 scroll-mt-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- EN Column -->
+          <div class="font-en" dir="ltr">
+            <div
+              class="bg-white rounded-xl shadow-sm p-6 border-t-4 border-emerald-500"
+            >
+              <h2 class="text-2xl font-bold mb-2">
+                3. Data Fetching & Server Actions
+              </h2>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">👋 Intro</h3>
+              <p class="mt-2 text-gray-600">
+                Next.js simplifies backend integration. You can fetch data
+                directly in Server Components and mutate data securely using
+                <strong>Server Actions</strong>.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                📖 Explanation
+              </h3>
+              <p class="mt-2 text-gray-600">
+                Instead of creating separate API endpoints for simple form
+                submissions, Server Actions let you write backend functions that
+                can be called directly from your React components.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                💻 Examples
+              </h3>
+
+              <p class="mt-4 font-medium text-sm text-emerald-600">
+                Example 1: Direct Database Fetch
+              </p>
+              <div class="code-block">
+                import { db } from '@/lib/db'; export default async function
+                UserList() { const users = await db.query('SELECT * FROM
+                users'); return &lt;ul&gt;{users.map(u =&gt; &lt;li
+                key={u.id}&gt;{u.name}&lt;/li&gt;)}&lt;/ul&gt;; }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-emerald-600">
+                Example 2: Server Action Definition
+              </p>
+              <div class="code-block">
+                "use server"; import { db } from '@/lib/db'; import {
+                revalidatePath } from 'next/cache'; export async function
+                createPost(formData: FormData) { const title =
+                formData.get('title'); await db.insert('posts', { title });
+                revalidatePath('/posts'); // Refresh the page data }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-emerald-600">
+                Example 3: Form invoking a Server Action
+              </p>
+              <div class="code-block">
+                import { createPost } from '@/actions'; export default function
+                NewPostForm() { return ( &lt;form action={createPost}&gt;
+                &lt;input name="title" type="text" /&gt; &lt;button
+                type="submit"&gt;Save&lt;/button&gt; &lt;/form&gt; ); }
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🌍 Real-world Use Case
+              </h3>
+              <p class="mt-2 text-gray-600">
+                A "Like" button on a blog post. The button triggers a Server
+                Action to increment the like count in the database, then
+                automatically updates the UI using <code>revalidatePath</code>.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🧠 Mini Exercise
+              </h3>
+              <div
+                class="bg-emerald-50 p-4 rounded-lg mt-2 border border-emerald-100"
+              >
+                <p class="font-medium">
+                  Task: What directive must be placed at the top of a file or
+                  function to turn it into a Server Action?
+                </p>
+                <details class="mt-2 cursor-pointer">
+                  <summary class="text-sm font-bold text-emerald-700">
+                    Show Answer
+                  </summary>
+                  <p class="mt-2 text-sm text-gray-700">
+                    You must use the <code>"use server";</code> directive.
+                  </p>
+                </details>
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                📝 Summary
+              </h3>
+              <p class="mt-2 text-gray-600">
+                Data flows smoothly. Fetch directly in Server Components, and
+                mutate via Server Actions without the boilerplate of building
+                separate API routes.
+              </p>
+            </div>
+          </div>
+
+          <!-- AR Column -->
+          <div class="font-ar text-right" dir="rtl">
+            <div
+              class="bg-white rounded-xl shadow-sm p-6 border-t-4 border-emerald-500 h-full"
+            >
+              <h2 class="text-2xl font-bold mb-2">
+                3. جلب البيانات وإجراءات الخادم
+              </h2>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">👋 مقدمة</h3>
+              <p class="mt-2 text-gray-600">
+                يسهل Next.js دمج الواجهة الخلفية. يمكنك جلب البيانات مباشرة داخل
+                مكونات الخادم وتعديل البيانات بأمان باستخدام
+                <strong>إجراءات الخادم (Server Actions)</strong>.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">📖 شرح</h3>
+              <p class="mt-2 text-gray-600">
+                بدلاً من إنشاء واجهات برمجة تطبيقات (API) منفصلة لإرسال النماذج
+                البسيطة، تسمح لك إجراءات الخادم بكتابة دوال خلفية يمكن استدعاؤها
+                مباشرة من مكونات React الخاصة بك.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">💻 أمثلة</h3>
+
+              <p class="mt-4 font-medium text-sm text-emerald-600">
+                مثال 1: جلب مباشر من قاعدة البيانات
+              </p>
+              <div class="code-block">
+                import { db } from '@/lib/db'; export default async function
+                UserList() { const users = await db.query('SELECT * FROM
+                users'); return &lt;ul&gt;{users.map(u =&gt; &lt;li
+                key={u.id}&gt;{u.name}&lt;/li&gt;)}&lt;/ul&gt;; }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-emerald-600">
+                مثال 2: تعريف إجراء خادم (Server Action)
+              </p>
+              <div class="code-block">
+                "use server"; import { db } from '@/lib/db'; import {
+                revalidatePath } from 'next/cache'; export async function
+                createPost(formData: FormData) { const title =
+                formData.get('title'); await db.insert('posts', { title });
+                revalidatePath('/posts'); // تحديث بيانات الصفحة }
+              </div>
+
+              <p class="mt-4 font-medium text-sm text-emerald-600">
+                مثال 3: نموذج يستدعي إجراء الخادم
+              </p>
+              <div class="code-block">
+                import { createPost } from '@/actions'; export default function
+                NewPostForm() { return ( &lt;form action={createPost}&gt;
+                &lt;input name="title" type="text" /&gt; &lt;button
+                type="submit"&gt;حفظ&lt;/button&gt; &lt;/form&gt; ); }
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🌍 حالة استخدام واقعية
+              </h3>
+              <p class="mt-2 text-gray-600">
+                زر "إعجاب" في مقال بالمدونة. يؤدي النقر عليه إلى تشغيل إجراء
+                خادم لزيادة عدد الإعجابات في قاعدة البيانات، ثم يتم تحديث واجهة
+                المستخدم تلقائيًا باستخدام <code>revalidatePath</code>.
+              </p>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">
+                🧠 تمرين سريع
+              </h3>
+              <div
+                class="bg-emerald-50 p-4 rounded-lg mt-2 border border-emerald-100"
+              >
+                <p class="font-medium">
+                  المهمة: ما هي التعليمة التي يجب وضعها في أعلى الملف أو الدالة
+                  لتحويلها إلى إجراء خادم؟
+                </p>
+                <details class="mt-2 cursor-pointer">
+                  <summary class="text-sm font-bold text-emerald-700">
+                    إظهار الإجابة
+                  </summary>
+                  <p class="mt-2 text-sm text-gray-700">
+                    يجب عليك استخدام التعليمة <code>"use server";</code>.
+                  </p>
+                </details>
+              </div>
+
+              <h3 class="text-lg font-semibold mt-6 text-gray-800">📝 خلاصة</h3>
+              <p class="mt-2 text-gray-600">
+                تدفق البيانات أصبح سلساً. اجلب البيانات مباشرة في مكونات الخادم،
+                وقم بتعديلها عبر إجراءات الخادم دون الحاجة للتعقيدات المرتبطة
+                بإنشاء مسارات API منفصلة.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-6 text-center">
+      <p class="font-en text-sm">
+        Created with Next.js & Tailwind CSS Best Practices | Mastery Book
+      </p>
+      <p class="font-ar text-sm mt-2" dir="rtl">
+        تم الإنشاء باستخدام أفضل ممارسات Next.js و Tailwind CSS | كتاب الإتقان
+      </p>
+    </footer>
+  </body>
+</html>
+```

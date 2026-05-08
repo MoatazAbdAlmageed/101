@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastery_Book.html - Prompt Engineering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap");
+      .font-en {
+        font-family: "Inter", sans-serif;
+      }
+      .font-ar {
+        font-family: "Cairo", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 py-6">
+        <h1 class="text-4xl font-bold text-center text-blue-700 font-en mb-2">
+          Prompt Engineering Mastery
+        </h1>
+        <h2
+          class="text-3xl font-bold text-center text-indigo-700 font-ar"
+          dir="rtl"
+        >
+          إتقان هندسة الأوامر
+        </h2>
+        <p class="text-center text-gray-500 mt-2 font-en">
+          A Complete Bilingual Guide (English 🇬🇧 / Arabic 🇸🇦)
+        </p>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+      <!-- Table of Contents -->
+      <div
+        class="bg-white rounded-xl shadow-md p-6 mb-12 border-t-4 border-blue-500"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- EN TOC -->
+          <div class="font-en">
+            <h3 class="text-2xl font-bold mb-4">📚 Table of Contents</h3>
+            <ul class="space-y-2 text-blue-600 font-semibold">
+              <li>
+                <a href="#section1" class="hover:underline"
+                  >1. Introduction to Prompt Engineering</a
+                >
+              </li>
+              <li>
+                <a href="#section2" class="hover:underline"
+                  >2. Core Principles of Prompting</a
+                >
+              </li>
+              <li>
+                <a href="#section3" class="hover:underline"
+                  >3. Advanced Prompting Techniques</a
+                >
+              </li>
+              <li>
+                <a href="#section4" class="hover:underline"
+                  >4. Real-world Use Cases & Debugging</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- AR TOC -->
+          <div class="font-ar text-right" dir="rtl">
+            <h3 class="text-2xl font-bold mb-4">📚 جدول المحتويات</h3>
+            <ul class="space-y-2 text-indigo-600 font-semibold">
+              <li>
+                <a href="#section1" class="hover:underline"
+                  >1. مقدمة في هندسة الأوامر</a
+                >
+              </li>
+              <li>
+                <a href="#section2" class="hover:underline"
+                  >2. المبادئ الأساسية للتوجيه</a
+                >
+              </li>
+              <li>
+                <a href="#section3" class="hover:underline"
+                  >3. تقنيات التوجيه المتقدمة</a
+                >
+              </li>
+              <li>
+                <a href="#section4" class="hover:underline"
+                  >4. حالات الاستخدام العملية وتصحيح الأخطاء</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1: Introduction -->
+      <section id="section1" class="mb-16">
+        <div class="bg-blue-600 text-white p-4 rounded-t-xl">
+          <h2 class="text-2xl font-bold text-center">
+            1. Introduction to Prompt Engineering / مقدمة في هندسة الأوامر
+          </h2>
+        </div>
+
+        <div
+          class="bg-white shadow-lg rounded-b-xl p-8 grid grid-cols-1 lg:grid-cols-2 gap-8"
+        >
+          <!-- EN -->
+          <div class="font-en space-y-6">
+            <h3 class="text-xl font-bold text-gray-800">
+              Introduction & Explanation
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Prompt engineering</strong> is the process of structuring
+              natural language inputs to produce specified outputs from a
+              generative artificial intelligence (GenAI) model. A prompt is a
+              text query or instruction that describes the task the AI should
+              perform. Good prompts equal good results, allowing the model to
+              better comprehend nuance and intent behind the query.
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              Examples
+            </h3>
+            <div class="space-y-4">
+              <div
+                class="bg-gray-50 p-4 border-l-4 border-green-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-green-700 uppercase"
+                  >Example 1: Basic QA</span
+                >
+                <p class="mt-1">"What is the capital of France?"</p>
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-l-4 border-green-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-green-700 uppercase"
+                  >Example 2: Text Summarization</span
+                >
+                <p class="mt-1">
+                  "Summarize this legal document into 3 bullet points suitable
+                  for a 10-year-old."
+                </p>
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-l-4 border-green-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-green-700 uppercase"
+                  >Example 3: Content Generation</span
+                >
+                <p class="mt-1">
+                  "Write a short, engaging email inviting a client to a software
+                  demo."
+                </p>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              Mini Exercise
+            </h3>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <p class="font-semibold">Task:</p>
+              <p class="mb-2">
+                Write a prompt to get a recipe for a chocolate cake.
+              </p>
+              <details class="cursor-pointer text-sm text-blue-800 mt-2">
+                <summary class="font-bold outline-none">Show Answer</summary>
+                <p class="mt-2 text-gray-700">
+                  "Provide a step-by-step recipe for a moist chocolate cake,
+                  including a list of ingredients and baking time."
+                </p>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800">Summary</h3>
+            <p class="text-gray-600">
+              Prompt engineering bridges the gap between raw queries and
+              meaningful AI outputs, saving time and ensuring accuracy.
+            </p>
+          </div>
+
+          <!-- AR -->
+          <div class="font-ar space-y-6 text-right" dir="rtl">
+            <h3 class="text-xl font-bold text-gray-800">المقدمة والشرح</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>هندسة الأوامر</strong> هي عملية هيكلة المدخلات باللغة
+              الطبيعية لإنتاج مخرجات محددة من نموذج ذكاء اصطناعي توليدي. الأمر
+              (Prompt) هو استعلام نصي أو تعليمة تصف المهمة التي يجب على الذكاء
+              الاصطناعي أداؤها. الأوامر الجيدة تعني نتائج جيدة، مما يسمح للنموذج
+              بفهم الفروق الدقيقة والقصد وراء الاستعلام بشكل أفضل.
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              الأمثلة
+            </h3>
+            <div class="space-y-4">
+              <div
+                class="bg-gray-50 p-4 border-r-4 border-green-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-green-700 uppercase"
+                  >مثال 1: سؤال وجواب أساسي</span
+                >
+                <p class="mt-1">"ما هي عاصمة فرنسا؟"</p>
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-r-4 border-green-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-green-700 uppercase"
+                  >مثال 2: تلخيص النصوص</span
+                >
+                <p class="mt-1">
+                  "لخّص هذه الوثيقة القانونية في 3 نقاط تناسب طفلاً في العاشرة
+                  من عمره."
+                </p>
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-r-4 border-green-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-green-700 uppercase"
+                  >مثال 3: إنشاء المحتوى</span
+                >
+                <p class="mt-1">
+                  "اكتب بريداً إلكترونياً قصيراً وجذاباً لدعوة عميل لحضور عرض
+                  توضيحي للبرنامج."
+                </p>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              تمرين مصغر
+            </h3>
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <p class="font-semibold">المهمة:</p>
+              <p class="mb-2">اكتب أمراً للحصول على وصفة لكعكة الشوكولاتة.</p>
+              <details class="cursor-pointer text-sm text-indigo-800 mt-2">
+                <summary class="font-bold outline-none">إظهار الإجابة</summary>
+                <p class="mt-2 text-gray-700">
+                  "قدم وصفة خطوة بخطوة لكعكة شوكولاتة هشة، متضمنة قائمة المكونات
+                  ووقت الخبز."
+                </p>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800">الملخص</h3>
+            <p class="text-gray-600">
+              تسد هندسة الأوامر الفجوة بين الاستعلامات الخام ومخرجات الذكاء
+              الاصطناعي المفيدة، مما يوفر الوقت ويضمن الدقة.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Core Principles -->
+      <section id="section2" class="mb-16">
+        <div class="bg-blue-600 text-white p-4 rounded-t-xl">
+          <h2 class="text-2xl font-bold text-center">
+            2. Core Principles of Prompting / المبادئ الأساسية للتوجيه
+          </h2>
+        </div>
+
+        <div
+          class="bg-white shadow-lg rounded-b-xl p-8 grid grid-cols-1 lg:grid-cols-2 gap-8"
+        >
+          <!-- EN -->
+          <div class="font-en space-y-6">
+            <h3 class="text-xl font-bold text-gray-800">
+              Introduction & Explanation
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Effective prompting rests on four core principles:
+              <strong>Clarity, Context, Precision, and Role-play</strong>.
+              Avoiding ambiguity (Clarity) and providing background information
+              (Context) are essential. Additionally, assigning the AI a specific
+              persona (Role-play) guides its responses effectively. Structuring
+              prompts with message roles (like <i>developer</i> for system
+              instructions and <i>user</i> for inputs) helps guide the logic
+              perfectly.
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              Examples
+            </h3>
+            <div class="space-y-4">
+              <div class="bg-gray-50 p-4 border-l-4 border-blue-500 rounded-md">
+                <span class="font-bold text-sm text-blue-700 uppercase"
+                  >Example 1: Precision</span
+                >
+                <p class="mt-1">
+                  Instead of "Tell me about dogs," use:
+                  <i
+                    >"Provide a detailed description of the characteristics and
+                    care required for domestic dogs."</i
+                  >
+                </p>
+              </div>
+              <div class="bg-gray-50 p-4 border-l-4 border-blue-500 rounded-md">
+                <span class="font-bold text-sm text-blue-700 uppercase"
+                  >Example 2: Context</span
+                >
+                <p class="mt-1">
+                  <i
+                    >"Translate the following English text to French: 'Hello,
+                    how are you?'"</i
+                  >
+                </p>
+              </div>
+              <div class="bg-gray-50 p-4 border-l-4 border-blue-500 rounded-md">
+                <span class="font-bold text-sm text-blue-700 uppercase"
+                  >Example 3: Role-Play</span
+                >
+                <p class="mt-1">
+                  <i
+                    >"As a data visualization expert, explain the concept of
+                    creating a 'Box Plot'."</i
+                  >
+                </p>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              Mini Exercise
+            </h3>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <p class="font-semibold">Task:</p>
+              <p class="mb-2">
+                Transform this vague prompt into a precise, role-based prompt:
+                "Help me write a resume."
+              </p>
+              <details class="cursor-pointer text-sm text-blue-800 mt-2">
+                <summary class="font-bold outline-none">Show Answer</summary>
+                <p class="mt-2 text-gray-700">
+                  "As a career coach, provide a step-by-step guide to writing an
+                  effective resume for a data scientist, including key skills
+                  and project sections."
+                </p>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800">Summary</h3>
+            <p class="text-gray-600">
+              Always be explicit. Establish a clear context, ask for exact
+              formats, and use role-play to tune the depth and tone of the AI.
+            </p>
+          </div>
+
+          <!-- AR -->
+          <div class="font-ar space-y-6 text-right" dir="rtl">
+            <h3 class="text-xl font-bold text-gray-800">المقدمة والشرح</h3>
+            <p class="text-gray-600 leading-relaxed">
+              يعتمد التوجيه الفعال على أربعة مبادئ أساسية:
+              <strong>الوضوح، السياق، الدقة، ولعب الأدوار</strong>. تجنب الغموض
+              (الوضوح) وتوفير المعلومات الأساسية (السياق) أمران ضروريان.
+              بالإضافة إلى ذلك، فإن إعطاء الذكاء الاصطناعي شخصية معينة (لعب
+              الأدوار) يوجه ردوده بفعالية. كما أن هيكلة الأوامر بأدوار الرسائل
+              (مثل دور المطور للتعليمات ودور المستخدم للمدخلات) توجه المنطق بشكل
+              مثالي.
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              الأمثلة
+            </h3>
+            <div class="space-y-4">
+              <div class="bg-gray-50 p-4 border-r-4 border-blue-500 rounded-md">
+                <span class="font-bold text-sm text-blue-700 uppercase"
+                  >مثال 1: الدقة</span
+                >
+                <p class="mt-1">
+                  بدلاً من "أخبرني عن الكلاب"، استخدم:
+                  <i
+                    >"قدم وصفاً تفصيلياً للخصائص والرعاية المطلوبة للكلاب
+                    الأليفة."</i
+                  >
+                </p>
+              </div>
+              <div class="bg-gray-50 p-4 border-r-4 border-blue-500 rounded-md">
+                <span class="font-bold text-sm text-blue-700 uppercase"
+                  >مثال 2: السياق</span
+                >
+                <p class="mt-1">
+                  <i
+                    >"ترجم النص الإنجليزي التالي إلى الفرنسية: 'مرحباً، كيف
+                    حالك؟'"</i
+                  >
+                </p>
+              </div>
+              <div class="bg-gray-50 p-4 border-r-4 border-blue-500 rounded-md">
+                <span class="font-bold text-sm text-blue-700 uppercase"
+                  >مثال 3: لعب الأدوار</span
+                >
+                <p class="mt-1">
+                  <i
+                    >"بصفتك خبيراً في تصور البيانات، اشرح مفهوم إنشاء 'المخطط
+                    الصندوقي'."</i
+                  >
+                </p>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              تمرين مصغر
+            </h3>
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <p class="font-semibold">المهمة:</p>
+              <p class="mb-2">
+                حوّل هذا الأمر الغامض إلى أمر دقيق يعتمد على الأدوار: "ساعدني في
+                كتابة سيرة ذاتية."
+              </p>
+              <details class="cursor-pointer text-sm text-indigo-800 mt-2">
+                <summary class="font-bold outline-none">إظهار الإجابة</summary>
+                <p class="mt-2 text-gray-700">
+                  "بصفتك مدرباً مهنياً، قدم دليلاً خطوة بخطوة لكتابة سيرة ذاتية
+                  فعالة لعالم بيانات، متضمنة المهارات الرئيسية وقسم المشاريع."
+                </p>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800">الملخص</h3>
+            <p class="text-gray-600">
+              كن دائمًا صريحًا. قم بإنشاء سياق واضح، واطلب تنسيقات دقيقة،
+              واستخدم أسلوب لعب الأدوار لضبط عمق ونبرة الذكاء الاصطناعي.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Advanced Techniques -->
+      <section id="section3" class="mb-16">
+        <div class="bg-blue-600 text-white p-4 rounded-t-xl">
+          <h2 class="text-2xl font-bold text-center">
+            3. Advanced Prompting Techniques / تقنيات التوجيه المتقدمة
+          </h2>
+        </div>
+
+        <div
+          class="bg-white shadow-lg rounded-b-xl p-8 grid grid-cols-1 lg:grid-cols-2 gap-8"
+        >
+          <!-- EN -->
+          <div class="font-en space-y-6">
+            <h3 class="text-xl font-bold text-gray-800">
+              Introduction & Explanation
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              To unlock an LLM's full potential, experts use advanced methods:
+              <br /><br />
+              <strong>1. Few-Shot Prompting:</strong> Providing a handful of
+              input/output examples inside the prompt to teach the model a
+              pattern.<br />
+              <strong>2. Chain-of-Thought (CoT):</strong> Forcing the model to
+              solve a problem as a series of intermediate steps ("Let's think
+              step-by-step"), improving reasoning accuracy.<br />
+              <strong>3. Retrieval-Augmented Generation (RAG):</strong>
+              Combining prompts with external document retrieval to eliminate
+              hallucinations and base responses on actual data.
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              Examples
+            </h3>
+            <div class="space-y-4">
+              <div
+                class="bg-gray-50 p-4 border-l-4 border-purple-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-purple-700 uppercase"
+                  >Example 1: Few-Shot</span
+                >
+                <pre class="mt-1 text-sm bg-gray-800 text-white p-2 rounded">
+Text: "I love this phone!" -> Positive
+Text: "Screen broke in 2 days." -> Negative
+Text: "Battery life is okay." -> Neutral
+Text: "Customer service was terrible." -></pre
+                >
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-l-4 border-purple-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-purple-700 uppercase"
+                  >Example 2: Chain-of-Thought</span
+                >
+                <p class="mt-1">
+                  "If John has 5 apples, eats 2, and buys 4 more, how many does
+                  he have? <i>Let's think step-by-step.</i>"
+                </p>
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-l-4 border-purple-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-purple-700 uppercase"
+                  >Example 3: Least-to-Most</span
+                >
+                <p class="mt-1">
+                  "To solve [complex problem], first break it down into
+                  subproblems, then solve them in sequence."
+                </p>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              Mini Exercise
+            </h3>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <p class="font-semibold">Task:</p>
+              <p class="mb-2">
+                How would you write a zero-shot prompt vs. a one-shot prompt for
+                translating English to French?
+              </p>
+              <details class="cursor-pointer text-sm text-blue-800 mt-2">
+                <summary class="font-bold outline-none">Show Answer</summary>
+                <p class="mt-2 text-gray-700">
+                  <strong>Zero-shot:</strong> "Translate 'House' to French."
+                  <br /><strong>One-shot:</strong> "English: Cat -> French:
+                  Chat. English: House -> French:"
+                </p>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800">Summary</h3>
+            <p class="text-gray-600">
+              Advanced techniques like CoT and Few-Shot allow models to reason
+              deeply, reduce errors, and learn specific formatting directly from
+              context.
+            </p>
+          </div>
+
+          <!-- AR -->
+          <div class="font-ar space-y-6 text-right" dir="rtl">
+            <h3 class="text-xl font-bold text-gray-800">المقدمة والشرح</h3>
+            <p class="text-gray-600 leading-relaxed">
+              لإطلاق الإمكانات الكاملة للنماذج اللغوية، يستخدم الخبراء طرقاً
+              متقدمة:
+              <br /><br />
+              <strong>1. التوجيه ببضعة أمثلة (Few-Shot):</strong> توفير مجموعة
+              من أمثلة الإدخال/الإخراج داخل الأمر لتعليم النموذج نمطاً
+              معيناً.<br />
+              <strong>2. سلسلة الأفكار (CoT):</strong> إجبار النموذج على حل
+              مشكلة كسلسلة من الخطوات الوسيطة ("دعونا نفكر خطوة بخطوة")، مما
+              يحسن دقة الاستنتاج.<br />
+              <strong>3. التوليد المعزز بالاسترجاع (RAG):</strong> دمج الأوامر
+              مع استرجاع مستندات خارجية للتخلص من الهلوسة وبناء الردود على
+              بيانات فعلية.
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              الأمثلة
+            </h3>
+            <div class="space-y-4">
+              <div
+                class="bg-gray-50 p-4 border-r-4 border-purple-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-purple-700 uppercase"
+                  >مثال 1: بضعة أمثلة (Few-Shot)</span
+                >
+                <pre
+                  class="mt-1 text-sm bg-gray-800 text-white p-2 rounded text-left"
+                  dir="ltr"
+                >
+Text: "I love this phone!" -> Positive
+Text: "Screen broke in 2 days." -> Negative
+Text: "Customer service was terrible." -></pre
+                >
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-r-4 border-purple-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-purple-700 uppercase"
+                  >مثال 2: سلسلة الأفكار</span
+                >
+                <p class="mt-1">
+                  "إذا كان لدى جون 5 تفاحات، أكل 2، واشترى 4 أخرى، فكم تفاحة
+                  لديه؟ <i>دعونا نفكر خطوة بخطوة.</i>"
+                </p>
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-r-4 border-purple-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-purple-700 uppercase"
+                  >مثال 3: من الأقل إلى الأكثر (Least-to-Most)</span
+                >
+                <p class="mt-1">
+                  "لحل [المشكلة المعقدة]، قم أولاً بتقسيمها إلى مشاكل فرعية، ثم
+                  قم بحلها بالتسلسل."
+                </p>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              تمرين مصغر
+            </h3>
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <p class="font-semibold">المهمة:</p>
+              <p class="mb-2">
+                كيف تكتب أمراً بدون أمثلة (Zero-shot) مقابل أمر بمثال واحد
+                (One-shot) لترجمة الإنجليزية إلى الفرنسية؟
+              </p>
+              <details class="cursor-pointer text-sm text-indigo-800 mt-2">
+                <summary class="font-bold outline-none">إظهار الإجابة</summary>
+                <p class="mt-2 text-gray-700">
+                  <strong>بدون أمثلة:</strong> "ترجم 'House' إلى الفرنسية."
+                  <br /><strong>بمثال واحد:</strong> "إنجليزي: Cat -> فرنسي:
+                  Chat. إنجليزي: House -> فرنسي:"
+                </p>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800">الملخص</h3>
+            <p class="text-gray-600">
+              تسمح التقنيات المتقدمة مثل (CoT) و (Few-Shot) للنماذج بالاستنتاج
+              بعمق، وتقليل الأخطاء، وتعلم التنسيقات المحددة مباشرة من السياق.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Real-world Use Cases & Debugging -->
+      <section id="section4" class="mb-16">
+        <div class="bg-blue-600 text-white p-4 rounded-t-xl">
+          <h2 class="text-2xl font-bold text-center">
+            4. Real-world Use Cases & Exercises / حالات الاستخدام العملية
+            والتمارين
+          </h2>
+        </div>
+
+        <div
+          class="bg-white shadow-lg rounded-b-xl p-8 grid grid-cols-1 lg:grid-cols-2 gap-8"
+        >
+          <!-- EN -->
+          <div class="font-en space-y-6">
+            <h3 class="text-xl font-bold text-gray-800">
+              Introduction & Explanation
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              In professional environments, prompt engineering is heavily used
+              for software generation, healthcare analytics, and customer
+              service. Writing robust prompts requires adjusting the tone,
+              dealing with prompt injection attacks, and explicitly restricting
+              output length or format to optimize the workflow. Adding XML tags
+              around inputs can also heavily improve structure for API outputs.
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              Examples
+            </h3>
+            <div class="space-y-4">
+              <div
+                class="bg-gray-50 p-4 border-l-4 border-orange-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-orange-700 uppercase"
+                  >Example 1: Software Dev</span
+                >
+                <p class="mt-1">
+                  "You are an expert React developer. Write a reusable Button
+                  component in Tailwind CSS. Restrict output to code only. Do
+                  not include markdown explanations."
+                </p>
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-l-4 border-orange-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-orange-700 uppercase"
+                  >Example 2: Healthcare</span
+                >
+                <p class="mt-1">
+                  "Review the following patient data inside the &lt;data&gt;
+                  tags. Summarize the symptoms in a bulleted list."
+                </p>
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-l-4 border-orange-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-orange-700 uppercase"
+                  >Example 3: Debugging Tone</span
+                >
+                <p class="mt-1">
+                  "Rewrite this technical explanation about quantum computing.
+                  Explain it to me like I am a 5-year-old using simple
+                  analogies."
+                </p>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              Mini Exercise
+            </h3>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <p class="font-semibold">Task:</p>
+              <p class="mb-2">
+                Your AI is returning too much conversational text when
+                generating JSON. How do you fix the prompt?
+              </p>
+              <details class="cursor-pointer text-sm text-blue-800 mt-2">
+                <summary class="font-bold outline-none">Show Answer</summary>
+                <p class="mt-2 text-gray-700">
+                  Add an explicit constraint: "Return ONLY valid JSON. Do not
+                  include introductory text, conversational filler, or markdown
+                  blocks."
+                </p>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800">Summary</h3>
+            <p class="text-gray-600">
+              Real-world prompting is an iterative engineering process.
+              Constrain the outputs, format data correctly with tags, and
+              continually debug tone and logic.
+            </p>
+          </div>
+
+          <!-- AR -->
+          <div class="font-ar space-y-6 text-right" dir="rtl">
+            <h3 class="text-xl font-bold text-gray-800">المقدمة والشرح</h3>
+            <p class="text-gray-600 leading-relaxed">
+              في بيئات العمل الاحترافية، تُستخدم هندسة الأوامر بكثافة لتوليد
+              البرمجيات، تحليلات الرعاية الصحية، وخدمة العملاء. تتطلب كتابة
+              الأوامر القوية تعديل النبرة، التعامل مع هجمات حقن الأوامر، وتقييد
+              طول أو تنسيق المخرجات بوضوح لتحسين سير العمل. يمكن أن تؤدي إضافة
+              علامات XML حول المدخلات إلى تحسين الهيكل بشكل كبير لمخرجات واجهة
+              برمجة التطبيقات (API).
+            </p>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              الأمثلة
+            </h3>
+            <div class="space-y-4">
+              <div
+                class="bg-gray-50 p-4 border-r-4 border-orange-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-orange-700 uppercase"
+                  >مثال 1: تطوير البرمجيات</span
+                >
+                <p class="mt-1">
+                  "أنت مطور React خبير. اكتب مكون زر (Button) قابل لإعادة
+                  الاستخدام باستخدام Tailwind CSS. اقتصر في المخرجات على الشفرة
+                  البرمجية فقط. لا تقم بتضمين شروحات نصية."
+                </p>
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-r-4 border-orange-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-orange-700 uppercase"
+                  >مثال 2: الرعاية الصحية</span
+                >
+                <p class="mt-1">
+                  "راجع بيانات المريض التالية داخل علامات &lt;data&gt;. لخص
+                  الأعراض في قائمة نقطية."
+                </p>
+              </div>
+              <div
+                class="bg-gray-50 p-4 border-r-4 border-orange-500 rounded-md"
+              >
+                <span class="font-bold text-sm text-orange-700 uppercase"
+                  >مثال 3: تصحيح النبرة</span
+                >
+                <p class="mt-1">
+                  "أعد كتابة هذا الشرح التقني حول الحوسبة الكمية. اشرحه لي
+                  وكأنني طفل في الخامسة من عمري باستخدام تشبيهات بسيطة."
+                </p>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-2">
+              تمرين مصغر
+            </h3>
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <p class="font-semibold">المهمة:</p>
+              <p class="mb-2">
+                الذكاء الاصطناعي يُرجع نصاً حوارياً كثيراً عند إنشاء JSON. كيف
+                تقوم بإصلاح الأمر؟
+              </p>
+              <details class="cursor-pointer text-sm text-indigo-800 mt-2">
+                <summary class="font-bold outline-none">إظهار الإجابة</summary>
+                <p class="mt-2 text-gray-700">
+                  أضف قيداً صريحاً: "أعد ملف JSON صالحاً فقط. لا تقم بتضمين نص
+                  تمهيدي أو حشو حواري أو كتل ماركداون."
+                </p>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800">الملخص</h3>
+            <p class="text-gray-600">
+              التوجيه في العالم الحقيقي هو عملية هندسية تكرارية. يجب تقييد
+              المخرجات، وتنسيق البيانات بشكل صحيح باستخدام العلامات، وتصحيح
+              الأخطاء المنطقية والنبرة باستمرار.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center py-6 mt-8">
+      <p class="font-en text-sm">
+        Created with AI assistance - Inspired by Best Practices in Prompt
+        Engineering.
+      </p>
+      <p class="font-ar text-sm mt-1" dir="rtl">
+        تم الإنشاء بمساعدة الذكاء الاصطناعي - مستوحى من أفضل ممارسات هندسة
+        الأوامر.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastery_Book.html - Laravel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-arabic {
+        font-family: "Cairo", sans-serif;
+      }
+      /* Smooth scrolling for anchor links */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="bg-red-600 text-white py-12 shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div dir="ltr">
+            <h1 class="text-4xl font-bold mb-2">The Laravel Mastery Book</h1>
+            <p class="text-red-100 text-lg">
+              From Beginner to Advanced: The Complete Bilingual Guide
+            </p>
+          </div>
+          <div dir="rtl" class="font-arabic text-right">
+            <h1 class="text-4xl font-bold mb-2">كتاب إتقان لارافيل</h1>
+            <p class="text-red-100 text-lg">
+              من المبتدئ إلى المتقدم: الدليل الشامل ثنائي اللغة
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div dir="ltr">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">
+              Table of Contents
+            </h2>
+            <ul class="space-y-2 text-blue-600 font-semibold">
+              <li>
+                <a href="#topic1" class="hover:underline"
+                  >1. Introduction to Laravel & MVC</a
+                >
+              </li>
+              <li>
+                <a href="#topic2" class="hover:underline"
+                  >2. Routing & Blade Views</a
+                >
+              </li>
+              <li>
+                <a href="#topic3" class="hover:underline"
+                  >3. Databases & Eloquent ORM</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div dir="rtl" class="font-arabic text-right">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">
+              جدول المحتويات
+            </h2>
+            <ul class="space-y-2 text-blue-600 font-semibold">
+              <li>
+                <a href="#topic1" class="hover:underline"
+                  >1. مقدمة في لارافيل ونمط MVC</a
+                >
+              </li>
+              <li>
+                <a href="#topic2" class="hover:underline"
+                  >2. التوجيه (Routing) وعروض Blade</a
+                >
+              </li>
+              <li>
+                <a href="#topic3" class="hover:underline"
+                  >3. قواعد البيانات و Eloquent ORM</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+      <!-- TOPIC 1: Introduction to Laravel & MVC -->
+      <section id="topic1" class="scroll-mt-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- English Side -->
+          <div
+            dir="ltr"
+            class="bg-white p-8 rounded-xl shadow-sm border border-gray-200"
+          >
+            <h2 class="text-3xl font-bold text-red-600 mb-4">
+              1. Introduction to Laravel & MVC
+            </h2>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">Intro</h3>
+            <p class="mb-4 text-gray-600">
+              Laravel is a free, open-source PHP framework designed to make web
+              development fast, secure, and enjoyable. It uses the MVC
+              (Model-View-Controller) architectural pattern.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">Explanation</h3>
+            <p class="mb-4 text-gray-600">
+              The <strong>MVC</strong> pattern divides an application into three
+              interconnected parts:<br />
+              - <strong>Model:</strong> Handles data and database logic.<br />
+              - <strong>View:</strong> What the user sees (HTML/CSS).<br />
+              - <strong>Controller:</strong> The brain that takes user requests,
+              fetches data from the Model, and passes it to the View.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6 bg-gray-100 p-2 rounded">
+              Examples & Real-World Use Cases
+            </h3>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                Example 1: The Restaurant Analogy
+              </h4>
+              <p class="text-gray-600">
+                Think of a restaurant. You (the user) place an order with the
+                waiter (Controller). The waiter gives the order to the kitchen
+                (Model) which prepares the food (Data). The waiter then brings
+                the finished plate (View) back to your table.
+              </p>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                Example 2: Directory Structure
+              </h4>
+              <p class="text-gray-600">
+                In Laravel, Models live in <code>app/Models</code>, Controllers
+                in <code>app/Http/Controllers</code>, and Views in
+                <code>resources/views</code>.
+              </p>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                Example 3: Real-World E-commerce
+              </h4>
+              <p class="text-gray-600">
+                When you click "View Product", the
+                <code>ProductController</code> asks the
+                <code>Product</code> Model for the item's price and details. It
+                then sends this data to the <code>product.blade.php</code> View
+                to be displayed on your screen.
+              </p>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-8 text-blue-600">
+              Mini Exercise
+            </h3>
+            <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+              <p class="font-medium">
+                Question: If you want to change the color of a button on your
+                website, which part of MVC do you edit?
+              </p>
+              <details class="mt-2 cursor-pointer text-sm">
+                <summary class="text-blue-800 font-bold">Show Answer</summary>
+                <p class="mt-2 text-gray-700">
+                  <strong>The View.</strong> The View handles all user interface
+                  elements, including HTML and CSS styling.
+                </p>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">Summary</h3>
+            <p class="text-gray-600">
+              Laravel uses the MVC structure to keep code organized. Models
+              handle data, Views handle display, and Controllers manage the
+              logic linking them together.
+            </p>
+          </div>
+
+          <!-- Arabic Side -->
+          <div
+            dir="rtl"
+            class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 font-arabic text-right"
+          >
+            <h2 class="text-3xl font-bold text-red-600 mb-4">
+              1. مقدمة في لارافيل ونمط MVC
+            </h2>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">مقدمة (Intro)</h3>
+            <p class="mb-4 text-gray-600">
+              لارافيل هو إطار عمل PHP مجاني ومفتوح المصدر مصمم لجعل تطوير الويب
+              سريعًا، آمنًا، وممتعًا. يعتمد على نمط التصميم الهيكلي MVC.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">الشرح (Explanation)</h3>
+            <p class="mb-4 text-gray-600">
+              يقوم نمط <strong>MVC</strong> بتقسيم التطبيق إلى ثلاثة أجزاء
+              مترابطة:<br />
+              - <strong>النموذج (Model):</strong> يتعامل مع البيانات ومنطق قاعدة
+              البيانات.<br />
+              - <strong>العرض (View):</strong> ما يراه المستخدم (HTML/CSS).<br />
+              - <strong>وحدة التحكم (Controller):</strong> العقل المدبر الذي
+              يستقبل طلبات المستخدم، يجلب البيانات من النموذج، ويمررها إلى
+              العرض.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6 bg-gray-100 p-2 rounded">
+              أمثلة وحالات استخدام واقعية
+            </h3>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">مثال 1: تشبيه المطعم</h4>
+              <p class="text-gray-600">
+                تخيل أنك في مطعم. أنت (المستخدم) تقدم طلبك للنادل (Controller).
+                النادل ينقل الطلب إلى المطبخ (Model) الذي يجهز الطعام
+                (البيانات). ثم يحضر النادل الطبق الجاهز (View) إلى طاولتك.
+              </p>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">مثال 2: هيكل المجلدات</h4>
+              <p class="text-gray-600">
+                في لارافيل، توجد النماذج في <code>app/Models</code>، ووحدات
+                التحكم في <code>app/Http/Controllers</code>، وعروض واجهة
+                المستخدم في <code>resources/views</code>.
+              </p>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                مثال 3: متجر إلكتروني واقعي
+              </h4>
+              <p class="text-gray-600">
+                عندما تنقر على "عرض المنتج"، يطلب الـ
+                <code>ProductController</code> من نموذج
+                <code>Product</code> تفاصيل وسعر العنصر. ثم يرسل هذه البيانات
+                إلى ملف العرض <code>product.blade.php</code> لكي تُعرض على
+                شاشتك.
+              </p>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-8 text-blue-600">
+              تمرين سريع (Mini Exercise)
+            </h3>
+            <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+              <p class="font-medium">
+                سؤال: إذا أردت تغيير لون زر في موقعك، أي جزء من MVC ستقوم
+                بتعديله؟
+              </p>
+              <details class="mt-2 cursor-pointer text-sm">
+                <summary class="text-blue-800 font-bold">عرض الإجابة</summary>
+                <p class="mt-2 text-gray-700">
+                  <strong>العرض (View).</strong> العرض هو المسؤول عن جميع عناصر
+                  واجهة المستخدم، بما في ذلك HTML وتنسيقات CSS.
+                </p>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">الخلاصة (Summary)</h3>
+            <p class="text-gray-600">
+              يستخدم لارافيل هيكل MVC للحفاظ على تنظيم الكود. النماذج تدير
+              البيانات، العروض تدير واجهة المستخدم، ووحدات التحكم تدير المنطق
+              الذي يربط بينهما.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TOPIC 2: Routing & Blade Views -->
+      <section id="topic2" class="scroll-mt-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- English Side -->
+          <div
+            dir="ltr"
+            class="bg-white p-8 rounded-xl shadow-sm border border-gray-200"
+          >
+            <h2 class="text-3xl font-bold text-red-600 mb-4">
+              2. Routing & Blade Views
+            </h2>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">Intro</h3>
+            <p class="mb-4 text-gray-600">
+              Routing is how Laravel connects URLs (like <code>/about</code>) to
+              specific code. Blade is Laravel's powerful templating engine used
+              to create dynamic HTML pages.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">Explanation</h3>
+            <p class="mb-4 text-gray-600">
+              All web routes are defined in <code>routes/web.php</code>. When a
+              user visits a URL, Laravel finds the matching route and executes
+              its function, usually returning a <strong>Blade</strong> view
+              (which allows writing PHP inside HTML cleanly).
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6 bg-gray-100 p-2 rounded">
+              Examples & Real-World Use Cases
+            </h3>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">Example 1: A Basic Route</h4>
+              <p class="text-gray-600">
+                Returning a simple text string when visiting a URL.
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4"
+                dir="ltr"
+              ><code>Route::get('/hello', function () {
+    return 'Hello, World!';
+});</code></pre>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                Example 2: Returning a Blade View
+              </h4>
+              <p class="text-gray-600">
+                Instead of text, we return an HTML file located at
+                <code>resources/views/welcome.blade.php</code>.
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4"
+                dir="ltr"
+              ><code>Route::get('/', function () {
+    return view('welcome');
+});</code></pre>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                Example 3: Passing Data to Blade (Real World)
+              </h4>
+              <p class="text-gray-600">
+                Passing an array of user tasks to a view, then using a Blade
+                <code>@foreach</code> loop to display them dynamically.
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4"
+                dir="ltr"
+              ><code>// In web.php
+Route::get('/tasks', function () {
+    $tasks = ['Learn Laravel', 'Build an App'];
+    return view('tasks', ['tasks' => $tasks]);
+});
+
+// In tasks.blade.php
+&lt;ul&gt;
+    @foreach ($tasks as $task)
+        &lt;li&gt;{{ $task }}&lt;/li&gt;
+    @endforeach
+&lt;/ul&gt;</code></pre>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-8 text-blue-600">
+              Mini Exercise
+            </h3>
+            <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+              <p class="font-medium">
+                Task: Write a route for the URL <code>/contact</code> that
+                returns a view named <code>contact</code>.
+              </p>
+              <details class="mt-2 cursor-pointer text-sm">
+                <summary class="text-blue-800 font-bold">Show Answer</summary>
+                <pre
+                  class="bg-white text-gray-800 border border-gray-300 p-3 rounded-md mt-2"
+                  dir="ltr"
+                ><code>Route::get('/contact', function () {
+    return view('contact');
+});</code></pre>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">Summary</h3>
+            <p class="text-gray-600">
+              Routes act as the entry points for your app. They capture the URL
+              and direct it to a Controller or a Blade View, allowing you to
+              easily generate dynamic web pages.
+            </p>
+          </div>
+
+          <!-- Arabic Side -->
+          <div
+            dir="rtl"
+            class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 font-arabic text-right"
+          >
+            <h2 class="text-3xl font-bold text-red-600 mb-4">
+              2. التوجيه (Routing) وعروض Blade
+            </h2>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">مقدمة (Intro)</h3>
+            <p class="mb-4 text-gray-600">
+              التوجيه هو كيفية ربط لارافيل للروابط (مثل <code>/about</code>)
+              بكود برمجي معين. Blade هو محرك القوالب القوي في لارافيل المستخدم
+              لإنشاء صفحات HTML ديناميكية.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">الشرح (Explanation)</h3>
+            <p class="mb-4 text-gray-600">
+              يتم تعريف جميع مسارات الويب في ملف <code>routes/web.php</code>.
+              عندما يزور المستخدم رابطاً، يبحث لارافيل عن المسار المطابق وينفذ
+              وظيفته، وعادةً ما يقوم بإرجاع عرض <strong>Blade</strong> (والذي
+              يسمح بكتابة PHP داخل HTML بشكل نظيف).
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6 bg-gray-100 p-2 rounded">
+              أمثلة وحالات استخدام واقعية
+            </h3>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">مثال 1: مسار بسيط</h4>
+              <p class="text-gray-600">إرجاع نص بسيط عند زيارة رابط.</p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4 text-left"
+                dir="ltr"
+              ><code>Route::get('/hello', function () {
+    return 'Hello, World!';
+});</code></pre>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">مثال 2: إرجاع عرض Blade</h4>
+              <p class="text-gray-600">
+                بدلاً من النص، نقوم بإرجاع ملف HTML موجود في
+                <code>resources/views/welcome.blade.php</code>.
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4 text-left"
+                dir="ltr"
+              ><code>Route::get('/', function () {
+    return view('welcome');
+});</code></pre>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                مثال 3: تمرير البيانات إلى Blade (استخدام واقعي)
+              </h4>
+              <p class="text-gray-600">
+                تمرير مصفوفة من مهام المستخدم إلى العرض، ثم استخدام حلقة
+                <code>@foreach</code> لعرضها بشكل ديناميكي.
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4 text-left"
+                dir="ltr"
+              ><code>// In web.php
+Route::get('/tasks', function () {
+    $tasks = ['Learn Laravel', 'Build an App'];
+    return view('tasks', ['tasks' => $tasks]);
+});
+
+// In tasks.blade.php
+&lt;ul&gt;
+    @foreach ($tasks as $task)
+        &lt;li&gt;{{ $task }}&lt;/li&gt;
+    @endforeach
+&lt;/ul&gt;</code></pre>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-8 text-blue-600">
+              تمرين سريع (Mini Exercise)
+            </h3>
+            <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+              <p class="font-medium">
+                المهمة: اكتب مساراً للرابط <code>/contact</code> يقوم بإرجاع عرض
+                (view) يحمل اسم <code>contact</code>.
+              </p>
+              <details class="mt-2 cursor-pointer text-sm">
+                <summary class="text-blue-800 font-bold">عرض الإجابة</summary>
+                <pre
+                  class="bg-white text-gray-800 border border-gray-300 p-3 rounded-md mt-2 text-left"
+                  dir="ltr"
+                ><code>Route::get('/contact', function () {
+    return view('contact');
+});</code></pre>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">الخلاصة (Summary)</h3>
+            <p class="text-gray-600">
+              تعمل المسارات (Routes) كنقاط دخول لتطبيقك. فهي تلتقط الرابط وتوجهه
+              إلى وحدة تحكم أو عرض Blade، مما يتيح لك إنشاء صفحات ويب ديناميكية
+              بسهولة.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TOPIC 3: Databases & Eloquent ORM -->
+      <section id="topic3" class="scroll-mt-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- English Side -->
+          <div
+            dir="ltr"
+            class="bg-white p-8 rounded-xl shadow-sm border border-gray-200"
+          >
+            <h2 class="text-3xl font-bold text-red-600 mb-4">
+              3. Databases & Eloquent ORM
+            </h2>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">Intro</h3>
+            <p class="mb-4 text-gray-600">
+              Interacting with databases using raw SQL can be tedious. Laravel
+              features <strong>Eloquent ORM</strong>, which allows you to
+              interact with your database like standard PHP objects.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">Explanation</h3>
+            <p class="mb-4 text-gray-600">
+              ORM stands for Object-Relational Mapper. In Eloquent, each
+              database table has a corresponding "Model" class. For example, a
+              <code>users</code> table is controlled by a
+              <code>User</code> model. You can fetch, insert, update, and delete
+              records without writing SQL.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6 bg-gray-100 p-2 rounded">
+              Examples & Real-World Use Cases
+            </h3>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                Example 1: Fetching All Records
+              </h4>
+              <p class="text-gray-600">
+                To get all users from the database, you simply call the
+                <code>all()</code> method on the Model.
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4"
+                dir="ltr"
+              ><code>$users = User::all();</code></pre>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                Example 2: Filtering Data (Real World)
+              </h4>
+              <p class="text-gray-600">
+                Finding specific records, such as finding all "active" users who
+                registered recently.
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4"
+                dir="ltr"
+              ><code>$activeUsers = User::where('status', 'active')
+                   ->orderBy('created_at', 'desc')
+                   ->get();</code></pre>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                Example 3: Inserting New Data
+              </h4>
+              <p class="text-gray-600">
+                Creating a new database row using an object-oriented approach.
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4"
+                dir="ltr"
+              ><code>$user = new User();
+$user->name = 'John Doe';
+$user->email = 'john@example.com';
+$user->save(); // This inserts the record into the DB</code></pre>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-8 text-blue-600">
+              Mini Exercise
+            </h3>
+            <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+              <p class="font-medium">
+                Task: Using Eloquent, how would you find a single user with the
+                ID of 5?
+              </p>
+              <details class="mt-2 cursor-pointer text-sm">
+                <summary class="text-blue-800 font-bold">Show Answer</summary>
+                <pre
+                  class="bg-white text-gray-800 border border-gray-300 p-3 rounded-md mt-2"
+                  dir="ltr"
+                ><code>$user = User::find(5);</code></pre>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">Summary</h3>
+            <p class="text-gray-600">
+              Eloquent ORM replaces complex SQL queries with beautiful, readable
+              PHP syntax. It maps your database tables to PHP classes
+              seamlessly, making data manipulation incredibly fast and safe.
+            </p>
+          </div>
+
+          <!-- Arabic Side -->
+          <div
+            dir="rtl"
+            class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 font-arabic text-right"
+          >
+            <h2 class="text-3xl font-bold text-red-600 mb-4">
+              3. قواعد البيانات و Eloquent ORM
+            </h2>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">مقدمة (Intro)</h3>
+            <p class="mb-4 text-gray-600">
+              التعامل مع قواعد البيانات باستخدام استعلامات SQL الخام قد يكون
+              مرهقًا. يتميز لارافيل بوجود <strong>Eloquent ORM</strong>، والذي
+              يتيح لك التفاعل مع قاعدة بياناتك وكأنها كائنات PHP عادية.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">الشرح (Explanation)</h3>
+            <p class="mb-4 text-gray-600">
+              يرمز ORM إلى "Object-Relational Mapper". في Eloquent، يحتوي كل
+              جدول في قاعدة البيانات على فئة "نموذج" (Model) تقابله. على سبيل
+              المثال، يتم التحكم في جدول <code>users</code> بواسطة نموذج
+              <code>User</code>. يمكنك جلب، إدراج، تحديث، وحذف السجلات دون كتابة
+              أوامر SQL.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6 bg-gray-100 p-2 rounded">
+              أمثلة وحالات استخدام واقعية
+            </h3>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">مثال 1: جلب جميع السجلات</h4>
+              <p class="text-gray-600">
+                للحصول على جميع المستخدمين من قاعدة البيانات، ببساطة تقوم
+                باستدعاء دالة <code>all()</code> على النموذج.
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4 text-left"
+                dir="ltr"
+              ><code>$users = User::all();</code></pre>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                مثال 2: تصفية البيانات (استخدام واقعي)
+              </h4>
+              <p class="text-gray-600">
+                البحث عن سجلات محددة، مثل العثور على جميع المستخدمين الـ "نشطين"
+                الذين سجلوا مؤخرًا.
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4 text-left"
+                dir="ltr"
+              ><code>$activeUsers = User::where('status', 'active')
+                   ->orderBy('created_at', 'desc')
+                   ->get();</code></pre>
+            </div>
+
+            <div class="mb-4">
+              <h4 class="font-bold text-gray-800">
+                مثال 3: إدراج بيانات جديدة
+              </h4>
+              <p class="text-gray-600">
+                إنشاء صف جديد في قاعدة البيانات باستخدام أسلوب الكائنات (OOP).
+              </p>
+              <pre
+                class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm mt-2 mb-4 text-left"
+                dir="ltr"
+              ><code>$user = new User();
+$user->name = 'John Doe';
+$user->email = 'john@example.com';
+$user->save(); // This inserts the record into the DB</code></pre>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-8 text-blue-600">
+              تمرين سريع (Mini Exercise)
+            </h3>
+            <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+              <p class="font-medium">
+                المهمة: باستخدام Eloquent، كيف يمكنك العثور على مستخدم واحد يحمل
+                المعرّف (ID) رقم 5؟
+              </p>
+              <details class="mt-2 cursor-pointer text-sm">
+                <summary class="text-blue-800 font-bold">عرض الإجابة</summary>
+                <pre
+                  class="bg-white text-gray-800 border border-gray-300 p-3 rounded-md mt-2 text-left"
+                  dir="ltr"
+                ><code>$user = User::find(5);</code></pre>
+              </details>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-2 mt-6">الخلاصة (Summary)</h3>
+            <p class="text-gray-600">
+              يستبدل Eloquent ORM استعلامات SQL المعقدة بصيغ برمجة PHP جميلة
+              وسهلة القراءة. فهو يربط جداول قاعدة بياناتك بفئات PHP بسلاسة، مما
+              يجعل معالجة البيانات سريعة وآمنة بشكل لا يصدق.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center mt-12">
+      <div class="max-w-7xl mx-auto px-4">
+        <p>
+          Created by your AI Programming Assistant | صُنع بواسطة مساعدك البرمجي
+          بالذكاء الاصطناعي
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+```

@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastery_Book.html - Mastering WordPress Gutenberg</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        zoom: 200%;
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+      }
+      .font-arabic {
+        font-family: "Cairo", sans-serif;
+      }
+      .side-by-side {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      @media (min-width: 768px) {
+        .side-by-side {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      .en-section {
+        border-left: 4px solid #3b82f6;
+      }
+      .ar-section {
+        border-right: 4px solid #10b981;
+      }
+    </style>
+  </head>
+  <body class="antialiased text-slate-800">
+    <!-- Header -->
+    <header class="py-12 text-center text-white shadow-md bg-slate-900">
+      <h1 class="mb-4 text-4xl font-bold md:text-5xl">
+        Mastering WordPress Gutenberg
+      </h1>
+      <h2 class="text-3xl font-bold md:text-4xl font-arabic text-emerald-400">
+        إتقان محرر ووردبريس جوتنبرج
+      </h2>
+      <p class="max-w-2xl px-4 mx-auto mt-4 text-slate-300">
+        A bilingual, step-by-side guide to mastering the WordPress Block Editor
+        from basic concepts to advanced Full Site Editing. <br />
+        <span class="font-arabic"
+          >دليل ثنائي اللغة خطوة بخطوة لإتقان محرر مكونات ووردبريس من المفاهيم
+          الأساسية إلى التحرير الكامل للموقع.</span
+        >
+      </p>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav
+      class="max-w-6xl p-6 mx-auto my-8 bg-white border shadow-sm rounded-xl border-slate-100"
+    >
+      <div class="side-by-side">
+        <div dir="ltr">
+          <h3 class="mb-4 text-2xl font-bold text-slate-800">
+            📚 Table of Contents
+          </h3>
+          <ul class="space-y-2 font-semibold text-blue-600">
+            <li>
+              <a href="#topic-1" class="hover:underline"
+                >1. Introduction to the Block Editor</a
+              >
+            </li>
+            <li>
+              <a href="#topic-2" class="hover:underline"
+                >2. Layouts, Groups, and Patterns</a
+              >
+            </li>
+            <li>
+              <a href="#topic-3" class="hover:underline"
+                >3. Advanced: Full Site Editing (FSE)</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div dir="rtl" class="font-arabic">
+          <h3 class="mb-4 text-2xl font-bold text-slate-800">
+            📚 جدول المحتويات
+          </h3>
+          <ul class="space-y-2 font-semibold text-emerald-600">
+            <li>
+              <a href="#topic-1" class="hover:underline"
+                >1. مقدمة إلى محرر المكونات</a
+              >
+            </li>
+            <li>
+              <a href="#topic-2" class="hover:underline"
+                >2. التخطيطات، المجموعات، والأنماط</a
+              >
+            </li>
+            <li>
+              <a href="#topic-3" class="hover:underline"
+                >3. متقدم: التحرير الكامل للموقع (FSE)</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="px-4 pb-20 mx-auto space-y-24 max-w-7xl">
+      <!-- ========================================== -->
+      <!-- TOPIC 1: Introduction to the Block Editor  -->
+      <!-- ========================================== -->
+      <section id="topic-1" class="space-y-8">
+        <div class="mb-10 text-center">
+          <span
+            class="px-3 py-1 text-sm font-bold tracking-wide text-blue-800 uppercase bg-blue-100 rounded-full"
+            >Beginner / مبتدئ</span
+          >
+          <h2 class="mt-4 text-3xl font-bold">
+            1. Introduction to the Block Editor
+          </h2>
+          <h2 class="mt-2 text-3xl font-bold font-arabic text-slate-600">
+            مقدمة إلى محرر المكونات
+          </h2>
+        </div>
+
+        <!-- Intro & Explanation -->
+        <div class="side-by-side">
+          <div class="card en-section" dir="ltr">
+            <h3 class="mb-2 text-xl font-bold text-blue-700">
+              Introduction & Explanation
+            </h3>
+            <p class="mb-3">
+              Introduced in WordPress 5.0 in 2018, "Gutenberg" is the modern
+              block-based editor that replaced the Classic TinyMCE editor.
+              Instead of editing a single large text document, you build content
+              using distinct "blocks" like Lego bricks.
+            </p>
+            <p>
+              Each block—whether it's a paragraph, image, or button—has its own
+              formatting controls, allowing for a much more visual and intuitive
+              "What You See Is What You Get" (WYSIWYG) experience without
+              writing custom HTML or shortcodes.
+            </p>
+          </div>
+          <div class="card ar-section font-arabic" dir="rtl">
+            <h3 class="mb-2 text-xl font-bold text-emerald-700">
+              المقدمة والشرح
+            </h3>
+            <p class="mb-3">
+              تم تقديم "جوتنبرج" في ووردبريس 5.0 عام 2018، وهو المحرر الحديث
+              المعتمد على المكونات والذي استبدل المحرر الكلاسيكي (TinyMCE).
+              بدلاً من تحرير مستند نصي واحد كبير، ستقوم ببناء المحتوى باستخدام
+              "مكونات" (Blocks) منفصلة تشبه قطع الليجو.
+            </p>
+            <p>
+              كل مكون—سواء كان فقرة، صورة، أو زر—يحتوي على أدوات تحكم وتنسيق
+              خاصة به، مما يوفر تجربة بصرية سهلة تتيح لك "رؤية ما ستحصل عليه"
+              (WYSIWYG) بدون الحاجة لكتابة أكواد HTML أو أكواد قصيرة.
+            </p>
+          </div>
+        </div>
+
+        <!-- Examples -->
+        <div class="side-by-side">
+          <div class="card en-section bg-slate-50" dir="ltr">
+            <h3 class="mb-4 text-xl font-bold text-blue-700">Key Examples</h3>
+            <ul class="space-y-4">
+              <li>
+                <strong>1. Paragraph Block:</strong> Simply typing and hitting
+                "Enter" automatically creates a new independent paragraph block.
+              </li>
+              <li>
+                <strong>2. Image Drag & Drop:</strong> You can skip the block
+                inserter by dragging an image directly from your computer
+                desktop onto the editor canvas to automatically create an image
+                block.
+              </li>
+              <li>
+                <strong>3. The Slash Command (/):</strong> Typing a forward
+                slash <code>/</code> followed by a block name (e.g.,
+                <code>/heading</code>) brings up a quick-insert menu,
+                dramatically speeding up writing.
+              </li>
+            </ul>
+          </div>
+          <div class="card ar-section bg-slate-50 font-arabic" dir="rtl">
+            <h3 class="mb-4 text-xl font-bold text-emerald-700">
+              أمثلة رئيسية
+            </h3>
+            <ul class="space-y-4">
+              <li>
+                <strong>1. مكون الفقرة (Paragraph Block):</strong> بمجرد الكتابة
+                والضغط على "Enter"، يتم تلقائياً إنشاء مكون فقرة جديد ومستقل.
+              </li>
+              <li>
+                <strong>2. سحب وإفلات الصور:</strong> يمكنك تخطي قائمة الإدراج
+                عبر سحب صورة مباشرة من سطح المكتب وإفلاتها في المحرر ليتم إنشاء
+                مكون صورة تلقائياً.
+              </li>
+              <li>
+                <strong>3. أمر الشرطة المائلة (/):</strong> كتابة شرطة مائلة
+                <code>/</code> يتبعها اسم المكون (مثل <code>/heading</code>)
+                يفتح قائمة إدراج سريع، مما يسرع عملية الكتابة بشكل كبير.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Real-World Use Case -->
+        <div class="side-by-side">
+          <div class="card en-section" dir="ltr">
+            <h3 class="mb-2 text-xl font-bold text-blue-700">
+              Real-World Use Case
+            </h3>
+            <p>
+              <strong>Writing SEO-Optimized Articles:</strong> Content creators
+              can structure articles effectively using Heading blocks (H2, H3)
+              for accessibility and SEO. The "Document Overview" (List View)
+              provides a quick structural skeleton, word count, and character
+              limit to ensure proper content flow.
+            </p>
+          </div>
+          <div class="card ar-section font-arabic" dir="rtl">
+            <h3 class="mb-2 text-xl font-bold text-emerald-700">
+              حالة استخدام من الواقع
+            </h3>
+            <p>
+              <strong>كتابة مقالات محسنة لمحركات البحث (SEO):</strong> يمكن
+              لمنشئي المحتوى هيكلة المقالات بفعالية باستخدام مكونات العناوين
+              (H2, H3) لسهولة الوصول والسيو. توفر ميزة "نظرة عامة على المستند"
+              هيكلاً سريعاً وعداداً للكلمات لضمان تسلسل المحتوى.
+            </p>
+          </div>
+        </div>
+
+        <!-- Exercises -->
+        <div class="side-by-side">
+          <div class="border-l-4 border-blue-600 card bg-blue-50" dir="ltr">
+            <h3 class="mb-2 text-lg font-bold text-blue-900">Mini Exercise</h3>
+            <p class="mb-2 font-medium text-slate-700">
+              Task: Add a bold heading followed by a linked paragraph without
+              clicking the "+" button.
+            </p>
+            <details class="cursor-pointer">
+              <summary class="font-semibold text-blue-600">Show Answer</summary>
+              <p class="mt-2 text-sm">
+                1. Type <code>/heading</code> and press Enter.<br />2. Type your
+                heading and select it to press
+                <code>Ctrl+B</code> (bold).<br />3. Press Enter to start a new
+                paragraph block, type text, select it, and press
+                <code>Ctrl+K</code> to add a link.
+              </p>
+            </details>
+          </div>
+          <div
+            class="border-r-4 card bg-emerald-50 border-emerald-600 font-arabic"
+            dir="rtl"
+          >
+            <h3 class="mb-2 text-lg font-bold text-emerald-900">تدريب مصغر</h3>
+            <p class="mb-2 font-medium text-slate-700">
+              المهمة: أضف عنواناً عريضاً (Bold) تليه فقرة تحتوي على رابط بدون
+              النقر على زر "+".
+            </p>
+            <details class="cursor-pointer">
+              <summary class="font-semibold text-emerald-600">
+                عرض الإجابة
+              </summary>
+              <p class="mt-2 text-sm">
+                1. اكتب <code>/heading</code> واضغط Enter.<br />2. اكتب العنوان،
+                حدده واضغط <code>Ctrl+B</code> للخط العريض.<br />3. اضغط Enter
+                لبدء فقرة جديدة، اكتب النص، حدده واضغط
+                <code>Ctrl+K</code> لإضافة الرابط.
+              </p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="side-by-side">
+          <div class="text-center card bg-slate-100" dir="ltr">
+            <p class="font-bold text-slate-600">Summary:</p>
+            <p class="text-sm">
+              Gutenberg shifts WordPress from a simple text processor to a
+              modular, visual editor, making basic content creation faster and
+              more structured.
+            </p>
+          </div>
+          <div class="text-center card bg-slate-100 font-arabic" dir="rtl">
+            <p class="font-bold text-slate-600">الخلاصة:</p>
+            <p class="text-sm">
+              ينقل جوتنبرج ووردبريس من كونه معالج نصوص بسيط إلى محرر بصري
+              تركيبي، مما يجعل إنشاء المحتوى الأساسي أسرع وأكثر تنظيماً.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TOPIC 2: Layouts, Groups, and Patterns     -->
+      <!-- ========================================== -->
+      <section id="topic-2" class="space-y-8">
+        <div class="mb-10 text-center">
+          <span
+            class="px-3 py-1 text-sm font-bold tracking-wide text-blue-800 uppercase bg-blue-100 rounded-full"
+            >Intermediate / متوسط</span
+          >
+          <h2 class="mt-4 text-3xl font-bold">
+            2. Layouts, Groups, and Patterns
+          </h2>
+          <h2 class="mt-2 text-3xl font-bold font-arabic text-slate-600">
+            التخطيطات، المجموعات، والأنماط
+          </h2>
+        </div>
+
+        <!-- Intro & Explanation -->
+        <div class="side-by-side">
+          <div class="card en-section" dir="ltr">
+            <h3 class="mb-2 text-xl font-bold text-blue-700">
+              Introduction & Explanation
+            </h3>
+            <p class="mb-3">
+              To build complex web pages, Gutenberg uses "nested blocks" like
+              Columns and Groups, acting as containers for other blocks.
+            </p>
+            <p>
+              To speed up design, WordPress features
+              <strong>Block Patterns</strong>—pre-made collections of blocks
+              forming sections like headers, testimonials, or pricing tables.
+              Additionally, <strong>Synced Patterns</strong> (formerly Reusable
+              Blocks) allow you to save a block design and update it across
+              multiple pages simultaneously.
+            </p>
+          </div>
+          <div class="card ar-section font-arabic" dir="rtl">
+            <h3 class="mb-2 text-xl font-bold text-emerald-700">
+              المقدمة والشرح
+            </h3>
+            <p class="mb-3">
+              لبناء صفحات ويب معقدة، يستخدم جوتنبرج "المكونات المتداخلة" مثل
+              الأعمدة (Columns) والمجموعات (Groups) لتعمل كحاويات للمكونات
+              الأخرى.
+            </p>
+            <p>
+              لتسريع التصميم، يوفر ووردبريس
+              <strong>أنماط المكونات (Block Patterns)</strong>—وهي مجموعات جاهزة
+              من المكونات تشكل أقساماً مثل الترويسات، التقييمات، وجداول الأسعار.
+              بالإضافة لذلك، تتيح
+              <strong>الأنماط المتزامنة (Synced Patterns)</strong> حفظ تصميم
+              مكون وتحديثه عبر صفحات متعددة في نفس الوقت.
+            </p>
+          </div>
+        </div>
+
+        <!-- Examples -->
+        <div class="side-by-side">
+          <div class="card en-section bg-slate-50" dir="ltr">
+            <h3 class="mb-4 text-xl font-bold text-blue-700">Key Examples</h3>
+            <ul class="space-y-4">
+              <li>
+                <strong>1. Columns Block:</strong> Select a 50/50 layout to
+                place a paragraph on the left and a Button block on the right.
+              </li>
+              <li>
+                <strong>2. Block Pattern:</strong> Open the inserter (+),
+                navigate to the "Patterns" tab, and click a pre-designed "Call
+                to Action" banner. It immediately applies the full layout to
+                your page.
+              </li>
+              <li>
+                <strong>3. Synced Pattern:</strong> Group an image, text, and
+                button. Click the three dots -> "Create pattern" -> check
+                "Synced". When you edit this specific pattern on Page A, it
+                automatically updates on Page B.
+              </li>
+            </ul>
+          </div>
+          <div class="card ar-section bg-slate-50 font-arabic" dir="rtl">
+            <h3 class="mb-4 text-xl font-bold text-emerald-700">
+              أمثلة رئيسية
+            </h3>
+            <ul class="space-y-4">
+              <li>
+                <strong>1. مكون الأعمدة (Columns Block):</strong> اختر تخطيط
+                50/50 لوضع فقرة نصية على اليسار ومكون زر (Button) على اليمين.
+              </li>
+              <li>
+                <strong>2. نمط المكونات (Block Pattern):</strong> افتح قائمة
+                الإدراج (+)، اذهب إلى علامة تبويب "الأنماط"، وانقر على لافتة
+                "دعوة لاتخاذ إجراء" جاهزة ليتم إدراجها فوراً.
+              </li>
+              <li>
+                <strong>3. النمط المتزامن (Synced Pattern):</strong> قم بتجميع
+                صورة ونص وزر. انقر على النقاط الثلاث -> "إنشاء نمط" واختر
+                "متزامن". عند تعديله في الصفحة (أ)، سيتحدث تلقائياً في الصفحة
+                (ب).
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Real-World Use Case -->
+        <div class="side-by-side">
+          <div class="card en-section" dir="ltr">
+            <h3 class="mb-2 text-xl font-bold text-blue-700">
+              Real-World Use Case
+            </h3>
+            <p>
+              <strong>Managing Global CTAs:</strong> A marketer wants a
+              newsletter signup box at the bottom of 50 different blog posts. By
+              creating it as a <em>Synced Pattern</em>, they can change the
+              background color or button text once, and all 50 blog posts are
+              updated instantly.
+            </p>
+          </div>
+          <div class="card ar-section font-arabic" dir="rtl">
+            <h3 class="mb-2 text-xl font-bold text-emerald-700">
+              حالة استخدام من الواقع
+            </h3>
+            <p>
+              <strong>إدارة دعوات اتخاذ الإجراء (CTA) العامة:</strong> يريد مسوق
+              وضع مربع اشتراك في النشرة البريدية أسفل 50 مقالاً. بإنشائه كـ
+              <em>نمط متزامن</em>، يمكنه تغيير لون الخلفية أو نص الزر مرة واحدة،
+              ليتم تحديث الـ 50 مقالاً فوراً.
+            </p>
+          </div>
+        </div>
+
+        <!-- Exercises -->
+        <div class="side-by-side">
+          <div class="border-l-4 border-blue-600 card bg-blue-50" dir="ltr">
+            <h3 class="mb-2 text-lg font-bold text-blue-900">Mini Exercise</h3>
+            <p class="mb-2 font-medium text-slate-700">
+              Task: Convert a regular pattern into a Synced Pattern, then modify
+              only one instance without affecting the others.
+            </p>
+            <details class="cursor-pointer">
+              <summary class="font-semibold text-blue-600">Show Answer</summary>
+              <p class="mt-2 text-sm">
+                1. Highlight the blocks, click the three dots, select "Create
+                pattern" and toggle "Synced". <br />2. Insert it elsewhere.<br />3.
+                To edit *only* the new instance, click the block, select "Detach
+                pattern" (or Unsync), and modify it.
+              </p>
+            </details>
+          </div>
+          <div
+            class="border-r-4 card bg-emerald-50 border-emerald-600 font-arabic"
+            dir="rtl"
+          >
+            <h3 class="mb-2 text-lg font-bold text-emerald-900">تدريب مصغر</h3>
+            <p class="mb-2 font-medium text-slate-700">
+              المهمة: تحويل نمط عادي إلى نمط متزامن، ثم تعديل نسخة واحدة منه فقط
+              دون التأثير على الباقي.
+            </p>
+            <details class="cursor-pointer">
+              <summary class="font-semibold text-emerald-600">
+                عرض الإجابة
+              </summary>
+              <p class="mt-2 text-sm">
+                1. حدد المكونات، انقر على النقاط الثلاث، اختر "إنشاء نمط" وفعل
+                خيار "متزامن". <br />2. قم بإدراجه في مكان آخر.<br />3. لتعديل
+                النسخة الجديدة *فقط*، انقر على المكون واختر "فصل النمط" (Detach)
+                ثم قم بتعديله.
+              </p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="side-by-side">
+          <div class="text-center card bg-slate-100" dir="ltr">
+            <p class="font-bold text-slate-600">Summary:</p>
+            <p class="text-sm">
+              Groups and Columns allow complex layouts, while Patterns and
+              Synced Patterns enable rapid, scalable design replication without
+              third-party page builders.
+            </p>
+          </div>
+          <div class="text-center card bg-slate-100 font-arabic" dir="rtl">
+            <p class="font-bold text-slate-600">الخلاصة:</p>
+            <p class="text-sm">
+              تتيح المجموعات والأعمدة تخطيطات معقدة، بينما تُمكّن الأنماط
+              والأنماط المتزامنة من تكرار التصميم بسرعة وقابلية للتوسع دون أدوات
+              بناء الصفحات الخارجية.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TOPIC 3: Advanced Full Site Editing (FSE)  -->
+      <!-- ========================================== -->
+      <section id="topic-3" class="space-y-8">
+        <div class="mb-10 text-center">
+          <span
+            class="px-3 py-1 text-sm font-bold tracking-wide text-blue-800 uppercase bg-blue-100 rounded-full"
+            >Advanced / متقدم</span
+          >
+          <h2 class="mt-4 text-3xl font-bold">
+            3. Advanced: Full Site Editing (FSE)
+          </h2>
+          <h2 class="mt-2 text-3xl font-bold font-arabic text-slate-600">
+            متقدم: التحرير الكامل للموقع (FSE)
+          </h2>
+        </div>
+
+        <!-- Intro & Explanation -->
+        <div class="side-by-side">
+          <div class="card en-section" dir="ltr">
+            <h3 class="mb-2 text-xl font-bold text-blue-700">
+              Introduction & Explanation
+            </h3>
+            <p class="mb-3">
+              Introduced broadly in WordPress 5.9, Full Site Editing (FSE) takes
+              Gutenberg from a page-level editor to a global site design tool.
+              Instead of editing PHP template files, you use the
+              <strong>Site Editor</strong> to visually build your website's
+              Header, Footer, and Page Templates.
+            </p>
+            <p>
+              It relies on <strong>Block Themes</strong> (like Twenty
+              Twenty-Four) and utilizes special "Theme Blocks" (Site Logo, Query
+              Loop, Post Title) to fetch dynamic data seamlessly.
+            </p>
+          </div>
+          <div class="card ar-section font-arabic" dir="rtl">
+            <h3 class="mb-2 text-xl font-bold text-emerald-700">
+              المقدمة والشرح
+            </h3>
+            <p class="mb-3">
+              بدأ تقديم "التحرير الكامل للموقع" (FSE) بشكل واسع في ووردبريس 5.9،
+              وهو يحول جوتنبرج من محرر صفحات إلى أداة تصميم شاملة للموقع. بدلاً
+              من تعديل ملفات قوالب PHP، تستخدم
+              <strong>محرر الموقع (Site Editor)</strong> لبناء الترويسة،
+              التذييل، وقوالب الصفحات بصرياً.
+            </p>
+            <p>
+              يعتمد هذا النظام على
+              <strong>قوالب المكونات (Block Themes)</strong> ويستخدم "مكونات
+              القالب" الخاصة (مثل شعار الموقع، حلقة الاستعلام، عنوان المقال)
+              لجلب البيانات الديناميكية بسلاسة.
+            </p>
+          </div>
+        </div>
+
+        <!-- Examples -->
+        <div class="side-by-side">
+          <div class="card en-section bg-slate-50" dir="ltr">
+            <h3 class="mb-4 text-xl font-bold text-blue-700">Key Examples</h3>
+            <ul class="space-y-4">
+              <li>
+                <strong>1. Editing the Header:</strong> Go to Appearance >
+                Editor > Patterns > Header. Replace text with a
+                <em>Site Logo</em> block and add a <em>Navigation</em> block for
+                the menu.
+              </li>
+              <li>
+                <strong>2. Query Loop Block:</strong> Build a custom blog
+                listing page without code. Add a Query Loop block, and configure
+                it to show the 3 most recent posts from a specific category.
+              </li>
+              <li>
+                <strong>3. Global Styles (theme.json):</strong> Access the
+                Styles interface in the Site Editor to change primary brand
+                colors and typography globally, reflecting instantly across all
+                blocks.
+              </li>
+            </ul>
+          </div>
+          <div class="card ar-section bg-slate-50 font-arabic" dir="rtl">
+            <h3 class="mb-4 text-xl font-bold text-emerald-700">
+              أمثلة رئيسية
+            </h3>
+            <ul class="space-y-4">
+              <li>
+                <strong>1. تعديل الترويسة:</strong> اذهب إلى المظهر > المحرر >
+                الأنماط > الترويسة. استبدل النص بمكون <em>شعار الموقع</em> وأضف
+                مكون <em>التنقل (Navigation)</em> للقائمة.
+              </li>
+              <li>
+                <strong>2. مكون حلقة الاستعلام (Query Loop):</strong> بناء صفحة
+                مدونة مخصصة بدون برمجة. أضف مكون الاستعلام، وقم بضبطه ليعرض أحدث
+                3 مقالات من تصنيف معين.
+              </li>
+              <li>
+                <strong>3. الأنماط العامة (theme.json):</strong> استخدم واجهة
+                الأنماط في محرر الموقع لتغيير ألوان العلامة التجارية والخطوط
+                عالمياً، لتنعكس فوراً على جميع المكونات.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Real-World Use Case -->
+        <div class="side-by-side">
+          <div class="card en-section" dir="ltr">
+            <h3 class="mb-2 text-xl font-bold text-blue-700">
+              Real-World Use Case
+            </h3>
+            <p>
+              <strong>Custom 404 Error Page:</strong> Previously, changing a 404
+              page required editing a <code>404.php</code> file. With FSE, an
+              agency can simply open the 404 Template in the Site Editor, add a
+              playful Image block, a Heading, and a Search block, saving hours
+              of development time.
+            </p>
+          </div>
+          <div class="card ar-section font-arabic" dir="rtl">
+            <h3 class="mb-2 text-xl font-bold text-emerald-700">
+              حالة استخدام من الواقع
+            </h3>
+            <p>
+              <strong>تخصيص صفحة الخطأ 404:</strong> سابقاً، كان تغيير صفحة 404
+              يتطلب تعديل ملف <code>404.php</code>. مع FSE، يمكن للوكالة ببساطة
+              فتح قالب 404 في محرر الموقع، وإضافة مكون صورة مرحة، عنوان، ومكون
+              بحث، مما يوفر ساعات من وقت التطوير.
+            </p>
+          </div>
+        </div>
+
+        <!-- Exercises -->
+        <div class="side-by-side">
+          <div class="border-l-4 border-blue-600 card bg-blue-50" dir="ltr">
+            <h3 class="mb-2 text-lg font-bold text-blue-900">Mini Exercise</h3>
+            <p class="mb-2 font-medium text-slate-700">
+              Task: Using FSE, how do you ensure the post author and date are
+              displayed on every single blog post?
+            </p>
+            <details class="cursor-pointer">
+              <summary class="font-semibold text-blue-600">Show Answer</summary>
+              <p class="mt-2 text-sm">
+                1. Go to Appearance > Editor > Templates > Single Post.<br />2.
+                Add the <code>Post Author</code> and
+                <code>Post Date</code> theme blocks below the Post Title
+                block.<br />3. Save the template. All blog posts will now adopt
+                this layout.
+              </p>
+            </details>
+          </div>
+          <div
+            class="border-r-4 card bg-emerald-50 border-emerald-600 font-arabic"
+            dir="rtl"
+          >
+            <h3 class="mb-2 text-lg font-bold text-emerald-900">تدريب مصغر</h3>
+            <p class="mb-2 font-medium text-slate-700">
+              المهمة: باستخدام FSE، كيف تضمن عرض كاتب المقال والتاريخ في كل مقال
+              على المدونة؟
+            </p>
+            <details class="cursor-pointer">
+              <summary class="font-semibold text-emerald-600">
+                عرض الإجابة
+              </summary>
+              <p class="mt-2 text-sm">
+                1. اذهب إلى المظهر > المحرر > القوالب > مقال مفرد (Single
+                Post).<br />2. أضف مكونات القالب <code>Post Author</code> و
+                <code>Post Date</code> أسفل مكون عنوان المقال.<br />3. احفظ
+                القالب. جميع المقالات ستتخذ هذا التخطيط فوراً.
+              </p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="side-by-side">
+          <div class="text-center card bg-slate-100" dir="ltr">
+            <p class="font-bold text-slate-600">Summary:</p>
+            <p class="text-sm">
+              FSE democratizes web design by allowing users to construct entire
+              websites—headers, footers, and templates—using dynamic Gutenberg
+              blocks natively.
+            </p>
+          </div>
+          <div class="text-center card bg-slate-100 font-arabic" dir="rtl">
+            <p class="font-bold text-slate-600">الخلاصة:</p>
+            <p class="text-sm">
+              يضفي FSE ديمقراطية على تصميم الويب من خلال السماح للمستخدمين ببناء
+              مواقع كاملة—الترويسات، التذييلات، والقوالب—باستخدام مكونات جوتنبرج
+              الديناميكية بشكل أصلي.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center bg-slate-900 text-slate-400">
+      <p dir="ltr">
+        Designed with Tailwind CSS for Bilingual Learning. Source data derived
+        from official WordPress & developer documentation.
+      </p>
+      <p dir="rtl" class="mt-2 font-arabic">
+        تم تصميمه باستخدام Tailwind CSS للتعلم ثنائي اللغة. تم استقاء البيانات
+        من الوثائق الرسمية لووردبريس والمطورين.
+      </p>
+    </footer>
+  </body>
+</html>
+```

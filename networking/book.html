@@ -1,0 +1,1001 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastery_Book.html</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f3f4f6;
+      }
+      .font-arabic {
+        font-family: "Cairo", sans-serif;
+      }
+      .card {
+        background: #ffffff;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+        overflow: hidden;
+      }
+      .en-col {
+        padding: 1.5rem;
+      }
+      .ar-col {
+        padding: 1.5rem;
+        background-color: #fafafa;
+        border-left: 1px solid #e5e7eb;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-12 px-6 text-center shadow-lg">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        Mastery Book: Computer Networking Fundamentals
+      </h1>
+      <h2 class="text-3xl md:text-4xl font-arabic font-bold text-blue-200">
+        كتاب الإتقان: أساسيات شبكات الحاسوب
+      </h2>
+      <p class="mt-4 text-lg max-w-2xl mx-auto">
+        A comprehensive, bilingual guide from beginner to advanced concepts in
+        computer networking. <br />
+        <span class="font-arabic text-md"
+          >دليل شامل ثنائي اللغة من المفاهيم الأساسية إلى المتقدمة في شبكات
+          الحاسوب.</span
+        >
+      </p>
+    </header>
+
+    <!-- Table of Contents -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="card p-6 bg-white shadow-md">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- EN TOC -->
+          <div dir="ltr">
+            <h3
+              class="text-2xl font-bold text-blue-800 mb-4 border-b-2 border-blue-200 pb-2"
+            >
+              📚 Table of Contents
+            </h3>
+            <ul class="space-y-2 text-lg text-blue-600 font-semibold">
+              <li>
+                <a href="#topic1" class="hover:underline"
+                  >1. Introduction to Networks & Types</a
+                >
+              </li>
+              <li>
+                <a href="#topic2" class="hover:underline"
+                  >2. Network Hardware & Devices</a
+                >
+              </li>
+              <li>
+                <a href="#topic3" class="hover:underline"
+                  >3. IP Addresses, Ports & NAT</a
+                >
+              </li>
+              <li>
+                <a href="#topic4" class="hover:underline"
+                  >4. Network Models: OSI & TCP/IP</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- AR TOC -->
+          <div dir="rtl" class="font-arabic text-right">
+            <h3
+              class="text-2xl font-bold text-blue-800 mb-4 border-b-2 border-blue-200 pb-2"
+            >
+              📚 جدول المحتويات
+            </h3>
+            <ul class="space-y-2 text-lg text-blue-600 font-semibold">
+              <li>
+                <a href="#topic1" class="hover:underline"
+                  >1. مقدمة في الشبكات وأنواعها</a
+                >
+              </li>
+              <li>
+                <a href="#topic2" class="hover:underline"
+                  >2. الأجهزة والمعدات الشبكية</a
+                >
+              </li>
+              <li>
+                <a href="#topic3" class="hover:underline"
+                  >3. عناوين IP، المنافذ، وترجمة العناوين (NAT)</a
+                >
+              </li>
+              <li>
+                <a href="#topic4" class="hover:underline"
+                  >4. نماذج الشبكات: OSI و TCP/IP</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+             TOPIC 1: Introduction to Networks 
+             ========================================== -->
+      <section id="topic1" class="mb-12">
+        <div class="bg-blue-800 text-white p-4 rounded-t-lg shadow">
+          <h2 class="text-3xl font-bold">
+            1. Introduction to Networks & Types
+            <span class="float-right font-arabic"
+              >مقدمة في الشبكات وأنواعها</span
+            >
+          </h2>
+        </div>
+
+        <div class="card rounded-t-none">
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <!-- ENGLISH COLUMN -->
+            <div class="en-col" dir="ltr">
+              <h4 class="text-xl font-bold text-gray-800 mb-2">Introduction</h4>
+              <p class="mb-4">
+                A computer network is a system of interconnected computing
+                devices that communicate and share resources with one another.
+                By connecting devices, networks support applications and
+                services like the World Wide Web, digital video, and email.
+              </p>
+
+              <h4 class="text-xl font-bold text-gray-800 mb-2">
+                Explanation: Network Types
+              </h4>
+              <p class="mb-2">
+                Networks are primarily categorized by their geographic scale:
+              </p>
+              <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>
+                  <strong>LAN (Local Area Network):</strong> Connects computers
+                  in a limited geographical area such as a home or office
+                  building, offering high data transfer rates.
+                </li>
+                <li>
+                  <strong>MAN (Metropolitan Area Network):</strong> Covers a
+                  larger region, like an entire city or a university campus.
+                </li>
+                <li>
+                  <strong>WAN (Wide Area Network):</strong> Covers massive
+                  distances, like countries or continents, often using
+                  telecommunication facilities or satellites.
+                </li>
+              </ul>
+
+              <div
+                class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-blue-800 mb-1">💡 3 Examples</h5>
+                <ul class="list-disc pl-5">
+                  <li>
+                    <strong>LAN:</strong> A home Wi-Fi network connecting your
+                    laptop, smartphone, and smart TV.
+                  </li>
+                  <li>
+                    <strong>MAN:</strong> A city-wide fiber optic network
+                    connecting government buildings.
+                  </li>
+                  <li>
+                    <strong>WAN:</strong> The Internet itself, connecting
+                    networks across the globe.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-green-50 border-l-4 border-green-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-green-800 mb-1">
+                  🌍 Real-World Use Case
+                </h5>
+                <p>
+                  An office with 50 employees uses a <strong>LAN</strong> to
+                  allow everyone to print documents from a single shared
+                  printer, rather than buying 50 individual printers.
+                </p>
+              </div>
+
+              <div
+                class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-yellow-800 mb-1">📝 Mini Exercise</h5>
+                <p class="mb-2">
+                  <strong>Q:</strong> If your company wants to securely connect
+                  its office in New York to its office in London, which type of
+                  network is required?
+                </p>
+                <details class="cursor-pointer">
+                  <summary class="font-semibold text-blue-600">
+                    Show Answer
+                  </summary>
+                  <p class="mt-2 text-gray-700">
+                    <strong>A:</strong> A WAN (Wide Area Network), because it
+                    connects networks across intercontinental distances.
+                  </p>
+                </details>
+              </div>
+
+              <div
+                class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-purple-800 mb-1">📌 Summary</h5>
+                <p>
+                  Networks connect devices to share resources. LAN is local
+                  (small), MAN is metropolitan (medium), and WAN is wide area
+                  (large).
+                </p>
+              </div>
+            </div>
+
+            <!-- ARABIC COLUMN -->
+            <div class="ar-col font-arabic" dir="rtl">
+              <h4 class="text-xl font-bold text-gray-800 mb-2">مقدمة</h4>
+              <p class="mb-4">
+                شبكة الحاسوب هي نظام يتكون من أجهزة حوسبة مترابطة تتواصل وتتشارك
+                الموارد مع بعضها البعض. من خلال ربط الأجهزة، تدعم الشبكات
+                التطبيقات والخدمات مثل شبكة الويب العالمية، الفيديو الرقمي،
+                والبريد الإلكتروني.
+              </p>
+
+              <h4 class="text-xl font-bold text-gray-800 mb-2">
+                الشرح: أنواع الشبكات
+              </h4>
+              <p class="mb-2">تُصنف الشبكات بشكل أساسي حسب نطاقها الجغرافي:</p>
+              <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>
+                  <strong>الشبكة المحلية (LAN):</strong> تربط الحواسيب في منطقة
+                  جغرافية محدودة مثل المنزل أو مبنى مكاتب، وتوفر معدلات نقل
+                  بيانات عالية.
+                </li>
+                <li>
+                  <strong>الشبكة الإقليمية (MAN):</strong> تغطي منطقة أكبر، مثل
+                  مدينة بأكملها أو حرم جامعي.
+                </li>
+                <li>
+                  <strong>الشبكة الواسعة (WAN):</strong> تغطي مسافات هائلة، مثل
+                  الدول أو القارات، وتستخدم غالباً مرافق الاتصالات أو الأقمار
+                  الصناعية.
+                </li>
+              </ul>
+
+              <div
+                class="bg-blue-50 border-r-4 border-blue-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-blue-800 mb-1">💡 3 أمثلة</h5>
+                <ul class="list-disc pl-5">
+                  <li>
+                    <strong>LAN:</strong> شبكة Wi-Fi منزلية تربط حاسوبك المحمول،
+                    هاتفك الذكي، وتلفازك الذكي.
+                  </li>
+                  <li>
+                    <strong>MAN:</strong> شبكة ألياف ضوئية تغطي المدينة لربط
+                    المباني الحكومية.
+                  </li>
+                  <li>
+                    <strong>WAN:</strong> الإنترنت نفسه، والذي يربط الشبكات عبر
+                    العالم.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-green-50 border-r-4 border-green-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-green-800 mb-1">
+                  🌍 حالة استخدام من الواقع
+                </h5>
+                <p>
+                  مكتب يضم 50 موظفًا يستخدم شبكة محلية (<strong>LAN</strong>)
+                  للسماح للجميع بطباعة المستندات من طابعة واحدة مشتركة، بدلاً من
+                  شراء 50 طابعة فردية.
+                </p>
+              </div>
+
+              <div
+                class="bg-yellow-50 border-r-4 border-yellow-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-yellow-800 mb-1">📝 تمرين قصير</h5>
+                <p class="mb-2">
+                  <strong>سؤال:</strong> إذا أرادت شركتك ربط مكتبها في نيويورك
+                  بمكتبها في لندن بشكل آمن، ما نوع الشبكة المطلوب؟
+                </p>
+                <details class="cursor-pointer">
+                  <summary class="font-semibold text-blue-600">
+                    عرض الإجابة
+                  </summary>
+                  <p class="mt-2 text-gray-700">
+                    <strong>الجواب:</strong> شبكة واسعة (WAN)، لأنها تربط
+                    الشبكات عبر مسافات بين القارات.
+                  </p>
+                </details>
+              </div>
+
+              <div
+                class="bg-purple-50 border-r-4 border-purple-500 p-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-purple-800 mb-1">📌 ملخص</h5>
+                <p>
+                  الشبكات تربط الأجهزة لمشاركة الموارد. الـ LAN محلية (صغيرة)،
+                  الـ MAN إقليمية (متوسطة)، والـ WAN واسعة النطاق (كبيرة).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 2: Network Hardware
+             ========================================== -->
+      <section id="topic2" class="mb-12">
+        <div class="bg-blue-800 text-white p-4 rounded-t-lg shadow">
+          <h2 class="text-3xl font-bold">
+            2. Network Hardware & Devices
+            <span class="float-right font-arabic"
+              >الأجهزة والمعدات الشبكية</span
+            >
+          </h2>
+        </div>
+
+        <div class="card rounded-t-none">
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <!-- ENGLISH COLUMN -->
+            <div class="en-col" dir="ltr">
+              <h4 class="text-xl font-bold text-gray-800 mb-2">Introduction</h4>
+              <p class="mb-4">
+                Networks are built from physical building blocks called nodes,
+                which handle the transportation and security of data.
+              </p>
+
+              <h4 class="text-xl font-bold text-gray-800 mb-2">Explanation</h4>
+              <p class="mb-2">
+                Three primary devices make modern networking possible:
+              </p>
+              <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>
+                  <strong>Switches:</strong> Manage node-to-node communication
+                  <em>within</em> a single network by forwarding data frames
+                  based on MAC addresses.
+                </li>
+                <li>
+                  <strong>Routers:</strong> Forward data packets
+                  <em>between</em> different networks using IP addresses and
+                  routing tables.
+                </li>
+                <li>
+                  <strong>Firewalls:</strong> Security devices configured to
+                  reject unrecognized access requests and allow authorized ones,
+                  sitting between secure internal networks and the public
+                  internet.
+                </li>
+              </ul>
+
+              <div
+                class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-blue-800 mb-1">💡 3 Examples</h5>
+                <ul class="list-disc pl-5">
+                  <li>
+                    <strong>Switch:</strong> Used in a school computer lab to
+                    physically wire 30 computers together so they can share
+                    local files.
+                  </li>
+                  <li>
+                    <strong>Router:</strong> Your home Wi-Fi router connecting
+                    your home LAN to your Internet Service Provider's WAN.
+                  </li>
+                  <li>
+                    <strong>Firewall:</strong> Software or hardware blocking a
+                    hacker from accessing a bank's internal servers.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-green-50 border-l-4 border-green-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-green-800 mb-1">
+                  🌍 Real-World Use Case
+                </h5>
+                <p>
+                  A hospital uses a <strong>Switch</strong> to connect MRI
+                  machines and doctors' computers in the same building. They use
+                  a <strong>Router</strong> to send medical data to a partner
+                  clinic across the city, and a <strong>Firewall</strong> to
+                  ensure external hackers cannot access patient records.
+                </p>
+              </div>
+
+              <div
+                class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-yellow-800 mb-1">📝 Mini Exercise</h5>
+                <p class="mb-2">
+                  <strong>Q:</strong> If you want to connect two separate
+                  subnets together, do you need a switch or a router?
+                </p>
+                <details class="cursor-pointer">
+                  <summary class="font-semibold text-blue-600">
+                    Show Answer
+                  </summary>
+                  <p class="mt-2 text-gray-700">
+                    <strong>A:</strong> A Router. Switches manage communication
+                    <em>within</em> the same network, while routers direct
+                    traffic <em>between</em> different networks.
+                  </p>
+                </details>
+              </div>
+
+              <div
+                class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-purple-800 mb-1">📌 Summary</h5>
+                <p>
+                  Switches connect devices locally, routers connect networks
+                  globally, and firewalls protect them from threats.
+                </p>
+              </div>
+            </div>
+
+            <!-- ARABIC COLUMN -->
+            <div class="ar-col font-arabic" dir="rtl">
+              <h4 class="text-xl font-bold text-gray-800 mb-2">مقدمة</h4>
+              <p class="mb-4">
+                تُبنى الشبكات من كتل بناء مادية تُسمى العُقد (Nodes)، والتي
+                تتولى مهام نقل البيانات وأمنها.
+              </p>
+
+              <h4 class="text-xl font-bold text-gray-800 mb-2">الشرح</h4>
+              <p class="mb-2">ثلاثة أجهزة رئيسية تجعل الشبكات الحديثة ممكنة:</p>
+              <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>
+                  <strong>المُبدلات (Switches):</strong> تدير الاتصال بين العقد
+                  <em>داخل</em> شبكة واحدة عن طريق توجيه إطارات البيانات بناءً
+                  على عناوين MAC.
+                </li>
+                <li>
+                  <strong>الموجهات (Routers):</strong> توجّه حزم البيانات
+                  <em>بين</em> الشبكات المختلفة باستخدام عناوين IP وجداول
+                  التوجيه.
+                </li>
+                <li>
+                  <strong>الجدران النارية (Firewalls):</strong> أجهزة أمنية
+                  مُعدة لرفض طلبات الوصول غير المصرح بها، وتفصل بين الشبكات
+                  الداخلية الآمنة والإنترنت العام.
+                </li>
+              </ul>
+
+              <div
+                class="bg-blue-50 border-r-4 border-blue-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-blue-800 mb-1">💡 3 أمثلة</h5>
+                <ul class="list-disc pl-5">
+                  <li>
+                    <strong>مُبدل:</strong> يُستخدم في معمل حواسيب مدرسي لربط 30
+                    جهازاً سلكياً معاً لمشاركة الملفات محلياً.
+                  </li>
+                  <li>
+                    <strong>موجه:</strong> موجه الـ Wi-Fi المنزلي الذي يربط
+                    شبكتك المحلية بمزود خدمة الإنترنت (WAN).
+                  </li>
+                  <li>
+                    <strong>جدار ناري:</strong> برمجيات أو أجهزة تمنع المخترقين
+                    من الوصول إلى خوادم البنك الداخلية.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-green-50 border-r-4 border-green-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-green-800 mb-1">
+                  🌍 حالة استخدام من الواقع
+                </h5>
+                <p>
+                  يستخدم المستشفى <strong>مُبدل (Switch)</strong> لربط أجهزة
+                  الرنين المغناطيسي وحواسيب الأطباء في نفس المبنى. ويستخدم
+                  <strong>موجّه (Router)</strong> لإرسال البيانات الطبية إلى
+                  عيادة شريكة عبر المدينة، و<strong
+                    >جداراً نارياً (Firewall)</strong
+                  >
+                  لضمان عدم تمكن المخترقين من الوصول إلى سجلات المرضى.
+                </p>
+              </div>
+
+              <div
+                class="bg-yellow-50 border-r-4 border-yellow-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-yellow-800 mb-1">📝 تمرين قصير</h5>
+                <p class="mb-2">
+                  <strong>سؤال:</strong> إذا أردت ربط شبكتين فرعيتين منفصلتين
+                  معاً، هل تحتاج إلى مُبدل (Switch) أم موجه (Router)؟
+                </p>
+                <details class="cursor-pointer">
+                  <summary class="font-semibold text-blue-600">
+                    عرض الإجابة
+                  </summary>
+                  <p class="mt-2 text-gray-700">
+                    <strong>الجواب:</strong> موجه (Router). المُبدلات تدير
+                    الاتصال <em>داخل</em> نفس الشبكة، بينما توجه الموجهات حركة
+                    المرور <em>بين</em> الشبكات المختلفة.
+                  </p>
+                </details>
+              </div>
+
+              <div
+                class="bg-purple-50 border-r-4 border-purple-500 p-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-purple-800 mb-1">📌 ملخص</h5>
+                <p>
+                  المُبدلات تربط الأجهزة محلياً، والموجهات تربط الشبكات عالمياً،
+                  والجدران النارية تحميها من التهديدات.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 3: Addressing & NAT
+             ========================================== -->
+      <section id="topic3" class="mb-12">
+        <div class="bg-blue-800 text-white p-4 rounded-t-lg shadow">
+          <h2 class="text-3xl font-bold">
+            3. IP Addresses, Ports & NAT
+            <span class="float-right font-arabic"
+              >عناوين IP، المنافذ، وترجمة العناوين (NAT)</span
+            >
+          </h2>
+        </div>
+
+        <div class="card rounded-t-none">
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <!-- ENGLISH COLUMN -->
+            <div class="en-col" dir="ltr">
+              <h4 class="text-xl font-bold text-gray-800 mb-2">Introduction</h4>
+              <p class="mb-4">
+                For data to travel across the Internet, devices must know
+                exactly where to send it. This requires a robust addressing
+                system.
+              </p>
+
+              <h4 class="text-xl font-bold text-gray-800 mb-2">Explanation</h4>
+              <p class="mb-2">
+                Here is how devices locate and communicate with each other:
+              </p>
+              <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>
+                  <strong>IP Address:</strong> A unique identifier for a device
+                  on a network, acting like a house address for mail delivery.
+                </li>
+                <li>
+                  <strong>DNS (Domain Name System):</strong> Translates
+                  human-friendly names (like google.com) into numerical IP
+                  addresses, much like a phone's contact list.
+                </li>
+                <li>
+                  <strong>Ports:</strong> Numbered channels (1 to 65,535) that
+                  tell the server which specific application should receive the
+                  traffic (like apartment numbers inside a building).
+                </li>
+                <li>
+                  <strong>NAT (Network Address Translation):</strong> Allows
+                  multiple devices with private IP addresses to share a single
+                  public IP address to access the internet securely.
+                </li>
+              </ul>
+
+              <div
+                class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-blue-800 mb-1">💡 3 Examples</h5>
+                <ul class="list-disc pl-5">
+                  <li>
+                    <strong>DNS in action:</strong> Typing "travelbuddy.com"
+                    instead of "203.0.113.10".
+                  </li>
+                  <li>
+                    <strong>Standard Ports:</strong> Port 80 for regular web
+                    traffic, and Port 443 for secure (HTTPS) web traffic.
+                  </li>
+                  <li>
+                    <strong>NAT:</strong> A company's 50 backend servers
+                    browsing the web using just one public IP address through a
+                    NAT Gateway.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-green-50 border-l-4 border-green-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-green-800 mb-1">
+                  🌍 Real-World Use Case
+                </h5>
+                <p>
+                  A single server runs both a website and a database. Because
+                  they share the same IP address, the server uses
+                  <strong>Port 80</strong> for the website and
+                  <strong>Port 3306</strong> for the MySQL database. Traffic is
+                  perfectly separated based on these ports.
+                </p>
+              </div>
+
+              <div
+                class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-yellow-800 mb-1">📝 Mini Exercise</h5>
+                <p class="mb-2">
+                  <strong>Q:</strong> You want to run a web server and a payment
+                  service on the same machine. How does the server know which
+                  incoming request goes to which service?
+                </p>
+                <details class="cursor-pointer">
+                  <summary class="font-semibold text-blue-600">
+                    Show Answer
+                  </summary>
+                  <p class="mt-2 text-gray-700">
+                    <strong>A:</strong> By using different Ports. For example,
+                    the web server listens on port 80, while the payment service
+                    listens on port 9090.
+                  </p>
+                </details>
+              </div>
+
+              <div
+                class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-purple-800 mb-1">📌 Summary</h5>
+                <p>
+                  IPs find the device, DNS makes IPs readable, Ports find the
+                  correct application on the device, and NAT hides private IPs
+                  from the public web.
+                </p>
+              </div>
+            </div>
+
+            <!-- ARABIC COLUMN -->
+            <div class="ar-col font-arabic" dir="rtl">
+              <h4 class="text-xl font-bold text-gray-800 mb-2">مقدمة</h4>
+              <p class="mb-4">
+                لكي تنتقل البيانات عبر الإنترنت، يجب أن تعرف الأجهزة بالضبط أين
+                ترسلها. وهذا يتطلب نظام عنونة قوي وفعال.
+              </p>
+
+              <h4 class="text-xl font-bold text-gray-800 mb-2">الشرح</h4>
+              <p class="mb-2">
+                إليك كيف تحدد الأجهزة مواقع بعضها وتتواصل معاً:
+              </p>
+              <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>
+                  <strong>عنوان الـ IP:</strong> مُعرّف فريد للجهاز على الشبكة،
+                  يعمل كعنوان المنزل لتوصيل البريد.
+                </li>
+                <li>
+                  <strong>نظام أسماء النطاقات (DNS):</strong> يترجم الأسماء
+                  البشرية السهلة (مثل google.com) إلى عناوين IP رقمية، تماماً
+                  مثل قائمة جهات الاتصال في الهاتف.
+                </li>
+                <li>
+                  <strong>المنافذ (Ports):</strong> قنوات مرقمة (من 1 إلى
+                  65,535) تخبر الخادم بالتطبيق المحدد الذي يجب أن يستقبل
+                  البيانات (مثل أرقام الشقق داخل المبنى).
+                </li>
+                <li>
+                  <strong>ترجمة عناوين الشبكة (NAT):</strong> تسمح لعدة أجهزة
+                  ذات عناوين IP خاصة بمشاركة عنوان IP عام واحد للوصول إلى
+                  الإنترنت بشكل آمن.
+                </li>
+              </ul>
+
+              <div
+                class="bg-blue-50 border-r-4 border-blue-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-blue-800 mb-1">💡 3 أمثلة</h5>
+                <ul class="list-disc pl-5">
+                  <li>
+                    <strong>تطبيق الـ DNS:</strong> كتابة "travelbuddy.com"
+                    بدلاً من الرقم "203.0.113.10".
+                  </li>
+                  <li>
+                    <strong>المنافذ القياسية:</strong> المنفذ 80 لحركة الويب
+                    العادية، والمنفذ 443 للويب الآمن (HTTPS).
+                  </li>
+                  <li>
+                    <strong>الـ NAT:</strong> 50 خادماً خلفياً للشركة يتصفحون
+                    الويب باستخدام عنوان IP عام واحد فقط عبر بوابة NAT.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-green-50 border-r-4 border-green-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-green-800 mb-1">
+                  🌍 حالة استخدام من الواقع
+                </h5>
+                <p>
+                  خادم واحد يقوم بتشغيل موقع ويب وقاعدة بيانات في نفس الوقت.
+                  نظراً لأنهما يشتركان في نفس عنوان الـ IP، يستخدم الخادم
+                  <strong>المنفذ 80</strong> للموقع و<strong
+                    >المنفذ 3306</strong
+                  >
+                  لقاعدة بيانات MySQL. يتم فصل البيانات بشكل مثالي بناءً على هذه
+                  المنافذ.
+                </p>
+              </div>
+
+              <div
+                class="bg-yellow-50 border-r-4 border-yellow-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-yellow-800 mb-1">📝 تمرين قصير</h5>
+                <p class="mb-2">
+                  <strong>سؤال:</strong> تريد تشغيل خادم ويب وخدمة دفع على نفس
+                  الجهاز. كيف يعرف الخادم أي الطلبات الواردة تذهب لأي خدمة؟
+                </p>
+                <details class="cursor-pointer">
+                  <summary class="font-semibold text-blue-600">
+                    عرض الإجابة
+                  </summary>
+                  <p class="mt-2 text-gray-700">
+                    <strong>الجواب:</strong> عن طريق استخدام منافذ مختلفة. على
+                    سبيل المثال، خادم الويب يستمع على المنفذ 80، بينما تستمع
+                    خدمة الدفع على المنفذ 9090.
+                  </p>
+                </details>
+              </div>
+
+              <div
+                class="bg-purple-50 border-r-4 border-purple-500 p-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-purple-800 mb-1">📌 ملخص</h5>
+                <p>
+                  عناوين الـ IP تجد الجهاز، الـ DNS يجعلها قابلة للقراءة،
+                  المنافذ تجد التطبيق الصحيح، والـ NAT يخفي العناوين الخاصة عن
+                  الويب العام.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+             TOPIC 4: Network Models
+             ========================================== -->
+      <section id="topic4" class="mb-12">
+        <div class="bg-blue-800 text-white p-4 rounded-t-lg shadow">
+          <h2 class="text-3xl font-bold">
+            4. Network Models: OSI & TCP/IP
+            <span class="float-right font-arabic"
+              >نماذج الشبكات: OSI و TCP/IP</span
+            >
+          </h2>
+        </div>
+
+        <div class="card rounded-t-none">
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <!-- ENGLISH COLUMN -->
+            <div class="en-col" dir="ltr">
+              <h4 class="text-xl font-bold text-gray-800 mb-2">Introduction</h4>
+              <p class="mb-4">
+                Communication protocols act as languages that devices must agree
+                on. To simplify these complex protocols, we use framework models
+                like OSI and TCP/IP.
+              </p>
+
+              <h4 class="text-xl font-bold text-gray-800 mb-2">Explanation</h4>
+              <p class="mb-2">
+                These models divide network communication into logical "layers",
+                working from physical cables up to software applications:
+              </p>
+              <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>
+                  <strong>OSI Model (7 Layers):</strong> Developed by the ISO,
+                  consisting of: Physical (1), Data Link (2), Network (3),
+                  Transport (4), Session (5), Presentation (6), and Application
+                  (7).
+                </li>
+                <li>
+                  <strong>TCP/IP Model (4 Layers):</strong> A more concise stack
+                  which includes: Network Access (1), Internet (2), Transport
+                  (3), and Application (4).
+                </li>
+                <li>
+                  <strong>How they work together:</strong> Data moves top-down
+                  when sending (Application to Physical), and bottom-up when
+                  receiving (Physical to Application).
+                </li>
+              </ul>
+
+              <div
+                class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-blue-800 mb-1">
+                  💡 3 Examples of Layers
+                </h5>
+                <ul class="list-disc pl-5">
+                  <li>
+                    <strong>Layer 1 (Physical):</strong> Copper wires, fiber
+                    optics, or radio waves transmitting bits.
+                  </li>
+                  <li>
+                    <strong>Layer 3 (Network):</strong> Routers using IP
+                    addresses to find the best path for data delivery.
+                  </li>
+                  <li>
+                    <strong>Layer 7 (Application):</strong> Protocols like HTTP
+                    for web browsing or FTP for sending files over Skype.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-green-50 border-l-4 border-green-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-green-800 mb-1">
+                  🌍 Real-World Use Case
+                </h5>
+                <p>
+                  An IT engineer troubleshooting a broken internet connection
+                  uses the OSI model. They first check
+                  <strong>Layer 1</strong> (is the cable plugged in?). Next,
+                  they check <strong>Layer 3</strong> (is the IP address
+                  correct?). Finally, they check <strong>Layer 7</strong> (is
+                  the web browser application working?).
+                </p>
+              </div>
+
+              <div
+                class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-yellow-800 mb-1">📝 Mini Exercise</h5>
+                <p class="mb-2">
+                  <strong>Q:</strong> Which OSI layer is responsible for logical
+                  addressing (like assigning IP addresses) and routing?
+                </p>
+                <details class="cursor-pointer">
+                  <summary class="font-semibold text-blue-600">
+                    Show Answer
+                  </summary>
+                  <p class="mt-2 text-gray-700">
+                    <strong>A:</strong> Layer 3, the Network Layer.
+                  </p>
+                </details>
+              </div>
+
+              <div
+                class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-purple-800 mb-1">📌 Summary</h5>
+                <p>
+                  Network models (like OSI's 7 layers) break down the complex
+                  process of data transmission into easy, standardized steps,
+                  from physical hardware up to the user's screen.
+                </p>
+              </div>
+            </div>
+
+            <!-- ARABIC COLUMN -->
+            <div class="ar-col font-arabic" dir="rtl">
+              <h4 class="text-xl font-bold text-gray-800 mb-2">مقدمة</h4>
+              <p class="mb-4">
+                تعمل بروتوكولات الاتصال كلغات يجب أن تتفق عليها الأجهزة. ولتبسيط
+                هذه البروتوكولات المعقدة، نستخدم نماذج أُطر عمل مثل OSI و
+                TCP/IP.
+              </p>
+
+              <h4 class="text-xl font-bold text-gray-800 mb-2">الشرح</h4>
+              <p class="mb-2">
+                تُقسّم هذه النماذج اتصالات الشبكة إلى "طبقات" منطقية، تبدأ من
+                الكابلات المادية وصولاً إلى التطبيقات البرمجية:
+              </p>
+              <ul class="list-disc pl-5 space-y-1 mb-4">
+                <li>
+                  <strong>نموذج OSI (7 طبقات):</strong> طُور بواسطة منظمة الآيزو
+                  (ISO)، ويتكون من: المادية (1)، ربط البيانات (2)، الشبكة (3)،
+                  النقل (4)، الجلسة (5)، التقديم (6)، والتطبيق (7).
+                </li>
+                <li>
+                  <strong>نموذج TCP/IP (4 طبقات):</strong> حزمة أكثر إيجازاً
+                  تشمل: الوصول للشبكة (1)، الإنترنت (2)، النقل (3)، والتطبيق
+                  (4).
+                </li>
+                <li>
+                  <strong>كيف يعملان معاً:</strong> تتحرك البيانات من أعلى لأسفل
+                  عند الإرسال (من التطبيق للمادية)، ومن أسفل لأعلى عند الاستقبال
+                  (من المادية للتطبيق).
+                </li>
+              </ul>
+
+              <div
+                class="bg-blue-50 border-r-4 border-blue-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-blue-800 mb-1">
+                  💡 3 أمثلة على الطبقات
+                </h5>
+                <ul class="list-disc pl-5">
+                  <li>
+                    <strong>الطبقة 1 (المادية):</strong> الأسلاك النحاسية،
+                    الألياف الضوئية، أو موجات الراديو التي تنقل البتات.
+                  </li>
+                  <li>
+                    <strong>الطبقة 3 (الشبكة):</strong> الموجهات التي تستخدم
+                    عناوين IP لإيجاد أفضل مسار لتوصيل البيانات.
+                  </li>
+                  <li>
+                    <strong>الطبقة 7 (التطبيق):</strong> بروتوكولات مثل HTTP
+                    لتصفح الويب أو FTP لإرسال الملفات عبر سكايب.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-green-50 border-r-4 border-green-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-green-800 mb-1">
+                  🌍 حالة استخدام من الواقع
+                </h5>
+                <p>
+                  يستخدم مهندس تقنية المعلومات نموذج OSI لاستكشاف أخطاء انقطاع
+                  الإنترنت. يتحقق أولاً من <strong>الطبقة 1</strong> (هل الكابل
+                  متصل؟). ثم يتحقق من <strong>الطبقة 3</strong> (هل عنوان الـ IP
+                  صحيح؟). وأخيرًا يتحقق من <strong>الطبقة 7</strong> (هل تطبيق
+                  متصفح الويب يعمل بشكل سليم؟).
+                </p>
+              </div>
+
+              <div
+                class="bg-yellow-50 border-r-4 border-yellow-500 p-4 mb-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-yellow-800 mb-1">📝 تمرين قصير</h5>
+                <p class="mb-2">
+                  <strong>سؤال:</strong> أي طبقة في نموذج OSI مسؤولة عن العنونة
+                  المنطقية (مثل تعيين عناوين IP) والتوجيه (Routing)؟
+                </p>
+                <details class="cursor-pointer">
+                  <summary class="font-semibold text-blue-600">
+                    عرض الإجابة
+                  </summary>
+                  <p class="mt-2 text-gray-700">
+                    <strong>الجواب:</strong> الطبقة 3، وهي طبقة الشبكة (Network
+                    Layer).
+                  </p>
+                </details>
+              </div>
+
+              <div
+                class="bg-purple-50 border-r-4 border-purple-500 p-4 rounded text-sm"
+              >
+                <h5 class="font-bold text-purple-800 mb-1">📌 ملخص</h5>
+                <p>
+                  نماذج الشبكات (مثل طبقات OSI السبع) تقوم بتجزئة العملية
+                  المعقدة لنقل البيانات إلى خطوات قياسية سهلة، بدءاً من الأجهزة
+                  المادية وصولاً إلى شاشة المستخدم.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer
+        class="text-center text-gray-500 py-6 mt-8 border-t border-gray-300"
+      >
+        <p>Mastery Book Series &copy; 2026. Built with HTML & Tailwind CSS.</p>
+      </footer>
+    </div>
+  </body>
+</html>
+```
