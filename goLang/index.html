@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go Language — Zero to Hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0d1117; color:#c9d1d9; font-family:'Inter',sans-serif; display:flex; min-height:100vh; }
+
+/* Sidebar */
+nav {
+  width:220px; flex-shrink:0;
+  background:#161b22;
+  border-right:1px solid #30363d;
+  padding:1.5rem 0;
+  position:fixed; top:0; left:0; height:100vh;
+  overflow-y:auto;
+}
+nav .logo { padding:.5rem 1.2rem 1.5rem; font-size:1.1rem; font-weight:800; color:#00acd7; }
+nav .logo span { color:#fff; }
+nav a {
+  display:block; padding:.5rem 1.2rem;
+  font-size:.85rem; color:#8b949e;
+  text-decoration:none; border-left:3px solid transparent;
+  transition:.15s;
+}
+nav a:hover, nav a.active { color:#00acd7; border-left-color:#00acd7; background:rgba(0,172,215,.06); }
+
+/* Content */
+main { margin-left:220px; padding:2rem; max-width:860px; width:100%; }
+
+header { margin-bottom:2.5rem; }
+header h1 { font-size:2rem; font-weight:800; color:#fff; }
+header h1 span { color:#00acd7; }
+header p { color:#8b949e; margin-top:.4rem; font-size:.95rem; }
+
+/* Section */
+section { margin-bottom:3rem; scroll-margin-top:2rem; }
+section h2 {
+  font-size:1.2rem; font-weight:700; color:#fff;
+  padding-bottom:.6rem; border-bottom:1px solid #21262d;
+  margin-bottom:1.2rem; display:flex; align-items:center; gap:.5rem;
+}
+section p { font-size:.9rem; color:#8b949e; line-height:1.8; margin-bottom:1rem; }
+
+/* Code block */
+pre {
+  background:#161b22; border:1px solid #30363d;
+  border-radius:10px; padding:1.2rem;
+  overflow-x:auto; font-size:.83rem;
+  font-family:'Fira Code',monospace;
+  line-height:1.7; margin-bottom:1rem;
+  position:relative;
+}
+.copy-btn {
+  position:absolute; top:.6rem; right:.6rem;
+  background:#21262d; border:1px solid #30363d;
+  color:#8b949e; font-size:.72rem; padding:.2rem .6rem;
+  border-radius:6px; cursor:pointer; transition:.15s;
+}
+.copy-btn:hover { color:#fff; border-color:#58a6ff; }
+
+/* Syntax colors */
+.kw { color:#ff7b72; }
+.fn { color:#d2a8ff; }
+.str { color:#a5d6ff; }
+.cm { color:#8b949e; font-style:italic; }
+.num { color:#79c0ff; }
+.type { color:#ffa657; }
+
+/* Concept cards */
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:1rem; }
+.card { background:#161b22; border:1px solid #30363d; border-radius:10px; padding:1rem; }
+.card h4 { font-size:.88rem; color:#00acd7; margin-bottom:.4rem; }
+.card p { font-size:.8rem; color:#8b949e; line-height:1.6; }
+
+/* Tip */
+.tip { background:#132f4c; border-left:4px solid #00acd7; border-radius:0 8px 8px 0; padding:.9rem 1rem; font-size:.85rem; color:#90caf9; margin-bottom:1rem; line-height:1.7; }
+
+/* Table */
+table { width:100%; border-collapse:collapse; font-size:.85rem; margin-bottom:1rem; }
+th { background:#161b22; color:#8b949e; padding:.6rem 1rem; text-align:left; border:1px solid #30363d; }
+td { padding:.6rem 1rem; border:1px solid #21262d; color:#c9d1d9; }
+tr:nth-child(even) td { background:#0d1117; }
+code { font-family:'Fira Code',monospace; background:#21262d; padding:.1rem .4rem; border-radius:4px; font-size:.82rem; color:#ffa657; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Go<span>Lang</span></div>
+  <a href="#intro" class="active">🚀 Introduction</a>
+  <a href="#install">⚙️ Installation</a>
+  <a href="#hello">👋 Hello World</a>
+  <a href="#variables">📦 Variables</a>
+  <a href="#types">🔢 Data Types</a>
+  <a href="#control">🔀 Control Flow</a>
+  <a href="#functions">🧩 Functions</a>
+  <a href="#arrays">📋 Arrays & Slices</a>
+  <a href="#maps">🗺 Maps</a>
+  <a href="#structs">🏗 Structs</a>
+  <a href="#pointers">📍 Pointers</a>
+  <a href="#goroutines">⚡ Goroutines</a>
+  <a href="#errors">❌ Error Handling</a>
+  <a href="#packages">📁 Packages</a>
+</nav>
+
+<main>
+
+<header>
+  <h1><span>Go</span> — Zero to Hero</h1>
+  <p>A complete beginner's guide to the Go programming language</p>
+</header>
+
+<!-- INTRO -->
+<section id="intro">
+  <h2>🚀 What is Go?</h2>
+  <p>Go (Golang) is an open-source programming language created by Google in 2009. It is fast, simple, and built for modern software — especially backend services, APIs, and cloud tools.</p>
+  <div class="cards">
+    <div class="card"><h4>⚡ Fast</h4><p>Compiles to native machine code. Near C-level performance.</p></div>
+    <div class="card"><h4>🧵 Concurrent</h4><p>Built-in goroutines make parallel programming easy.</p></div>
+    <div class="card"><h4>📦 Simple</h4><p>Very small syntax. Easy to read, easy to maintain.</p></div>
+    <div class="card"><h4>🔒 Safe</h4><p>Strong typing and garbage collection prevent many bugs.</p></div>
+  </div>
+  <p>Used by: <strong>Docker, Kubernetes, Terraform, GitHub CLI, Cloudflare, Uber</strong>.</p>
+</section>
+
+<!-- INSTALL -->
+<section id="install">
+  <h2>⚙️ Installation</h2>
+  <p>Download from <strong>go.dev/dl</strong> and install. Then verify:</p>
+  <div style="position:relative">
+    <pre><span class="cm"># Check Go version</span>
+go version
+<span class="cm"># Output: go version go1.22 windows/amd64</span>
+
+<span class="cm"># Create a new project</span>
+mkdir myapp
+<span class="kw">cd</span> myapp
+go mod init myapp</pre>
+  </div>
+  <div class="tip">💡 <code>go mod init</code> creates a <code>go.mod</code> file — like <code>package.json</code> in Node.js.</div>
+</section>
+
+<!-- HELLO WORLD -->
+<section id="hello">
+  <h2>👋 Hello World</h2>
+  <p>Every Go file belongs to a <strong>package</strong>. The entry point is always <code>func main()</code>.</p>
+  <div style="position:relative">
+<pre><span class="kw">package</span> main
+
+<span class="kw">import</span> <span class="str">"fmt"</span>
+
+<span class="kw">func</span> <span class="fn">main</span>() {
+    fmt.<span class="fn">Println</span>(<span class="str">"Hello, Go! 🎉"</span>)
+}</pre>
+  </div>
+  <pre><span class="cm"># Run it</span>
+go run main.go
+
+<span class="cm"># Build it</span>
+go build -o myapp main.go</pre>
+</section>
+
+<!-- VARIABLES -->
+<section id="variables">
+  <h2>📦 Variables</h2>
+  <p>Go has two ways to declare variables — with <code>var</code> or the shorthand <code>:=</code>.</p>
+<pre><span class="kw">package</span> main
+
+<span class="kw">import</span> <span class="str">"fmt"</span>
+
+<span class="kw">func</span> <span class="fn">main</span>() {
+    <span class="cm">// Full declaration</span>
+    <span class="kw">var</span> name <span class="type">string</span> = <span class="str">"Alice"</span>
+    <span class="kw">var</span> age  <span class="type">int</span>    = <span class="num">25</span>
+
+    <span class="cm">// Short declaration (most common)</span>
+    city    := <span class="str">"Cairo"</span>
+    isReady := <span class="kw">true</span>
+
+    fmt.<span class="fn">Println</span>(name, age, city, isReady)
+
+    <span class="cm">// Constants</span>
+    <span class="kw">const</span> Pi = <span class="num">3.14159</span>
+    fmt.<span class="fn">Println</span>(Pi)
+}</pre>
+</section>
+
+<!-- DATA TYPES -->
+<section id="types">
+  <h2>🔢 Data Types</h2>
+  <table>
+    <tr><th>Type</th><th>Example</th><th>Description</th></tr>
+    <tr><td><code>int</code></td><td><code>42</code></td><td>Whole numbers</td></tr>
+    <tr><td><code>float64</code></td><td><code>3.14</code></td><td>Decimal numbers</td></tr>
+    <tr><td><code>string</code></td><td><code>"hello"</code></td><td>Text (double quotes)</td></tr>
+    <tr><td><code>bool</code></td><td><code>true / false</code></td><td>Boolean</td></tr>
+    <tr><td><code>byte</code></td><td><code>'A'</code></td><td>Single character (alias uint8)</td></tr>
+  </table>
+<pre><span class="kw">var</span> score   <span class="type">int</span>     = <span class="num">100</span>
+<span class="kw">var</span> price   <span class="type">float64</span> = <span class="num">9.99</span>
+<span class="kw">var</span> message <span class="type">string</span>  = <span class="str">"Go is great"</span>
+<span class="kw">var</span> active  <span class="type">bool</span>    = <span class="kw">true</span></pre>
+</section>
+
+<!-- CONTROL FLOW -->
+<section id="control">
+  <h2>🔀 Control Flow</h2>
+<pre><span class="cm">// if / else</span>
+age := <span class="num">20</span>
+<span class="kw">if</span> age >= <span class="num">18</span> {
+    fmt.<span class="fn">Println</span>(<span class="str">"Adult"</span>)
+} <span class="kw">else</span> {
+    fmt.<span class="fn">Println</span>(<span class="str">"Minor"</span>)
+}
+
+<span class="cm">// for loop (Go's only loop)</span>
+<span class="kw">for</span> i := <span class="num">0</span>; i < <span class="num">5</span>; i++ {
+    fmt.<span class="fn">Println</span>(i)
+}
+
+<span class="cm">// while-style loop</span>
+x := <span class="num">0</span>
+<span class="kw">for</span> x < <span class="num">3</span> {
+    x++
+}
+
+<span class="cm">// switch</span>
+day := <span class="str">"Monday"</span>
+<span class="kw">switch</span> day {
+<span class="kw">case</span> <span class="str">"Monday"</span>:
+    fmt.<span class="fn">Println</span>(<span class="str">"Start of week"</span>)
+<span class="kw">case</span> <span class="str">"Friday"</span>:
+    fmt.<span class="fn">Println</span>(<span class="str">"Weekend soon!"</span>)
+<span class="kw">default</span>:
+    fmt.<span class="fn">Println</span>(<span class="str">"Midweek"</span>)
+}</pre>
+</section>
+
+<!-- FUNCTIONS -->
+<section id="functions">
+  <h2>🧩 Functions</h2>
+  <p>Go functions can return <strong>multiple values</strong> — a very powerful feature.</p>
+<pre><span class="cm">// Basic function</span>
+<span class="kw">func</span> <span class="fn">greet</span>(name <span class="type">string</span>) <span class="type">string</span> {
+    <span class="kw">return</span> <span class="str">"Hello, "</span> + name
+}
+
+<span class="cm">// Multiple return values</span>
+<span class="kw">func</span> <span class="fn">divide</span>(a, b <span class="type">float64</span>) (<span class="type">float64</span>, <span class="type">error</span>) {
+    <span class="kw">if</span> b == <span class="num">0</span> {
+        <span class="kw">return</span> <span class="num">0</span>, fmt.<span class="fn">Errorf</span>(<span class="str">"cannot divide by zero"</span>)
+    }
+    <span class="kw">return</span> a / b, <span class="kw">nil</span>
+}
+
+<span class="kw">func</span> <span class="fn">main</span>() {
+    result, err := <span class="fn">divide</span>(<span class="num">10</span>, <span class="num">2</span>)
+    <span class="kw">if</span> err != <span class="kw">nil</span> {
+        fmt.<span class="fn">Println</span>(<span class="str">"Error:"</span>, err)
+    } <span class="kw">else</span> {
+        fmt.<span class="fn">Println</span>(result) <span class="cm">// 5</span>
+    }
+}</pre>
+</section>
+
+<!-- ARRAYS & SLICES -->
+<section id="arrays">
+  <h2>📋 Arrays & Slices</h2>
+  <p>Arrays have fixed size. <strong>Slices</strong> are dynamic and much more common.</p>
+<pre><span class="cm">// Array (fixed size)</span>
+<span class="kw">var</span> arr [<span class="num">3</span>]<span class="type">int</span> = [<span class="num">3</span>]<span class="type">int</span>{<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>}
+
+<span class="cm">// Slice (dynamic)</span>
+nums := []<span class="type">int</span>{<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>}
+nums = <span class="fn">append</span>(nums, <span class="num">40</span>)
+fmt.<span class="fn">Println</span>(nums)        <span class="cm">// [10 20 30 40]</span>
+fmt.<span class="fn">Println</span>(nums[<span class="num">1</span>])     <span class="cm">// 20</span>
+fmt.<span class="fn">Println</span>(nums[<span class="num">1</span>:<span class="num">3</span>])   <span class="cm">// [20 30]</span>
+
+<span class="cm">// Iterate with range</span>
+<span class="kw">for</span> i, v := <span class="kw">range</span> nums {
+    fmt.<span class="fn">Println</span>(i, v)
+}</pre>
+</section>
+
+<!-- MAPS -->
+<section id="maps">
+  <h2>🗺 Maps</h2>
+  <p>Maps are key-value stores — like objects in JS or dicts in Python.</p>
+<pre>person := <span class="kw">map</span>[<span class="type">string</span>]<span class="type">string</span>{
+    <span class="str">"name"</span>: <span class="str">"Bob"</span>,
+    <span class="str">"city"</span>: <span class="str">"Cairo"</span>,
+}
+
+<span class="cm">// Access</span>
+fmt.<span class="fn">Println</span>(person[<span class="str">"name"</span>])
+
+<span class="cm">// Add / Update</span>
+person[<span class="str">"job"</span>] = <span class="str">"Developer"</span>
+
+<span class="cm">// Delete</span>
+<span class="fn">delete</span>(person, <span class="str">"city"</span>)
+
+<span class="cm">// Check if key exists</span>
+val, ok := person[<span class="str">"city"</span>]
+<span class="kw">if</span> !ok {
+    fmt.<span class="fn">Println</span>(<span class="str">"Key not found"</span>)
+}</pre>
+</section>
+
+<!-- STRUCTS -->
+<section id="structs">
+  <h2>🏗 Structs</h2>
+  <p>Structs are Go's way of defining custom types — like classes but simpler.</p>
+<pre><span class="kw">type</span> <span class="type">User</span> <span class="kw">struct</span> {
+    Name  <span class="type">string</span>
+    Age   <span class="type">int</span>
+    Email <span class="type">string</span>
+}
+
+<span class="cm">// Method on struct</span>
+<span class="kw">func</span> (u <span class="type">User</span>) <span class="fn">Greet</span>() <span class="type">string</span> {
+    <span class="kw">return</span> <span class="str">"Hi, I'm "</span> + u.Name
+}
+
+<span class="kw">func</span> <span class="fn">main</span>() {
+    u := <span class="type">User</span>{Name: <span class="str">"Alice"</span>, Age: <span class="num">30</span>, Email: <span class="str">"alice@example.com"</span>}
+    fmt.<span class="fn">Println</span>(u.<span class="fn">Greet</span>())
+    fmt.<span class="fn">Println</span>(u.Age)
+}</pre>
+</section>
+
+<!-- POINTERS -->
+<section id="pointers">
+  <h2>📍 Pointers</h2>
+  <p>A pointer holds the <strong>memory address</strong> of a value. Use <code>&</code> to get the address, <code>*</code> to read the value.</p>
+<pre>x := <span class="num">42</span>
+p := &x          <span class="cm">// p is a pointer to x</span>
+
+fmt.<span class="fn">Println</span>(*p)  <span class="cm">// 42 — dereference pointer</span>
+*p = <span class="num">100</span>         <span class="cm">// change value via pointer</span>
+fmt.<span class="fn">Println</span>(x)   <span class="cm">// 100</span>
+
+<span class="cm">// Pointer in function (modify original)</span>
+<span class="kw">func</span> <span class="fn">double</span>(n *<span class="type">int</span>) {
+    *n = *n * <span class="num">2</span>
+}
+<span class="fn">double</span>(&x)
+fmt.<span class="fn">Println</span>(x) <span class="cm">// 200</span></pre>
+</section>
+
+<!-- GOROUTINES -->
+<section id="goroutines">
+  <h2>⚡ Goroutines & Channels</h2>
+  <p>Goroutines are lightweight threads. Use the <code>go</code> keyword to run code concurrently.</p>
+<pre><span class="kw">import</span> (
+    <span class="str">"fmt"</span>
+    <span class="str">"sync"</span>
+)
+
+<span class="kw">func</span> <span class="fn">worker</span>(id <span class="type">int</span>, wg *sync.<span class="type">WaitGroup</span>) {
+    <span class="kw">defer</span> wg.<span class="fn">Done</span>()
+    fmt.<span class="fn">Printf</span>(<span class="str">"Worker %d done\n"</span>, id)
+}
+
+<span class="kw">func</span> <span class="fn">main</span>() {
+    <span class="kw">var</span> wg sync.<span class="type">WaitGroup</span>
+    <span class="kw">for</span> i := <span class="num">1</span>; i <= <span class="num">3</span>; i++ {
+        wg.<span class="fn">Add</span>(<span class="num">1</span>)
+        <span class="kw">go</span> <span class="fn">worker</span>(i, &wg)
+    }
+    wg.<span class="fn">Wait</span>() <span class="cm">// wait for all goroutines</span>
+}
+
+<span class="cm">// Channels — communicate between goroutines</span>
+ch := <span class="fn">make</span>(<span class="kw">chan</span> <span class="type">int</span>)
+<span class="kw">go func</span>() { ch <- <span class="num">42</span> }()
+val := <-ch
+fmt.<span class="fn">Println</span>(val) <span class="cm">// 42</span></pre>
+</section>
+
+<!-- ERROR HANDLING -->
+<section id="errors">
+  <h2>❌ Error Handling</h2>
+  <p>Go has no exceptions. Functions return an <code>error</code> value and you check it explicitly.</p>
+<pre><span class="kw">import</span> (
+    <span class="str">"errors"</span>
+    <span class="str">"fmt"</span>
+)
+
+<span class="kw">func</span> <span class="fn">getAge</span>(age <span class="type">int</span>) (<span class="type">int</span>, <span class="type">error</span>) {
+    <span class="kw">if</span> age < <span class="num">0</span> {
+        <span class="kw">return</span> <span class="num">0</span>, errors.<span class="fn">New</span>(<span class="str">"age cannot be negative"</span>)
+    }
+    <span class="kw">return</span> age, <span class="kw">nil</span>
+}
+
+<span class="kw">func</span> <span class="fn">main</span>() {
+    age, err := <span class="fn">getAge</span>(-<span class="num">5</span>)
+    <span class="kw">if</span> err != <span class="kw">nil</span> {
+        fmt.<span class="fn">Println</span>(<span class="str">"Error:"</span>, err)
+        <span class="kw">return</span>
+    }
+    fmt.<span class="fn">Println</span>(<span class="str">"Age:"</span>, age)
+}</pre>
+  <div class="tip">💡 Always handle errors! Ignoring them with <code>_</code> is bad practice in production code.</div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <h2>📁 Packages & Imports</h2>
+  <p>Go code is organized into packages. Common standard library packages:</p>
+  <table>
+    <tr><th>Package</th><th>Use</th></tr>
+    <tr><td><code>fmt</code></td><td>Print, format strings</td></tr>
+    <tr><td><code>os</code></td><td>File system, env vars, exit</td></tr>
+    <tr><td><code>strings</code></td><td>String manipulation</td></tr>
+    <tr><td><code>strconv</code></td><td>String ↔ number conversions</td></tr>
+    <tr><td><code>net/http</code></td><td>Build HTTP servers & clients</td></tr>
+    <tr><td><code>encoding/json</code></td><td>JSON encode/decode</td></tr>
+    <tr><td><code>time</code></td><td>Dates, timers, sleep</td></tr>
+    <tr><td><code>math</code></td><td>Math functions</td></tr>
+  </table>
+<pre><span class="kw">import</span> (
+    <span class="str">"fmt"</span>
+    <span class="str">"strings"</span>
+    <span class="str">"strconv"</span>
+)
+
+<span class="kw">func</span> <span class="fn">main</span>() {
+    s := strings.<span class="fn">ToUpper</span>(<span class="str">"hello go"</span>)
+    fmt.<span class="fn">Println</span>(s)                  <span class="cm">// HELLO GO</span>
+
+    n := strconv.<span class="fn">Itoa</span>(<span class="num">42</span>)
+    fmt.<span class="fn">Println</span>(<span class="str">"Number: "</span> + n)     <span class="cm">// Number: 42</span>
+}</pre>
+
+  <div class="tip">🎉 <strong>You now know the core of Go!</strong> Next steps: build a REST API with <code>net/http</code>, learn interfaces, and explore popular frameworks like <strong>Gin</strong> or <strong>Fiber</strong>.</div>
+</section>
+
+</main>
+
+<script>
+// Highlight active nav link on scroll
+const sections = document.querySelectorAll('section');
+const links = document.querySelectorAll('nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

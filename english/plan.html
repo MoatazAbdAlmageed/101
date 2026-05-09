@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Mastery Plan for Remote Jobs</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0f172a; color:#e2e8f0; font-family:'Inter',sans-serif; }
+
+header {
+  background: linear-gradient(135deg, #1e3a5f, #0f172a);
+  padding: 3rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #1e293b;
+}
+header h1 { font-size:2.2rem; font-weight:800; background:linear-gradient(90deg,#38bdf8,#818cf8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+header p { color:#94a3b8; margin-top:.5rem; font-size:1rem; }
+
+.badge { display:inline-block; background:#1e3a5f; color:#38bdf8; border:1px solid #38bdf8; border-radius:20px; padding:.3rem .9rem; font-size:.8rem; margin-top:1rem; }
+
+.container { max-width:900px; margin:0 auto; padding:2rem; }
+
+/* Timeline */
+.phase { display:flex; gap:1.5rem; margin-bottom:2.5rem; }
+.phase-num {
+  flex-shrink:0;
+  width:48px; height:48px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:1.1rem;
+}
+.phase-body { flex:1; background:#1e293b; border-radius:12px; padding:1.4rem; border-left:4px solid; }
+.phase-body h2 { font-size:1.1rem; font-weight:700; margin-bottom:.3rem; }
+.phase-body .subtitle { font-size:.82rem; color:#94a3b8; margin-bottom:1rem; }
+.phase-body ul { list-style:none; }
+.phase-body ul li { padding:.4rem 0; font-size:.88rem; color:#cbd5e1; border-bottom:1px solid #0f172a; display:flex; gap:.6rem; }
+.phase-body ul li:last-child { border-bottom:none; }
+.phase-body ul li::before { content:'→'; opacity:.5; flex-shrink:0; }
+
+/* Colors per phase */
+.p1 .phase-num { background:#0c4a6e; color:#38bdf8; }
+.p1 .phase-body { border-color:#38bdf8; }
+.p1 h2 { color:#38bdf8; }
+
+.p2 .phase-num { background:#14532d; color:#4ade80; }
+.p2 .phase-body { border-color:#4ade80; }
+.p2 h2 { color:#4ade80; }
+
+.p3 .phase-num { background:#3b0764; color:#c084fc; }
+.p3 .phase-body { border-color:#c084fc; }
+.p3 h2 { color:#c084fc; }
+
+.p4 .phase-num { background:#431407; color:#fb923c; }
+.p4 .phase-body { border-color:#fb923c; }
+.p4 h2 { color:#fb923c; }
+
+/* Daily schedule */
+.schedule { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin:2rem 0; }
+.slot { background:#1e293b; border-radius:10px; padding:1rem; text-align:center; border-top:3px solid; }
+.slot .time { font-size:.75rem; color:#94a3b8; margin-bottom:.4rem; }
+.slot .activity { font-size:.9rem; font-weight:600; }
+.slot .mins { font-size:.75rem; color:#64748b; margin-top:.3rem; }
+
+.s1 { border-color:#38bdf8; }
+.s2 { border-color:#4ade80; }
+.s3 { border-color:#c084fc; }
+.s4 { border-color:#fb923c; }
+
+/* Resources */
+.resources { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-top:1rem; }
+.res-card { background:#1e293b; border-radius:10px; padding:1rem; }
+.res-card h4 { font-size:.85rem; color:#94a3b8; margin-bottom:.6rem; text-transform:uppercase; letter-spacing:.05em; }
+.res-card a { display:block; color:#38bdf8; font-size:.88rem; text-decoration:none; padding:.3rem 0; border-bottom:1px solid #0f172a; }
+.res-card a:last-child { border-bottom:none; }
+.res-card a:hover { color:#818cf8; }
+
+section h2.sec-title { font-size:1.3rem; font-weight:700; margin:2.5rem 0 1rem; color:#f1f5f9; display:flex; align-items:center; gap:.6rem; }
+
+.tip-box { background:#1e293b; border-left:4px solid #facc15; border-radius:8px; padding:1rem 1.2rem; margin-top:1.5rem; }
+.tip-box p { font-size:.88rem; color:#cbd5e1; line-height:1.7; }
+.tip-box strong { color:#facc15; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌍 English Mastery Roadmap</h1>
+  <p>A structured plan to reach professional English for remote jobs</p>
+  <span class="badge">⏱ 6-Month Plan · Remote Work Focus</span>
+</header>
+
+<div class="container">
+
+  <section>
+    <h2 class="sec-title">📅 Daily Habit (Every Day)</h2>
+    <div class="schedule">
+      <div class="slot s1">
+        <div class="time">Morning</div>
+        <div class="activity">📰 Read News</div>
+        <div class="mins">10 min — newsinlevels.com</div>
+      </div>
+      <div class="slot s2">
+        <div class="time">Afternoon</div>
+        <div class="activity">🎧 Listen & Shadow</div>
+        <div class="mins">15 min — YouTube / Podcast</div>
+      </div>
+      <div class="slot s3">
+        <div class="time">Evening</div>
+        <div class="activity">💬 Speaking Practice</div>
+        <div class="mins">30 min — Hilokal / Discord</div>
+      </div>
+      <div class="slot s4">
+        <div class="time">Night</div>
+        <div class="activity">✍️ Write Something</div>
+        <div class="mins">10 min — journal or LinkedIn</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title">🗺 6-Month Learning Phases</h2>
+
+    <div class="phase p1">
+      <div class="phase-num">1</div>
+      <div class="phase-body">
+        <h2>Month 1–2 · Build the Foundation</h2>
+        <div class="subtitle">Focus: Vocabulary, basic grammar, listening</div>
+        <ul>
+          <li>Learn 10 new words daily using Anki flashcards</li>
+          <li>Watch English YouTube with subtitles (BBC, TED-Ed)</li>
+          <li>Read newsinlevels.com at your comfort level daily</li>
+          <li>Practice shadowing — repeat after native speakers</li>
+          <li>Study basic grammar: tenses, articles, prepositions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase p2">
+      <div class="phase-num">2</div>
+      <div class="phase-body">
+        <h2>Month 3–4 · Start Speaking</h2>
+        <div class="subtitle">Focus: Conversation, pronunciation, writing</div>
+        <ul>
+          <li>Join Hilokal or Tandem — talk to native speakers daily</li>
+          <li>Join English Discord servers and chat actively</li>
+          <li>Write short paragraphs about your daily work</li>
+          <li>Record yourself speaking, then review and improve</li>
+          <li>Learn IT/Tech vocabulary (meetings, PRs, standups)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase p3">
+      <div class="phase-num">3</div>
+      <div class="phase-body">
+        <h2>Month 5 · Professional English</h2>
+        <div class="subtitle">Focus: Work emails, interviews, LinkedIn</div>
+        <ul>
+          <li>Learn how to write professional emails and Slack messages</li>
+          <li>Practice answering common interview questions in English</li>
+          <li>Rewrite your CV and LinkedIn profile in strong English</li>
+          <li>Watch mock interview videos and imitate the style</li>
+          <li>Study phrases like "I'd like to follow up…", "As per our call…"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase p4">
+      <div class="phase-num">4</div>
+      <div class="phase-body">
+        <h2>Month 6 · Apply & Practice Under Pressure</h2>
+        <div class="subtitle">Focus: Real interviews, real applications</div>
+        <ul>
+          <li>Apply to remote jobs — treat rejections as practice</li>
+          <li>Do mock interviews on Pramp or with friends</li>
+          <li>Attend English-speaking meetups (online or local)</li>
+          <li>Write LinkedIn posts about your tech journey in English</li>
+          <li>Aim for 1 real interview per week to build confidence</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title">📚 Recommended Resources</h2>
+    <div class="resources">
+      <div class="res-card">
+        <h4>📖 Reading</h4>
+        <a href="https://www.newsinlevels.com" target="_blank">newsinlevels.com</a>
+        <a href="https://www.bbc.co.uk/learningenglish" target="_blank">BBC Learning English</a>
+        <a href="https://medium.com" target="_blank">Medium (tech articles)</a>
+      </div>
+      <div class="res-card">
+        <h4>🎧 Listening</h4>
+        <a href="https://www.youtube.com/@EnglishwithLucy" target="_blank">English with Lucy</a>
+        <a href="https://www.youtube.com/@TED" target="_blank">TED Talks</a>
+        <a href="https://www.eslpod.com" target="_blank">ESL Pod</a>
+      </div>
+      <div class="res-card">
+        <h4>💬 Speaking</h4>
+        <a href="https://hilokal.com" target="_blank">Hilokal App</a>
+        <a href="https://www.tandem.net" target="_blank">Tandem App</a>
+        <a href="https://discord.com" target="_blank">English Discord Servers</a>
+      </div>
+      <div class="res-card">
+        <h4>✍️ Writing & Grammar</h4>
+        <a href="https://app.grammarly.com" target="_blank">Grammarly</a>
+        <a href="https://www.duolingo.com" target="_blank">Duolingo</a>
+        <a href="https://ankiweb.net" target="_blank">Anki (vocabulary)</a>
+      </div>
+      <div class="res-card">
+        <h4>💼 Interview Prep</h4>
+        <a href="https://www.pramp.com" target="_blank">Pramp (mock interviews)</a>
+        <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+        <a href="https://www.glassdoor.com" target="_blank">Glassdoor Q&A</a>
+      </div>
+      <div class="res-card">
+        <h4>🌐 Remote Jobs</h4>
+        <a href="https://wellfound.com" target="_blank">Wellfound</a>
+        <a href="https://talent.io" target="_blank">Talent.io</a>
+        <a href="https://remoteok.com" target="_blank">RemoteOK</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="tip-box">
+    <p><strong>💡 Golden Rule:</strong> Consistency beats intensity. 
+    30 minutes every day is far better than 5 hours once a week. 
+    Don't aim for perfection — aim for <strong>progress</strong>. 
+    Most remote employers care that you can communicate clearly, not that you sound like a native speaker.</p>
+  </div>
+
+</div>
+</body>
+</html>

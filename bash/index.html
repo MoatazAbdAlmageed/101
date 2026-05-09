@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bash Commands Cheatsheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --orange: #f0883e;
+    --purple: #d2a8ff;
+    --pink: #ff7b72;
+    --yellow: #e3b341;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+  }
+  header {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+  }
+  header h1 {
+    font-size: 2.2rem;
+    background: linear-gradient(90deg, var(--accent), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  header p { color: var(--muted); font-size: 1rem; }
+
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .search-bar input {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.7rem 1.2rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-bar input:focus { border-color: var(--accent); }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .card-header {
+    padding: 1rem 1.2rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-header .icon { font-size: 1.2rem; }
+
+  .cmd-list { padding: 0.5rem 0; }
+  .cmd-item {
+    padding: 0.6rem 1.2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    border-bottom: 1px solid #1c2128;
+    transition: background 0.15s;
+    cursor: default;
+  }
+  .cmd-item:last-child { border-bottom: none; }
+  .cmd-item:hover { background: rgba(88,166,255,0.05); }
+  .cmd {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.88rem;
+    color: var(--green);
+    white-space: nowrap;
+    min-width: 140px;
+  }
+  .desc { font-size: 0.85rem; color: var(--muted); }
+
+  /* category colors */
+  .nav { border-top: 3px solid var(--accent); }
+  .files { border-top: 3px solid var(--green); }
+  .perms { border-top: 3px solid var(--orange); }
+  .process { border-top: 3px solid var(--pink); }
+  .network { border-top: 3px solid var(--purple); }
+  .text { border-top: 3px solid var(--yellow); }
+  .archive { border-top: 3px solid #56d364; }
+  .vars { border-top: 3px solid #79c0ff; }
+
+  .nav .card-header { color: var(--accent); }
+  .files .card-header { color: var(--green); }
+  .perms .card-header { color: var(--orange); }
+  .process .card-header { color: var(--pink); }
+  .network .card-header { color: var(--purple); }
+  .text .card-header { color: var(--yellow); }
+  .archive .card-header { color: #56d364; }
+  .vars .card-header { color: #79c0ff; }
+
+  .no-results {
+    text-align: center;
+    grid-column: 1 / -1;
+    color: var(--muted);
+    padding: 3rem;
+    font-size: 1.1rem;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ Bash Commands Cheatsheet</h1>
+  <p>A quick reference for popular Bash commands — perfect for beginners</p>
+</header>
+
+<div class="search-bar">
+  <input type="text" id="search" placeholder="🔍 Search commands or descriptions..." oninput="filterCmds(this.value)">
+</div>
+
+<div class="container" id="grid">
+
+  <!-- Navigation & Files -->
+  <div class="card nav" data-category="nav">
+    <div class="card-header"><span class="icon">📁</span> Navigation</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">pwd</span><span class="desc">Print current working directory</span></div>
+      <div class="cmd-item"><span class="cmd">ls</span><span class="desc">List files in current directory</span></div>
+      <div class="cmd-item"><span class="cmd">ls -la</span><span class="desc">List all files with details</span></div>
+      <div class="cmd-item"><span class="cmd">cd &lt;dir&gt;</span><span class="desc">Change to a directory</span></div>
+      <div class="cmd-item"><span class="cmd">cd ..</span><span class="desc">Go up one directory</span></div>
+      <div class="cmd-item"><span class="cmd">cd ~</span><span class="desc">Go to home directory</span></div>
+      <div class="cmd-item"><span class="cmd">cd -</span><span class="desc">Go to previous directory</span></div>
+    </div>
+  </div>
+
+  <!-- File Operations -->
+  <div class="card files" data-category="files">
+    <div class="card-header"><span class="icon">📄</span> File Operations</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">touch file.txt</span><span class="desc">Create an empty file</span></div>
+      <div class="cmd-item"><span class="cmd">cp src dest</span><span class="desc">Copy file or directory</span></div>
+      <div class="cmd-item"><span class="cmd">mv src dest</span><span class="desc">Move or rename file</span></div>
+      <div class="cmd-item"><span class="cmd">rm file</span><span class="desc">Delete a file</span></div>
+      <div class="cmd-item"><span class="cmd">rm -rf dir</span><span class="desc">Delete directory recursively</span></div>
+      <div class="cmd-item"><span class="cmd">mkdir dir</span><span class="desc">Create a new directory</span></div>
+      <div class="cmd-item"><span class="cmd">mkdir -p a/b/c</span><span class="desc">Create nested directories</span></div>
+    </div>
+  </div>
+
+  <!-- Text & Viewing -->
+  <div class="card text" data-category="text">
+    <div class="card-header"><span class="icon">📝</span> Viewing & Text</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">cat file</span><span class="desc">Print file contents</span></div>
+      <div class="cmd-item"><span class="cmd">less file</span><span class="desc">Scroll through file</span></div>
+      <div class="cmd-item"><span class="cmd">head -n 10 file</span><span class="desc">Show first 10 lines</span></div>
+      <div class="cmd-item"><span class="cmd">tail -n 10 file</span><span class="desc">Show last 10 lines</span></div>
+      <div class="cmd-item"><span class="cmd">grep "text" file</span><span class="desc">Search text in file</span></div>
+      <div class="cmd-item"><span class="cmd">wc -l file</span><span class="desc">Count lines in file</span></div>
+      <div class="cmd-item"><span class="cmd">echo "hello"</span><span class="desc">Print text to terminal</span></div>
+    </div>
+  </div>
+
+  <!-- Permissions -->
+  <div class="card perms" data-category="perms">
+    <div class="card-header"><span class="icon">🔐</span> Permissions</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">chmod 755 file</span><span class="desc">Set file permissions</span></div>
+      <div class="cmd-item"><span class="cmd">chmod +x file</span><span class="desc">Make file executable</span></div>
+      <div class="cmd-item"><span class="cmd">chown user file</span><span class="desc">Change file owner</span></div>
+      <div class="cmd-item"><span class="cmd">sudo command</span><span class="desc">Run as superuser</span></div>
+      <div class="cmd-item"><span class="cmd">su - user</span><span class="desc">Switch to another user</span></div>
+      <div class="cmd-item"><span class="cmd">whoami</span><span class="desc">Show current username</span></div>
+    </div>
+  </div>
+
+  <!-- Processes -->
+  <div class="card process" data-category="process">
+    <div class="card-header"><span class="icon">⚙️</span> Processes</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">ps aux</span><span class="desc">List all running processes</span></div>
+      <div class="cmd-item"><span class="cmd">top</span><span class="desc">Live process monitor</span></div>
+      <div class="cmd-item"><span class="cmd">htop</span><span class="desc">Interactive process viewer</span></div>
+      <div class="cmd-item"><span class="cmd">kill &lt;pid&gt;</span><span class="desc">Kill process by ID</span></div>
+      <div class="cmd-item"><span class="cmd">kill -9 &lt;pid&gt;</span><span class="desc">Force kill a process</span></div>
+      <div class="cmd-item"><span class="cmd">bg / fg</span><span class="desc">Send/bring process to background/foreground</span></div>
+      <div class="cmd-item"><span class="cmd">Ctrl + C</span><span class="desc">Interrupt/stop current process</span></div>
+    </div>
+  </div>
+
+  <!-- Network -->
+  <div class="card network" data-category="network">
+    <div class="card-header"><span class="icon">🌐</span> Networking</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">ping host</span><span class="desc">Check connectivity to host</span></div>
+      <div class="cmd-item"><span class="cmd">curl URL</span><span class="desc">Fetch content from URL</span></div>
+      <div class="cmd-item"><span class="cmd">wget URL</span><span class="desc">Download file from URL</span></div>
+      <div class="cmd-item"><span class="cmd">ssh user@host</span><span class="desc">Connect to remote server</span></div>
+      <div class="cmd-item"><span class="cmd">scp src user@host:dest</span><span class="desc">Copy file to remote server</span></div>
+      <div class="cmd-item"><span class="cmd">ifconfig / ip a</span><span class="desc">Show network interfaces</span></div>
+      <div class="cmd-item"><span class="cmd">netstat -tuln</span><span class="desc">Show listening ports</span></div>
+    </div>
+  </div>
+
+  <!-- Archives -->
+  <div class="card archive" data-category="archive">
+    <div class="card-header"><span class="icon">📦</span> Archives</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">tar -czf out.tar.gz dir</span><span class="desc">Compress directory to .tar.gz</span></div>
+      <div class="cmd-item"><span class="cmd">tar -xzf file.tar.gz</span><span class="desc">Extract .tar.gz archive</span></div>
+      <div class="cmd-item"><span class="cmd">zip -r out.zip dir</span><span class="desc">Zip a directory</span></div>
+      <div class="cmd-item"><span class="cmd">unzip file.zip</span><span class="desc">Unzip an archive</span></div>
+      <div class="cmd-item"><span class="cmd">gzip file</span><span class="desc">Compress file with gzip</span></div>
+      <div class="cmd-item"><span class="cmd">gunzip file.gz</span><span class="desc">Decompress gzip file</span></div>
+    </div>
+  </div>
+
+  <!-- Variables & Scripting -->
+  <div class="card vars" data-category="vars">
+    <div class="card-header"><span class="icon">💡</span> Variables & Scripting</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">VAR="value"</span><span class="desc">Assign a variable</span></div>
+      <div class="cmd-item"><span class="cmd">echo $VAR</span><span class="desc">Print a variable</span></div>
+      <div class="cmd-item"><span class="cmd">export VAR</span><span class="desc">Export variable to environment</span></div>
+      <div class="cmd-item"><span class="cmd">$0, $1, $2</span><span class="desc">Script name and arguments</span></div>
+      <div class="cmd-item"><span class="cmd">$?</span><span class="desc">Exit code of last command</span></div>
+      <div class="cmd-item"><span class="cmd">#!/bin/bash</span><span class="desc">Shebang — start of a script</span></div>
+      <div class="cmd-item"><span class="cmd">bash script.sh</span><span class="desc">Run a bash script</span></div>
+    </div>
+  </div>
+
+  <div class="no-results" id="no-results">No commands found 😕</div>
+</div>
+
+<script>
+function filterCmds(query) {
+  query = query.toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  let anyVisible = false;
+
+  cards.forEach(card => {
+    const items = card.querySelectorAll('.cmd-item');
+    let cardVisible = false;
+
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      const match = !query || text.includes(query);
+      item.style.display = match ? '' : 'none';
+      if (match) cardVisible = true;
+    });
+
+    card.style.display = cardVisible ? '' : 'none';
+    if (cardVisible) anyVisible = true;
+  });
+
+  document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
+}
+</script>
+
+</body>
+</html>
