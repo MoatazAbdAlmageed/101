@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linux Bash &amp; Regex Cheatsheet</title>
+<meta name="description" content="Complete Linux reference — Bash commands, grep, sed, awk, and Regex patterns.">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --orange: #f0883e;
+    --purple: #d2a8ff;
+    --pink: #ff7b72;
+    --yellow: #e3b341;
+    --cyan: #39d0d8;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+  }
+  header {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+  }
+  header h1 {
+    font-size: 2.2rem;
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  header p { color: var(--muted); font-size: 1rem; }
+
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .search-bar input {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.7rem 1.2rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-bar input:focus { border-color: var(--accent); }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .card-header {
+    padding: 1rem 1.2rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-header .icon { font-size: 1.2rem; }
+
+  .cmd-list { padding: 0.5rem 0; }
+  .cmd-item {
+    padding: 0.6rem 1.2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    border-bottom: 1px solid #1c2128;
+    transition: background 0.15s;
+    cursor: default;
+  }
+  .cmd-item:last-child { border-bottom: none; }
+  .cmd-item:hover { background: rgba(88,166,255,0.05); }
+  .cmd {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.88rem;
+    color: var(--green);
+    white-space: nowrap;
+    min-width: 150px;
+  }
+  .desc { font-size: 0.85rem; color: var(--muted); }
+
+  /* Bash category colors */
+  .nav     { border-top: 3px solid var(--accent); }
+  .files   { border-top: 3px solid var(--green); }
+  .perms   { border-top: 3px solid var(--orange); }
+  .process { border-top: 3px solid var(--pink); }
+  .network { border-top: 3px solid var(--purple); }
+  .text    { border-top: 3px solid var(--yellow); }
+  .archive { border-top: 3px solid #56d364; }
+  .vars    { border-top: 3px solid #79c0ff; }
+
+  .nav     .card-header { color: var(--accent); }
+  .files   .card-header { color: var(--green); }
+  .perms   .card-header { color: var(--orange); }
+  .process .card-header { color: var(--pink); }
+  .network .card-header { color: var(--purple); }
+  .text    .card-header { color: var(--yellow); }
+  .archive .card-header { color: #56d364; }
+  .vars    .card-header { color: #79c0ff; }
+
+  /* Regex category colors */
+  .anchors   { border-top: 3px solid var(--accent); }
+  .quantify  { border-top: 3px solid var(--green); }
+  .classes   { border-top: 3px solid var(--orange); }
+  .groups    { border-top: 3px solid var(--purple); }
+  .grep-card { border-top: 3px solid var(--pink); }
+  .sed-card  { border-top: 3px solid var(--yellow); }
+  .awk-card  { border-top: 3px solid var(--cyan); }
+  .special   { border-top: 3px solid #56d364; }
+
+  .anchors   .card-header { color: var(--accent); }
+  .quantify  .card-header { color: var(--green); }
+  .classes   .card-header { color: var(--orange); }
+  .groups    .card-header { color: var(--purple); }
+  .grep-card .card-header { color: var(--pink); }
+  .sed-card  .card-header { color: var(--yellow); }
+  .awk-card  .card-header { color: var(--cyan); }
+  .special   .card-header { color: #56d364; }
+
+  /* Section divider */
+  .section-divider {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+  .section-divider span {
+    font-size: 1rem;
+    font-weight: 700;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .section-divider hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+  .bash-label { color: var(--accent); }
+  .regex-label { color: var(--cyan); }
+
+  .no-results {
+    text-align: center;
+    grid-column: 1 / -1;
+    color: var(--muted);
+    padding: 3rem;
+    font-size: 1.1rem;
+    display: none;
+  }
+
+  /* copy-on-click */
+  .cmd { cursor: pointer; position: relative; }
+  .cmd:hover::after {
+    content: 'copy';
+    position: absolute;
+    top: -1.4rem;
+    left: 0;
+    font-size: 0.7rem;
+    background: var(--accent);
+    color: #000;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+  }
+  .copied { color: var(--accent) !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🐧 Linux Bash &amp; Regex Cheatsheet</h1>
+  <p>Bash Commands · Navigation · Files · Permissions · Processes · Networking · Regex · grep · sed · awk</p>
+</header>
+
+<div class="search-bar">
+  <input type="text" id="search" placeholder="🔍 Search patterns or descriptions..." oninput="filterCmds(this.value)">
+</div>
+
+<div class="container" id="grid">
+
+  <!-- ===== BASH SECTION ===== -->
+  <div class="section-divider">
+    <span class="bash-label">⚡ Bash Commands</span>
+    <hr>
+  </div>
+
+  <!-- Navigation -->
+  <div class="card nav" data-category="nav navigation">
+    <div class="card-header"><span class="icon">📁</span> Navigation</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">pwd</span><span class="desc">Print current working directory</span></div>
+      <div class="cmd-item"><span class="cmd">ls</span><span class="desc">List files in current directory</span></div>
+      <div class="cmd-item"><span class="cmd">ls -la</span><span class="desc">List all files with details</span></div>
+      <div class="cmd-item"><span class="cmd">cd &lt;dir&gt;</span><span class="desc">Change to a directory</span></div>
+      <div class="cmd-item"><span class="cmd">cd ..</span><span class="desc">Go up one directory</span></div>
+      <div class="cmd-item"><span class="cmd">cd ~</span><span class="desc">Go to home directory</span></div>
+      <div class="cmd-item"><span class="cmd">cd -</span><span class="desc">Go to previous directory</span></div>
+    </div>
+  </div>
+
+  <!-- File Operations -->
+  <div class="card files" data-category="files file operations">
+    <div class="card-header"><span class="icon">📄</span> File Operations</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">touch file.txt</span><span class="desc">Create an empty file</span></div>
+      <div class="cmd-item"><span class="cmd">cp src dest</span><span class="desc">Copy file or directory</span></div>
+      <div class="cmd-item"><span class="cmd">mv src dest</span><span class="desc">Move or rename file</span></div>
+      <div class="cmd-item"><span class="cmd">rm file</span><span class="desc">Delete a file</span></div>
+      <div class="cmd-item"><span class="cmd">rm -rf dir</span><span class="desc">Delete directory recursively</span></div>
+      <div class="cmd-item"><span class="cmd">mkdir dir</span><span class="desc">Create a new directory</span></div>
+      <div class="cmd-item"><span class="cmd">mkdir -p a/b/c</span><span class="desc">Create nested directories</span></div>
+    </div>
+  </div>
+
+  <!-- Text & Viewing -->
+  <div class="card text" data-category="text viewing">
+    <div class="card-header"><span class="icon">📝</span> Viewing &amp; Text</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">cat file</span><span class="desc">Print file contents</span></div>
+      <div class="cmd-item"><span class="cmd">less file</span><span class="desc">Scroll through file</span></div>
+      <div class="cmd-item"><span class="cmd">head -n 10 file</span><span class="desc">Show first 10 lines</span></div>
+      <div class="cmd-item"><span class="cmd">tail -n 10 file</span><span class="desc">Show last 10 lines</span></div>
+      <div class="cmd-item"><span class="cmd">grep "text" file</span><span class="desc">Search text in file</span></div>
+      <div class="cmd-item"><span class="cmd">wc -l file</span><span class="desc">Count lines in file</span></div>
+      <div class="cmd-item"><span class="cmd">echo "hello"</span><span class="desc">Print text to terminal</span></div>
+    </div>
+  </div>
+
+  <!-- Permissions -->
+  <div class="card perms" data-category="permissions perms">
+    <div class="card-header"><span class="icon">🔐</span> Permissions</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">chmod 755 file</span><span class="desc">Set file permissions</span></div>
+      <div class="cmd-item"><span class="cmd">chmod +x file</span><span class="desc">Make file executable</span></div>
+      <div class="cmd-item"><span class="cmd">chown user file</span><span class="desc">Change file owner</span></div>
+      <div class="cmd-item"><span class="cmd">sudo command</span><span class="desc">Run as superuser</span></div>
+      <div class="cmd-item"><span class="cmd">su - user</span><span class="desc">Switch to another user</span></div>
+      <div class="cmd-item"><span class="cmd">whoami</span><span class="desc">Show current username</span></div>
+    </div>
+  </div>
+
+  <!-- Processes -->
+  <div class="card process" data-category="processes process">
+    <div class="card-header"><span class="icon">⚙️</span> Processes</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">ps aux</span><span class="desc">List all running processes</span></div>
+      <div class="cmd-item"><span class="cmd">top</span><span class="desc">Live process monitor</span></div>
+      <div class="cmd-item"><span class="cmd">htop</span><span class="desc">Interactive process viewer</span></div>
+      <div class="cmd-item"><span class="cmd">kill &lt;pid&gt;</span><span class="desc">Kill process by ID</span></div>
+      <div class="cmd-item"><span class="cmd">kill -9 &lt;pid&gt;</span><span class="desc">Force kill a process</span></div>
+      <div class="cmd-item"><span class="cmd">bg / fg</span><span class="desc">Send/bring process to background/foreground</span></div>
+      <div class="cmd-item"><span class="cmd">Ctrl + C</span><span class="desc">Interrupt/stop current process</span></div>
+    </div>
+  </div>
+
+  <!-- Network -->
+  <div class="card network" data-category="network networking">
+    <div class="card-header"><span class="icon">🌐</span> Networking</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">ping host</span><span class="desc">Check connectivity to host</span></div>
+      <div class="cmd-item"><span class="cmd">curl URL</span><span class="desc">Fetch content from URL</span></div>
+      <div class="cmd-item"><span class="cmd">wget URL</span><span class="desc">Download file from URL</span></div>
+      <div class="cmd-item"><span class="cmd">ssh user@host</span><span class="desc">Connect to remote server</span></div>
+      <div class="cmd-item"><span class="cmd">scp src user@host:dest</span><span class="desc">Copy file to remote server</span></div>
+      <div class="cmd-item"><span class="cmd">ifconfig / ip a</span><span class="desc">Show network interfaces</span></div>
+      <div class="cmd-item"><span class="cmd">netstat -tuln</span><span class="desc">Show listening ports</span></div>
+    </div>
+  </div>
+
+  <!-- Archives -->
+  <div class="card archive" data-category="archive archives">
+    <div class="card-header"><span class="icon">📦</span> Archives</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">tar -czf out.tar.gz dir</span><span class="desc">Compress directory to .tar.gz</span></div>
+      <div class="cmd-item"><span class="cmd">tar -xzf file.tar.gz</span><span class="desc">Extract .tar.gz archive</span></div>
+      <div class="cmd-item"><span class="cmd">zip -r out.zip dir</span><span class="desc">Zip a directory</span></div>
+      <div class="cmd-item"><span class="cmd">unzip file.zip</span><span class="desc">Unzip an archive</span></div>
+      <div class="cmd-item"><span class="cmd">gzip file</span><span class="desc">Compress file with gzip</span></div>
+      <div class="cmd-item"><span class="cmd">gunzip file.gz</span><span class="desc">Decompress gzip file</span></div>
+    </div>
+  </div>
+
+  <!-- Variables & Scripting -->
+  <div class="card vars" data-category="variables scripting vars">
+    <div class="card-header"><span class="icon">💡</span> Variables &amp; Scripting</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">VAR="value"</span><span class="desc">Assign a variable</span></div>
+      <div class="cmd-item"><span class="cmd">echo $VAR</span><span class="desc">Print a variable</span></div>
+      <div class="cmd-item"><span class="cmd">export VAR</span><span class="desc">Export variable to environment</span></div>
+      <div class="cmd-item"><span class="cmd">$0, $1, $2</span><span class="desc">Script name and arguments</span></div>
+      <div class="cmd-item"><span class="cmd">$?</span><span class="desc">Exit code of last command</span></div>
+      <div class="cmd-item"><span class="cmd">#!/bin/bash</span><span class="desc">Shebang — start of a script</span></div>
+      <div class="cmd-item"><span class="cmd">bash script.sh</span><span class="desc">Run a bash script</span></div>
+    </div>
+  </div>
+
+  <!-- ===== REGEX SECTION ===== -->
+  <div class="section-divider">
+    <span class="regex-label">🔍 Regex</span>
+    <hr>
+  </div>
+
+  <!-- Anchors -->
+  <div class="card anchors" data-category="anchors">
+    <div class="card-header"><span class="icon">⚓</span> Anchors</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">^</span><span class="desc">Match start of line</span></div>
+      <div class="cmd-item"><span class="cmd">$</span><span class="desc">Match end of line</span></div>
+      <div class="cmd-item"><span class="cmd">\b</span><span class="desc">Word boundary</span></div>
+      <div class="cmd-item"><span class="cmd">\B</span><span class="desc">Non-word boundary</span></div>
+      <div class="cmd-item"><span class="cmd">\A</span><span class="desc">Start of string (PCRE)</span></div>
+      <div class="cmd-item"><span class="cmd">\Z</span><span class="desc">End of string (PCRE)</span></div>
+    </div>
+  </div>
+
+  <!-- Quantifiers -->
+  <div class="card quantify" data-category="quantifiers">
+    <div class="card-header"><span class="icon">🔢</span> Quantifiers</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">*</span><span class="desc">0 or more times</span></div>
+      <div class="cmd-item"><span class="cmd">+</span><span class="desc">1 or more times</span></div>
+      <div class="cmd-item"><span class="cmd">?</span><span class="desc">0 or 1 time (optional)</span></div>
+      <div class="cmd-item"><span class="cmd">{n}</span><span class="desc">Exactly n times</span></div>
+      <div class="cmd-item"><span class="cmd">{n,}</span><span class="desc">At least n times</span></div>
+      <div class="cmd-item"><span class="cmd">{n,m}</span><span class="desc">Between n and m times</span></div>
+      <div class="cmd-item"><span class="cmd">*?  +?  ??</span><span class="desc">Lazy (non-greedy) versions</span></div>
+    </div>
+  </div>
+
+  <!-- Character Classes -->
+  <div class="card classes" data-category="classes">
+    <div class="card-header"><span class="icon">🔡</span> Character Classes</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">.</span><span class="desc">Any character except newline</span></div>
+      <div class="cmd-item"><span class="cmd">\d</span><span class="desc">Digit [0-9]</span></div>
+      <div class="cmd-item"><span class="cmd">\D</span><span class="desc">Non-digit</span></div>
+      <div class="cmd-item"><span class="cmd">\w</span><span class="desc">Word char [a-zA-Z0-9_]</span></div>
+      <div class="cmd-item"><span class="cmd">\W</span><span class="desc">Non-word character</span></div>
+      <div class="cmd-item"><span class="cmd">\s</span><span class="desc">Whitespace (space, tab…)</span></div>
+      <div class="cmd-item"><span class="cmd">\S</span><span class="desc">Non-whitespace</span></div>
+      <div class="cmd-item"><span class="cmd">[abc]</span><span class="desc">One of: a, b, or c</span></div>
+      <div class="cmd-item"><span class="cmd">[^abc]</span><span class="desc">NOT a, b, or c</span></div>
+      <div class="cmd-item"><span class="cmd">[a-z]</span><span class="desc">Any lowercase letter</span></div>
+      <div class="cmd-item"><span class="cmd">[A-Z0-9]</span><span class="desc">Uppercase or digit</span></div>
+    </div>
+  </div>
+
+  <!-- Groups & Alternation -->
+  <div class="card groups" data-category="groups">
+    <div class="card-header"><span class="icon">🔗</span> Groups &amp; Alternation</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">(abc)</span><span class="desc">Capture group</span></div>
+      <div class="cmd-item"><span class="cmd">(?:abc)</span><span class="desc">Non-capturing group</span></div>
+      <div class="cmd-item"><span class="cmd">(?=abc)</span><span class="desc">Positive lookahead</span></div>
+      <div class="cmd-item"><span class="cmd">(?!abc)</span><span class="desc">Negative lookahead</span></div>
+      <div class="cmd-item"><span class="cmd">(?&lt;=abc)</span><span class="desc">Positive lookbehind</span></div>
+      <div class="cmd-item"><span class="cmd">(?&lt;!abc)</span><span class="desc">Negative lookbehind</span></div>
+      <div class="cmd-item"><span class="cmd">a|b</span><span class="desc">Alternation — a OR b</span></div>
+      <div class="cmd-item"><span class="cmd">\1  \2</span><span class="desc">Backreference to group 1, 2</span></div>
+    </div>
+  </div>
+
+  <!-- grep -->
+  <div class="card grep-card" data-category="grep">
+    <div class="card-header"><span class="icon">🔎</span> grep with Regex</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">grep 'pat' file</span><span class="desc">Basic search</span></div>
+      <div class="cmd-item"><span class="cmd">grep -E 'pat' file</span><span class="desc">Extended regex (ERE)</span></div>
+      <div class="cmd-item"><span class="cmd">grep -P 'pat' file</span><span class="desc">Perl-compatible regex (PCRE)</span></div>
+      <div class="cmd-item"><span class="cmd">grep -i 'pat' file</span><span class="desc">Case-insensitive</span></div>
+      <div class="cmd-item"><span class="cmd">grep -v 'pat' file</span><span class="desc">Invert match (exclude)</span></div>
+      <div class="cmd-item"><span class="cmd">grep -n 'pat' file</span><span class="desc">Show line numbers</span></div>
+      <div class="cmd-item"><span class="cmd">grep -c 'pat' file</span><span class="desc">Count matching lines</span></div>
+      <div class="cmd-item"><span class="cmd">grep -o 'pat' file</span><span class="desc">Print only matched part</span></div>
+      <div class="cmd-item"><span class="cmd">grep -r 'pat' dir/</span><span class="desc">Recursive search</span></div>
+      <div class="cmd-item"><span class="cmd">grep -l 'pat' *.txt</span><span class="desc">List matching filenames only</span></div>
+    </div>
+  </div>
+
+  <!-- sed -->
+  <div class="card sed-card" data-category="sed">
+    <div class="card-header"><span class="icon">✏️</span> sed with Regex</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">sed 's/old/new/' file</span><span class="desc">Replace first match per line</span></div>
+      <div class="cmd-item"><span class="cmd">sed 's/old/new/g' file</span><span class="desc">Replace all matches</span></div>
+      <div class="cmd-item"><span class="cmd">sed 's/old/new/gi' file</span><span class="desc">Replace all, case-insensitive</span></div>
+      <div class="cmd-item"><span class="cmd">sed -i 's/old/new/g' f</span><span class="desc">Edit file in-place</span></div>
+      <div class="cmd-item"><span class="cmd">sed '/pat/d' file</span><span class="desc">Delete lines matching pattern</span></div>
+      <div class="cmd-item"><span class="cmd">sed -n '/pat/p' file</span><span class="desc">Print only matching lines</span></div>
+      <div class="cmd-item"><span class="cmd">sed 's/\(grp\)/[\1]/'</span><span class="desc">Use capture group in replace</span></div>
+      <div class="cmd-item"><span class="cmd">sed 's/^/  /' file</span><span class="desc">Indent every line</span></div>
+      <div class="cmd-item"><span class="cmd">sed '/^$/d' file</span><span class="desc">Remove blank lines</span></div>
+    </div>
+  </div>
+
+  <!-- awk -->
+  <div class="card awk-card" data-category="awk">
+    <div class="card-header"><span class="icon">⚙️</span> awk with Regex</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">awk '/pat/' file</span><span class="desc">Print lines matching pattern</span></div>
+      <div class="cmd-item"><span class="cmd">awk '!/pat/' file</span><span class="desc">Print non-matching lines</span></div>
+      <div class="cmd-item"><span class="cmd">awk '$2 ~ /pat/'</span><span class="desc">Match regex in field 2</span></div>
+      <div class="cmd-item"><span class="cmd">awk '$2 !~ /pat/'</span><span class="desc">Field 2 does NOT match</span></div>
+      <div class="cmd-item"><span class="cmd">awk '{gsub(/old/,"new"); print}'</span><span class="desc">Global substitute</span></div>
+      <div class="cmd-item"><span class="cmd">awk '{sub(/old/,"new"); print}'</span><span class="desc">First match substitute</span></div>
+      <div class="cmd-item"><span class="cmd">awk 'NR==2,/end/'</span><span class="desc">Range from line 2 to pattern</span></div>
+    </div>
+  </div>
+
+  <!-- Special / POSIX -->
+  <div class="card special" data-category="posix special">
+    <div class="card-header"><span class="icon">🧩</span> POSIX &amp; Special</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">[:alpha:]</span><span class="desc">Any alphabetic character</span></div>
+      <div class="cmd-item"><span class="cmd">[:digit:]</span><span class="desc">Any digit 0-9</span></div>
+      <div class="cmd-item"><span class="cmd">[:alnum:]</span><span class="desc">Alphanumeric characters</span></div>
+      <div class="cmd-item"><span class="cmd">[:space:]</span><span class="desc">Whitespace characters</span></div>
+      <div class="cmd-item"><span class="cmd">[:upper:]</span><span class="desc">Uppercase letters</span></div>
+      <div class="cmd-item"><span class="cmd">[:lower:]</span><span class="desc">Lowercase letters</span></div>
+      <div class="cmd-item"><span class="cmd">[:punct:]</span><span class="desc">Punctuation characters</span></div>
+      <div class="cmd-item"><span class="cmd">[[:digit:]]</span><span class="desc">POSIX class inside bracket expr</span></div>
+    </div>
+  </div>
+
+  <div class="no-results" id="no-results">No patterns found 😕</div>
+</div>
+
+<script>
+// Filter
+function filterCmds(query) {
+  query = query.toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  let anyVisible = false;
+
+  cards.forEach(card => {
+    const items = card.querySelectorAll('.cmd-item');
+    let cardVisible = false;
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      const match = !query || text.includes(query);
+      item.style.display = match ? '' : 'none';
+      if (match) cardVisible = true;
+    });
+    card.style.display = cardVisible ? '' : 'none';
+    if (cardVisible) anyVisible = true;
+  });
+
+  document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
+}
+
+// Copy on click
+document.querySelectorAll('.cmd').forEach(el => {
+  el.addEventListener('click', () => {
+    navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+      el.classList.add('copied');
+      setTimeout(() => el.classList.remove('copied'), 1200);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
