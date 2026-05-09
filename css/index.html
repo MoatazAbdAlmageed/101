@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS — Zero to Hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#c9d1d9;font-family:'Inter',sans-serif;display:flex;min-height:100vh}
+nav{width:220px;flex-shrink:0;background:#161b22;border-right:1px solid #30363d;padding:1.5rem 0;position:fixed;top:0;left:0;height:100vh;overflow-y:auto}
+nav .logo{padding:.5rem 1.2rem 1.5rem;font-size:1.1rem;font-weight:800;color:#e879f9}
+nav .logo span{color:#fff}
+nav a{display:block;padding:.5rem 1.2rem;font-size:.85rem;color:#8b949e;text-decoration:none;border-left:3px solid transparent;transition:.15s}
+nav a:hover,nav a.active{color:#e879f9;border-left-color:#e879f9;background:rgba(232,121,249,.06)}
+main{margin-left:220px;padding:2rem;max-width:860px;width:100%}
+header{margin-bottom:2.5rem}
+header h1{font-size:2rem;font-weight:800;color:#fff}
+header h1 span{color:#e879f9}
+header p{color:#8b949e;margin-top:.4rem}
+section{margin-bottom:3rem;scroll-margin-top:2rem}
+section h2{font-size:1.2rem;font-weight:700;color:#fff;padding-bottom:.6rem;border-bottom:1px solid #21262d;margin-bottom:1.2rem}
+section p{font-size:.9rem;color:#8b949e;line-height:1.8;margin-bottom:1rem}
+pre{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1.2rem;overflow-x:auto;font-size:.83rem;font-family:'Fira Code',monospace;line-height:1.7;margin-bottom:1rem}
+.prop{color:#79c0ff}
+.val{color:#a5d6ff}
+.sel{color:#e879f9}
+.cm{color:#8b949e;font-style:italic}
+.at{color:#ffa657}
+.num{color:#79c0ff}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1rem}
+.card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1rem}
+.card h4{font-size:.88rem;color:#e879f9;margin-bottom:.4rem}
+.card p{font-size:.8rem;color:#8b949e;line-height:1.6}
+.tip{background:#2d0a3e;border-left:4px solid #e879f9;border-radius:0 8px 8px 0;padding:.9rem 1rem;font-size:.85rem;color:#f0abfc;margin-bottom:1rem;line-height:1.7}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1rem}
+th{background:#161b22;color:#8b949e;padding:.6rem 1rem;text-align:left;border:1px solid #30363d}
+td{padding:.6rem 1rem;border:1px solid #21262d;color:#c9d1d9}
+tr:nth-child(even) td{background:#0d1117}
+code{font-family:'Fira Code',monospace;background:#21262d;padding:.1rem .4rem;border-radius:4px;font-size:.82rem;color:#ffa657}
+
+/* Live demos */
+.demo{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+.demo-label{font-size:.75rem;color:#8b949e;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.box{width:80px;height:80px;background:#e879f9;border-radius:8px;display:inline-block;margin:.3rem}
+.box-blue{background:#38bdf8}
+.box-green{background:#4ade80}
+.flex-demo{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.grid-demo{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;max-width:260px}
+.grid-demo .box{width:100%;height:50px;margin:0}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">CSS<span>101</span></div>
+  <a href="#intro">🎨 Introduction</a>
+  <a href="#selectors">🎯 Selectors</a>
+  <a href="#box">📦 Box Model</a>
+  <a href="#colors">🌈 Colors</a>
+  <a href="#typography">🔤 Typography</a>
+  <a href="#display">📐 Display</a>
+  <a href="#flexbox">↔️ Flexbox</a>
+  <a href="#grid">🔲 Grid</a>
+  <a href="#position">📍 Position</a>
+  <a href="#pseudo">🔮 Pseudo</a>
+  <a href="#variables">💡 Variables</a>
+  <a href="#animations">✨ Animations</a>
+  <a href="#responsive">📱 Responsive</a>
+  <a href="#tips">🚀 Pro Tips</a>
+</nav>
+
+<main>
+<header>
+  <h1>🎨 <span>CSS</span> — Zero to Hero</h1>
+  <p>Master CSS from the basics to modern layout and animations</p>
+</header>
+
+<section id="intro">
+  <h2>🎨 What is CSS?</h2>
+  <p>CSS (Cascading Style Sheets) controls the <strong>look and feel</strong> of HTML elements — colors, layout, fonts, animations, and more.</p>
+  <div class="cards">
+    <div class="card"><h4>🎯 Selectors</h4><p>Target any HTML element precisely.</p></div>
+    <div class="card"><h4>📦 Box Model</h4><p>Every element is a box with margin, border, padding.</p></div>
+    <div class="card"><h4>↔️ Flexbox & Grid</h4><p>Modern, powerful layout systems.</p></div>
+    <div class="card"><h4>✨ Animations</h4><p>Smooth transitions and keyframe animations.</p></div>
+  </div>
+<pre><span class="cm">/* 3 ways to add CSS */</span>
+
+<span class="cm">/* 1. Inline */</span>
+&lt;p style="<span class="prop">color</span>:<span class="val">red</span>"&gt;Hello&lt;/p&gt;
+
+<span class="cm">/* 2. Internal (inside &lt;head&gt;) */</span>
+&lt;style&gt; <span class="sel">p</span> { <span class="prop">color</span>: <span class="val">red</span>; } &lt;/style&gt;
+
+<span class="cm">/* 3. External (recommended) */</span>
+&lt;link rel="stylesheet" href="style.css"&gt;</pre>
+</section>
+
+<section id="selectors">
+  <h2>🎯 Selectors</h2>
+  <table>
+    <tr><th>Selector</th><th>Example</th><th>Targets</th></tr>
+    <tr><td>Element</td><td><code>p</code></td><td>All &lt;p&gt; tags</td></tr>
+    <tr><td>Class</td><td><code>.card</code></td><td>Elements with class="card"</td></tr>
+    <tr><td>ID</td><td><code>#header</code></td><td>Element with id="header"</td></tr>
+    <tr><td>Descendant</td><td><code>div p</code></td><td>&lt;p&gt; inside &lt;div&gt;</td></tr>
+    <tr><td>Child</td><td><code>ul > li</code></td><td>Direct &lt;li&gt; children of &lt;ul&gt;</td></tr>
+    <tr><td>Group</td><td><code>h1, h2, h3</code></td><td>All headings</td></tr>
+    <tr><td>Attribute</td><td><code>[type="text"]</code></td><td>Input with type text</td></tr>
+  </table>
+<pre><span class="cm">/* Specificity order: ID > Class > Element */</span>
+<span class="sel">p</span>          { <span class="prop">color</span>: <span class="val">black</span>; }   <span class="cm">/* specificity: 1 */</span>
+<span class="sel">.highlight</span> { <span class="prop">color</span>: <span class="val">blue</span>; }    <span class="cm">/* specificity: 10 */</span>
+<span class="sel">#title</span>     { <span class="prop">color</span>: <span class="val">red</span>; }     <span class="cm">/* specificity: 100 */</span></pre>
+</section>
+
+<section id="box">
+  <h2>📦 Box Model</h2>
+  <p>Every element is a rectangular box. From inside out: <strong>content → padding → border → margin</strong>.</p>
+<pre><span class="sel">.box</span> {
+  <span class="prop">width</span>:   <span class="val">200px</span>;
+  <span class="prop">padding</span>: <span class="val">16px</span>;          <span class="cm">/* space inside */</span>
+  <span class="prop">border</span>:  <span class="val">2px solid #333</span>; <span class="cm">/* border around */</span>
+  <span class="prop">margin</span>:  <span class="val">24px</span>;          <span class="cm">/* space outside */</span>
+
+  <span class="cm">/* Makes width include padding+border */</span>
+  <span class="prop">box-sizing</span>: <span class="val">border-box</span>;
+}
+
+<span class="cm">/* Apply border-box globally (best practice) */</span>
+<span class="sel">*</span> { <span class="prop">box-sizing</span>: <span class="val">border-box</span>; }</pre>
+</section>
+
+<section id="colors">
+  <h2>🌈 Colors</h2>
+<pre><span class="sel">.element</span> {
+  <span class="prop">color</span>:            <span class="val">#ff6b6b</span>;          <span class="cm">/* hex */</span>
+  <span class="prop">background-color</span>: <span class="val">rgb(99,102,241)</span>;   <span class="cm">/* rgb */</span>
+  <span class="prop">border-color</span>:     <span class="val">hsl(271,91%,65%)</span>; <span class="cm">/* hsl */</span>
+  <span class="prop">opacity</span>:          <span class="val">0.8</span>;               <span class="cm">/* 0–1 */</span>
+
+  <span class="cm">/* Gradient background */</span>
+  <span class="prop">background</span>: <span class="val">linear-gradient(135deg, #667eea, #764ba2)</span>;
+}</pre>
+  <div class="tip">💡 <strong>HSL is best</strong> for theming — easy to adjust lightness while keeping the same hue. Example: <code>hsl(270, 70%, 60%)</code></div>
+</section>
+
+<section id="typography">
+  <h2>🔤 Typography</h2>
+<pre><span class="at">@import</span> <span class="val">url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap')</span>;
+
+<span class="sel">body</span> {
+  <span class="prop">font-family</span>:    <span class="val">'Inter', sans-serif</span>;
+  <span class="prop">font-size</span>:      <span class="val">16px</span>;
+  <span class="prop">font-weight</span>:    <span class="val">400</span>;
+  <span class="prop">line-height</span>:    <span class="val">1.6</span>;
+  <span class="prop">letter-spacing</span>: <span class="val">0.02em</span>;
+  <span class="prop">text-align</span>:     <span class="val">left</span>;
+}
+
+<span class="sel">h1</span> { <span class="prop">font-size</span>: <span class="val">2.5rem</span>; <span class="prop">font-weight</span>: <span class="val">800</span>; }
+<span class="sel">h2</span> { <span class="prop">font-size</span>: <span class="val">1.75rem</span>; }
+<span class="sel">p</span>  { <span class="prop">font-size</span>: <span class="val">1rem</span>; <span class="prop">color</span>: <span class="val">#666</span>; }</pre>
+</section>
+
+<section id="display">
+  <h2>📐 Display Property</h2>
+  <table>
+    <tr><th>Value</th><th>Behavior</th></tr>
+    <tr><td><code>block</code></td><td>Full width, starts on new line (div, p, h1)</td></tr>
+    <tr><td><code>inline</code></td><td>Fits content, no width/height (span, a)</td></tr>
+    <tr><td><code>inline-block</code></td><td>Inline but accepts width/height</td></tr>
+    <tr><td><code>flex</code></td><td>Flexible row/column layout</td></tr>
+    <tr><td><code>grid</code></td><td>2D row and column layout</td></tr>
+    <tr><td><code>none</code></td><td>Hides element completely</td></tr>
+  </table>
+</section>
+
+<section id="flexbox">
+  <h2>↔️ Flexbox</h2>
+  <p>One-dimensional layout — arrange items in a <strong>row</strong> or <strong>column</strong>.</p>
+<pre><span class="sel">.container</span> {
+  <span class="prop">display</span>:         <span class="val">flex</span>;
+  <span class="prop">flex-direction</span>:  <span class="val">row</span>;          <span class="cm">/* row | column */</span>
+  <span class="prop">justify-content</span>: <span class="val">space-between</span>;<span class="cm">/* main axis */</span>
+  <span class="prop">align-items</span>:     <span class="val">center</span>;       <span class="cm">/* cross axis */</span>
+  <span class="prop">flex-wrap</span>:       <span class="val">wrap</span>;         <span class="cm">/* wrap to next line */</span>
+  <span class="prop">gap</span>:             <span class="val">1rem</span>;
+}
+
+<span class="sel">.item</span> {
+  <span class="prop">flex</span>: <span class="val">1</span>;          <span class="cm">/* grow equally */</span>
+  <span class="prop">flex-shrink</span>: <span class="val">0</span>;   <span class="cm">/* don't shrink */</span>
+}</pre>
+  <div class="demo">
+    <div class="demo-label">Live Demo — Flexbox</div>
+    <div class="flex-demo">
+      <div class="box"></div>
+      <div class="box box-blue"></div>
+      <div class="box box-green"></div>
+    </div>
+  </div>
+</section>
+
+<section id="grid">
+  <h2>🔲 CSS Grid</h2>
+  <p>Two-dimensional layout — control both <strong>rows and columns</strong>.</p>
+<pre><span class="sel">.grid</span> {
+  <span class="prop">display</span>:               <span class="val">grid</span>;
+  <span class="prop">grid-template-columns</span>: <span class="val">repeat(3, 1fr)</span>;  <span class="cm">/* 3 equal cols */</span>
+  <span class="prop">grid-template-rows</span>:    <span class="val">auto</span>;
+  <span class="prop">gap</span>:                   <span class="val">1rem</span>;
+}
+
+<span class="cm">/* Responsive grid */</span>
+<span class="sel">.grid</span> {
+  <span class="prop">grid-template-columns</span>: <span class="val">repeat(auto-fit, minmax(200px, 1fr))</span>;
+}
+
+<span class="cm">/* Span across columns */</span>
+<span class="sel">.wide</span> { <span class="prop">grid-column</span>: <span class="val">span 2</span>; }</pre>
+  <div class="demo">
+    <div class="demo-label">Live Demo — Grid</div>
+    <div class="grid-demo">
+      <div class="box" style="margin:0;width:100%;height:50px"></div>
+      <div class="box box-blue" style="margin:0;width:100%;height:50px"></div>
+      <div class="box box-green" style="margin:0;width:100%;height:50px"></div>
+      <div class="box box-blue" style="margin:0;width:100%;height:50px;grid-column:span 2"></div>
+      <div class="box" style="margin:0;width:100%;height:50px"></div>
+    </div>
+  </div>
+</section>
+
+<section id="position">
+  <h2>📍 Positioning</h2>
+  <table>
+    <tr><th>Value</th><th>Behavior</th></tr>
+    <tr><td><code>static</code></td><td>Default, normal document flow</td></tr>
+    <tr><td><code>relative</code></td><td>Offset from its normal position</td></tr>
+    <tr><td><code>absolute</code></td><td>Removed from flow, relative to nearest positioned parent</td></tr>
+    <tr><td><code>fixed</code></td><td>Stays fixed to the viewport (navbar, modal)</td></tr>
+    <tr><td><code>sticky</code></td><td>Scrolls with page until threshold, then sticks</td></tr>
+  </table>
+<pre><span class="sel">.parent</span> { <span class="prop">position</span>: <span class="val">relative</span>; }
+
+<span class="sel">.child</span> {
+  <span class="prop">position</span>: <span class="val">absolute</span>;
+  <span class="prop">top</span>:    <span class="val">0</span>;
+  <span class="prop">right</span>:  <span class="val">0</span>;
+}
+
+<span class="sel">nav</span> {
+  <span class="prop">position</span>: <span class="val">fixed</span>;
+  <span class="prop">top</span>: <span class="val">0</span>; <span class="prop">left</span>: <span class="val">0</span>; <span class="prop">width</span>: <span class="val">100%</span>;
+}</pre>
+</section>
+
+<section id="pseudo">
+  <h2>🔮 Pseudo-classes & Pseudo-elements</h2>
+<pre><span class="cm">/* Pseudo-classes — element state */</span>
+<span class="sel">a:hover</span>   { <span class="prop">color</span>: <span class="val">blue</span>; }
+<span class="sel">a:visited</span> { <span class="prop">color</span>: <span class="val">purple</span>; }
+<span class="sel">input:focus</span> { <span class="prop">outline</span>: <span class="val">2px solid blue</span>; }
+<span class="sel">li:first-child</span> { <span class="prop">font-weight</span>: <span class="val">bold</span>; }
+<span class="sel">li:nth-child(2)</span> { <span class="prop">color</span>: <span class="val">red</span>; }
+
+<span class="cm">/* Pseudo-elements — virtual elements */</span>
+<span class="sel">p::first-line</span> { <span class="prop">font-weight</span>: <span class="val">bold</span>; }
+<span class="sel">h1::before</span>    { <span class="prop">content</span>: <span class="val">"★ "</span>; <span class="prop">color</span>: <span class="val">gold</span>; }
+<span class="sel">h1::after</span>     { <span class="prop">content</span>: <span class="val">" ★"</span>; }</pre>
+</section>
+
+<section id="variables">
+  <h2>💡 CSS Variables (Custom Properties)</h2>
+<pre><span class="sel">:root</span> {
+  <span class="prop">--primary</span>:   <span class="val">#e879f9</span>;
+  <span class="prop">--bg</span>:        <span class="val">#0d1117</span>;
+  <span class="prop">--text</span>:      <span class="val">#c9d1d9</span>;
+  <span class="prop">--radius</span>:    <span class="val">8px</span>;
+  <span class="prop">--spacing</span>:   <span class="val">1rem</span>;
+}
+
+<span class="sel">.card</span> {
+  <span class="prop">background</span>:    <span class="val">var(--bg)</span>;
+  <span class="prop">color</span>:         <span class="val">var(--text)</span>;
+  <span class="prop">border-radius</span>: <span class="val">var(--radius)</span>;
+  <span class="prop">padding</span>:       <span class="val">var(--spacing)</span>;
+  <span class="prop">border</span>:        <span class="val">1px solid var(--primary)</span>;
+}</pre>
+  <div class="tip">💡 CSS variables are <strong>live</strong> — change them in JS with <code>document.documentElement.style.setProperty('--primary', '#ff0')</code> to build theme switchers!</div>
+</section>
+
+<section id="animations">
+  <h2>✨ Transitions & Animations</h2>
+<pre><span class="cm">/* Transition — smooth state change */</span>
+<span class="sel">.btn</span> {
+  <span class="prop">background</span>:  <span class="val">#e879f9</span>;
+  <span class="prop">transition</span>:  <span class="val">all 0.3s ease</span>;
+}
+<span class="sel">.btn:hover</span> {
+  <span class="prop">background</span>:  <span class="val">#a855f7</span>;
+  <span class="prop">transform</span>:   <span class="val">scale(1.05)</span>;
+}
+
+<span class="cm">/* Keyframe Animation */</span>
+<span class="at">@keyframes</span> fadeIn {
+  <span class="sel">from</span> { <span class="prop">opacity</span>: <span class="val">0</span>; <span class="prop">transform</span>: <span class="val">translateY(20px)</span>; }
+  <span class="sel">to</span>   { <span class="prop">opacity</span>: <span class="val">1</span>; <span class="prop">transform</span>: <span class="val">translateY(0)</span>; }
+}
+
+<span class="sel">.card</span> {
+  <span class="prop">animation</span>: <span class="val">fadeIn 0.5s ease forwards</span>;
+}</pre>
+</section>
+
+<section id="responsive">
+  <h2>📱 Responsive Design</h2>
+<pre><span class="cm">/* Mobile-first approach */</span>
+<span class="sel">.container</span> {
+  <span class="prop">width</span>: <span class="val">100%</span>;
+  <span class="prop">padding</span>: <span class="val">1rem</span>;
+}
+
+<span class="cm">/* Tablet (768px+) */</span>
+<span class="at">@media</span> (min-width: <span class="val">768px</span>) {
+  <span class="sel">.container</span> { <span class="prop">max-width</span>: <span class="val">720px</span>; <span class="prop">margin</span>: <span class="val">0 auto</span>; }
+  <span class="sel">.grid</span>      { <span class="prop">grid-template-columns</span>: <span class="val">repeat(2, 1fr)</span>; }
+}
+
+<span class="cm">/* Desktop (1024px+) */</span>
+<span class="at">@media</span> (min-width: <span class="val">1024px</span>) {
+  <span class="sel">.container</span> { <span class="prop">max-width</span>: <span class="val">1100px</span>; }
+  <span class="sel">.grid</span>      { <span class="prop">grid-template-columns</span>: <span class="val">repeat(3, 1fr)</span>; }
+}</pre>
+</section>
+
+<section id="tips">
+  <h2>🚀 Pro Tips</h2>
+<pre><span class="cm">/* Center anything — the modern way */</span>
+<span class="sel">.center</span> {
+  <span class="prop">display</span>:         <span class="val">grid</span>;
+  <span class="prop">place-items</span>:     <span class="val">center</span>;
+}
+
+<span class="cm">/* Smooth scrolling */</span>
+<span class="sel">html</span> { <span class="prop">scroll-behavior</span>: <span class="val">smooth</span>; }
+
+<span class="cm">/* Prevent text overflow */</span>
+<span class="sel">.truncate</span> {
+  <span class="prop">white-space</span>:   <span class="val">nowrap</span>;
+  <span class="prop">overflow</span>:      <span class="val">hidden</span>;
+  <span class="prop">text-overflow</span>: <span class="val">ellipsis</span>;
+}
+
+<span class="cm">/* Glassmorphism card */</span>
+<span class="sel">.glass</span> {
+  <span class="prop">background</span>:        <span class="val">rgba(255,255,255,0.1)</span>;
+  <span class="prop">backdrop-filter</span>:   <span class="val">blur(10px)</span>;
+  <span class="prop">border</span>:            <span class="val">1px solid rgba(255,255,255,0.2)</span>;
+  <span class="prop">border-radius</span>:     <span class="val">16px</span>;
+}
+
+<span class="cm">/* Aspect ratio (square image) */</span>
+<span class="sel">.img-box</span> { <span class="prop">aspect-ratio</span>: <span class="val">1 / 1</span>; <span class="prop">object-fit</span>: <span class="val">cover</span>; }</span></pre>
+  <div class="tip">🎉 <strong>You now know the core of CSS!</strong> Next steps: explore <strong>CSS animations</strong>, <strong>CSS custom properties</strong> for theming, and frameworks like <strong>Tailwind CSS</strong>.</div>
+</section>
+
+</main>
+<script>
+const sections=document.querySelectorAll('section');
+const links=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id});
+  links.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur)});
+});
+</script>
+</body>
+</html>

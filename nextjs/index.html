@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next.js — Zero to Hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#c9d1d9;font-family:'Inter',sans-serif;display:flex;min-height:100vh}
+nav{width:220px;flex-shrink:0;background:#161b22;border-right:1px solid #30363d;padding:1.5rem 0;position:fixed;top:0;left:0;height:100vh;overflow-y:auto}
+nav .logo{padding:.5rem 1.2rem 1.5rem;font-size:1.1rem;font-weight:800;color:#fff}
+nav .logo span{color:#888}
+nav a{display:block;padding:.5rem 1.2rem;font-size:.85rem;color:#8b949e;text-decoration:none;border-left:3px solid transparent;transition:.15s}
+nav a:hover,nav a.active{color:#fff;border-left-color:#fff;background:rgba(255,255,255,.06)}
+main{margin-left:220px;padding:2rem;max-width:860px;width:100%}
+header{margin-bottom:2.5rem}
+header h1{font-size:2rem;font-weight:800;color:#fff}
+header p{color:#8b949e;margin-top:.4rem}
+section{margin-bottom:3rem;scroll-margin-top:2rem}
+section h2{font-size:1.2rem;font-weight:700;color:#fff;padding-bottom:.6rem;border-bottom:1px solid #21262d;margin-bottom:1.2rem}
+section p{font-size:.9rem;color:#8b949e;line-height:1.8;margin-bottom:1rem}
+pre{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1.2rem;overflow-x:auto;font-size:.83rem;font-family:'Fira Code',monospace;line-height:1.7;margin-bottom:1rem}
+.kw{color:#ff7b72}.fn{color:#d2a8ff}.str{color:#a5d6ff}.cm{color:#8b949e;font-style:italic}.num{color:#79c0ff}.tag{color:#7ee787}.attr{color:#ffa657}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1rem}
+.card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1rem}
+.card h4{font-size:.88rem;color:#e2e8f0;margin-bottom:.4rem}
+.card p{font-size:.8rem;color:#8b949e;line-height:1.6}
+.tip{background:#1a1a2e;border-left:4px solid #e2e8f0;border-radius:0 8px 8px 0;padding:.9rem 1rem;font-size:.85rem;color:#cbd5e1;margin-bottom:1rem;line-height:1.7}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1rem}
+th{background:#161b22;color:#8b949e;padding:.6rem 1rem;text-align:left;border:1px solid #30363d}
+td{padding:.6rem 1rem;border:1px solid #21262d;color:#c9d1d9}
+tr:nth-child(even) td{background:#0d1117}
+code{font-family:'Fira Code',monospace;background:#21262d;padding:.1rem .4rem;border-radius:4px;font-size:.82rem;color:#ffa657}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Next<span>.js 101</span></div>
+  <a href="#intro">▲ Introduction</a>
+  <a href="#setup">⚙️ Setup</a>
+  <a href="#routing">📁 File Routing</a>
+  <a href="#pages">📄 Pages & Layout</a>
+  <a href="#server">🖥 Server Components</a>
+  <a href="#client">💻 Client Components</a>
+  <a href="#fetch">📡 Data Fetching</a>
+  <a href="#api">🔌 API Routes</a>
+  <a href="#dynamic">🔀 Dynamic Routes</a>
+  <a href="#metadata">🏷 Metadata & SEO</a>
+  <a href="#image">🖼 Image & Font</a>
+  <a href="#middleware">🛡 Middleware</a>
+  <a href="#deploy">🚀 Deployment</a>
+</nav>
+<main>
+<header>
+  <h1>▲ Next.js — Zero to Hero</h1>
+  <p>The React framework for production — SSR, SSG, API routes and more</p>
+</header>
+
+<section id="intro">
+  <h2>▲ What is Next.js?</h2>
+  <p>Next.js is a React framework by Vercel that adds server-side rendering, file-based routing, API routes, and much more out of the box.</p>
+  <div class="cards">
+    <div class="card"><h4>📁 File Routing</h4><p>Create a file = create a route. No config needed.</p></div>
+    <div class="card"><h4>🖥 SSR & SSG</h4><p>Server-side rendering and static generation built in.</p></div>
+    <div class="card"><h4>🔌 API Routes</h4><p>Build backend endpoints in the same project.</p></div>
+    <div class="card"><h4>⚡ Performance</h4><p>Automatic code splitting, image optimization, caching.</p></div>
+  </div>
+</section>
+
+<section id="setup">
+  <h2>⚙️ Setup</h2>
+<pre><span class="cm"># Create new Next.js app</span>
+npx create-next-app@latest my-app
+cd my-app
+npm run dev   <span class="cm"># → http://localhost:3000</span></pre>
+  <p>Project structure:</p>
+<pre>my-app/
+├── app/              <span class="cm"># App Router (Next 13+)</span>
+│   ├── layout.js     <span class="cm"># Root layout</span>
+│   ├── page.js       <span class="cm"># Homepage /</span>
+│   └── about/
+│       └── page.js   <span class="cm"># /about route</span>
+├── public/           <span class="cm"># Static assets</span>
+└── next.config.js    <span class="cm"># Config</span></pre>
+</section>
+
+<section id="routing">
+  <h2>📁 File-Based Routing</h2>
+  <table>
+    <tr><th>File path</th><th>URL</th></tr>
+    <tr><td><code>app/page.js</code></td><td><code>/</code></td></tr>
+    <tr><td><code>app/about/page.js</code></td><td><code>/about</code></td></tr>
+    <tr><td><code>app/blog/[slug]/page.js</code></td><td><code>/blog/my-post</code></td></tr>
+    <tr><td><code>app/shop/[...path]/page.js</code></td><td><code>/shop/a/b/c</code></td></tr>
+    <tr><td><code>app/api/users/route.js</code></td><td><code>GET /api/users</code></td></tr>
+  </table>
+</section>
+
+<section id="pages">
+  <h2>📄 Pages & Layouts</h2>
+<pre><span class="cm">// app/layout.js — wraps all pages</span>
+<span class="kw">export default function</span> <span class="fn">RootLayout</span>({ children }) {
+  <span class="kw">return</span> (
+    <span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="str">"en"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;body&gt;</span>
+        <span class="tag">&lt;Navbar /&gt;</span>
+        {children}
+        <span class="tag">&lt;Footer /&gt;</span>
+      <span class="tag">&lt;/body&gt;</span>
+    <span class="tag">&lt;/html&gt;</span>
+  );
+}
+
+<span class="cm">// app/page.js — homepage</span>
+<span class="kw">export default function</span> <span class="fn">Home</span>() {
+  <span class="kw">return</span> <span class="tag">&lt;h1&gt;</span>Welcome to Next.js!<span class="tag">&lt;/h1&gt;</span>;
+}</pre>
+</section>
+
+<section id="server">
+  <h2>🖥 Server Components</h2>
+  <p>By default, all components in the App Router are <strong>Server Components</strong>. They run on the server — no JS sent to the browser.</p>
+<pre><span class="cm">// app/users/page.js — Server Component (default)</span>
+<span class="kw">async function</span> <span class="fn">getUsers</span>() {
+  <span class="kw">const</span> res = <span class="kw">await</span> fetch(<span class="str">'https://api.example.com/users'</span>, {
+    next: { revalidate: <span class="num">60</span> } <span class="cm">// ISR: revalidate every 60s</span>
+  });
+  <span class="kw">return</span> res.json();
+}
+
+<span class="kw">export default async function</span> <span class="fn">UsersPage</span>() {
+  <span class="kw">const</span> users = <span class="kw">await</span> <span class="fn">getUsers</span>();
+  <span class="kw">return</span> (
+    <span class="tag">&lt;ul&gt;</span>
+      {users.map(u => <span class="tag">&lt;li</span> <span class="attr">key</span>={u.id}<span class="tag">&gt;</span>{u.name}<span class="tag">&lt;/li&gt;</span>)}
+    <span class="tag">&lt;/ul&gt;</span>
+  );
+}</pre>
+</section>
+
+<section id="client">
+  <h2>💻 Client Components</h2>
+  <p>Add <code>'use client'</code> at the top when you need interactivity, state, or browser APIs.</p>
+<pre><span class="str">'use client'</span>;
+<span class="kw">import</span> { useState } <span class="kw">from</span> <span class="str">'react'</span>;
+
+<span class="kw">export default function</span> <span class="fn">Counter</span>() {
+  <span class="kw">const</span> [count, setCount] = useState(<span class="num">0</span>);
+  <span class="kw">return</span> <span class="tag">&lt;button</span> <span class="attr">onClick</span>={() => setCount(c => c+<span class="num">1</span>)}<span class="tag">&gt;</span>Count: {count}<span class="tag">&lt;/button&gt;</span>;
+}</pre>
+  <div class="tip">💡 Keep Server Components for data fetching. Use Client Components only at the <strong>leaves</strong> of the tree where interactivity is needed.</div>
+</section>
+
+<section id="fetch">
+  <h2>📡 Data Fetching</h2>
+  <table>
+    <tr><th>Strategy</th><th>Code</th><th>When to use</th></tr>
+    <tr><td>SSR (every request)</td><td><code>cache: 'no-store'</code></td><td>Real-time data</td></tr>
+    <tr><td>SSG (build time)</td><td><code>cache: 'force-cache'</code></td><td>Rarely changes</td></tr>
+    <tr><td>ISR (revalidate)</td><td><code>next: {'{'}revalidate: 60{'}'}</code></td><td>Periodic refresh</td></tr>
+  </table>
+<pre><span class="cm">// SSR — fresh on every request</span>
+<span class="kw">const</span> res = <span class="kw">await</span> fetch(url, { cache: <span class="str">'no-store'</span> });
+
+<span class="cm">// SSG — cached at build</span>
+<span class="kw">const</span> res = <span class="kw">await</span> fetch(url, { cache: <span class="str">'force-cache'</span> });
+
+<span class="cm">// ISR — revalidate every 60 seconds</span>
+<span class="kw">const</span> res = <span class="kw">await</span> fetch(url, { next: { revalidate: <span class="num">60</span> } });</pre>
+</section>
+
+<section id="api">
+  <h2>🔌 API Routes</h2>
+<pre><span class="cm">// app/api/users/route.js</span>
+<span class="kw">import</span> { NextResponse } <span class="kw">from</span> <span class="str">'next/server'</span>;
+
+<span class="kw">export async function</span> <span class="fn">GET</span>() {
+  <span class="kw">const</span> users = [{ id: <span class="num">1</span>, name: <span class="str">'Alice'</span> }];
+  <span class="kw">return</span> NextResponse.json(users);
+}
+
+<span class="kw">export async function</span> <span class="fn">POST</span>(request) {
+  <span class="kw">const</span> body = <span class="kw">await</span> request.json();
+  <span class="cm">// save to DB...</span>
+  <span class="kw">return</span> NextResponse.json({ success: <span class="kw">true</span> }, { status: <span class="num">201</span> });
+}</pre>
+</section>
+
+<section id="dynamic">
+  <h2>🔀 Dynamic Routes</h2>
+<pre><span class="cm">// app/blog/[slug]/page.js</span>
+<span class="kw">export default function</span> <span class="fn">BlogPost</span>({ params }) {
+  <span class="kw">return</span> <span class="tag">&lt;h1&gt;</span>Post: {params.slug}<span class="tag">&lt;/h1&gt;</span>;
+}
+
+<span class="cm">// Pre-generate paths at build time</span>
+<span class="kw">export async function</span> <span class="fn">generateStaticParams</span>() {
+  <span class="kw">const</span> posts = <span class="kw">await</span> fetchAllPosts();
+  <span class="kw">return</span> posts.map(p => ({ slug: p.slug }));
+}</pre>
+</section>
+
+<section id="metadata">
+  <h2>🏷 Metadata & SEO</h2>
+<pre><span class="cm">// app/about/page.js</span>
+<span class="kw">export const</span> metadata = {
+  title:       <span class="str">'About Us | My App'</span>,
+  description: <span class="str">'Learn more about our company'</span>,
+  openGraph: {
+    title: <span class="str">'About Us'</span>,
+    images: [<span class="str">'/og-image.png'</span>],
+  },
+};
+
+<span class="cm">// Dynamic metadata</span>
+<span class="kw">export async function</span> <span class="fn">generateMetadata</span>({ params }) {
+  <span class="kw">const</span> post = <span class="kw">await</span> <span class="fn">fetchPost</span>(params.slug);
+  <span class="kw">return</span> { title: post.title };
+}</pre>
+</section>
+
+<section id="image">
+  <h2>🖼 Image & Font Optimization</h2>
+<pre><span class="kw">import</span> Image <span class="kw">from</span> <span class="str">'next/image'</span>;
+<span class="kw">import</span> Link  <span class="kw">from</span> <span class="str">'next/link'</span>;
+<span class="kw">import</span> { Inter } <span class="kw">from</span> <span class="str">'next/font/google'</span>;
+
+<span class="kw">const</span> inter = <span class="fn">Inter</span>({ subsets: [<span class="str">'latin'</span>] });
+
+<span class="kw">export default function</span> <span class="fn">Page</span>() {
+  <span class="kw">return</span> (
+    <span class="tag">&lt;div</span> <span class="attr">className</span>={inter.className}<span class="tag">&gt;</span>
+      <span class="tag">&lt;Image</span>
+        <span class="attr">src</span>=<span class="str">"/hero.png"</span>
+        <span class="attr">alt</span>=<span class="str">"Hero"</span>
+        <span class="attr">width</span>={800}
+        <span class="attr">height</span>={400}
+        <span class="attr">priority</span>
+      <span class="tag">/&gt;</span>
+      <span class="tag">&lt;Link</span> <span class="attr">href</span>=<span class="str">"/about"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/Link&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+}</pre>
+</section>
+
+<section id="middleware">
+  <h2>🛡 Middleware</h2>
+<pre><span class="cm">// middleware.js (project root)</span>
+<span class="kw">import</span> { NextResponse } <span class="kw">from</span> <span class="str">'next/server'</span>;
+
+<span class="kw">export function</span> <span class="fn">middleware</span>(request) {
+  <span class="kw">const</span> token = request.cookies.get(<span class="str">'token'</span>);
+
+  <span class="kw">if</span> (!token && request.nextUrl.pathname.startsWith(<span class="str">'/dashboard'</span>)) {
+    <span class="kw">return</span> NextResponse.redirect(<span class="kw">new</span> URL(<span class="str">'/login'</span>, request.url));
+  }
+
+  <span class="kw">return</span> NextResponse.next();
+}
+
+<span class="kw">export const</span> config = { matcher: [<span class="str">'/dashboard/:path*'</span>] };</pre>
+</section>
+
+<section id="deploy">
+  <h2>🚀 Deployment</h2>
+<pre><span class="cm"># Build for production</span>
+npm run build
+
+<span class="cm"># Deploy to Vercel (easiest)</span>
+npm i -g vercel
+vercel
+
+<span class="cm"># Or self-host with Node</span>
+npm run build
+npm start</pre>
+  <div class="tip">🎉 <strong>You now know Next.js!</strong> Explore <strong>NextAuth.js</strong> for authentication, <strong>Prisma</strong> for database, and <strong>Vercel</strong> for instant deployment.</div>
+</section>
+</main>
+<script>
+const s=document.querySelectorAll('section'),l=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{let c='';s.forEach(x=>{if(window.scrollY>=x.offsetTop-80)c=x.id});l.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)});});
+</script>
+</body>
+</html>

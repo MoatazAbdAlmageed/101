@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java — Zero to Hero</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#c9d1d9;font-family:'Inter',sans-serif;display:flex;min-height:100vh}
+nav{width:220px;flex-shrink:0;background:#161b22;border-right:1px solid #30363d;padding:1.5rem 0;position:fixed;top:0;left:0;height:100vh;overflow-y:auto}
+nav .logo{padding:.5rem 1.2rem 1.5rem;font-size:1.1rem;font-weight:800;color:#f89820}
+nav .logo span{color:#fff}
+nav a{display:block;padding:.5rem 1.2rem;font-size:.85rem;color:#8b949e;text-decoration:none;border-left:3px solid transparent;transition:.15s}
+nav a:hover,nav a.active{color:#f89820;border-left-color:#f89820;background:rgba(248,152,32,.06)}
+main{margin-left:220px;padding:2rem;max-width:860px;width:100%}
+header{margin-bottom:2.5rem}
+header h1{font-size:2rem;font-weight:800;color:#fff}
+header h1 span{color:#f89820}
+header p{color:#8b949e;margin-top:.4rem;font-size:.95rem}
+section{margin-bottom:3rem;scroll-margin-top:2rem}
+section h2{font-size:1.2rem;font-weight:700;color:#fff;padding-bottom:.6rem;border-bottom:1px solid #21262d;margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
+section p{font-size:.9rem;color:#8b949e;line-height:1.8;margin-bottom:1rem}
+pre{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1.2rem;overflow-x:auto;font-size:.83rem;font-family:'Fira Code',monospace;line-height:1.7;margin-bottom:1rem}
+.kw{color:#ff7b72}
+.fn{color:#d2a8ff}
+.str{color:#a5d6ff}
+.cm{color:#8b949e;font-style:italic}
+.num{color:#79c0ff}
+.type{color:#ffa657}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1rem}
+.card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1rem}
+.card h4{font-size:.88rem;color:#f89820;margin-bottom:.4rem}
+.card p{font-size:.8rem;color:#8b949e;line-height:1.6}
+.tip{background:#2d1a00;border-left:4px solid #f89820;border-radius:0 8px 8px 0;padding:.9rem 1rem;font-size:.85rem;color:#fbbf24;margin-bottom:1rem;line-height:1.7}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1rem}
+th{background:#161b22;color:#8b949e;padding:.6rem 1rem;text-align:left;border:1px solid #30363d}
+td{padding:.6rem 1rem;border:1px solid #21262d;color:#c9d1d9}
+tr:nth-child(even) td{background:#0d1117}
+code{font-family:'Fira Code',monospace;background:#21262d;padding:.1rem .4rem;border-radius:4px;font-size:.82rem;color:#ffa657}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Java<span>101</span></div>
+  <a href="#intro">☕ Introduction</a>
+  <a href="#setup">⚙️ Setup</a>
+  <a href="#hello">👋 Hello World</a>
+  <a href="#variables">📦 Variables</a>
+  <a href="#types">🔢 Data Types</a>
+  <a href="#control">🔀 Control Flow</a>
+  <a href="#methods">🧩 Methods</a>
+  <a href="#arrays">📋 Arrays & Lists</a>
+  <a href="#oop">🏗 OOP & Classes</a>
+  <a href="#inherit">🔗 Inheritance</a>
+  <a href="#interfaces">🔌 Interfaces</a>
+  <a href="#exceptions">❌ Exceptions</a>
+  <a href="#collections">🗂 Collections</a>
+  <a href="#streams">⚡ Streams</a>
+</nav>
+
+<main>
+<header>
+  <h1>☕ <span>Java</span> — Zero to Hero</h1>
+  <p>A complete beginner's guide to Java programming</p>
+</header>
+
+<section id="intro">
+  <h2>☕ What is Java?</h2>
+  <p>Java is a class-based, object-oriented language created by Sun Microsystems in 1995. It follows the <strong>"Write Once, Run Anywhere"</strong> principle — runs on any device with a JVM.</p>
+  <div class="cards">
+    <div class="card"><h4>🌍 Platform Independent</h4><p>Compiled to bytecode, runs on any OS via the JVM.</p></div>
+    <div class="card"><h4>🔒 Strongly Typed</h4><p>All types are checked at compile time — fewer runtime bugs.</p></div>
+    <div class="card"><h4>🏗 OOP First</h4><p>Everything is a class. Great for large, structured applications.</p></div>
+    <div class="card"><h4>🚀 Enterprise Ready</h4><p>Used by Netflix, Amazon, LinkedIn, and millions of Android apps.</p></div>
+  </div>
+</section>
+
+<section id="setup">
+  <h2>⚙️ Setup</h2>
+  <p>Install the <strong>JDK</strong> from <code>adoptium.net</code> or <code>oracle.com/java</code>, then verify:</p>
+<pre><span class="cm"># Check versions</span>
+java -version
+javac -version
+
+<span class="cm"># Compile and run</span>
+javac Main.java
+java Main</pre>
+  <div class="tip">💡 Use an IDE like <strong>IntelliJ IDEA</strong> (recommended) or <strong>VS Code</strong> with the Java Extension Pack for the best experience.</div>
+</section>
+
+<section id="hello">
+  <h2>👋 Hello World</h2>
+  <p>Every Java program must have a class. The entry point is <code>public static void main(String[] args)</code>.</p>
+<pre><span class="kw">public class</span> <span class="type">Main</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        System.out.<span class="fn">println</span>(<span class="str">"Hello, Java! 🎉"</span>);
+    }
+}</pre>
+</section>
+
+<section id="variables">
+  <h2>📦 Variables</h2>
+  <p>Java is statically typed — you must declare the type. Use <code>var</code> (Java 10+) for type inference.</p>
+<pre><span class="kw">public class</span> <span class="type">Main</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        String  name  = <span class="str">"Alice"</span>;
+        int     age   = <span class="num">25</span>;
+        double  price = <span class="num">9.99</span>;
+        boolean ready = <span class="kw">true</span>;
+
+        <span class="cm">// var (Java 10+)</span>
+        <span class="kw">var</span> city = <span class="str">"Cairo"</span>;
+
+        <span class="cm">// Constants</span>
+        <span class="kw">final int</span> MAX = <span class="num">100</span>;
+
+        System.out.<span class="fn">println</span>(name + <span class="str">" is "</span> + age);
+    }
+}</pre>
+</section>
+
+<section id="types">
+  <h2>🔢 Data Types</h2>
+  <table>
+    <tr><th>Type</th><th>Size</th><th>Example</th></tr>
+    <tr><td><code>byte</code></td><td>8-bit</td><td><code>127</code></td></tr>
+    <tr><td><code>int</code></td><td>32-bit</td><td><code>42</code></td></tr>
+    <tr><td><code>long</code></td><td>64-bit</td><td><code>100L</code></td></tr>
+    <tr><td><code>double</code></td><td>64-bit</td><td><code>3.14</code></td></tr>
+    <tr><td><code>char</code></td><td>16-bit</td><td><code>'A'</code></td></tr>
+    <tr><td><code>boolean</code></td><td>1-bit</td><td><code>true</code></td></tr>
+    <tr><td><code>String</code></td><td>Object</td><td><code>"hello"</code></td></tr>
+  </table>
+</section>
+
+<section id="control">
+  <h2>🔀 Control Flow</h2>
+<pre><span class="cm">// if / else</span>
+int age = <span class="num">20</span>;
+<span class="kw">if</span> (age >= <span class="num">18</span>) {
+    System.out.<span class="fn">println</span>(<span class="str">"Adult"</span>);
+} <span class="kw">else</span> {
+    System.out.<span class="fn">println</span>(<span class="str">"Minor"</span>);
+}
+
+<span class="cm">// for loop</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i < <span class="num">5</span>; i++) {
+    System.out.<span class="fn">println</span>(i);
+}
+
+<span class="cm">// while loop</span>
+<span class="kw">int</span> x = <span class="num">0</span>;
+<span class="kw">while</span> (x < <span class="num">3</span>) { x++; }
+
+<span class="cm">// switch (modern style)</span>
+String day = <span class="str">"Monday"</span>;
+<span class="kw">switch</span> (day) {
+    <span class="kw">case</span> <span class="str">"Monday"</span>  -> System.out.<span class="fn">println</span>(<span class="str">"Start of week"</span>);
+    <span class="kw">case</span> <span class="str">"Friday"</span>  -> System.out.<span class="fn">println</span>(<span class="str">"Weekend soon!"</span>);
+    <span class="kw">default</span>        -> System.out.<span class="fn">println</span>(<span class="str">"Midweek"</span>);
+}</pre>
+</section>
+
+<section id="methods">
+  <h2>🧩 Methods</h2>
+<pre><span class="kw">public class</span> <span class="type">Main</span> {
+
+    <span class="cm">// Method with return value</span>
+    <span class="kw">static</span> String <span class="fn">greet</span>(String name) {
+        <span class="kw">return</span> <span class="str">"Hello, "</span> + name + <span class="str">"!"</span>;
+    }
+
+    <span class="cm">// Overloaded method</span>
+    <span class="kw">static int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b)          { <span class="kw">return</span> a + b; }
+    <span class="kw">static double</span> <span class="fn">add</span>(<span class="kw">double</span> a, <span class="kw">double</span> b) { <span class="kw">return</span> a + b; }
+
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        System.out.<span class="fn">println</span>(<span class="fn">greet</span>(<span class="str">"Bob"</span>));
+        System.out.<span class="fn">println</span>(<span class="fn">add</span>(<span class="num">3</span>, <span class="num">4</span>));
+        System.out.<span class="fn">println</span>(<span class="fn">add</span>(<span class="num">1.5</span>, <span class="num">2.5</span>));
+    }
+}</pre>
+</section>
+
+<section id="arrays">
+  <h2>📋 Arrays & Lists</h2>
+<pre><span class="cm">// Array (fixed size)</span>
+int[] nums = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>};
+System.out.<span class="fn">println</span>(nums[<span class="num">0</span>]);    <span class="cm">// 1</span>
+System.out.<span class="fn">println</span>(nums.length); <span class="cm">// 5</span>
+
+<span class="cm">// for-each loop</span>
+<span class="kw">for</span> (int n : nums) {
+    System.out.<span class="fn">println</span>(n);
+}
+
+<span class="cm">// ArrayList (dynamic)</span>
+import java.util.ArrayList;
+ArrayList&lt;String&gt; list = <span class="kw">new</span> ArrayList&lt;&gt;();
+list.<span class="fn">add</span>(<span class="str">"Java"</span>);
+list.<span class="fn">add</span>(<span class="str">"Go"</span>);
+list.<span class="fn">remove</span>(<span class="str">"Go"</span>);
+System.out.<span class="fn">println</span>(list.<span class="fn">get</span>(<span class="num">0</span>)); <span class="cm">// Java</span></pre>
+</section>
+
+<section id="oop">
+  <h2>🏗 OOP & Classes</h2>
+<pre><span class="kw">public class</span> <span class="type">Car</span> {
+    <span class="cm">// Fields</span>
+    String brand;
+    <span class="kw">int</span>    year;
+
+    <span class="cm">// Constructor</span>
+    <span class="kw">public</span> <span class="fn">Car</span>(String brand, <span class="kw">int</span> year) {
+        <span class="kw">this</span>.brand = brand;
+        <span class="kw">this</span>.year  = year;
+    }
+
+    <span class="cm">// Method</span>
+    <span class="kw">public</span> String <span class="fn">info</span>() {
+        <span class="kw">return</span> brand + <span class="str">" ("</span> + year + <span class="str">")"</span>;
+    }
+}
+
+<span class="cm">// Usage</span>
+Car c = <span class="kw">new</span> <span class="fn">Car</span>(<span class="str">"Toyota"</span>, <span class="num">2023</span>);
+System.out.<span class="fn">println</span>(c.<span class="fn">info</span>()); <span class="cm">// Toyota (2023)</span></pre>
+</section>
+
+<section id="inherit">
+  <h2>🔗 Inheritance</h2>
+<pre><span class="kw">public class</span> <span class="type">Animal</span> {
+    String name;
+    <span class="kw">public void</span> <span class="fn">speak</span>() {
+        System.out.<span class="fn">println</span>(name + <span class="str">" makes a sound"</span>);
+    }
+}
+
+<span class="kw">public class</span> <span class="type">Dog</span> <span class="kw">extends</span> <span class="type">Animal</span> {
+    <span class="kw">public</span> <span class="fn">Dog</span>(String name) { <span class="kw">this</span>.name = name; }
+
+    <span class="cm">// Override parent method</span>
+    @Override
+    <span class="kw">public void</span> <span class="fn">speak</span>() {
+        System.out.<span class="fn">println</span>(name + <span class="str">" says: Woof!"</span>);
+    }
+}
+
+Dog d = <span class="kw">new</span> <span class="fn">Dog</span>(<span class="str">"Rex"</span>);
+d.<span class="fn">speak</span>(); <span class="cm">// Rex says: Woof!</span></pre>
+</section>
+
+<section id="interfaces">
+  <h2>🔌 Interfaces</h2>
+<pre><span class="kw">interface</span> <span class="type">Drawable</span> {
+    <span class="kw">void</span> <span class="fn">draw</span>(); <span class="cm">// abstract by default</span>
+}
+
+<span class="kw">public class</span> <span class="type">Circle</span> <span class="kw">implements</span> <span class="type">Drawable</span> {
+    <span class="kw">public void</span> <span class="fn">draw</span>() {
+        System.out.<span class="fn">println</span>(<span class="str">"Drawing a circle ◯"</span>);
+    }
+}
+
+Drawable d = <span class="kw">new</span> <span class="fn">Circle</span>();
+d.<span class="fn">draw</span>();</pre>
+  <div class="tip">💡 Use <strong>interfaces</strong> to define contracts. A class can implement multiple interfaces but extend only one class.</div>
+</section>
+
+<section id="exceptions">
+  <h2>❌ Exception Handling</h2>
+<pre><span class="kw">public class</span> <span class="type">Main</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        <span class="kw">try</span> {
+            int result = <span class="num">10</span> / <span class="num">0</span>; <span class="cm">// ArithmeticException</span>
+        } <span class="kw">catch</span> (ArithmeticException e) {
+            System.out.<span class="fn">println</span>(<span class="str">"Error: "</span> + e.<span class="fn">getMessage</span>());
+        } <span class="kw">finally</span> {
+            System.out.<span class="fn">println</span>(<span class="str">"Always runs"</span>);
+        }
+    }
+
+    <span class="cm">// Throw custom exception</span>
+    <span class="kw">static void</span> <span class="fn">checkAge</span>(<span class="kw">int</span> age) <span class="kw">throws</span> Exception {
+        <span class="kw">if</span> (age < <span class="num">0</span>) <span class="kw">throw new</span> Exception(<span class="str">"Age can't be negative"</span>);
+    }
+}</pre>
+</section>
+
+<section id="collections">
+  <h2>🗂 Collections</h2>
+<pre>import java.util.*;
+
+<span class="cm">// List</span>
+List&lt;String&gt; names = <span class="kw">new</span> ArrayList&lt;&gt;(List.<span class="fn">of</span>(<span class="str">"Alice"</span>, <span class="str">"Bob"</span>));
+
+<span class="cm">// Map (key-value)</span>
+Map&lt;String, Integer&gt; scores = <span class="kw">new</span> HashMap&lt;&gt;();
+scores.<span class="fn">put</span>(<span class="str">"Alice"</span>, <span class="num">95</span>);
+scores.<span class="fn">put</span>(<span class="str">"Bob"</span>, <span class="num">88</span>);
+System.out.<span class="fn">println</span>(scores.<span class="fn">get</span>(<span class="str">"Alice"</span>)); <span class="cm">// 95</span>
+
+<span class="cm">// Set (no duplicates)</span>
+Set&lt;String&gt; tags = <span class="kw">new</span> HashSet&lt;&gt;();
+tags.<span class="fn">add</span>(<span class="str">"java"</span>);
+tags.<span class="fn">add</span>(<span class="str">"java"</span>); <span class="cm">// ignored</span>
+System.out.<span class="fn">println</span>(tags.size()); <span class="cm">// 1</span></pre>
+</section>
+
+<section id="streams">
+  <h2>⚡ Streams & Lambdas</h2>
+  <p>Java 8+ introduced Streams and Lambdas for functional-style programming.</p>
+<pre>import java.util.*;
+import java.util.stream.*;
+
+List&lt;Integer&gt; nums = List.<span class="fn">of</span>(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>);
+
+<span class="cm">// Filter + Map + Collect</span>
+List&lt;Integer&gt; result = nums.<span class="fn">stream</span>()
+    .<span class="fn">filter</span>(n -> n % <span class="num">2</span> == <span class="num">0</span>)   <span class="cm">// keep evens</span>
+    .<span class="fn">map</span>(n -> n * <span class="num">10</span>)            <span class="cm">// multiply by 10</span>
+    .<span class="fn">collect</span>(Collectors.<span class="fn">toList</span>());
+
+System.out.<span class="fn">println</span>(result); <span class="cm">// [20, 40]</span>
+
+<span class="cm">// Sum</span>
+int sum = nums.<span class="fn">stream</span>().<span class="fn">mapToInt</span>(Integer::intValue).<span class="fn">sum</span>();
+
+<span class="cm">// Lambda as variable</span>
+Runnable r = () -> System.out.<span class="fn">println</span>(<span class="str">"Running!"</span>);
+r.<span class="fn">run</span>();</pre>
+  <div class="tip">🎉 <strong>You now know the core of Java!</strong> Next steps: learn <strong>Spring Boot</strong> for REST APIs, <strong>Maven/Gradle</strong> for builds, and <strong>JUnit</strong> for testing.</div>
+</section>
+
+</main>
+
+<script>
+const sections = document.querySelectorAll('section');
+const links = document.querySelectorAll('nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+  links.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+});
+</script>
+</body>
+</html>
