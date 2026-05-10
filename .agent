@@ -1,0 +1,5 @@
+# Agent Rules & Instructions
+
+- **Always update README**: Whenever folders are moved, renamed, or new books are created, automatically update `README.md` with the correct links and categories.
+- **GitHub Pages Link**: Ensure all links are compatible with the base URL: https://moatazabdalmageed.github.io/101/
+- **Clean Hierarchy**: Maintain the Frontend/Backend/DevOps structure.

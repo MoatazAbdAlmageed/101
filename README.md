@@ -1,34 +1,55 @@
 # 🎓 101 Mastery: The Ultimate Learning Series
 
+**Live View:** [https://moatazabdalmageed.github.io/101/](https://moatazabdalmageed.github.io/101/)
+
 Welcome to the **101 Mastery** collection. This repository serves as a centralized hub for a series of structured, comprehensive learning pathways and interactive "Mastery Books" designed to take you from zero to hero in modern software development.
 
 ## 🚀 Project Overview
 
-This repository consolidates several technical domains into a single, cohesive learning ecosystem. Each folder contains a structured roadmap, in-depth content, and interactive HTML books designed for deep focus and practical application.
+This repository consolidates several technical domains into a single, cohesive learning ecosystem. The project is organized into **Frontend**, **Backend**, and **DevOps** categories to provide a clean and professional learning experience.
+
+Each folder contains a structured roadmap, in-depth content, and interactive HTML books designed for deep focus and practical application.
 
 ## 📚 Mastery Topics
 
+### 🎨 Frontend
 | Topic | Description | Status |
 | :--- | :--- | :--- |
-| **[NestJS](./nestjs/)** | Progressive Node.js framework for enterprise apps. | ✅ Complete |
-| **[TypeScript](./ts/)** | JavaScript with syntax for types. | ✅ Complete |
-| **[Laravel](./laravel/)** | The PHP Framework for Web Artisans. | 🚧 In Progress |
-| **[VueJS](./vuejs/)** | The Progressive JavaScript Framework. | 🚧 In Progress |
-| **[PHP](./php/)** | Core server-side scripting mastery. | 🚧 In Progress |
+| **[JavaScript](./frontend/js/)** | Core JavaScript fundamentals & ES6+. | ✅ Complete |
+| **[TypeScript](./frontend/ts/)** | JavaScript with syntax for types. | ✅ Complete |
+| **[React](./frontend/react/)** | Library for building user interfaces. | 🚧 In Progress |
+| **[Next.js](./frontend/nextjs/)** | The React Framework for the Web. | 🚧 In Progress |
+| **[Vue.js](./frontend/vuejs/)** | The Progressive JavaScript Framework. | 🚧 In Progress |
+| **[CSS & Tailwind](./frontend/css/)** | Modern styling and utility-first CSS. | 🚧 In Progress |
+
+### ⚙️ Backend
+| Topic | Description | Status |
+| :--- | :--- | :--- |
+| **[Node.js](./backend/nodejs/)** | Server-side JavaScript runtime. | ✅ Complete |
+| **[Express.js](./backend/nodejs/express/)** | Fast, unopinionated, minimalist web framework. | ✅ Complete |
+| **[NestJS](./backend/nodejs/nestjs/)** | Progressive Node.js framework for enterprise apps. | ✅ Complete |
+| **[PHP](./backend/php/)** | Core server-side scripting mastery. | ✅ Complete |
+| **[Laravel](./backend/php/laravel/)** | The PHP Framework for Web Artisans. | 🚧 In Progress |
+| **[WordPress](./backend/php/wp/)** | Headless and Custom Theme development. | 🚧 In Progress |
+| **[SQL](./backend/sql/)** | Database management with MySQL & Postgres. | 🚧 In Progress |
+
+### 🛠️ DevOps & Others
+| Topic | Description | Status |
+| :--- | :--- | :--- |
+| **[DevOps](./devops/)** | Docker, Kubernetes, and Linux fundamentals. | 🚧 In Progress |
 | **[DSA](./DSA/)** | Data Structures and Algorithms fundamentals. | 🚧 In Progress |
-| **[WordPress](./wp/)** | Headless and Custom Theme development. | 🚧 In Progress |
-| **[Sendzen](./sendzen/)** | Project-specific architecture. | 🚧 In Progress |
+| **[English](./english/)** | Technical English for Developers. | 🚧 In Progress |
 
 ---
 
 ## 📖 Features of the Mastery Books
 
-Each learning pathway is transformed into an **interactive HTML Book** (e.g., `book2.html` or `index.html` within each directory) featuring:
+Each learning pathway is transformed into an **interactive HTML Book** (e.g., `index.html` within each directory) featuring:
 
 *   **Phase-Based Learning**: Structured chapters that build on previous knowledge.
-*   **Dynamic Conversion**: Markdown-to-HTML engines for easy content updates.
+*   **Offline Ready**: Modern books (JS, Node, Express) have embedded content to run without a local server.
 *   **Premium Design**: Modern, glassmorphism-inspired UI with code highlighting and smooth navigation.
-*   **Practical Exercises**: Hands-on tasks included in every section.
+*   **Interactive Sidebar**: Deep-linking and easy navigation through phases and chapters.
 
 ## 🛠️ Getting Started
 
@@ -38,10 +59,10 @@ Each learning pathway is transformed into an **interactive HTML Book** (e.g., `b
     ```
 2.  **Navigate to a topic**:
     ```bash
-    cd nestjs
+    cd frontend/js
     ```
 3.  **View the Mastery Book**:
-    Open the `index.html` or `book.html` file in your preferred browser.
+    Open the `index.html` file in your preferred browser.
 
 ---
 
