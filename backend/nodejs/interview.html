@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Interview Guide - 20 Comprehensive Questions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700;800&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #68A063; }
+        body { font-family: 'Inter', 'Noto Sans Arabic', sans-serif; }
+        .qa-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem; transition: all 0.3s ease; }
+        .qa-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .question { color: var(--primary); font-weight: 800; font-size: 1.1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        .answer { color: var(--text-primary); line-height: 1.7; font-size: 0.95rem; }
+        .lang-label { font-size: 0.65rem; text-transform: uppercase; background: var(--primary); color: white; padding: 2px 6px; border-radius: 4px; margin-right: 8px; vertical-align: middle; }
+        .ar { direction: rtl; text-align: right; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border); font-family: 'Noto Sans Arabic', sans-serif; }
+        code { background: rgba(255,255,255,0.05); padding: 2px 5px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.9em; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; margin-bottom: 0.5rem; background: rgba(104, 160, 99, 0.2); color: var(--primary); }
+    </style>
+</head>
+<body>
+    <aside>
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-logo">
+                <div class="logo-icon">QA</div>
+                <span>Interview Guide</span>
+            </a>
+        </div>
+        <nav class="nav-content">
+            <div class="chapter">
+                <div class="chapter-title">Categories</div>
+                <a href="#core" class="page-link active">Core & Architecture</a>
+                <a href="#async" class="page-link">Async & Performance</a>
+                <a href="#web" class="page-link">Web & Frameworks</a>
+                <a href="#security" class="page-link">Security & DB</a>
+            </div>
+        </nav>
+    </aside>
+
+    <main id="content-viewer">
+        <div class="content-header">
+            <span class="label">Node.js Mastery • Comprehensive Q&A</span>
+            <h1>20 Critical Interview Questions</h1>
+            <p style="color: var(--text-secondary)">A detailed guide in English and Arabic based on the Mastery Book.</p>
+        </div>
+
+        <div class="content-body" style="padding-bottom: 5rem;">
+            
+            <h2 id="core" style="color: var(--primary); margin: 3rem 0 1.5rem;">Section 1: Core & Architecture</h2>
+
+            <!-- Q1 -->
+            <div class="qa-card">
+                <div class="badge">#1 ARCHITECTURE</div>
+                <div class="question"><span class="lang-label">EN</span> What is the Event Loop and how does it work?</div>
+                <div class="answer">
+                    The Event Loop is a mechanism that allows Node.js to perform non-blocking I/O operations despite being single-threaded. It constantly checks for events in various phases (Timers, Poll, Check) and executes their callbacks. It offloads operations to the system kernel or thread pool whenever possible.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما هو الـ Event Loop وكيف يعمل؟</div>
+                    الـ Event Loop هو محرك Node.js الذي يسمح له بتنفيذ عمليات غير منغلقة (non-blocking) رغم كونه أحادي المسار. يقوم باستمرار بفحص الأحداث في مراحل مختلفة (مثل التوقيت، الفحص، والطلبات) وينفذ الدوال الخاصة بها. يقوم بنقل العمليات الثقيلة إلى نواة النظام أو مصفوفة المسارات (Thread Pool) عند الحاجة.
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="qa-card">
+                <div class="badge">#2 MODULES</div>
+                <div class="question"><span class="lang-label">EN</span> What is the difference between CommonJS and ESM?</div>
+                <div class="answer">
+                    **CommonJS (CJS)** is the legacy Node standard using `require()` and `module.exports`, loading modules synchronously. **ES Modules (ESM)** is the modern standard using `import` and `export`, loading modules asynchronously. ESM supports "Top-level await" and is the standard for modern browsers and Node 12+.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما الفرق بين CommonJS و ES Modules؟</div>
+                    **CommonJS** هو النظام القديم لـ Node ويستخدم `require()`، ويحمل المكتبات بشكل متزامن. **ES Modules** هو النظام الحديث والمعياري ويستخدم `import` و `export` ويحمل المكتبات بشكل غير متزامن، ويدعم الـ "Top-level await" وهو المعتمد في المتصفحات الحديثة وإصدارات نود 12 فما فوق.
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="badge">#3 BUFFERS</div>
+            <div class="qa-card">
+                <div class="question"><span class="lang-label">EN</span> What are Buffers in Node.js?</div>
+                <div class="answer">
+                    Buffers are objects used to handle binary data. Since JavaScript originally had no way to handle raw binary data (like images or network packets), Node introduced the `Buffer` class to store raw memory outside the V8 heap.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما هي الـ Buffers في Node.js؟</div>
+                    الـ Buffers هي كائنات تُستخدم للتعامل مع البيانات الثنائية (Binary Data). بما أن الجافا سكريبت لم تكن تدعم البيانات الخام (مثل الصور أو حزم الشبكة)، قدم Node كلاس `Buffer` لتخزين البيانات مباشرة في الذاكرة خارج نطاق الـ V8.
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="qa-card">
+                <div class="badge">#4 STREAMS</div>
+                <div class="question"><span class="lang-label">EN</span> Why should you use Streams instead of fs.readFile?</div>
+                <div class="answer">
+                    `fs.readFile` loads the entire file into memory before processing, which crashes if the file is larger than the available RAM. **Streams** process data in small chunks, using constant memory regardless of the file size, making them much faster and more scalable.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> لماذا يجب استخدام الـ Streams بدلاً من fs.readFile؟</div>
+                    تقوم `fs.readFile` بتحميل الملف بالكامل في الذاكرة قبل المعالجة، مما يسبب انهيار السيرفر إذا كان الملف أكبر من الذاكرة المتاحة. أما الـ **Streams** فتقوم بمعالجة البيانات على أجزاء صغيرة (Chunks)، مما يوفر استهلاك الذاكرة ويجعل التطبيق أسرع وأكثر استقراراً.
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="qa-card">
+                <div class="badge">#5 EVENTS</div>
+                <div class="question"><span class="lang-label">EN</span> What is EventEmitter and when to use it?</div>
+                <div class="answer">
+                    `EventEmitter` is a class that allows objects to emit events and register listeners. It is used when you want to implement the Observer pattern, where one part of your application needs to notify other parts when something happens (e.g., a file upload finishing).
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما هو EventEmitter ومتى نستخدمه؟</div>
+                    هو كلاس يسمح للكائنات بإرسال أحداث (Emit Events) وتسجيل مستمعين (Listeners) لها. يُستخدم عند تنفيذ نمط المراقبة (Observer pattern)، حيث يحتاج جزء من التطبيق لإخطار أجزاء أخرى بوقوع حدث معين (مثل انتهاء رفع ملف).
+                </div>
+            </div>
+
+            <h2 id="async" style="color: var(--primary); margin: 3rem 0 1.5rem;">Section 2: Async & Performance</h2>
+
+            <!-- Q6 -->
+            <div class="qa-card">
+                <div class="badge">#6 NEXT TICK</div>
+                <div class="question"><span class="lang-label">EN</span> What is the difference between process.nextTick() and setImmediate()?</div>
+                <div class="answer">
+                    `process.nextTick()` executes its callback **immediately** after the current operation, before the Event Loop continues to the next phase. `setImmediate()` executes its callback in the **Check phase** of the Event Loop (after the Poll phase). `nextTick` is much higher priority.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما الفرق بين process.nextTick() و setImmediate()؟</div>
+                    تقوم `process.nextTick()` بتنفيذ الكود **فوراً** بعد العملية الحالية وقبل انتقال الـ Event Loop للمرحلة التالية. أما `setImmediate()` فتنفذ الكود في مرحلة الـ **Check** (بعد مرحلة الـ Poll). الـ `nextTick` لها أولوية قصوى وتعمل قبل أي شيء آخر.
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="qa-card">
+                <div class="badge">#7 THREADING</div>
+                <div class="question"><span class="lang-label">EN</span> How can Node.js handle concurrent requests if it is single-threaded?</div>
+                <div class="answer">
+                    Node.js uses **Asynchronous Non-blocking I/O**. When a request involves waiting (like DB or File access), Node offloads that to the system kernel. While the kernel works, the single thread continues to process other requests. When the data is ready, the callback is sent to the queue.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> كيف يتعامل Node مع طلبات متعددة وهو أحادي المسار؟</div>
+                    يعتمد نود على **المدخلات والمخرجات غير المنغلقة**. عندما يتطلب الطلب انتظاراً (مثل قاعدة البيانات)، ينقل نود هذه المهمة للنظام. بينما يعمل النظام، يستمر المسار الوحيد في استقبال طلبات أخرى. وعندما تصبح البيانات جاهزة، يتم تنفيذ الكود الخاص بها من طابور الانتظار.
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="qa-card">
+                <div class="badge">#8 WORKER THREADS</div>
+                <div class="question"><span class="lang-label">EN</span> When should you use Worker Threads?</div>
+                <div class="answer">
+                    Worker Threads should be used for **CPU-intensive tasks** (like video encoding, data processing, or complex calculations) that would otherwise block the Event Loop and make the server unresponsive.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> متى يجب استخدام Worker Threads؟</div>
+                    يجب استخدامها في **العمليات التي تستهلك المعالج (CPU) بشكل مكثف** (مثل معالجة الصور أو الحسابات المعقدة). هذه العمليات قد تؤدي لتوقف الـ Event Loop، لذا نقوم بتشغيلها في مسارات منفصلة لضمان استجابة السيرفر.
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="qa-card">
+                <div class="badge">#9 SCALING</div>
+                <div class="question"><span class="lang-label">EN</span> What is the Cluster module and how does it help?</div>
+                <div class="answer">
+                    The `cluster` module allows you to create child processes (workers) that share the same server port. This allows you to utilize all available CPU cores of the server, effectively multiplying your application's capacity.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما هي وحدة الـ Cluster وكيف تساعد في الأداء؟</div>
+                    تسمح وحدة الـ `cluster` بإنشاء عمليات فرعية (Workers) تشترك في نفس المنفذ (Port). هذا يسمح للتطبيق باستخدام جميع أنوية المعالج (CPU Cores) المتاحة في السيرفر، مما يضاعف قدرة التطبيق على تحمل الضغط.
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="qa-card">
+                <div class="badge">#10 PM2</div>
+                <div class="question"><span class="lang-label">EN</span> Why is PM2 essential for production?</div>
+                <div class="answer">
+                    PM2 is a process manager that keeps your application alive forever. If the app crashes, PM2 restarts it automatically. It also handles clustering, log management, and zero-downtime reloads.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> لماذا يعتبر PM2 أساسياً لبيئة التشغيل (Production)؟</div>
+                    هو مدير عمليات يضمن بقاء التطبيق يعمل باستمرار. إذا تعطل التطبيق، يقوم PM2 بإعادة تشغيله تلقائياً. كما يدعم توزيع الأحمال (Clustering)، وإدارة السجلات (Logs)، وتحديث الكود بدون توقف السيرفر.
+                </div>
+            </div>
+
+            <h2 id="web" style="color: var(--primary); margin: 3rem 0 1.5rem;">Section 3: Web & Frameworks</h2>
+
+            <!-- Q11 -->
+            <div class="qa-card">
+                <div class="badge">#11 MIDDLEWARE</div>
+                <div class="question"><span class="lang-label">EN</span> Explain the order of middleware execution in Express.</div>
+                <div class="answer">
+                    Middleware executes in the order it is defined using `app.use()`. If a middleware doesn't call `next()`, the request will hang and subsequent middleware or routes will never be reached.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> اشرح ترتيب تنفيذ الـ Middleware في Express.</div>
+                    يتم تنفيذ الـ Middleware حسب ترتيب كتابتها في الكود باستخدام `app.use()`. إذا لم تقم دالة وسيطة باستدعاء `next()`، سيتوقف الطلب ولن تصل الاستجابة لباقي الدوال أو المسارات.
+                </div>
+            </div>
+
+            <!-- Q12 -->
+            <div class="qa-card">
+                <div class="badge">#12 ERROR HANDLING</div>
+                <div class="question"><span class="lang-label">EN</span> How do you handle errors in Express middleware?</div>
+                <div class="answer">
+                    Error-handling middleware is defined with four arguments instead of three: `(err, req, res, next)`. Express recognizes this signature and only calls this function when an error is passed to `next(error)`.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> كيف تتعامل مع الأخطاء في Middleware الخاص بـ Express؟</div>
+                    يتم تعريف الـ Middleware الخاص بالأخطاء بأربعة بارامترات بدلاً من ثلاثة: `(err, req, res, next)`. يتعرف Express على هذا التنسيق ويقوم باستدعائه فقط عندما يتم تمرير خطأ للدالة `next(error)`.
+                </div>
+            </div>
+
+            <!-- Q13 -->
+            <div class="qa-card">
+                <div class="badge">#13 PARAMS</div>
+                <div class="question"><span class="lang-label">EN</span> What is the difference between req.params and req.query?</div>
+                <div class="answer">
+                    `req.params` contains route parameters defined in the path (e.g., `/user/:id` -> `req.params.id`). `req.query` contains the URL query string parameters (e.g., `/search?name=john` -> `req.query.name`).
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما الفرق بين req.params و req.query؟</div>
+                    `req.params` تحتوي على متغيرات مسار الرابط (مثل `/user/:id`). أما `req.query` فتحتوي على متغيرات الاستعلام التي تأتي بعد علامة الاستفهام في الرابط (مثل `/search?name=john`).
+                </div>
+            </div>
+
+            <!-- Q14 -->
+            <div class="qa-card">
+                <div class="badge">#14 BODY PARSER</div>
+                <div class="question"><span class="lang-label">EN</span> Why do we need express.json()?</div>
+                <div class="answer">
+                    By default, Node/Express cannot read the data sent in the request body (POST/PUT). `express.json()` is a built-in middleware that parses incoming requests with JSON payloads and populates `req.body`.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> لماذا نحتاج لاستخدام express.json()؟</div>
+                    بشكل افتراضي، لا يستطيع نود قراءة البيانات المرسلة في جسم الطلب (Body). تعتبر `express.json()` برمجية وسيطة تقوم بتحليل بيانات الـ JSON القادمة ووضعها في `req.body` ليسهل التعامل معها.
+                </div>
+            </div>
+
+            <!-- Q15 -->
+            <div class="qa-card">
+                <div class="badge">#15 REPL</div>
+                <div class="question"><span class="lang-label">EN</span> What is REPL in Node.js?</div>
+                <div class="answer">
+                    REPL stands for **Read, Eval, Print, Loop**. It is an interactive shell environment (like typing `node` in terminal) where you can execute JavaScript code line by line and see results immediately.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما هو الـ REPL في Node.js؟</div>
+                    اختصار لـ **Read, Eval, Print, Loop**. هي بيئة تفاعلية (مثل كتابة `node` في الشاشة السوداء) تسمح لك بكتابة كود جافا سكريبت وتجربته سطراً بسطر ورؤية النتائج فوراً.
+                </div>
+            </div>
+
+            <h2 id="security" style="color: var(--primary); margin: 3rem 0 1.5rem;">Section 4: Security & Database</h2>
+
+            <!-- Q16 -->
+            <div class="qa-card">
+                <div class="badge">#16 SECURITY</div>
+                <div class="question"><span class="lang-label">EN</span> What is Helmet and why use it?</div>
+                <div class="answer">
+                    Helmet is a middleware that secures Express apps by setting various HTTP headers. It helps protect against common vulnerabilities like XSS, Clickjacking, and MIME-sniffing.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما هو Helmet ولماذا نستخدمه؟</div>
+                    هو Middleware يقوم بحماية تطبيقات Express عبر ضبط ترويسات (Headers) الـ HTTP. يساعد في الحماية من ثغرات مشهورة مثل XSS و Clickjacking وغيرها.
+                </div>
+            </div>
+
+            <!-- Q17 -->
+            <div class="qa-card">
+                <div class="badge">#17 JWT</div>
+                <div class="question"><span class="lang-label">EN</span> What is JWT and how does it work?</div>
+                <div class="answer">
+                    JSON Web Token is a secure way to transmit information between parties as a JSON object. In Node, it is used for authentication. The server generates a token after login, and the client sends it in the `Authorization` header for subsequent requests.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما هو الـ JWT وكيف يعمل؟</div>
+                    هو وسيلة آمنة لنقل البيانات بين طرفين ككائن JSON. في نود، يُستخدم للتحقق من الهوية (Authentication). يقوم السيرفر بإنشاء "توكن" بعد تسجيل الدخول، ويرسله العميل في كل طلب لاحق لإثبات هويته.
+                </div>
+            </div>
+
+            <!-- Q18 -->
+            <div class="qa-card">
+                <div class="badge">#18 DB INJECTION</div>
+                <div class="question"><span class="lang-label">EN</span> How do you prevent SQL/NoSQL injection?</div>
+                <div class="answer">
+                    To prevent injection, never concatenate user input directly into queries. Instead, use **Parameterized Queries** or an ORM/ODM like **Mongoose** or **Prisma**, which sanitize inputs automatically.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> كيف تمنع هجمات الـ SQL/NoSQL Injection؟</div>
+                    لمنع هذه الهجمات، يجب ألا تضع مدخلات المستخدم مباشرة في الاستعلام. بدلاً من ذلك، استخدم الاستعلامات المعلمة (Parameterized Queries) أو استخدم ORM مثل **Mongoose** أو **Prisma** التي تقوم بتنظيف البيانات تلقائياً.
+                </div>
+            </div>
+
+            <!-- Q19 -->
+            <div class="qa-card">
+                <div class="badge">#19 ENV VARS</div>
+                <div class="question"><span class="lang-label">EN</span> Why should you use environment variables?</div>
+                <div class="answer">
+                    Environment variables keep sensitive data (DB passwords, API keys) outside the source code. This improves security and allows different configurations for development, testing, and production.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> لماذا يجب استخدام متغيرات البيئة (Env Vars)؟</div>
+                    لإبقاء البيانات الحساسة (كلمات سر قاعدة البيانات، مفاتيح الـ API) خارج الكود المصدري. هذا يحسن الأمان ويسمح بإعدادات مختلفة لكل بيئة (تطوير، اختبار، إنتاج).
+                </div>
+            </div>
+
+            <!-- Q20 -->
+            <div class="qa-card">
+                <div class="badge">#20 PROS/CONS</div>
+                <div class="question"><span class="lang-label">EN</span> What are the advantages and disadvantages of Node.js?</div>
+                <div class="answer">
+                    **Pros**: Extremely fast I/O, huge NPM ecosystem, same language (JS) for frontend/backend. **Cons**: Not suitable for heavy CPU tasks, callback hell (if not handled), single-threaded limitation for some calculations.
+                </div>
+                <div class="ar">
+                    <div class="question"><span class="lang-label">AR</span> ما هي مميزات وعيوب Node.js؟</div>
+                    **المميزات**: سرعة هائلة في المدخلات والمخرجات، نظام NPM ضخم، لغة واحدة (JS) للفرونت إند والباك إند. **العيوب**: غير مناسب للعمليات التي تستهلك المعالج بكثافة، تعقيد الكود إذا لم يُنظم جيداً، والتقيد بمسار واحد لبعض الحسابات.
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>

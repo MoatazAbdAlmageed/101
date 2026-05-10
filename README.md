@@ -27,7 +27,7 @@ Each folder contains a structured roadmap, in-depth content, and interactive HTM
 
 | Topic | Description | Status |
 | :--- | :--- | :--- |
-| **[Node.js](./backend/nodejs/)** | Server-side JavaScript runtime. | ✅ Complete |
+| **[Node.js](./backend/nodejs/)** | Server-side JavaScript runtime. ([Interview Guide](./backend/nodejs/interview.html)) | ✅ Complete |
 | **[Express.js](./backend/nodejs/express/)** | Fast, unopinionated, minimalist web framework. | ✅ Complete |
 | **[NestJS](./backend/nodejs/nestjs/)** | Progressive Node.js framework for enterprise apps. | ✅ Complete |
 | **[PHP](./backend/php/)** | Core server-side scripting mastery. | ✅ Complete |
