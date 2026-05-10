@@ -1,0 +1,49 @@
+<!DOCTYPE html> <!-- Standard HTML5 document type declaration -->
+<html lang="en"> <!-- Root element with language set to English -->
+<head> <!-- Metadata section of the document -->
+    <meta charset="UTF-8"> <!-- Set character encoding to UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive viewport settings -->
+    <title>Task Manager Pro</title> <!-- Page title shown in the browser tab -->
+    <link rel="stylesheet" href="/css/style.css"> <!-- Link to the external CSS stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Optimization for Google Fonts connection -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Preconnect to the font assets server -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"> <!-- Import Inter font -->
+</head> <!-- End of metadata section -->
+<body> <!-- Visible content of the page starts here -->
+    <div class="container"> <!-- Main wrapper for the application UI -->
+        <header> <!-- Header section containing the title and subtitle -->
+            <h1>Task Manager</h1> <!-- Main heading of the app -->
+            <p>Organize your development workflow</p> <!-- Descriptive subtext -->
+        </header> <!-- End of header section -->
+
+        <form action="/add" method="POST" class="input-group"> <!-- Form to add tasks, sends data to /add via POST -->
+            <input type="text" name="title" placeholder="Add a new task..." required autocomplete="off"> <!-- Input field for the task title -->
+            <button type="submit" class="add-btn">Add</button> <!-- Submit button to add the task -->
+        </form> <!-- End of the input form -->
+
+        <ul class="task-list"> <!-- Unordered list to display all tasks -->
+            <% if (tasks.length === 0) { %> <!-- EJS: Check if the tasks array is empty -->
+                <div class="empty-state"> <!-- Container for empty list message -->
+                    <p>No tasks yet. Start by adding one!</p> <!-- Message shown when no tasks exist -->
+                </div> <!-- End of empty state container -->
+            <% } %> <!-- End of EJS if block -->
+
+            <% tasks.forEach(task => { %> <!-- EJS: Loop through each task in the tasks array -->
+                <li class="task-item <%= task.completed ? 'completed' : '' %>"> <!-- List item with dynamic class 'completed' if task.completed is true -->
+                    <div class="task-content"> <!-- Wrapper for the checkmark and task title -->
+                        <form action="/toggle/<%= task.id %>" method="POST" class="toggle-form"> <!-- Form to toggle completion via POST request -->
+                            <button type="submit"></button> <!-- Circular button acting as a checkbox -->
+                        </form> <!-- End of toggle form -->
+                        <span><%= task.title %></span> <!-- Display the task title using EJS output tags -->
+                    </div> <!-- End of task content wrapper -->
+                    <form action="/delete/<%= task.id %>" method="POST"> <!-- Form to delete a task via POST request -->
+                        <button type="submit" class="delete-btn"> <!-- Button to trigger deletion -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg> <!-- Trash icon SVG -->
+                        </button> <!-- End of delete button -->
+                    </form> <!-- End of delete form -->
+                </li> <!-- End of the individual task item -->
+            <% }) %> <!-- End of EJS loop -->
+        </ul> <!-- End of the task list -->
+    </div> <!-- End of the main container -->
+</body> <!-- End of body content -->
+</html> <!-- End of HTML document -->
