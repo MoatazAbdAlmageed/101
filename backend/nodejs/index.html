@@ -48,201 +48,276 @@
     </main>
 
     <script type="text/markdown" id="markdown-content">
-### Phase 1: **Fundamentals**
+### Phase 1: **Architecture & Core Fundamentals**
 
-#### Node.js Architecture
-Node.js is built on Chrome's V8 JavaScript engine. It uses an **event-driven, non-blocking I/O model** that makes it lightweight and efficient.
+#### Node.js Architecture Deep Dive
+Node.js is not a language or a framework; it's a **runtime environment** that allows you to execute JavaScript on the server.
 
-The **Event Loop** is the heart of Node.js, allowing it to perform non-blocking I/O operations despite JavaScript being single-threaded.
+- **V8 Engine**: Developed by Google for Chrome, it compiles JavaScript directly into native machine code before executing it.
+- **Libuv**: A multi-platform C library that provides support for asynchronous I/O based on event loops. It handles the thread pool, file system events, and DNS operations.
+- **Single-Threaded Event Loop**: While the Event Loop itself is single-threaded, Node.js offloads heavy tasks (like File I/O or Cryptography) to the **Libuv Thread Pool** (usually 4 threads by default), making it highly scalable.
 
-#### The Module System
-Node.js uses two main module systems:
-1. **CommonJS (CJS)**: `require()` and `module.exports`.
-2. **ECMAScript Modules (ESM)**: `import` and `export`.
+#### The Module System (CJS vs ESM)
+Node.js supports two distinct module systems. Understanding the difference is crucial for modern development.
+
+**1. CommonJS (CJS)** - The legacy standard:
+- Uses `require()` and `module.exports`.
+- Synchronous loading.
+- Ideal for older Node versions and some server-side tools.
 
 ```javascript
-// CommonJS
-const fs = require('fs');
-module.exports = { ... };
+// math.js
+const add = (a, b) => a + b;
+module.exports = { add };
 
-// ESM
-import fs from 'fs';
-export const myFunc = () => { ... };
+// app.js
+const { add } = require('./math.js');
+console.log(add(5, 10));
 ```
 
-#### NPM and Package Management
-NPM (Node Package Manager) is the world's largest software registry.
-- `npm init`: Initialize a new project.
-- `npm install <pkg>`: Add a dependency.
-- `package.json`: Manages project metadata and dependencies.
+**2. ECMAScript Modules (ESM)** - The modern standard:
+- Uses `import` and `export`.
+- Asynchronous loading.
+- Supported natively in Node 12+ (use `.mjs` or `"type": "module"` in `package.json`).
 
-#### File System (fs)
-The `fs` module allows you to interact with the file system.
+```javascript
+// math.mjs
+export const multiply = (a, b) => a * b;
+
+// app.mjs
+import { multiply } from './math.mjs';
+```
+
+#### NPM: Beyond the Basics
+NPM is more than just a downloader; it's a dependency manager.
+- **package.json**: The heart of your project. Defines versions using SemVer (`^` for minor, `~` for patch).
+- **package-lock.json**: Ensures every developer on the team installs the exact same versions.
+- **npx**: Execute packages without installing them globally (e.g., `npx create-react-app`).
+
+#### File System (fs) - Three Ways to Code
+The `fs` module is for interacting with files. You should almost always prefer the Promises API.
 
 ```javascript
 const fs = require('fs/promises');
 
-async function readFile() {
-  const data = await fs.readFile('data.txt', 'utf8');
-  console.log(data);
+// 1. Promises (Modern & Recommended)
+async function handleFile() {
+    try {
+        await fs.writeFile('log.txt', 'Hello Node!');
+        const data = await fs.readFile('log.txt', 'utf8');
+        console.log(data);
+    } catch (err) {
+        console.error(err);
+    }
 }
+
+// 2. Callbacks (Legacy - leads to nesting)
+const fsLegacy = require('fs');
+fsLegacy.readFile('test.txt', 'utf8', (err, data) => { ... });
+
+// 3. Sync (Blocking - AVOID in web servers)
+const data = fsLegacy.readFileSync('test.txt', 'utf8');
 ```
 
-#### Streams and Buffers
-Streams are used to handle large amounts of data efficiently by processing it in chunks.
-Buffers are used to handle binary data.
+#### Streams: Processing Data in Chunks
+Streams are the most efficient way to handle large data (GBs of video or logs) without hitting memory limits.
+
+- **Readable**: Reading from a source (e.g., `fs.createReadStream`).
+- **Writable**: Writing to a destination (e.g., `fs.createWriteStream`).
+- **Duplex**: Both readable and writable (e.g., TCP Sockets).
+- **Transform**: Modifies data as it's read/written (e.g., `zlib` for compression).
 
 ```javascript
-const readable = fs.createReadStream('large-file.zip');
-readable.on('data', (chunk) => {
-  console.log(`Received ${chunk.length} bytes`);
-});
+const fs = require('fs');
+const zlib = require('zlib');
+
+// Compressing a file using Pipes
+fs.createReadStream('large_file.txt')
+  .pipe(zlib.createGzip())
+  .pipe(fs.createWriteStream('large_file.txt.gz'));
 ```
 
-### Phase 2: **Web Servers**
+### Phase 2: **High-Performance Web Servers**
 
-#### The HTTP Module
-The built-in `http` module allows Node.js to transfer data over HTTP.
+#### The HTTP Core Module
+Understanding the low-level `http` module helps you appreciate what Express does behind the scenes.
 
 ```javascript
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
+    // req: Information about the request (URL, Method, Headers)
+    // res: Object used to send data back to the client
+    
+    if (req.url === '/') {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end('<h1>Welcome Home</h1>');
+    } else if (req.url === '/api/data') {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Success' }));
+    }
 });
 
-server.listen(3000);
+server.listen(3000, () => console.log('Server live on 3000'));
 ```
 
-#### Express.js Framework
-Express is the most popular web framework for Node.js. It simplifies routing, middleware, and request handling.
+#### Express.js: The Industry Standard
+Express is a minimalist web framework that organizes your server into routes and middleware.
 
 ```javascript
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Welcome to Express!');
-});
+// Global Middleware to parse JSON
+app.use(express.json());
 
-app.listen(3000);
+app.get('/user/:id', (req, res) => {
+    const userId = req.params.id; // From URL path
+    const query = req.query.sort; // From URL ?sort=asc
+    res.status(200).send(`User ${userId} sorted by ${query}`);
+});
 ```
 
-#### Routing and Middleware
-Middleware functions are functions that have access to the request object (`req`), the response object (`res`), and the next middleware function in the application’s request-response cycle.
+#### The Power of Middleware
+Middleware functions sit between the request and the final route handler. They can:
+1. Execute any code.
+2. Make changes to the request and response objects.
+3. End the request-response cycle.
+4. Call the next middleware in the stack using `next()`.
 
 ```javascript
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-});
+// Custom Logging Middleware
+const logger = (req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    next(); // CRITICAL: Without this, the request hangs forever!
+};
+
+app.use(logger);
 ```
 
-#### Request and Response
-Handling parameters, query strings, and request bodies.
-
-```javascript
-app.get('/users/:id', (req, res) => {
-  const userId = req.params.id;
-  res.json({ id: userId });
-});
-```
-
-#### Error Handling
-Centralized error handling in Express.
+#### Error Handling Strategy
+Express has a special middleware for errors. It must be defined **last**, after all routes.
 
 ```javascript
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
+    console.error(err.stack);
+    res.status(500).json({
+        error: 'Internal Server Error',
+        message: err.message
+    });
 });
 ```
 
-### Phase 3: **Asynchronous Patterns**
+### Phase 3: **Asynchronous Mastery**
 
-#### Callbacks and Hell
-The old way of handling async operations. Leading to "Callback Hell".
+#### The Event Loop Phases
+To truly master Node.js, you must understand the Event Loop phases:
+1. **Timers**: `setTimeout()` and `setInterval()`.
+2. **Pending Callbacks**: I/O callbacks deferred from previous cycles.
+3. **Idle, Prepare**: Used only internally.
+4. **Poll**: Retrieve new I/O events (where most code executes).
+5. **Check**: `setImmediate()`.
+6. **Close Callbacks**: `socket.on('close', ...)`.
 
-#### Promises
-A cleaner way to handle async operations.
-`.then()`, `.catch()`, and `.finally()`.
+> **Pro Tip**: `process.nextTick()` is NOT part of the event loop. It executes immediately after the current operation, before the next phase.
 
-#### Async/Await
-Syntactic sugar over Promises, making code look synchronous.
+#### Promises & Async/Await Pattern
+Always wrap your async code in `try/catch` to prevent server crashes from unhandled rejections.
 
 ```javascript
-async function fetchData() {
-  try {
-    const response = await fetch('https://api.example.com');
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-}
+const fetchData = async () => {
+    try {
+        const result = await someDatabaseCall();
+        return result;
+    } catch (error) {
+        // Handle database specific errors
+        throw new Error('Database connection failed');
+    }
+};
 ```
 
-#### Event Emitters
-The `EventEmitter` class is used to handle custom events in Node.js.
+#### Event Emitters: Custom Events
+Node.js follows an observer pattern using the `events` module.
 
 ```javascript
 const EventEmitter = require('events');
-const myEmitter = new EventEmitter();
+const chatRoom = new EventEmitter();
 
-myEmitter.on('event', () => {
-  console.log('An event occurred!');
+// Subscriber
+chatRoom.on('message', (user, msg) => {
+    console.log(`[${user}]: ${msg}`);
 });
 
-myEmitter.emit('event');
+// Publisher
+chatRoom.emit('message', 'Alice', 'Hello everyone!');
 ```
 
-#### Process and Environment
-Working with `process.env` and environment variables.
+### Phase 4: **Data Persistence**
+
+#### SQL vs NoSQL in Node.js
+- **SQL (MySQL/PostgreSQL)**: Great for structured data with complex relationships. Use **Prisma** or **Sequelize**.
+- **NoSQL (MongoDB)**: Flexible, JSON-like document storage. Use **Mongoose**.
+
+#### Mongoose & Data Modeling
+Modeling data ensures consistency.
 
 ```javascript
-require('dotenv').config();
-const port = process.env.PORT || 3000;
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    email: { type: String, lowercase: true },
+    age: { type: Number, min: 18 },
+    createdAt: { type: Date, default: Date.now }
+});
+
+const User = mongoose.model('User', userSchema);
 ```
 
-### Phase 4: **Databases**
+#### Database Best Practices
+1. **Connection Pooling**: Don't open/close connections for every request.
+2. **Indexing**: Essential for performance on large collections.
+3. **Validation**: Validate data at the application level (Zod) and DB level (Mongoose).
+4. **Sanitization**: Prevent SQL/NoSQL Injection by using ORMs/ODMs.
 
-#### Connecting to SQL (MySQL/Postgres)
-Using libraries like `mysql2` or `pg`.
-
-#### NoSQL with MongoDB (Mongoose)
-Mongoose provides a straight-forward, schema-based solution to model your application data.
-
-#### ORMs and Query Builders
-Sequelize, TypeORM, and Prisma for better developer experience and type safety.
-
-#### Data Modeling
-Defining schemas and relationships (One-to-One, One-to-Many, Many-to-Many).
-
-#### Migrations and Seeding
-Managing database schema changes over time.
-
-### Phase 5: **Advanced Topics**
+### Phase 5: **Production & Beyond**
 
 #### Security Best Practices
-- Helmet middleware
-- Rate limiting
-- Input validation (Joi/Zod)
-- JWT Authentication
+Security is not a feature; it's a foundation.
+- **Helmet**: Sets various HTTP headers to secure your app.
+- **Express-Rate-Limit**: Prevents Brute-Force and DoS attacks.
+- **Dotenv**: Keep your secrets (API keys, DB URLs) out of your code.
+- **Bcrypt**: Always hash passwords. Never store plain text!
 
-#### Testing (Jest/Mocha)
-Writing unit tests, integration tests, and E2E tests.
-
-#### Deployment and CI/CD
-Deploying to Heroku, AWS, DigitalOcean, and using Docker.
-
-#### Performance Optimization
-- Caching with Redis
-- Using Workers for CPU-intensive tasks
-- Load balancing
+#### Performance & Scaling
+- **Clustering**: Use the `cluster` module to spawn multiple instances of your app to utilize all CPU cores.
+- **PM2**: A production process manager that handles auto-restarts and load balancing.
+- **Redis Caching**: Store expensive query results in-memory for lightning-fast retrieval.
 
 #### Real-time with WebSockets
-Using `Socket.io` for real-time, bi-directional communication.
+`Socket.io` enables bi-directional, real-time communication between the client and the server. Ideal for chats, live notifications, and gaming.
+
+```javascript
+const { Server } = require('socket.io');
+const io = new Server(server);
+
+io.on('connection', (socket) => {
+    console.log('A user connected');
+    socket.on('chat message', (msg) => {
+        io.emit('chat message', msg); // Broadcast to all connected clients
+    });
+});
+```
+
+#### Task Manager App (Practical)
+We have built a professional Task Manager application using Express and EJS. 
+You can find it in the `./express/task-manager` directory.
+
+To run it:
+1. Navigate: `cd express/task-manager`
+2. Install: `npm install`
+3. Run: `npm run dev`
+4. Visit: `http://localhost:3000`
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
