@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laravel Cheatsheet</title>
+<meta name="description" content="Complete Laravel reference — Artisan, Routing, Eloquent, Blade, Auth, Queues and more.">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --orange: #f0883e;
+    --purple: #d2a8ff;
+    --pink: #ff7b72;
+    --yellow: #e3b341;
+    --cyan: #39d0d8;
+    --red: #f85149;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+
+  header {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem; text-align: center;
+  }
+  header h1 {
+    font-size: 2.2rem;
+    background: linear-gradient(90deg, var(--red), var(--orange));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  header p { color: var(--muted); font-size: 1rem; }
+
+  .search-bar {
+    display: flex; justify-content: center;
+    padding: 1.5rem 2rem;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  .search-bar input {
+    width: 100%; max-width: 500px; padding: 0.7rem 1.2rem;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); font-size: 1rem; outline: none; transition: border-color 0.2s;
+  }
+  .search-bar input:focus { border-color: var(--accent); }
+
+  .container {
+    max-width: 1100px; margin: 0 auto; padding: 2rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .card-header {
+    padding: 1rem 1.2rem; font-weight: 700; font-size: 0.95rem;
+    display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border);
+  }
+  .cmd-list { padding: 0.5rem 0; }
+  .cmd-item {
+    padding: 0.6rem 1.2rem; display: flex; align-items: baseline;
+    gap: 0.8rem; border-bottom: 1px solid #1c2128; transition: background 0.15s; cursor: default;
+  }
+  .cmd-item:last-child { border-bottom: none; }
+  .cmd-item:hover { background: rgba(88,166,255,0.05); }
+  .cmd {
+    font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--green);
+    white-space: nowrap; min-width: 160px; cursor: pointer; position: relative;
+  }
+  .cmd:hover::after {
+    content: 'copy'; position: absolute; top: -1.4rem; left: 0;
+    font-size: 0.7rem; background: var(--accent); color: #000;
+    padding: 1px 5px; border-radius: 4px; font-family: 'Inter', sans-serif;
+  }
+  .copied { color: var(--accent) !important; }
+  .desc { font-size: 0.85rem; color: var(--muted); }
+
+  /* Section divider */
+  .section-divider {
+    grid-column: 1 / -1; display: flex; align-items: center; gap: 1rem; padding: 0.5rem 0;
+  }
+  .section-divider span {
+    font-size: 1rem; font-weight: 700; white-space: nowrap;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .section-divider hr { flex: 1; border: none; border-top: 1px solid var(--border); }
+
+  /* Category colors */
+  .artisan  { border-top: 3px solid var(--accent); }
+  .routing  { border-top: 3px solid var(--green); }
+  .blade    { border-top: 3px solid var(--purple); }
+  .eloquent { border-top: 3px solid var(--orange); }
+  .migration{ border-top: 3px solid var(--yellow); }
+  .auth-card{ border-top: 3px solid var(--pink); }
+  .queue-card{ border-top: 3px solid var(--cyan); }
+  .api-card { border-top: 3px solid #79c0ff; }
+  .helper-card{ border-top: 3px solid #56d364; }
+  .test-card { border-top: 3px solid var(--red); }
+
+  .artisan   .card-header { color: var(--accent); }
+  .routing   .card-header { color: var(--green); }
+  .blade     .card-header { color: var(--purple); }
+  .eloquent  .card-header { color: var(--orange); }
+  .migration .card-header { color: var(--yellow); }
+  .auth-card .card-header { color: var(--pink); }
+  .queue-card .card-header{ color: var(--cyan); }
+  .api-card  .card-header { color: #79c0ff; }
+  .helper-card .card-header{ color: #56d364; }
+  .test-card .card-header { color: var(--red); }
+
+  .lv1 { color: var(--green); }
+  .lv2 { color: var(--yellow); }
+  .lv3 { color: var(--red); }
+
+  .no-results {
+    text-align: center; grid-column: 1 / -1; color: var(--muted);
+    padding: 3rem; font-size: 1.1rem; display: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🪐 Laravel Cheatsheet</h1>
+  <p>Artisan · Routing · Blade · Eloquent · Migrations · Auth · Queues · API · Testing</p>
+</header>
+
+<div class="search-bar">
+  <input type="text" id="search" placeholder="🔍 Search commands or descriptions..." oninput="filterCmds(this.value)">
+</div>
+
+<div class="container" id="grid">
+
+  <!-- ===== LEVEL 1: BEGINNER ===== -->
+  <div class="section-divider"><span class="lv1">🟢 Level 1 — Beginner</span><hr></div>
+
+  <!-- Artisan CLI -->
+  <div class="card artisan" data-category="artisan cli">
+    <div class="card-header"><span>⚡</span> Artisan CLI</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">php artisan list</span><span class="desc">List all Artisan commands</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan serve</span><span class="desc">Start local dev server</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan make:model Post</span><span class="desc">Create a model</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan make:controller PostController</span><span class="desc">Create a controller</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan make:migration create_posts</span><span class="desc">Create a migration</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan make:seeder PostSeeder</span><span class="desc">Create a seeder</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan make:factory PostFactory</span><span class="desc">Create a factory</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan make:request StorePost</span><span class="desc">Create a form request</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan make:middleware CheckAge</span><span class="desc">Create middleware</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan make:job SendEmail</span><span class="desc">Create a job class</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan tinker</span><span class="desc">Interactive PHP REPL</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan route:list</span><span class="desc">List all registered routes</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan config:cache</span><span class="desc">Cache config files</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan cache:clear</span><span class="desc">Clear application cache</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan optimize:clear</span><span class="desc">Clear all cached files</span></div>
+    </div>
+  </div>
+
+  <!-- Routing -->
+  <div class="card routing" data-category="routing routes">
+    <div class="card-header"><span>🛣️</span> Routing</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">Route::get('/path', fn)</span><span class="desc">GET route with closure</span></div>
+      <div class="cmd-item"><span class="cmd">Route::post('/path', fn)</span><span class="desc">POST route</span></div>
+      <div class="cmd-item"><span class="cmd">Route::put / patch / delete</span><span class="desc">Other HTTP verbs</span></div>
+      <div class="cmd-item"><span class="cmd">Route::resource('posts', PostController::class)</span><span class="desc">Full CRUD resource routes</span></div>
+      <div class="cmd-item"><span class="cmd">Route::apiResource('posts', ...)</span><span class="desc">API resource (no create/edit)</span></div>
+      <div class="cmd-item"><span class="cmd">Route::get('/p/{id}', fn)</span><span class="desc">Route with parameter</span></div>
+      <div class="cmd-item"><span class="cmd">Route::get('/p/{id?}', fn)</span><span class="desc">Optional parameter</span></div>
+      <div class="cmd-item"><span class="cmd">Route::name('posts.index')</span><span class="desc">Named route</span></div>
+      <div class="cmd-item"><span class="cmd">Route::prefix('admin')->group(fn)</span><span class="desc">Route group with prefix</span></div>
+      <div class="cmd-item"><span class="cmd">Route::middleware('auth')->group(fn)</span><span class="desc">Route group with middleware</span></div>
+      <div class="cmd-item"><span class="cmd">route('posts.show', ['id'=>1])</span><span class="desc">Generate URL to named route</span></div>
+    </div>
+  </div>
+
+  <!-- Blade -->
+  <div class="card blade" data-category="blade templating views">
+    <div class="card-header"><span>🗡️</span> Blade Templates</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">{{ $var }}</span><span class="desc">Echo escaped variable</span></div>
+      <div class="cmd-item"><span class="cmd">{!! $html !!}</span><span class="desc">Echo unescaped HTML</span></div>
+      <div class="cmd-item"><span class="cmd">@if / @elseif / @else / @endif</span><span class="desc">Conditionals</span></div>
+      <div class="cmd-item"><span class="cmd">@foreach($items as $item)</span><span class="desc">Loop over collection</span></div>
+      <div class="cmd-item"><span class="cmd">@forelse / @empty</span><span class="desc">Loop with empty fallback</span></div>
+      <div class="cmd-item"><span class="cmd">@for / @while</span><span class="desc">Standard loops</span></div>
+      <div class="cmd-item"><span class="cmd">@extends('layout')</span><span class="desc">Extend a parent layout</span></div>
+      <div class="cmd-item"><span class="cmd">@section('content') @endsection</span><span class="desc">Define a section</span></div>
+      <div class="cmd-item"><span class="cmd">@yield('content')</span><span class="desc">Render a section</span></div>
+      <div class="cmd-item"><span class="cmd">@include('partial')</span><span class="desc">Include a sub-view</span></div>
+      <div class="cmd-item"><span class="cmd">@component / @slot</span><span class="desc">Blade components</span></div>
+      <div class="cmd-item"><span class="cmd">@csrf</span><span class="desc">CSRF token field</span></div>
+      <div class="cmd-item"><span class="cmd">@method('PUT')</span><span class="desc">Spoof HTTP method</span></div>
+      <div class="cmd-item"><span class="cmd">@auth / @guest</span><span class="desc">Auth conditional directives</span></div>
+    </div>
+  </div>
+
+  <!-- Migrations -->
+  <div class="card migration" data-category="migration database schema">
+    <div class="card-header"><span>🗄️</span> Migrations</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">php artisan migrate</span><span class="desc">Run pending migrations</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan migrate:rollback</span><span class="desc">Rollback last batch</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan migrate:fresh</span><span class="desc">Drop all tables & re-migrate</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan migrate:fresh --seed</span><span class="desc">Fresh migrate + seed</span></div>
+      <div class="cmd-item"><span class="cmd">$table->id()</span><span class="desc">Auto-increment primary key</span></div>
+      <div class="cmd-item"><span class="cmd">$table->string('name')</span><span class="desc">VARCHAR column</span></div>
+      <div class="cmd-item"><span class="cmd">$table->text('body')</span><span class="desc">TEXT column</span></div>
+      <div class="cmd-item"><span class="cmd">$table->integer('age')</span><span class="desc">Integer column</span></div>
+      <div class="cmd-item"><span class="cmd">$table->boolean('active')</span><span class="desc">Boolean column</span></div>
+      <div class="cmd-item"><span class="cmd">$table->foreignId('user_id')->constrained()</span><span class="desc">Foreign key constraint</span></div>
+      <div class="cmd-item"><span class="cmd">$table->timestamps()</span><span class="desc">created_at & updated_at</span></div>
+      <div class="cmd-item"><span class="cmd">$table->softDeletes()</span><span class="desc">Add deleted_at column</span></div>
+    </div>
+  </div>
+
+  <!-- ===== LEVEL 2: INTERMEDIATE ===== -->
+  <div class="section-divider"><span class="lv2">🟡 Level 2 — Intermediate</span><hr></div>
+
+  <!-- Eloquent ORM -->
+  <div class="card eloquent" data-category="eloquent orm model database">
+    <div class="card-header"><span>💎</span> Eloquent ORM</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">Post::all()</span><span class="desc">Get all records</span></div>
+      <div class="cmd-item"><span class="cmd">Post::find($id)</span><span class="desc">Find by primary key</span></div>
+      <div class="cmd-item"><span class="cmd">Post::findOrFail($id)</span><span class="desc">Find or throw 404</span></div>
+      <div class="cmd-item"><span class="cmd">Post::where('active', 1)->get()</span><span class="desc">Query with condition</span></div>
+      <div class="cmd-item"><span class="cmd">Post::first() / ->latest()->first()</span><span class="desc">Get first record</span></div>
+      <div class="cmd-item"><span class="cmd">Post::create([...])</span><span class="desc">Mass-assign and create</span></div>
+      <div class="cmd-item"><span class="cmd">$post->update([...])</span><span class="desc">Update a record</span></div>
+      <div class="cmd-item"><span class="cmd">$post->delete()</span><span class="desc">Delete a record</span></div>
+      <div class="cmd-item"><span class="cmd">Post::paginate(15)</span><span class="desc">Paginate results</span></div>
+      <div class="cmd-item"><span class="cmd">$post->comments()</span><span class="desc">hasMany relationship</span></div>
+      <div class="cmd-item"><span class="cmd">$comment->post()</span><span class="desc">belongsTo relationship</span></div>
+      <div class="cmd-item"><span class="cmd">$post->tags()</span><span class="desc">belongsToMany relationship</span></div>
+      <div class="cmd-item"><span class="cmd">Post::with('comments')->get()</span><span class="desc">Eager load (fix N+1)</span></div>
+      <div class="cmd-item"><span class="cmd">Post::withTrashed()->get()</span><span class="desc">Include soft-deleted</span></div>
+    </div>
+  </div>
+
+  <!-- Auth -->
+  <div class="card auth-card" data-category="auth authentication login">
+    <div class="card-header"><span>🔐</span> Authentication</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">composer require laravel/breeze</span><span class="desc">Install Breeze starter kit</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan breeze:install</span><span class="desc">Scaffold auth views</span></div>
+      <div class="cmd-item"><span class="cmd">Auth::check()</span><span class="desc">Check if user is logged in</span></div>
+      <div class="cmd-item"><span class="cmd">Auth::user()</span><span class="desc">Get current user</span></div>
+      <div class="cmd-item"><span class="cmd">Auth::id()</span><span class="desc">Get current user ID</span></div>
+      <div class="cmd-item"><span class="cmd">Auth::login($user)</span><span class="desc">Manually log in a user</span></div>
+      <div class="cmd-item"><span class="cmd">Auth::logout()</span><span class="desc">Log out current user</span></div>
+      <div class="cmd-item"><span class="cmd">auth()->attempt([...])</span><span class="desc">Attempt login with credentials</span></div>
+      <div class="cmd-item"><span class="cmd">middleware('auth')</span><span class="desc">Protect route from guests</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan make:policy PostPolicy</span><span class="desc">Create an authorization policy</span></div>
+      <div class="cmd-item"><span class="cmd">Gate::define('update-post', fn)</span><span class="desc">Define a Gate</span></div>
+      <div class="cmd-item"><span class="cmd">$this->authorize('update', $post)</span><span class="desc">Authorize action in controller</span></div>
+    </div>
+  </div>
+
+  <!-- API -->
+  <div class="card api-card" data-category="api rest resource json">
+    <div class="card-header"><span>🌐</span> RESTful API</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">php artisan make:resource PostResource</span><span class="desc">Create API resource</span></div>
+      <div class="cmd-item"><span class="cmd">return new PostResource($post)</span><span class="desc">Return single resource</span></div>
+      <div class="cmd-item"><span class="cmd">return PostResource::collection($posts)</span><span class="desc">Return collection</span></div>
+      <div class="cmd-item"><span class="cmd">response()->json([...], 200)</span><span class="desc">Return JSON response</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan install:api</span><span class="desc">Install Sanctum for API auth</span></div>
+      <div class="cmd-item"><span class="cmd">$user->createToken('token')</span><span class="desc">Issue a Sanctum token</span></div>
+      <div class="cmd-item"><span class="cmd">middleware('auth:sanctum')</span><span class="desc">Protect API route</span></div>
+      <div class="cmd-item"><span class="cmd">$request->bearerToken()</span><span class="desc">Read bearer token from request</span></div>
+    </div>
+  </div>
+
+  <!-- ===== LEVEL 3: ADVANCED ===== -->
+  <div class="section-divider"><span class="lv3">🔴 Level 3 — Advanced</span><hr></div>
+
+  <!-- Queues & Jobs -->
+  <div class="card queue-card" data-category="queue job background worker">
+    <div class="card-header"><span>⚙️</span> Queues &amp; Jobs</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">php artisan make:job SendWelcomeEmail</span><span class="desc">Create a job</span></div>
+      <div class="cmd-item"><span class="cmd">dispatch(new SendWelcomeEmail($user))</span><span class="desc">Dispatch a job</span></div>
+      <div class="cmd-item"><span class="cmd">SendWelcomeEmail::dispatch($user)</span><span class="desc">Static dispatch shorthand</span></div>
+      <div class="cmd-item"><span class="cmd">->delay(now()->addMinutes(5))</span><span class="desc">Delay job execution</span></div>
+      <div class="cmd-item"><span class="cmd">->onQueue('emails')</span><span class="desc">Specify a queue</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan queue:work</span><span class="desc">Start queue worker</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan queue:work --queue=emails</span><span class="desc">Process specific queue</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan queue:failed</span><span class="desc">List failed jobs</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan queue:retry all</span><span class="desc">Retry all failed jobs</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan schedule:run</span><span class="desc">Run scheduled tasks</span></div>
+    </div>
+  </div>
+
+  <!-- Helpers -->
+  <div class="card helper-card" data-category="helpers collections cache config">
+    <div class="card-header"><span>🧰</span> Helpers &amp; Collections</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">collect([...])</span><span class="desc">Create a collection</span></div>
+      <div class="cmd-item"><span class="cmd">->filter() / ->map() / ->pluck()</span><span class="desc">Chain collection methods</span></div>
+      <div class="cmd-item"><span class="cmd">->groupBy() / ->sortBy()</span><span class="desc">Group and sort</span></div>
+      <div class="cmd-item"><span class="cmd">cache()->get('key', $default)</span><span class="desc">Read from cache</span></div>
+      <div class="cmd-item"><span class="cmd">cache()->put('key', $val, 600)</span><span class="desc">Write to cache (seconds)</span></div>
+      <div class="cmd-item"><span class="cmd">cache()->forget('key')</span><span class="desc">Remove from cache</span></div>
+      <div class="cmd-item"><span class="cmd">config('app.name')</span><span class="desc">Read config value</span></div>
+      <div class="cmd-item"><span class="cmd">env('APP_KEY')</span><span class="desc">Read .env variable</span></div>
+      <div class="cmd-item"><span class="cmd">storage_path('app/file.csv')</span><span class="desc">Resolve storage path</span></div>
+      <div class="cmd-item"><span class="cmd">Storage::disk('s3')->put(...)</span><span class="desc">Upload to S3</span></div>
+      <div class="cmd-item"><span class="cmd">Str::slug($title)</span><span class="desc">Convert string to slug</span></div>
+      <div class="cmd-item"><span class="cmd">Str::uuid()</span><span class="desc">Generate a UUID</span></div>
+    </div>
+  </div>
+
+  <!-- Testing -->
+  <div class="card test-card" data-category="testing pest phpunit tdd">
+    <div class="card-header"><span>🧪</span> Testing (Pest / PHPUnit)</div>
+    <div class="cmd-list">
+      <div class="cmd-item"><span class="cmd">php artisan test</span><span class="desc">Run all tests</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan test --filter PostTest</span><span class="desc">Run specific test</span></div>
+      <div class="cmd-item"><span class="cmd">php artisan make:test PostTest</span><span class="desc">Create a feature test</span></div>
+      <div class="cmd-item"><span class="cmd">$this->get('/posts')->assertOk()</span><span class="desc">Assert HTTP 200</span></div>
+      <div class="cmd-item"><span class="cmd">->assertRedirect('/login')</span><span class="desc">Assert redirect</span></div>
+      <div class="cmd-item"><span class="cmd">->assertSee('Hello')</span><span class="desc">Assert text in response</span></div>
+      <div class="cmd-item"><span class="cmd">->assertJson([...])</span><span class="desc">Assert JSON structure</span></div>
+      <div class="cmd-item"><span class="cmd">$this->actingAs($user)</span><span class="desc">Act as a logged-in user</span></div>
+      <div class="cmd-item"><span class="cmd">$this->assertDatabaseHas('posts', [...])</span><span class="desc">Assert DB record exists</span></div>
+      <div class="cmd-item"><span class="cmd">Post::factory()->create()</span><span class="desc">Create model via factory</span></div>
+      <div class="cmd-item"><span class="cmd">Queue::fake() / Mail::fake()</span><span class="desc">Fake queue/mail dispatching</span></div>
+    </div>
+  </div>
+
+  <div class="no-results" id="no-results">No results found 😕</div>
+</div>
+
+<script>
+function filterCmds(query) {
+  query = query.toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  let anyVisible = false;
+  cards.forEach(card => {
+    const items = card.querySelectorAll('.cmd-item');
+    let cardVisible = false;
+    items.forEach(item => {
+      const match = !query || item.textContent.toLowerCase().includes(query);
+      item.style.display = match ? '' : 'none';
+      if (match) cardVisible = true;
+    });
+    card.style.display = cardVisible ? '' : 'none';
+    if (cardVisible) anyVisible = true;
+  });
+  document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
+}
+
+document.querySelectorAll('.cmd').forEach(el => {
+  el.addEventListener('click', () => {
+    navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+      el.classList.add('copied');
+      setTimeout(() => el.classList.remove('copied'), 1200);
+    });
+  });
+});
+</script>
+</body>
+</html>
