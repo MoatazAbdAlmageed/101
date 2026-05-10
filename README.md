@@ -13,6 +13,7 @@ Each folder contains a structured roadmap, in-depth content, and interactive HTM
 ## 📚 Mastery Topics
 
 ### 🎨 Frontend
+
 | Topic | Description | Status |
 | :--- | :--- | :--- |
 | **[JavaScript](./frontend/js/)** | Core JavaScript fundamentals & ES6+. | ✅ Complete |
@@ -23,6 +24,7 @@ Each folder contains a structured roadmap, in-depth content, and interactive HTM
 | **[CSS & Tailwind](./frontend/css/)** | Modern styling and utility-first CSS. | 🚧 In Progress |
 
 ### ⚙️ Backend
+
 | Topic | Description | Status |
 | :--- | :--- | :--- |
 | **[Node.js](./backend/nodejs/)** | Server-side JavaScript runtime. | ✅ Complete |
@@ -34,6 +36,7 @@ Each folder contains a structured roadmap, in-depth content, and interactive HTM
 | **[SQL](./backend/sql/)** | Database management with MySQL & Postgres. | 🚧 In Progress |
 
 ### 🛠️ DevOps & Others
+
 | Topic | Description | Status |
 | :--- | :--- | :--- |
 | **[DevOps](./devops/)** | Docker, Kubernetes, and Linux fundamentals. | 🚧 In Progress |
