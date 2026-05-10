@@ -1,0 +1,27 @@
+# Java class files
+*.class
+
+# Log files
+*.log
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# jpackage / Build artifacts
+CalculatorApp/
+manifest.txt
+
+# Virtual solutions
+.project
+.classpath
+.settings/
+.idea/
+*.iml
+*.iws
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
