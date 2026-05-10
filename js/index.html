@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Mastery - The Complete Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <aside>
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-logo">
+                <div class="logo-icon">JS</div>
+                <span>JS Mastery</span>
+            </a>
+        </div>
+        <nav class="nav-content">
+            <!-- Content will be injected here by the converter -->
+        </nav>
+    </aside>
+
+    <main id="content-viewer">
+        <div id="loader" style="text-align: center; padding: 4rem;">
+            <div class="logo-icon" style="margin: 0 auto 1rem; animation: pulse 2s infinite;">JS</div>
+            <p style="color: var(--text-secondary)">Syncing your learning pathway...</p>
+        </div>
+
+        <div id="book-content" style="display: none;">
+            <!-- Content will be injected here by the converter -->
+        </div>
+        
+        <footer class="page-nav" style="display: none;">
+            <a href="#" class="nav-btn prev">
+                <span class="dir">Previous</span>
+                <span class="title">...</span>
+            </a>
+            <a href="#" class="nav-btn next">
+                <span class="dir">Next</span>
+                <span class="title">...</span>
+            </a>
+        </footer>
+    </main>
+
+    <script type="text/markdown" id="markdown-content">
+### Phase 1: **Fundamentals**
+
+#### Variables & Data Types
+JavaScript is dynamic and weakly typed. 
+- `let` and `const` (ES6) are block-scoped.
+- `var` is function-scoped (avoid in modern JS).
+
+Types: `String`, `Number`, `Boolean`, `Null`, `Undefined`, `Symbol`, `BigInt`, and `Object`.
+
+#### Operators & Logic
+Comparison (`===`), Logical (`&&`, `||`, `!`), and the Nullish Coalescing operator (`??`).
+
+#### Control Flow
+`if/else`, `switch`, and loops (`for`, `while`, `for...of`, `for...in`).
+
+#### Type Coercion
+Understanding how JS converts types implicitly. Always use `===` for strict equality.
+
+#### The "this" Keyword
+A foundational concept that refers to the object the function is a property of. Its value depends on how a function is called.
+
+### Phase 2: **Functions & Scopes**
+
+#### Function Declarations vs Expressions
+Declarations are hoisted, expressions are not.
+
+#### Arrow Functions (ES6)
+Concise syntax and lexical `this` binding.
+
+```javascript
+const add = (a, b) => a + b;
+```
+
+#### Closures
+A closure is the combination of a function bundled together with references to its surrounding state.
+
+#### Scopes & Hoisting
+Global, Function, and Block scope. Hoisting is JS's default behavior of moving declarations to the top.
+
+#### Higher-Order Functions
+Functions that take other functions as arguments or return them (e.g., `map`, `filter`, `reduce`).
+
+### Phase 3: **ES6+ & Special Modules**
+
+#### ES6 Modules (ESM)
+The standard for modularizing JavaScript code. Use `export` to share and `import` to use.
+
+```javascript
+// math.js
+export const add = (a, b) => a + b;
+export default function multiply(a, b) { return a * b; }
+
+// main.js
+import multiply, { add } from './math.js';
+```
+
+#### Named vs Default Exports
+- **Named**: Multiple per file, must use exact name.
+- **Default**: One per file, can be renamed during import.
+
+#### Destructuring
+Extracting values from arrays or properties from objects into distinct variables.
+
+```javascript
+const { name, age } = user;
+const [first, second] = colors;
+```
+
+#### Spread & Rest Operators
+`...` used to expand or collect elements.
+
+#### Template Literals
+Backticks (``) for string interpolation and multi-line strings.
+
+### Phase 4: **Objects & Arrays**
+
+#### Object Literals & Methods
+Using `Object.keys()`, `Object.values()`, and `Object.entries()`.
+
+#### Array Mastery
+`push`, `pop`, `shift`, `unshift`, `splice`, `slice`, and the powerful `map`, `filter`, `reduce`.
+
+#### Prototype Chain
+JS uses prototypal inheritance. Every object has a private property which holds a link to another object called its prototype.
+
+#### Classes (ES6)
+Syntactic sugar over prototypes for a more object-oriented feel.
+
+```javascript
+class Animal {
+  constructor(name) { this.name = name; }
+  speak() { console.log(`${this.name} makes a noise.`); }
+}
+```
+
+#### Set & Map
+New data structures for unique values and key-value pairs.
+
+### Phase 5: **Asynchronous JS**
+
+#### The Event Loop
+Understanding how JS handles async tasks using the Task Queue and Microtask Queue.
+
+#### Promises
+Objects representing the eventual completion (or failure) of an asynchronous operation.
+
+#### Async / Await
+The modern way to handle promises with a synchronous-looking syntax.
+
+```javascript
+async function getGameData() {
+  const res = await fetch('/api/games');
+  return await res.json();
+}
+```
+
+#### Fetch API
+Modern replacement for XMLHttpRequest for making network requests.
+
+#### Error Handling
+Using `try...catch` blocks for both sync and async code.
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        async function initConverter() {
+            try {
+                const markdown = document.getElementById('markdown-content').textContent;
+                const phases = parseMarkdownToPhases(markdown);
+                renderBook(phases);
+                
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('book-content').style.display = 'block';
+                document.querySelector('.page-nav').style.display = 'flex';
+                
+                const hash = window.location.hash.substring(1);
+                if (hash) showPage(hash); else showPage('p1-1');
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loader').innerHTML = `<p style="color: var(--primary)">Error loading content.</p>`;
+            }
+        }
+
+        function parseMarkdownToPhases(md) {
+            const phaseBlocks = md.split(/### Phase \d:/g).filter(b => b.trim().length > 10);
+            return phaseBlocks.map((content, index) => {
+                const phaseNum = index + 1;
+                const sections = content.split('#### ').filter(s => s.trim().length > 0);
+                const titleLine = content.split('\n')[0].trim();
+                const title = titleLine.replace(/^\*\*|\*\*$/g, '') || `Phase ${phaseNum}`;
+                
+                const pages = sections.map((section, i) => {
+                    const lines = section.split('\n');
+                    return {
+                        id: `p${phaseNum}-${i+1}`,
+                        title: lines[0].trim(),
+                        content: marked.parse(lines.slice(1).join('\n'))
+                    };
+                });
+                
+                return { id: phaseNum, title, pages };
+            });
+        }
+
+        function renderBook(phases) {
+            const container = document.getElementById('book-content');
+            const nav = document.querySelector('.nav-content');
+            nav.innerHTML = ''; container.innerHTML = '';
+
+            phases.forEach(phase => {
+                const chapterDiv = document.createElement('div');
+                chapterDiv.className = 'chapter';
+                chapterDiv.innerHTML = `<div class="chapter-title">Phase ${phase.id}: ${phase.title}</div>`;
+                
+                phase.pages.forEach(page => {
+                    const link = document.createElement('a');
+                    link.href = `#${page.id}`;
+                    link.className = 'page-link';
+                    link.dataset.page = page.id;
+                    link.textContent = page.title;
+                    chapterDiv.appendChild(link);
+
+                    const pageSection = document.createElement('section');
+                    pageSection.id = page.id;
+                    pageSection.className = 'book-page';
+                    pageSection.innerHTML = `
+                        <div class="content-header">
+                            <span class="label">Phase ${phase.id} • Chapter ${page.id.split('-')[1]}</span>
+                            <h1>${page.title}</h1>
+                        </div>
+                        <div class="content-body">${page.content}</div>
+                    `;
+                    container.appendChild(pageSection);
+                });
+                nav.appendChild(chapterDiv);
+            });
+        }
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.book-page');
+            const navLinks = document.querySelectorAll('.page-link');
+            pages.forEach(p => p.classList.remove('active'));
+            navLinks.forEach(l => l.classList.remove('active'));
+            
+            const target = document.getElementById(pageId);
+            const link = document.querySelector(`[data-page="${pageId}"]`);
+            if (target) {
+                target.classList.add('active');
+                if (link) link.classList.add('active');
+                updateNavButtons(pageId);
+                document.getElementById('content-viewer').scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function updateNavButtons(currentId) {
+            const allLinks = Array.from(document.querySelectorAll('.page-link'));
+            const currentLink = document.querySelector(`[data-page="${currentId}"]`);
+            const currentIndex = allLinks.indexOf(currentLink);
+            const nextBtn = document.querySelector('.next');
+            const prevBtn = document.querySelector('.prev');
+
+            if (currentIndex > 0) {
+                prevBtn.style.visibility = 'visible';
+                prevBtn.href = `#${allLinks[currentIndex - 1].dataset.page}`;
+                prevBtn.querySelector('.title').textContent = allLinks[currentIndex - 1].textContent;
+            } else prevBtn.style.visibility = 'hidden';
+
+            if (currentIndex < allLinks.length - 1 && currentIndex !== -1) {
+                nextBtn.style.visibility = 'visible';
+                nextBtn.href = `#${allLinks[currentIndex + 1].dataset.page}`;
+                nextBtn.querySelector('.title').textContent = allLinks[currentIndex + 1].textContent;
+            } else nextBtn.style.visibility = 'hidden';
+        }
+
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash) showPage(hash);
+        });
+
+        window.addEventListener('DOMContentLoaded', initConverter);
+    </script>
+</body>
+</html>
