@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Alternatives - Beyond JWT</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <aside>
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-logo">
+                <div class="logo-icon">ALT</div>
+                <span>Auth Alternatives</span>
+            </a>
+        </div>
+        <nav class="nav-content">
+            <!-- Content will be injected here -->
+            <div id="nav-loader" style="padding: 2rem; color: var(--text-secondary); font-size: 0.8rem;">
+                Scanning protocols...
+            </div>
+        </nav>
+    </aside>
+
+    <main id="content-viewer">
+        <div id="loader" style="text-align: center; padding: 4rem;">
+            <div class="logo-icon" style="margin: 0 auto 1rem; animation: pulse 2s infinite;">ALT</div>
+            <p style="color: var(--text-secondary)">Parsing alternative patterns...</p>
+        </div>
+
+        <div id="book-content" style="display: none;">
+            <!-- Content will be injected here -->
+        </div>
+        
+        <footer class="page-nav" style="display: none;">
+            <a href="#" class="nav-btn prev">
+                <span class="dir">Previous</span>
+                <span class="title">...</span>
+            </a>
+            <a href="#" class="nav-btn next">
+                <span class="dir">Next</span>
+                <span class="title">...</span>
+            </a>
+        </footer>
+    </main>
+
+    <script type="text/markdown" id="markdown-content">
+### Phase 1: **Session-Based Authentication**
+
+#### What are Sessions?
+The traditional way of handling authentication. The server is responsible for keeping track of the user's state.
+
+#### How it works
+1. **Login**: User sends credentials.
+2. **Creation**: Server creates a session in memory or a database (like Redis).
+3. **Cookie**: Server sends a `Session ID` to the client in a secure, HTTP-only cookie.
+4. **Validation**: Client sends the cookie with every request; the server looks it up.
+
+#### Pros and Cons
+- **Pros**: You can revoke access instantly by deleting the session from the server.
+- **Cons**: Difficult to scale horizontally without a shared session store (like Redis).
+
+### Phase 2: **PASETO (Modern Alternative)**
+
+#### What is PASETO?
+PASETO stands for Platform-Agnostic Security Tokens. It was designed to fix the design flaws in JWT.
+
+#### Why PASETO?
+- **Algorithm Agnostic**: In JWT, the client can tell the server to use "none" as the algorithm. PASETO removes this choice, forcing secure defaults.
+- **Vulnerability Proof**: It is designed to be immune to most of the common attacks that plague JWT implementations.
+
+#### Implementation
+While less common than JWT, libraries exist for almost every language, including Node.js (`paseto` package).
+
+### Phase 3: **OAuth2 & OpenID Connect**
+
+#### Authentication vs Authorization
+- **OAuth2**: Handles Authorization (Permissions). "Allow this app to post on my wall."
+- **OpenID Connect (OIDC)**: Handles Authentication (Identity). "Tell this app who I am."
+
+#### Standard Flows
+- **Authorization Code Flow**: The most secure, used for web apps.
+- **Client Credentials Flow**: Used for machine-to-machine communication.
+
+#### Popular Providers
+Google, Facebook, GitHub, and Auth0 are common providers that use these protocols.
+
+### Phase 4: **Macaroons & API Keys**
+
+#### Macaroons
+Think of them as cookies with "caveats." They allow you to delegate limited permissions to others without sharing your main secret.
+
+#### API Keys
+Simple strings used for machine-to-machine access.
+- **Best Practice**: Always rotate them regularly and never commit them to version control.
+
+### Phase 5: **Choosing the Right Pattern**
+
+#### Comparison Matrix
+
+| Use Case | Recommended Pattern |
+| :--- | :--- |
+| **Simple Web App** | Sessions + Cookies |
+| **Scalable Microservices** | JWT or PASETO |
+| **Social Login** | OAuth2 / OIDC |
+| **Mobile App** | JWT / PASETO |
+| **M2M Communication** | API Keys or OAuth2 |
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        async function initConverter() {
+            try {
+                const markdown = document.getElementById('markdown-content').textContent;
+                const phases = parseMarkdownToPhases(markdown);
+                renderBook(phases);
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('book-content').style.display = 'block';
+                document.querySelector('.page-nav').style.display = 'flex';
+                const hash = window.location.hash.substring(1);
+                if (hash) showPage(hash);
+                else showPage('p1-1');
+            } catch (err) {
+                console.error('Failed to load content', err);
+            }
+        }
+
+        function parseMarkdownToPhases(md) {
+            const phaseBlocks = md.split(/### Phase \d:/g).filter(b => b.trim().length > 10);
+            return phaseBlocks.map((content, index) => {
+                const phaseNum = index + 1;
+                const lines = content.split('\n').filter(l => l.trim() !== '');
+                const titleLine = lines[0].trim();
+                const title = titleLine.replace(/^\*\*|\*\*$/g, '') || `Phase ${phaseNum}`;
+                const pages = [];
+                const sections = content.split('#### ').filter(s => s.trim().length > 0);
+                sections.forEach((section, i) => {
+                    const sectionLines = section.split('\n');
+                    const sectionTitle = sectionLines[0].trim();
+                    const sectionContent = sectionLines.slice(1).join('\n');
+                    pages.push({
+                        id: `p${phaseNum}-${i+1}`,
+                        title: sectionTitle,
+                        content: marked.parse(sectionContent)
+                    });
+                });
+                return { id: phaseNum, title: title, pages: pages };
+            });
+        }
+
+        function renderBook(phases) {
+            const container = document.getElementById('book-content');
+            const nav = document.querySelector('.nav-content');
+            nav.innerHTML = '';
+            container.innerHTML = '';
+            phases.forEach(phase => {
+                const chapterDiv = document.createElement('div');
+                chapterDiv.className = 'chapter';
+                chapterDiv.innerHTML = `<div class="chapter-title">Phase ${phase.id}: ${phase.title}</div>`;
+                phase.pages.forEach(page => {
+                    const link = document.createElement('a');
+                    link.href = `#${page.id}`;
+                    link.className = 'page-link';
+                    link.dataset.page = page.id;
+                    link.textContent = page.title;
+                    chapterDiv.appendChild(link);
+                    const pageSection = document.createElement('section');
+                    pageSection.id = page.id;
+                    pageSection.className = 'book-page';
+                    pageSection.innerHTML = `
+                        <div class="content-header">
+                            <span class="label">Alternatives • Phase ${phase.id}</span>
+                            <h1>${page.title}</h1>
+                        </div>
+                        <div class="content-body">${page.content}</div>
+                    `;
+                    container.appendChild(pageSection);
+                });
+                nav.appendChild(chapterDiv);
+            });
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.book-page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.page-link').forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(pageId);
+            const link = document.querySelector(`[data-page="${pageId}"]`);
+            if (target) {
+                target.classList.add('active');
+                if (link) link.classList.add('active');
+                updateNavButtons(pageId);
+                document.getElementById('content-viewer').scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function updateNavButtons(currentId) {
+            const allLinks = Array.from(document.querySelectorAll('.page-link'));
+            const currentIndex = allLinks.findIndex(l => l.dataset.page === currentId);
+            const nextBtn = document.querySelector('.next');
+            const prevBtn = document.querySelector('.prev');
+            if (currentIndex > 0) {
+                prevBtn.style.visibility = 'visible';
+                prevBtn.href = `#${allLinks[currentIndex - 1].dataset.page}`;
+                prevBtn.querySelector('.title').textContent = allLinks[currentIndex - 1].textContent;
+            } else prevBtn.style.visibility = 'hidden';
+            if (currentIndex < allLinks.length - 1 && currentIndex !== -1) {
+                nextBtn.style.visibility = 'visible';
+                nextBtn.href = `#${allLinks[currentIndex + 1].dataset.page}`;
+                nextBtn.querySelector('.title').textContent = allLinks[currentIndex + 1].textContent;
+            } else nextBtn.style.visibility = 'hidden';
+        }
+
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash) showPage(hash);
+        });
+        window.addEventListener('DOMContentLoaded', initConverter);
+    </script>
+</body>
+</html>

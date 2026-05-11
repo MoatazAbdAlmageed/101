@@ -1,5 +1,5 @@
 <!DOCTYPE html> <!-- Standard HTML5 document type declaration -->
-<html lang="en"> <!-- Root element with language set to English -->
+<html lang="ar" dir="rtl"> <!-- Set language to Arabic and direction to RTL -->
 <head> <!-- Metadata section of the document -->
     <meta charset="UTF-8"> <!-- Set character encoding to UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive viewport settings -->
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/style.css"> <!-- Link to the external CSS stylesheet -->
     <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Optimization for Google Fonts connection -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Preconnect to the font assets server -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"> <!-- Import Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet"> <!-- Import Cairo and Inter fonts -->
 </head> <!-- End of metadata section -->
 <body> <!-- Visible content of the page starts here -->
     <div class="container"> <!-- Main wrapper for the application UI -->
@@ -17,7 +17,7 @@
         </header> <!-- End of header section -->
 
         <form action="/add" method="POST" class="input-group"> <!-- Form to add tasks, sends data to /add via POST -->
-            <input type="text" name="title" placeholder="Add a new task..." required autocomplete="off"> <!-- Input field for the task title -->
+            <input type="text" name="title" placeholder="Add a new task..." required autocomplete="off" dir="auto"> <!-- Input field for the task title with auto direction -->
             <button type="submit" class="add-btn">Add</button> <!-- Submit button to add the task -->
         </form> <!-- End of the input form -->
 
@@ -34,7 +34,7 @@
                         <form action="/toggle/<%= task.id %>" method="POST" class="toggle-form"> <!-- Form to toggle completion via POST request -->
                             <button type="submit"></button> <!-- Circular button acting as a checkbox -->
                         </form> <!-- End of toggle form -->
-                        <span><%= task.title %></span> <!-- Display the task title using EJS output tags -->
+                        <span dir="auto"><%= task.title %></span> <!-- Display the task title with auto direction -->
                     </div> <!-- End of task content wrapper -->
                     <form action="/delete/<%= task.id %>" method="POST"> <!-- Form to delete a task via POST request -->
                         <button type="submit" class="delete-btn"> <!-- Button to trigger deletion -->

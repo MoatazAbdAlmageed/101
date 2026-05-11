@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Mastery - Secure Authentication Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <aside>
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-logo">
+                <div class="logo-icon">JWT</div>
+                <span>JWT Mastery</span>
+            </a>
+        </div>
+        <nav class="nav-content">
+            <!-- Content will be injected here by the converter -->
+            <div id="nav-loader" style="padding: 2rem; color: var(--text-secondary); font-size: 0.8rem;">
+                Loading security protocols...
+            </div>
+        </nav>
+    </aside>
+
+    <main id="content-viewer">
+        <div id="loader" style="text-align: center; padding: 4rem;">
+            <div class="logo-icon" style="margin: 0 auto 1rem; animation: pulse 2s infinite;">JWT</div>
+            <p style="color: var(--text-secondary)">Decrypting knowledge base...</p>
+        </div>
+
+        <div id="book-content" style="display: none;">
+            <!-- Content will be injected here by the converter -->
+        </div>
+        
+        <footer class="page-nav" style="display: none;">
+            <a href="#" class="nav-btn prev">
+                <span class="dir">Previous</span>
+                <span class="title">...</span>
+            </a>
+            <a href="#" class="nav-btn next">
+                <span class="dir">Next</span>
+                <span class="title">...</span>
+            </a>
+        </footer>
+    </main>
+
+    <script type="text/markdown" id="markdown-content">
+### Phase 1: **Introduction to JWT**
+
+#### What is JWT?
+JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
+
+- **Compact**: Because of their small size, JWTs can be sent through a URL, POST parameter, or inside an HTTP header.
+- **Self-contained**: The payload contains all the required information about the user, avoiding the need to query the database more than once.
+
+#### The Anatomy of a JWT
+A JWT consists of three parts separated by dots (`.`):
+1. **Header**: Contains the type of token (JWT) and the signing algorithm (e.g., HS256).
+2. **Payload**: Contains the claims (user data, expiration time).
+3. **Signature**: Used to verify that the sender is who they say they are and to ensure the message wasn't changed.
+
+`header.payload.signature`
+
+#### Why use JWT?
+Unlike session-based authentication, JWT is **stateless**. The server doesn't need to store session data in memory or a database. This makes it ideal for scaling applications across multiple servers.
+
+### Phase 2: **Implementation in Node.js**
+
+#### Basic Setup
+To use JWT in Node.js, the most popular library is `jsonwebtoken`.
+
+```bash
+npm install jsonwebtoken
+```
+
+#### Generating a Token
+You use `jwt.sign()` to create a token.
+
+```javascript
+const jwt = require('jsonwebtoken');
+
+const user = { id: 123, username: 'dev101' };
+const secret = 'your-very-secure-secret';
+
+const token = jwt.sign(user, secret, { expiresIn: '1h' });
+console.log(token);
+```
+
+#### Verifying a Token
+You use `jwt.verify()` to validate a token sent by a client.
+
+```javascript
+try {
+    const decoded = jwt.verify(token, secret);
+    console.log(decoded.username); // 'dev101'
+} catch (err) {
+    console.error('Invalid token');
+}
+```
+
+#### Middleware Integration
+In Express, you typically protect routes using a middleware that checks for the token in the `Authorization` header.
+
+```javascript
+const authMiddleware = (req, res, next) => {
+    const token = req.headers['authorization']?.split(' ')[1];
+    if (!token) return res.status(401).send('Access Denied');
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.status(403).send('Invalid Token');
+        req.user = user;
+        next();
+    });
+};
+```
+
+### Phase 3: **Best Practices & Security**
+
+#### Secret Key Management
+Never hardcode your secret key. Use environment variables and make it long and complex.
+
+#### Token Expiration
+Always set an expiration time (`exp`). This limits the window of opportunity for an attacker if a token is stolen.
+
+#### Handling Sensitive Data
+**NEVER** put passwords or highly sensitive data in the JWT payload. The payload is Base64 encoded, which means anyone can read it. It is **signed**, not encrypted.
+
+#### Refresh Tokens
+To provide a good user experience without sacrificing security:
+1. **Access Token**: Short-lived (e.g., 15 mins).
+2. **Refresh Token**: Long-lived (e.g., 7 days), stored in a secure cookie or database to issue new access tokens.
+
+### Phase 4: **JWT Alternatives**
+
+#### 1. Session-Based Authentication
+The traditional way. The server stores a session in memory/DB and sends a `Session ID` to the client in a cookie.
+- **Pros**: Easy to revoke sessions immediately.
+- **Cons**: Difficult to scale (requires sticky sessions or shared session store like Redis).
+
+#### 2. PASETO (Platform-Agnostic Security Tokens)
+Designed to be a more secure alternative to JWT by fixing many of JWT's design flaws (like the `none` algorithm vulnerability).
+- **Pros**: More secure by default, no algorithm selection.
+- **Cons**: Less widespread support compared to JWT.
+
+#### 3. Cookies with Signed Data
+Instead of a full JWT, you can store data in a signed cookie.
+- **Pros**: Simple, built-in browser support.
+- **Cons**: Limited size (4KB), not ideal for mobile apps or third-party integrations.
+
+#### 4. OAuth2 & OpenID Connect
+Not just tokens, but full protocols for authorization and authentication.
+- **Pros**: Standardized, secure, handles third-party logins (Google, GitHub).
+- **Cons**: Highly complex to implement from scratch.
+
+### Phase 5: **Practical Comparison**
+
+| Feature | JWT | Sessions | PASETO |
+| :--- | :--- | :--- | :--- |
+| **Storage** | Client-side | Server-side | Client-side |
+| **Stateless** | Yes | No | Yes |
+| **Scalability** | High | Medium | High |
+| **Revocation** | Difficult | Easy | Difficult |
+| **Security** | Flexible (can be weak) | High | High (Secure by default) |
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        async function initConverter() {
+            try {
+                const markdown = document.getElementById('markdown-content').textContent;
+                const phases = parseMarkdownToPhases(markdown);
+                renderBook(phases);
+                
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('book-content').style.display = 'block';
+                document.querySelector('.page-nav').style.display = 'flex';
+                
+                const hash = window.location.hash.substring(1);
+                if (hash) showPage(hash);
+                else showPage('p1-1');
+            } catch (err) {
+                console.error('Failed to load JWT content', err);
+            }
+        }
+
+        function parseMarkdownToPhases(md) {
+            const phaseBlocks = md.split(/### Phase \d:/g).filter(b => b.trim().length > 10);
+            return phaseBlocks.map((content, index) => {
+                const phaseNum = index + 1;
+                const lines = content.split('\n').filter(l => l.trim() !== '');
+                const titleLine = lines[0].trim();
+                const title = titleLine.replace(/^\*\*|\*\*$/g, '') || `Phase ${phaseNum}`;
+                const pages = [];
+                const sections = content.split('#### ').filter(s => s.trim().length > 0);
+                
+                sections.forEach((section, i) => {
+                    const sectionLines = section.split('\n');
+                    const sectionTitle = sectionLines[0].trim();
+                    const sectionContent = sectionLines.slice(1).join('\n');
+                    pages.push({
+                        id: `p${phaseNum}-${i+1}`,
+                        title: sectionTitle,
+                        content: marked.parse(sectionContent)
+                    });
+                });
+                
+                return { id: phaseNum, title: title, pages: pages };
+            });
+        }
+
+        function renderBook(phases) {
+            const container = document.getElementById('book-content');
+            const nav = document.querySelector('.nav-content');
+            nav.innerHTML = '';
+            container.innerHTML = '';
+
+            phases.forEach(phase => {
+                const chapterDiv = document.createElement('div');
+                chapterDiv.className = 'chapter';
+                chapterDiv.innerHTML = `<div class="chapter-title">Phase ${phase.id}: ${phase.title}</div>`;
+                
+                phase.pages.forEach(page => {
+                    const link = document.createElement('a');
+                    link.href = `#${page.id}`;
+                    link.className = 'page-link';
+                    link.dataset.page = page.id;
+                    link.textContent = page.title;
+                    chapterDiv.appendChild(link);
+
+                    const pageSection = document.createElement('section');
+                    pageSection.id = page.id;
+                    pageSection.className = 'book-page';
+                    pageSection.innerHTML = `
+                        <div class="content-header">
+                            <span class="label">JWT Mastery • Phase ${phase.id}</span>
+                            <h1>${page.title}</h1>
+                        </div>
+                        <div class="content-body">${page.content}</div>
+                    `;
+                    container.appendChild(pageSection);
+                });
+                nav.appendChild(chapterDiv);
+            });
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.book-page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.page-link').forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(pageId);
+            const link = document.querySelector(`[data-page="${pageId}"]`);
+            if (target) {
+                target.classList.add('active');
+                if (link) link.classList.add('active');
+                updateNavButtons(pageId);
+                document.getElementById('content-viewer').scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function updateNavButtons(currentId) {
+            const allLinks = Array.from(document.querySelectorAll('.page-link'));
+            const currentIndex = allLinks.findIndex(l => l.dataset.page === currentId);
+            const nextBtn = document.querySelector('.next');
+            const prevBtn = document.querySelector('.prev');
+
+            if (currentIndex > 0) {
+                prevBtn.style.visibility = 'visible';
+                prevBtn.href = `#${allLinks[currentIndex - 1].dataset.page}`;
+                prevBtn.querySelector('.title').textContent = allLinks[currentIndex - 1].textContent;
+            } else prevBtn.style.visibility = 'hidden';
+
+            if (currentIndex < allLinks.length - 1 && currentIndex !== -1) {
+                nextBtn.style.visibility = 'visible';
+                nextBtn.href = `#${allLinks[currentIndex + 1].dataset.page}`;
+                nextBtn.querySelector('.title').textContent = allLinks[currentIndex + 1].textContent;
+            } else nextBtn.style.visibility = 'hidden';
+        }
+
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash) showPage(hash);
+        });
+
+        window.addEventListener('DOMContentLoaded', initConverter);
+    </script>
+</body>
+</html>

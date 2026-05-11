@@ -179,6 +179,45 @@ app.get('/user/:id', (req, res) => {
 });
 ```
 
+#### EJS (Embedded JavaScript)
+EJS is the most popular templating engine for Node.js. It allows you to inject dynamic data into your HTML files using plain JavaScript syntax.
+
+**1. Setup in Express**
+To use EJS, you must first install it (`npm install ejs`) and then tell Express to use it as the view engine.
+```javascript
+app.set('view engine', 'ejs');
+```
+
+**2. Core Syntax Tags**
+- `<% code %>`: **Scriptlet** tag for control-flow (if/else, loops). It doesn't output anything.
+- `<%= value %>`: **Output** tag. It escapes HTML and outputs the value.
+- `<%- value %>`: **Raw Output** tag. It outputs raw HTML (use with caution!).
+- `<%# comment %>`: **Comment** tag.
+
+**3. Practical Example (Looping through Tasks)**
+```html
+<h1>My Tasks</h1>
+<ul>
+  <% if (tasks.length > 0) { %>
+    <% tasks.forEach(task => { %>
+      <li class="<%= task.completed ? 'done' : '' %>">
+        <%= task.title %>
+      </li>
+    <% }) %>
+  <% } else { %>
+    <p>No tasks found.</p>
+  <% } %>
+</ul>
+```
+
+**4. Partials (Reusable Components)**
+Partials allow you to maintain common elements (like Navbars or Footers) in separate files.
+```html
+<%- include('partials/header') %>
+<h1>Main Content</h1>
+<%- include('partials/footer') %>
+```
+
 #### The Power of Middleware
 Middleware functions sit between the request and the final route handler. They can:
 1. Execute any code.

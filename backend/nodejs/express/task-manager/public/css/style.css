@@ -14,7 +14,7 @@
     margin: 0; /* Remove default browser margins */
     padding: 0; /* Remove default browser padding */
     box-sizing: border-box; /* Include padding and border in element's total width/height */
-    font-family: 'Inter', system-ui, -apple-system, sans-serif; /* Set modern sans-serif font stack */
+    font-family: 'Cairo', 'Inter', system-ui, -apple-system, sans-serif; /* Set Cairo for Arabic and Inter for English */
 }
 
 body { /* Styles for the entire page body */
@@ -48,7 +48,6 @@ header { /* Header section spacing */
 header h1 { /* Main title styles */
     font-size: 2rem; /* Large font size */
     font-weight: 800; /* Extra bold */
-    letter-spacing: -0.025em; /* Tighten character spacing for a premium look */
     margin-bottom: 0.5rem; /* Space below the title */
     background: linear-gradient(to right, #818cf8, #c084fc); /* Gradient text color */
     -webkit-background-clip: text; /* Clip background to the text (WebKit/Blink) */
