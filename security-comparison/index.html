@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Concepts | Hashing vs Encryption vs Encoding</title>
+    <meta name="description" content="A comprehensive comparison of Hashing, Encryption, and Encoding in English and Arabic.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .lang-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+        }
+        .lang-toggle:hover {
+            transform: scale(1.05);
+            background: var(--secondary);
+        }
+        [dir="rtl"] .lang-toggle {
+            right: auto;
+            left: 2rem;
+        }
+        .en-content, .ar-content {
+            display: none;
+        }
+        [lang="en"] .en-content { display: block; }
+        [lang="ar"] .ar-content { display: block; }
+    </style>
+</head>
+<body>
+
+    <button class="lang-toggle" onclick="toggleLanguage()">Switch to العربية</button>
+
+    <div class="container">
+        <header>
+            <div class="en-content">
+                <h1>Data Transformation</h1>
+                <p class="subtitle">Hashing vs. Encryption vs. Encoding</p>
+            </div>
+            <div class="ar-content">
+                <h1>تحويل البيانات</h1>
+                <p class="subtitle">التجزئة مقابل التشفير مقابل الترميز</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="comparison-grid">
+                <!-- Hashing Card -->
+                <div class="card">
+                    <div class="en-content">
+                        <h2><span class="icon">🔒</span> Hashing</h2>
+                        <p>A one-way process that transforms data into a fixed-length signature. It is impossible to reverse.</p>
+                        <div class="tags">
+                            <span class="tag">One-Way</span>
+                            <span class="tag">Fixed Length</span>
+                            <span class="tag">Integrity</span>
+                        </div>
+                    </div>
+                    <div class="ar-content">
+                        <h2><span class="icon">🔒</span> التجزئة (Hashing)</h2>
+                        <p>عملية أحادية الاتجاه تحول البيانات إلى توقيع بطول ثابت. من المستحيل استعادة البيانات الأصلية.</p>
+                        <div class="tags">
+                            <span class="tag">اتجاه واحد</span>
+                            <span class="tag">طول ثابت</span>
+                            <span class="tag">سلامة البيانات</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Encryption Card -->
+                <div class="card">
+                    <div class="en-content">
+                        <h2><span class="icon">🔑</span> Encryption</h2>
+                        <p>A two-way process used for secrecy. Requires a specific key to lock and unlock the data.</p>
+                        <div class="tags">
+                            <span class="tag">Two-Way</span>
+                            <span class="tag">Secret Key</span>
+                            <span class="tag">Privacy</span>
+                        </div>
+                    </div>
+                    <div class="ar-content">
+                        <h2><span class="icon">🔑</span> التشفير (Encryption)</h2>
+                        <p>عملية ثنائية الاتجاه تستخدم للسرية. تتطلب مفتاحاً خاصاً لقفل وفتح تشفير البيانات.</p>
+                        <div class="tags">
+                            <span class="tag">اتجاهين</span>
+                            <span class="tag">مفتاح سري</span>
+                            <span class="tag">الخصوصية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Encoding Card -->
+                <div class="card">
+                    <div class="en-content">
+                        <h2><span class="icon">📦</span> Encoding</h2>
+                        <p>Changing data format for compatibility. Not meant for security, as no key is required.</p>
+                        <div class="tags">
+                            <span class="tag">Compatibility</span>
+                            <span class="tag">No Key</span>
+                            <span class="tag">Public Scheme</span>
+                        </div>
+                    </div>
+                    <div class="ar-content">
+                        <h2><span class="icon">📦</span> الترميز (Encoding)</h2>
+                        <p>تغيير تنسيق البيانات لضمان التوافقية. لا يقصد به الأمن، حيث لا يتطلب مفتاحاً سرياً.</p>
+                        <div class="tags">
+                            <span class="tag">التوافقية</span>
+                            <span class="tag">بدون مفتاح</span>
+                            <span class="tag">نظام علني</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <div class="en-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Hashing</th>
+                                <th>Encryption</th>
+                                <th>Encoding</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Purpose</td>
+                                <td>Integrity & Verification</td>
+                                <td>Confidentiality</td>
+                                <td>Usability/Compatibility</td>
+                            </tr>
+                            <tr>
+                                <td>Reversible?</td>
+                                <td>No</td>
+                                <td>Yes (With Key)</td>
+                                <td>Yes (No Key)</td>
+                            </tr>
+                            <tr>
+                                <td>Use Case</td>
+                                <td>Passwords</td>
+                                <td>Sensitive Files</td>
+                                <td>URLs, Base64</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="ar-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>الميزة</th>
+                                <th>التجزئة (Hashing)</th>
+                                <th>التشفير (Encryption)</th>
+                                <th>الترميز (Encoding)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>الهدف</td>
+                                <td>سلامة البيانات والتحقق</td>
+                                <td>السرية والخصوصية</td>
+                                <td>التوافقية وسهولة الاستخدام</td>
+                            </tr>
+                            <tr>
+                                <td>قابل للانعكاس؟</td>
+                                <td>لا</td>
+                                <td>نعم (بواسطة مفتاح)</td>
+                                <td>نعم (بدون مفتاح)</td>
+                            </tr>
+                            <tr>
+                                <td>حالة الاستخدام</td>
+                                <td>كلمات المرور</td>
+                                <td>الملفات الحساسة</td>
+                                <td>الروابط، Base64</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            const html = document.documentElement;
+            const btn = document.querySelector('.lang-toggle');
+
+            if (html.lang === 'en') {
+                html.lang = 'ar';
+                html.dir = 'rtl';
+                btn.textContent = 'Switch to English';
+            } else {
+                html.lang = 'en';
+                html.dir = 'ltr';
+                btn.textContent = 'Switch to العربية';
+            }
+        }
+    </script>
+</body>
+</html>
